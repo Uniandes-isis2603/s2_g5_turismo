@@ -42,19 +42,19 @@ public void GetBlog (@PathParam("id") long id)
     
     
   @POST
-  public void CrearBlog (BlogDTO blog)
+  public void CrearBlog ()
   {
   
   }
 
   @PUT
   @Path("{id: \\d+}") 
-  public void ActualizarBlog (@PathParam("id") long id, BlogDTO blog)
+  public void ActualizarBlog (@PathParam("id") long id)
   {}
   
   @DELETE
   @Path("{id: \\d+}") 
-  public void BorrarBlog (@PathParam("id") long id, BlogDTO blog)
+  public void BorrarBlog (@PathParam("id") long id)
   {
   
   }
