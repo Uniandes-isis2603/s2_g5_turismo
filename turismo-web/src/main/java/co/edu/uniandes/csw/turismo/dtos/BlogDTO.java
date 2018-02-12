@@ -5,6 +5,9 @@
  */
 package co.edu.uniandes.csw.turismo.dtos;
 
+
+import java.util.List;
+
 /**
  *
  * @author lf.rivera10
@@ -12,15 +15,25 @@ package co.edu.uniandes.csw.turismo.dtos;
 public class BlogDTO {
     private String tema;
     private String descripcion;
-    private int likes;
-    private T2 archivos;
-    
-      public BlogDTO(String tema, String descripcion, int likes, T2 archivos) {
+    private int likes; 
+    private List<ComentariosDTO> comentarios;
+
+    public BlogDTO(String tema, String descripcion, int likes, List<ComentariosDTO> comentarios) {
         this.tema = tema;
         this.descripcion = descripcion;
         this.likes = likes;
-        this.archivos = archivos;
-      }
+        this.comentarios = comentarios;
+    }
+
+    public List<ComentariosDTO> getComentarios() {
+        return comentarios;
+    }
+
+    public void setComentarios(List<ComentariosDTO> comentarios) {
+        this.comentarios = comentarios;
+    }
+    
+    
 
     public String getTema() {
         return tema;
@@ -46,13 +59,6 @@ public class BlogDTO {
         this.likes = likes;
     }
 
-    public T2 getArchivos() {
-        return archivos;
-    }
-
-    public void setArchivos(T2 archivos) {
-        this.archivos = archivos;
-    }
     
     
 }
