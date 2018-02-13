@@ -124,8 +124,8 @@ public class ValoracionesResource
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera al no poder actualizar la valoracion porque ya existe una con ese nombre.
      */
     @PUT
-    @Path("{id: \\d+}/pqueteTuristico/{id1: \\d+}/plan/{id2: \\d+}/valoraciones/{id3: \\d+}")
-    public ValoracionesDetailDTO updateCity(@PathParam("id") Long id, @PathParam("id1") Long id1, @PathParam("id2") Long id2, @PathParam("id3") Long id3, ValoracionesDetailDTO valoracion) throws BusinessLogicException {
+    @Path("{id: \\d+}")
+    public ValoracionesDetailDTO updateCity(@PathParam("id") Long id, ValoracionesDetailDTO valoracion) throws BusinessLogicException {
         return valoracion;
     }
     
