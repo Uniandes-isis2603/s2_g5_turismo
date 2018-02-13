@@ -23,7 +23,7 @@ import javax.ws.rs.Produces;
  *
  * @author dl.avendano
  */
-@Path("paquetes")
+@Path("paquete")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
@@ -91,6 +91,7 @@ public class PaqueteTuristicoResource {
     public PaqueteTuristicoDetailDTO getPaqueteTuristico(@PathParam("id") Long id) {
         return null;
     }
+    
     
     /**
      * <h1>PUT /api/paquetess/{id} : Actualizar el paquetes con el id dado.</h1>
