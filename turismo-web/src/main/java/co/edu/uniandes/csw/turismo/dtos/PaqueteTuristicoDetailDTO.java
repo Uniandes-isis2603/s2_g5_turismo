@@ -15,6 +15,7 @@ import java.util.List;
  */
 public class PaqueteTuristicoDetailDTO  extends PaqueteTuristicoDTO{
     private ArrayList<PagoDTO> Pagos; 
+    private ArrayList<PlanDTO> Planes; 
     
     public PaqueteTuristicoDetailDTO(){
         
@@ -28,6 +29,12 @@ public class PaqueteTuristicoDetailDTO  extends PaqueteTuristicoDTO{
         this.Pagos = Pagos;
     }
 
-  
+    public ArrayList<PlanDTO> getPlanes() {
+        return Planes;
+    }
+
+    public void setPlanes(ArrayList<PlanDTO> Planes) {
+        this.Planes = Planes;
+    }
     
 }
