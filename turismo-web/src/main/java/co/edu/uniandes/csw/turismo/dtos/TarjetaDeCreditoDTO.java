@@ -11,26 +11,28 @@ package co.edu.uniandes.csw.turismo.dtos;
  */
 public class TarjetaDeCreditoDTO 
 {
-    private String nombreDelDueño;
+    private String name;
     private long  numero;
     private int CVD;
+    
 
     public TarjetaDeCreditoDTO(){
         
     }
 
-    public TarjetaDeCreditoDTO(String nombreDelDueño, long numero, int CVD) {
-        this.nombreDelDueño = nombreDelDueño;
+    public TarjetaDeCreditoDTO(String name, long numero, int CVD, String otro) {
+        this.name = name;
         this.numero = numero;
         this.CVD = CVD;
+       
     }
 
-    public String getNombreDelDueño() {
-        return nombreDelDueño;
+    public String getName() {
+        return name;
     }
 
-    public void setNombreDelDueño(String nombreDelDueño) {
-        this.nombreDelDueño = nombreDelDueño;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public long getNumero() {

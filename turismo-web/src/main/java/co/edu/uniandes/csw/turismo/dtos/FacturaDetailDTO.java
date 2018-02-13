@@ -11,7 +11,7 @@ package co.edu.uniandes.csw.turismo.dtos;
  */
 public class FacturaDetailDTO extends FacturaDTO 
 {
-    //TODO EL Usuario de la factura private UsuarioDTO usuario;
+     private UsuarioDTO usuario;
     //TODO paquete Turistico private PaqueteTuristicoDTO PaqueteTuristico;
     
     public FacturaDetailDTO(){
