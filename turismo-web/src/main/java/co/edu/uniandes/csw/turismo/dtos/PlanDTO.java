@@ -16,8 +16,7 @@
  *      "restricciones": string,
  *      "archivo": string,
  *      "precio": number,
- *      "cantidadPersonas": number,
- *      
+ *      "cantidadPersonas": number    
  *   }
  * </pre>
 */

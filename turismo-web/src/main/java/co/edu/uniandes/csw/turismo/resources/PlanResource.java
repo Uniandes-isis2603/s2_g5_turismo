@@ -3,6 +3,7 @@ package co.edu.uniandes.csw.turismo.resources;
 import co.edu.uniandes.csw.turismo.dtos.GuiaDetailDTO;
 import co.edu.uniandes.csw.turismo.dtos.PlanDetailDTO;
 import co.edu.uniandes.csw.turismo.dtos.PreferenciasDetailDTO;
+import co.edu.uniandes.csw.turismo.dtos.ValoracionesDetailDTO;
 import java.util.ArrayList;
 import java.util.List;
 import co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException;
@@ -48,10 +49,10 @@ public class PlanResource {
      *
      * Codigos de respuesta:
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
-     * 200 OK Creó la nueva Plan .
+     * 200 OK Creó el nueva Plan .
      * </code>
      * <code style="color: #c7254e; background-color: #f9f2f4;">
-     * 412 Precodition Failed: Ya existe la Plan.
+     * 412 Precodition Failed: Ya existe el Plan.
      * </code>
      * </pre>
      *
@@ -68,9 +69,9 @@ public class PlanResource {
     }
 
     /**
-     * <h1>GET /api/plans : Obtener todas los Planes.</h1>
+     * <h1>GET /api/plans : Obtener todos los Planes.</h1>
      *
-     * <pre>Busca y devuelve todas los Planes que existen en la aplicacion.
+     * <pre>Busca y devuelve todos los Planes que existen en la aplicacion.
      *
      * Codigos de respuesta:
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
@@ -144,13 +145,13 @@ public class PlanResource {
      *
      * Codigos de respuesta:
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
-     * 200 OK Actualiza la Plan con el id dado con la información enviada como parámetro. Retorna un objeto identico.</code>
+     * 200 OK Actualiza el Plan con el id dado con la información enviada como parámetro. Retorna un objeto identico.</code>
      * <code style="color: #c7254e; background-color: #f9f2f4;">
-     * 404 Not Found. No existe una Plan con el id dado.
+     * 404 Not Found. No existe un Plan con el id dado.
      * </code>
      * </pre>
      *
-     * @param id Identificador de la Plan que se desea actualizar.Este debe ser
+     * @param id Identificador de el Plan que se desea actualizar.Este debe ser
      * una cadena de dígitos.
      * @param Plan {@link PlanDetailDTO} el Plan que se desea guardar.
      * @return JSON {@link PlanDetailDTO} - el Plan guardada.
@@ -251,11 +252,11 @@ public class PlanResource {
      *
      * @param id Identificador de el Plan del cual se desean obtener las valoraciones. Este debe ser una
      * cadena de dígitos.
-     * @return List<ValoracionDTO> , esta contiene los guias del plan
+     * @return List<> , esta contiene las valoraciones del plan
      */
      @GET
-     @Path("(id:\\d+)/valoraciones") //TODO LA LISTA ES DE TIPO VALORACIONDTO
-     public List<String> getValoracionesPlan(@PathParam("id") Long id)
+     @Path("(id:\\d+)/valoraciones")
+     public List<ValoracionesDetailDTO> getValoracionesPlan(@PathParam("id") Long id)
      {
          return new ArrayList<>();
      }

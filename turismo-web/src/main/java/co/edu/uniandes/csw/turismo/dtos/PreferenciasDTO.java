@@ -1,7 +1,13 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * PrenfeciasDTO
+ * Objeto de transferencia de datos de preferencias.
+ * Los DTO especifican los mensajes que se envían entre el cliente y el servidor.
+ * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
+ * <pre>
+ *   { 
+ *      "tiposPlan":[string,string,string]                     
+ *   }
+ * </pre>
  */
 package co.edu.uniandes.csw.turismo.dtos;
 
