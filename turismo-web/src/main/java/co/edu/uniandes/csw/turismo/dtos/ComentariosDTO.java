@@ -13,8 +13,8 @@ public class ComentariosDTO {
     private String comentario;
     
     
-    public ComentariosDTO(String comentario){
-        this.comentario = comentario;
+    public ComentariosDTO(){
+        
     }
 
     public String getComentario() {

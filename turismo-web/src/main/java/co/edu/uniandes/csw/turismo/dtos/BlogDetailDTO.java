@@ -14,8 +14,8 @@ import java.util.List;
 public class BlogDetailDTO  extends BlogDTO
 {
     
-    public BlogDetailDTO(String tema, String descripcion, int likes, List<ComentariosDTO> comentarios) {
-        super(tema, descripcion, likes, comentarios);
+    public BlogDetailDTO() {
+        super();
     }
     
   

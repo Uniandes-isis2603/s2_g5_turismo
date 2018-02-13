@@ -18,11 +18,8 @@ public class BlogDTO {
     private int likes; 
     private List<ComentariosDTO> comentarios;
 
-    public BlogDTO(String tema, String descripcion, int likes, List<ComentariosDTO> comentarios) {
-        this.tema = tema;
-        this.descripcion = descripcion;
-        this.likes = likes;
-        this.comentarios = comentarios;
+    public BlogDTO() {
+        
     }
 
     public List<ComentariosDTO> getComentarios() {

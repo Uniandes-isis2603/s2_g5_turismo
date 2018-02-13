@@ -21,7 +21,7 @@ import javax.ws.rs.Produces;
  * @author lf.rivera10
  */
 
-@Path("/blogs")
+@Path("blogs")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped

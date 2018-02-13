@@ -11,8 +11,8 @@ package co.edu.uniandes.csw.turismo.dtos;
  */
 public class ComentariosDetailDTO extends ComentariosDTO {
     
-    public ComentariosDetailDTO(String comentario) {
-        super(comentario);
+    public ComentariosDetailDTO() {
+        super();
     }
     
 }
