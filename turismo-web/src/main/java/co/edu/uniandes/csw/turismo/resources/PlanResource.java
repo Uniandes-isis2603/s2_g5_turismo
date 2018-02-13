@@ -39,17 +39,17 @@ import javax.ws.rs.Produces;
 public class PlanResource {
 
     /**
-     * <h1>POST /api/Planes : Crear una Plan.</h1>
+     * <h1>POST /api/Planes : Crear un Plan.</h1>
      *
      * <pre>Cuerpo de petición: JSON {@link PlanDetailDTO}.
      *
-     * Crea una nueva Plan con la informacion que se recibe en el cuerpo
+     * Crea un nuevo Plan con la informacion que se recibe en el cuerpo
      * de la petición y se regresa un objeto identico con un id auto-generado
      * por la base de datos.
      *
      * Codigos de respuesta:
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
-     * 200 OK Creó el nueva Plan .
+     * 200 OK Creó el nuevo Plan .
      * </code>
      * <code style="color: #c7254e; background-color: #f9f2f4;">
      * 412 Precodition Failed: Ya existe el Plan.
@@ -141,7 +141,7 @@ public class PlanResource {
      * <h1>PUT /api/plans/{id} : Actualizar Plan con el id dado.</h1>
      * <pre>Cuerpo de petición: JSON {@link PlanDetailDTO}.
      *
-     * Actualiza la Plan con el id recibido en la URL con la informacion que se recibe en el cuerpo de la petición.
+     * Actualiza el Plan con el id recibido en la URL con la informacion que se recibe en el cuerpo de la petición.
      *
      * Codigos de respuesta:
      * <code style="color: mediumseagreen; background-color: #eaffe0;">

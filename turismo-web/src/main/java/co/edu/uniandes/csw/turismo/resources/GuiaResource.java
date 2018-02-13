@@ -37,7 +37,7 @@ import javax.ws.rs.Produces;
 public class GuiaResource {
 
     /**
-     * <h1>POST /api/guides : Crear una Guia.</h1>
+     * <h1>POST /api/guides : Crear un Guia.</h1>
      *
      * <pre>Cuerpo de petición: JSON {@link GuiaDetailDTO}.
      *
@@ -130,7 +130,7 @@ public class GuiaResource {
      * @return JSON {@link GuiaDetailDTO} - el Guia guardado.
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} -
      * Error de lógica que se genera al no poder actualizar el Guia porque ya
-     * existe una con ese nombre.
+     * existe uno con ese nombre.
      */
     @PUT
     @Path("{id: \\d+}")
