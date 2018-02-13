@@ -14,5 +14,8 @@ public class PreferenciasDetailDTO extends PreferenciasDTO
     /**
      * Constructor por defecto
      */
-    public PreferenciasDetailDTO(){}
+    public PreferenciasDetailDTO()
+    {
+        
+    }
 }

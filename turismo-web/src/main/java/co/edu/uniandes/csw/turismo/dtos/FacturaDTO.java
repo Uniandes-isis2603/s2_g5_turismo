@@ -13,13 +13,13 @@ package co.edu.uniandes.csw.turismo.dtos;
 public class FacturaDTO  {
     
     private long ID;
-    private int Costo;
+    private long Costo;
 
     public FacturaDTO() {
         
     }
     
-     public FacturaDTO(long ID, int Costo) {
+     public FacturaDTO(long ID, long Costo) {
         this.ID = ID;
         this.Costo = Costo;
     }
@@ -32,11 +32,11 @@ public class FacturaDTO  {
         this.ID = ID;
     }
 
-    public int getCosto() {
+    public long getCosto() {
         return Costo;
     }
 
-    public void setCosto(int Costo) {
+    public void setCosto(long Costo) {
         this.Costo = Costo;
     }
     
