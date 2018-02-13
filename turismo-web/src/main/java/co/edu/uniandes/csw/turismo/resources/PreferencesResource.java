@@ -23,7 +23,7 @@ import javax.ws.rs.Produces;
  *
  * @author jc.montoyar
  */
-@Path("users/{idUser: \\d+}/preferences")
+@Path("/users/{idUser: \\d+}/preferences")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
@@ -92,13 +92,13 @@ public class PreferencesResource
      * </pre>
      *
      * @param preferencias {@link PreferenciasDetailDTO} - las preferencias que se desea guardar.
-     * @param idUsuario al que se le añadiran las preferencias
+     * @param idUser al que se le añadiran las preferencias
      * @return JSON {@link PrefernciasDetailDTO} - las preferencias guardadas para usuario con id dado
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} -
      * Error de lógica que se genera cuando se ingresan tipos/ categorias plan que no existen o informacion irrelevante
      */
     @POST
-    public PreferenciasDetailDTO createPreferencesForUser(PreferenciasDetailDTO preferencias, Long idUsuario) throws BusinessLogicException
+    public PreferenciasDetailDTO createPreferencesForUser(PreferenciasDetailDTO preferencias, @PathParam("idUser")Long idUser) throws BusinessLogicException
     {
         return preferencias;
     }
