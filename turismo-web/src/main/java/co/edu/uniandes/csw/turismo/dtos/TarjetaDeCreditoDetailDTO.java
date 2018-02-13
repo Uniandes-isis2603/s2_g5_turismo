@@ -14,7 +14,7 @@ import java.util.List;
 public class TarjetaDeCreditoDetailDTO extends TarjetaDeCreditoDTO
 {
     private List<FacturaDTO> Factura; 
-    //private UsuarioDTO usuario;
+    private UsuarioDTO usuario;
 
     public TarjetaDeCreditoDetailDTO() 
     {

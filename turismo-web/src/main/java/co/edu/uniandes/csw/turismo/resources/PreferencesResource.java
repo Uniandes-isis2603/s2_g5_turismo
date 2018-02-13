@@ -23,7 +23,7 @@ import javax.ws.rs.Produces;
  *
  * @author jc.montoyar
  */
-@Path("/users/preferences")
+@Path("users/preferences")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
@@ -45,7 +45,7 @@ public class PreferencesResource
      * @return  PreferenciasDetailDTO, este tiene las preferencias del usuario con el id ingresado por parametro
      */
     @GET
-    @Path("/users/{id: \\d+}/preferences")
+    @Path("users/{id: \\d+}/preferences")
     public PreferenciasDetailDTO getPreferenciasUsuario(@PathParam("id") Long idUsuario)
     {
         return new PreferenciasDetailDTO();
@@ -96,7 +96,7 @@ public class PreferencesResource
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} se ingresan tipos de plan que no existen, o datos irrelevantes
      */
     @PUT
-    @Path("/users/{id: \\d+}/preferences")
+    @Path("users/{id: \\d+}/preferences")
     public PreferenciasDetailDTO updatePreferenciaUser(@PathParam("id")Long idUser, PreferenciasDetailDTO preferencias) throws BusinessLogicException 
     {
         return preferencias;
@@ -123,11 +123,11 @@ public class PreferencesResource
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} -
      * Error de lógica que se genera cuando se ingresan tipos/ categorias plan que no existen o informacion irrelevante
      */
-    @POST
+    /*@POST
     public PreferenciasDetailDTO createPreferencesForUser(PreferenciasDetailDTO preferencias, Long idUsuario) throws BusinessLogicException
     {
         return preferencias;
-    }
+    }*/
     
     /**
      * <h1>DELETE /api/users/{id}/preferences : Borrar preferencias de usuario por id.</h1>
@@ -144,7 +144,7 @@ public class PreferencesResource
      * @param idUser Identificador de la ciudad que se desea borrar. Este debe ser una cadena de dígitos.
      */
     @DELETE
-    @Path("{/users/id: \\d+}/preferences")
+    @Path("users/{id: \\d+}/preferences")
      public void deletePreferenceUser(@PathParam("id") Long idUser) {
         // Void
     }
@@ -170,11 +170,11 @@ public class PreferencesResource
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} -
      * Error de lógica que se genera cuando se ingresan tipos/ categorias plan que no existen o informacion irrelevante
      */
-    @POST
-    public PreferenciasDetailDTO createPreferencesForPlan(PreferenciasDetailDTO preferencias, Long idPlan) throws BusinessLogicException
+    /*@POST
+    -------------public PreferenciasDetailDTO createPreferencesForPlan(PreferenciasDetailDTO preferencias, Long idPlan) throws BusinessLogicException
     {
         return preferencias;
-    }
+    }----------------*/
     
     /**
      * <h1>DELETE /api/users/{id}/preferences : Borrar preferencias de plan dado por id.</h1>
@@ -191,7 +191,7 @@ public class PreferencesResource
      * @param idPlan Identificador del plan que se desea borrar. Este debe ser una cadena de dígitos.
      */
     @DELETE
-    @Path("{/plans/id: \\d+}/preferences")
+    @Path("/plans/{id: \\d+}/preferences")
      public void deletePreferencePlan(@PathParam("id") Long idPlan) {
         // Void
     }
