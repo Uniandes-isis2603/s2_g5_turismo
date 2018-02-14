@@ -1,7 +1,24 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * PaqueteTuristicoDTO Objeto de transferencia de datos del paquete turistico. Los DTO contienen las
+ * represnetaciones de los JSON que se transfieren entre el cliente y el
+ * servidor.
+ * 
+ * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
+ * <pre>
+ *   {
+ *      "id": number,
+ *   }
+ * </pre>
+ * Por ejemplo una ciudad se representa asi:<br>
+ * 
+ * <pre>
+ * 
+ *   {
+ *      "id": 35852,
+ *   }
+ *
+ * </pre>
+ * @author ISIS2603
  */
 package co.edu.uniandes.csw.turismo.dtos;
 
@@ -10,6 +27,9 @@ package co.edu.uniandes.csw.turismo.dtos;
  * @author dl.avendano
  */
 public class PaqueteTuristicoDTO {
+    /**
+     * Atriburo que modela el id del paquete turistico
+     */
     private long id;
     
     /**

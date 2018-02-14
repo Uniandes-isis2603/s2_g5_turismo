@@ -6,11 +6,13 @@
 package co.edu.uniandes.csw.turismo.dtos;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 /**
  *
+ * Clase que extiende de {@link ComentariosDTO} para manejar la transformacion entre
+ * los objetos JSON y las Entidades de la base de datos.
+ * 
  * @author dl.avendano
  */
 public class PaqueteTuristicoDetailDTO  extends PaqueteTuristicoDTO{

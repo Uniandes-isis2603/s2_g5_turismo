@@ -20,8 +20,20 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 /**
+ * <pre>Clase que implementa el recurso "pagos".
+ * URL: /api/pagos
+ * </pre>
+ * <i>Note que la aplicación (definida en {@link RestConfig}) define la ruta "/api" y
+ * este recurso tiene la ruta "pagos".</i>
  *
- * @author dl.avendano
+ * <h2>Anotaciones </h2>
+ * <pre>
+ * Path: indica la dirección después de "api" para acceder al recurso
+ * Produces/Consumes: indica que los servicios definidos en este recurso reciben y devuelven objetos en formato JSON
+ * RequestScoped: Inicia una transacción desde el llamado de cada método (servicio). 
+ * </pre>
+ * @author dl.avendano 
+ * @version 1.0
  */
 @Path("pagos")
 @Produces("application/json")
@@ -33,21 +45,21 @@ public class PagoResource {
      * 
      * <pre>Cuerpo de petición: JSON {@link PagoDetailDTO}.
      * 
-     * Crea una nueva ciudad con la informacion que se recibe en el cuerpo 
+     * Crea un nuevo pago con la informacion que se recibe en el cuerpo 
      * de la petición y se regresa un objeto identico con un id auto-generado 
      * por la base de datos.
      * 
      * Codigos de respuesta:
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
-     * 200 OK Creó la nueva ciudad .
+     * 200 OK Creó el nuevo pago.
      * </code>
      * <code style="color: #c7254e; background-color: #f9f2f4;">
-     * 412 Precodition Failed: Ya existe la ciudad.
+     * 412 Precodition Failed: Ya existe el pago.
      * </code>
      * </pre>
-     * @param Pago {@link PagoDetailDTO} - El pago que se desea guardar.
+     * @param pago {@link PagoDetailDTO} - El pago que se desea guardar.
      * @return JSON {@link PagoDetailDTO}  - El pago guardado con el atributo id autogenerado.
-     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe la ciudad.
+     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe el pago.
      */
     @POST
     public PagoDetailDTO createPago(PagoDetailDTO pago) throws BusinessLogicException {
@@ -57,13 +69,13 @@ public class PagoResource {
     /**
      * <h1>GET /api/pagos : Obtener todos los pagos.</h1>
      * 
-     * <pre>Busca y devuelve todas las ciudades que existen en la aplicacion.
+     * <pre>Busca y devuelve todos los pagos que existen en la aplicacion.
      * 
      * Codigos de respuesta:
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
-     * 200 OK Devuelve todas las ciudades de la aplicacion.</code> 
+     * 200 OK Devuelve todas los pagos de la aplicacion.</code> 
      * </pre>
-     * @return JSONArray {@link PagoDetailDTO} - Las ciudades encontradas en la aplicación. Si no hay ninguna retorna una lista vacía.
+     * @return JSONArray {@link PagoDetailDTO} - Los pagos encontrados en la aplicación. Si no hay ninguno retorna una lista vacía.
      */
     @GET
     public List<PagoDetailDTO> getPagos() {
@@ -77,14 +89,14 @@ public class PagoResource {
      * 
      * Codigos de respuesta:
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
-     * 200 OK Devuelve la ciudad correspondiente al id.
+     * 200 OK Devuelve el pago correspondiente al id.
      * </code> 
      * <code style="color: #c7254e; background-color: #f9f2f4;">
-     * 404 Not Found No existe una ciudad con el id dado.
+     * 404 Not Found No existe una pago con el id dado.
      * </code> 
      * </pre>
      * @param id Identificador del pago que se esta buscando. Este debe ser una cadena de dígitos.
-     * @return JSON {@linkpagoDetailDTO} - La ciudad buscada
+     * @return JSON {@linkpagoDetailDTO} - El pago buscado
      */
     @GET
     @Path("{id: \\d+}")
@@ -96,19 +108,19 @@ public class PagoResource {
      * <h1>PUT /api/pagos/{id} : Actualizar el pago con el id dado.</h1>
      * <pre>Cuerpo de petición: JSON {@link PagoDetailDTO}.
      * 
-     * Actualiza la ciudad con el id recibido en la URL con la informacion que se recibe en el cuerpo de la petición.
+     * Actualiza el pago con el id recibido en la URL con la informacion que se recibe en el cuerpo de la petición.
      * 
      * Codigos de respuesta:
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
      * 200 OK Actualiza la ciudad con el id dado con la información enviada como parámetro. Retorna un objeto identico.</code> 
      * <code style="color: #c7254e; background-color: #f9f2f4;">
-     * 404 Not Found. No existe una ciudad con el id dado.
+     * 404 Not Found. No existe un pago con el id dado.
      * </code> 
      * </pre>
-     * @param id Identificador de la ciudad que se desea actualizar.Este debe ser una cadena de dígitos.
-     * @param pago {@link PagoDetailDTO} La ciudad que se desea guardar.
-     * @return JSON {@link PagoDetailDTO} - La ciudad guardada.
-     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera al no poder actualizar la ciudad porque ya existe una con ese nombre.
+     * @param id Identificador del pago que se desea actualizar.Este debe ser una cadena de dígitos.
+     * @param pago {@link PagoDetailDTO} - El pago que se desea guardar.
+     * @return JSON {@link PagoDetailDTO} - El pago guardado.
+     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera al no poder actualizar el pago porque ya existe uno con ese identificador.
      */
     @PUT
     @Path("{id: \\d+}")
@@ -123,9 +135,9 @@ public class PagoResource {
      * 
      * Códigos de respuesta:<br>
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
-     * 200 OK Elimina la ciudad correspondiente al id dado.</code>
+     * 200 OK Elimina el pago correspondiente al id dado.</code>
      * <code style="color: #c7254e; background-color: #f9f2f4;">
-     * 404 Not Found. No existe una ciudad con el id dado.
+     * 404 Not Found. No existe un pago con el id dado.
      * </code>
      * </pre>
      * @param id Identificador del pago que se desea borrar. Este debe ser una cadena de dígitos.

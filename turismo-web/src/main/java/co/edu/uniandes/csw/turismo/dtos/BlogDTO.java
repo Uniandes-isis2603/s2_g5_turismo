@@ -44,7 +44,7 @@ public class BlogDTO {
         return comentarios;
     }
 /**
-     * @param comentariosDTO comentarios nuevos del blog
+     * @param comentarios comentarios nuevos del blog
      */
     public void setComentarios(List<ComentariosDTO> comentarios) {
         this.comentarios = comentarios;

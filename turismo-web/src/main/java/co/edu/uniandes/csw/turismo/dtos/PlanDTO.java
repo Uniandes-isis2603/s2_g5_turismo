@@ -172,7 +172,7 @@ public class PlanDTO
     }
 
     /**
-     * @returnla latitud
+     * @return la latitud
      */
     public String getLatitud() {
         return latitud;
