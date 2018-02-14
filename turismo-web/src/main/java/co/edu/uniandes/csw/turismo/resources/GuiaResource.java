@@ -37,7 +37,7 @@ import javax.ws.rs.Produces;
 public class GuiaResource {
 
     /**
-     * <h1>POST /api/guides : Crear una Guia.</h1>
+     * <h1>POST /api/guides : Crear un Guia.</h1>
      *
      * <pre>Cuerpo de petición: JSON {@link GuiaDetailDTO}.
      *
@@ -47,7 +47,7 @@ public class GuiaResource {
      *
      * Codigos de respuesta:
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
-     * 200 OK Creó el nueva Guia .
+     * 200 OK Creó el nuevo Guia .
      * </code>
      * <code style="color: #c7254e; background-color: #f9f2f4;">
      * 412 Precodition Failed: Ya existe el Guia.
@@ -67,9 +67,9 @@ public class GuiaResource {
     }
 
     /**
-     * <h1>GET /api/Guias : Obtener todas los Guias.</h1>
+     * <h1>GET /api/Guias : Obtener todos los Guias.</h1>
      *
-     * <pre>Busca y devuelve todas los Guias que existen en la aplicacion.
+     * <pre>Busca y devuelve todos los Guias que existen en la aplicacion.
      *
      * Codigos de respuesta:
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
@@ -127,10 +127,10 @@ public class GuiaResource {
      * @param idGuide Identificador del Guia que se desea actualizar.Este debe ser
      * una cadena de dígitos.
      * @param guia {@link GuiaDetailDTO} el Guia que se desea guardar.
-     * @return JSON {@link GuiaDetailDTO} - el Guia guardada.
+     * @return JSON {@link GuiaDetailDTO} - el Guia guardado.
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} -
      * Error de lógica que se genera al no poder actualizar el Guia porque ya
-     * existe una con ese nombre.
+     * existe uno con ese nombre.
      */
     @PUT
     @Path("{id: \\d+}")
@@ -180,7 +180,7 @@ public class GuiaResource {
      * @return List PlanDetailDTO , esta contiene los planes asociados del Guia
      */
      @GET
-     @Path("{id: \\d+}/guides")
+     @Path("{id: \\d+}/plans")
      public List<PlanDetailDTO> getPlanesGuia(@PathParam("id") Long idGuia)
      {
          return new ArrayList<>();
