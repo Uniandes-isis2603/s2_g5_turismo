@@ -10,13 +10,20 @@ import java.util.List;
 
 /**
  *
+*
+ * Clase que extiende de {@link BlogDTO} para manejar la transformacion entre
+ * los objetos JSON y las Entidades de la base de datos. 
+ *
  * @author lf.rivera10
  */
 public class BlogDetailDTO  extends BlogDTO
 {
     
-    public BlogDetailDTO(String tema, String descripcion, int likes, List<ComentariosDTO> comentarios) {
-        super(tema, descripcion, likes, comentarios);
+    /**
+     * Constructor por defecto
+     */
+    public BlogDetailDTO() {
+        super();
     }
     
   
