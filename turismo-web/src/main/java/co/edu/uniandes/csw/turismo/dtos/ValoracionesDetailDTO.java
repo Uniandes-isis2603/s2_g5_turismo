@@ -1,4 +1,3 @@
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -8,18 +7,18 @@ package co.edu.uniandes.csw.turismo.dtos;
 
 /**
  *
- * Clase que extiende de {@link ComentariosDTO} para manejar la transformacion entre
- * los objetos JSON y las Entidades de la base de datos.
- * 
- * @author lf.rivera10
+ * @author jf.gutierrez13
  */
-public class ComentariosDetailDTO extends ComentariosDTO {
+public class ValoracionesDetailDTO extends ValoracionesDTO
+{
     /**
      * Constructor por defecto
      */
-    public ComentariosDetailDTO() {
+    public ValoracionesDetailDTO()
+    {
         
-        super();
     }
+    
+    
     
 }
