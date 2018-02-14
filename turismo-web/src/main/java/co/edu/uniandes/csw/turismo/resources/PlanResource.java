@@ -228,7 +228,7 @@ public class PlanResource {
      *
      * @param id Identificador de el Plan del cual se desean obtener los guias. Este debe ser una
      * cadena de dígitos.
-     * @return List<GuiaDetailDTO> , esta contiene los guias del plan
+     * @return List de guias , esta contiene los guias del plan
      */
      @GET
      @Path("{id: \\d+}/guides")
@@ -252,7 +252,7 @@ public class PlanResource {
      *
      * @param id Identificador de el Plan del cual se desean obtener las valoraciones. Este debe ser una
      * cadena de dígitos.
-     * @return List<> , esta contiene las valoraciones del plan
+     * @return List de valoraciones  , esta contiene las valoraciones del plan
      */
      @GET
      @Path("(id:\\d+)/valoraciones")
