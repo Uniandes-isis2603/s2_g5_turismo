@@ -145,6 +145,6 @@ public class PagoResource {
     @DELETE 
     @Path("{id: \\d+}")
      public void deletePago(@PathParam("id") Long id) {
-        // Void
+        //void
     }
 }
