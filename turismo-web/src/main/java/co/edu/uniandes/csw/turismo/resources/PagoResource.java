@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.turismo.resources;
 
 import co.edu.uniandes.csw.turismo.dtos.PagoDetailDTO;
 import co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException;
+import co.edu.uniandes.csw.turismo.mappers.BusinessLogicExceptionMapper;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
@@ -96,7 +97,7 @@ public class PagoResource {
      * </code> 
      * </pre>
      * @param id Identificador del pago que se esta buscando. Este debe ser una cadena de dígitos.
-     * @return JSON {@linkpagoDetailDTO} - El pago buscado
+     * @return JSON {@link PagoDetailDTO} - El pago buscado
      */
     @GET
     @Path("{id: \\d+}")
