@@ -34,7 +34,7 @@ import javax.ws.rs.Produces;
  * </pre>
  * @author jc.montoyar
  */
-@Path("/preferences")
+@Path("preferences")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
