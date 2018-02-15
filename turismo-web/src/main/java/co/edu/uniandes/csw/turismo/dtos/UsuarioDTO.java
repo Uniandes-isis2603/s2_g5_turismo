@@ -83,68 +83,118 @@ public class UsuarioDTO
         this.esAdministrador =esAdministrador;
     }
 
+    /**
+     * @return El id del usuario
+     */
     public long getId() {
         return id;
     }
-
+    
+    /**
+     * @param id Nuevo ID del usuario
+     */
     public void setId(long id) {
         this.id = id;
     }
 
+    /**
+     * @return El nombre del usuario 
+     */
     public String getNombre() {
         return nombre;
     }
 
+    /**
+     * @param nombre El nuevo nombre del usuario 
+     */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
+    /**
+     * @return El apellido del usuario 
+     */
     public String getApellido() {
         return apellido;
     }
-
+    
+    /**
+     * @param apellido El nuevo apellido del usuario
+     */
     public void setApellido(String apellido) {
         this.apellido = apellido;
     }
 
+    /**
+     * @return La contraseña del usuario 
+     */
     public String getContrasenia() {
         return contrasenia;
     }
 
+    /**
+     * @param contrasenia La nueva contraseña del usuario
+     */
     public void setContrasenia(String contrasenia) {
         this.contrasenia = contrasenia;
     }
 
+    
+    /**
+     * @return El correo del usuario 
+     */
     public String getCorreo() {
         return correo;
     }
 
+    /**
+     * @param correo El nuevo correo del usuario
+     */
     public void setCorreo(String correo) {
         this.correo = correo;
     }
 
+    
+    /**
+     * @return El telefono del usuario 
+     */
     public int getTelefono() {
         return telefono;
     }
 
+    /**
+     * @param telefono El nuevo telefono del usuario
+     */
     public void setTelefono(int telefono) {
         this.telefono = telefono;
     }
 
+    
+    /**
+     * @return El idioma del usuario 
+     */
     public String getIdioma() {
         return idioma;
     }
 
+    /**
+     * @param idioma El nuevo idioma del usuario
+     */
     public void setIdioma(String idioma) {
         this.idioma = idioma;
     }
 
+    /**
+     * @return true si es un usuario administrador, false de lo contrario
+     */
     public boolean isEsAdministrador() {
         return esAdministrador;
     }
 
+    /**
+     * @param esAdministrador El nuevo estado de la cuenta, true si es administrador, false de lo contrario.
+     */
     public void setEsAdministrador(boolean esAdministrador) {
         this.esAdministrador = esAdministrador;
     }
 }
-
