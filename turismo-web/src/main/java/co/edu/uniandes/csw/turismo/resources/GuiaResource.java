@@ -67,7 +67,7 @@ public class GuiaResource {
     }
 
     /**
-     * <h1>GET /api/Guias : Obtener todos los Guias.</h1>
+     * <h1>GET /api/guides : Obtener todos los Guias.</h1>
      *
      * <pre>Busca y devuelve todos los Guias que existen en la aplicacion.
      *

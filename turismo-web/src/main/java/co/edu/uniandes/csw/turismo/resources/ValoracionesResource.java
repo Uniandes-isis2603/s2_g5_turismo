@@ -42,7 +42,7 @@ import javax.ws.rs.Produces;
 public class ValoracionesResource 
 {
     /**
-     * <h1>POST /api/usuario/id/valoraciones : Crear una valoracion.</h1>
+     * <h1>POST /api/valoraciones : Crear una valoracion.</h1>
      * 
      * <pre>Cuerpo de petición: JSON {@link ValoracionesDetailDTO}.
      * 
@@ -84,7 +84,7 @@ public class ValoracionesResource
     }
     
     /**
-     * <h1>GET /api/usuario/{id}/paqueteTuristico/{id1}/plan/{id2}/valoraciones : Obtener las valoraciones de un plan contenido en un paquete turistico de un usuario dado por id.</h1>
+     * <h1>GET /api/valoraciones/{id} : Obtener las valoraciones de un plan contenido en un paquete turistico de un usuario dado por id.</h1>
      * 
      * <pre>Busca la valoracion con el usuario, paquete y plan asociados recibidos en la URL y la devuelve.
      * 
@@ -100,13 +100,13 @@ public class ValoracionesResource
      * @return JSON {@link ValoracionesDetailDTO} - La valoracion buscada
      */
     @GET
-    @Path("{id: \\d+}/pqueteTuristico/{id1: \\d+}/plan/{id2: \\d+}/valoraciones")
-    public ValoracionesDetailDTO getValoraciones(@PathParam("id") Long id, @PathParam("id1") Long id1,@PathParam("id2") Long id2) {
+    @Path("{id: \\d+}")
+    public ValoracionesDetailDTO getValoraciones(@PathParam("id") Long id) {
         return null;
     }
     
     /**
-     * <h1>PUT /api/usuario/{id}/paqueteTuristico/{id1}/plan/{id2}/valoraciones/{id3} : Actualizar valoracion con el id dado.</h1>
+     * <h1>PUT /api/valoraciones/{id} : Actualizar valoracion con el id dado.</h1>
      * <pre>Cuerpo de petición: JSON {@link ValoracionesDetailDTO}.
      * 
      * Actualiza la valoracion con el id recibido en la URL con la informacion que se recibe en el cuerpo de la petición.
@@ -118,7 +118,7 @@ public class ValoracionesResource
      * 404 Not Found. No existe una valoracion con el id dado.
      * </code> 
      * </pre>
-     * @param id3 Identificador de la valoracion que se desea actualizar.Este debe ser una cadena de dígitos.
+     * @param id
      * @param valoracion {@link ValoracionDetailDTO} La valoracion que se desea guardar.
      * @return JSON {@link ValoracionDetailDTO} - La valoracion guardada.
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera al no poder actualizar la valoracion porque ya existe una con ese nombre.
@@ -130,7 +130,7 @@ public class ValoracionesResource
     }
     
     /**
-     * <h1>DELETE /api/usuario/{id}/paqueteTuristico/{id1}/plan/{id2}/valoraciones/{id3} : Borrar valoracion por id.</h1>
+     * <h1>DELETE /api/valoraciones/{id} : Borrar valoracion por id.</h1>
      * 
      * <pre>Borra la valoracion con el id asociado recibido en la URL.
      * 
@@ -144,8 +144,8 @@ public class ValoracionesResource
      * @param id Identificador de la valoracion que se desea borrar. Este debe ser una cadena de dígitos.
      */
     @DELETE
-    @Path("{id: \\d+}/pqueteTuristico/{id1: \\d+}/plan/{id2: \\d+}/valoraciones/{id3: \\d+}")
-     public void deleteValoracion(@PathParam("id") Long id, @PathParam("id1") Long id1, @PathParam("id2") Long id2, @PathParam("id3") Long id3) {
+    @Path("{id: \\d+}")
+     public void deleteValoracion(@PathParam("id") Long id) {
         // Void
     }
 }

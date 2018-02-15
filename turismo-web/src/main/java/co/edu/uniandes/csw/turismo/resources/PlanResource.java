@@ -255,7 +255,7 @@ public class PlanResource {
      * @return List de valoraciones  , esta contiene las valoraciones del plan
      */
      @GET
-     @Path("(id:\\d+)/valoraciones")
+     @Path("(id: \\d+)/valoraciones")
      public List<ValoracionesDetailDTO> getValoracionesPlan(@PathParam("id") Long id)
      {
          return new ArrayList<>();
