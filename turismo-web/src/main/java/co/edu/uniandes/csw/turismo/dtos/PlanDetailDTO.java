@@ -1,4 +1,4 @@
-/*
+/**
  * PlanDetailDTO
  * Objeto de transferencia de datos de planes.
  * Los DTO especifican los mensajes que se envían entre el cliente y el servidor.
@@ -28,7 +28,45 @@
  *                  }],
         "categoriasPlan":{"tiposPlan":[string]}                     
  *   }
- * </pre>
+ * Por ejemplo una plan detallado se representa asi:<br>
+ * 
+ * <pre>
+ * 
+ *   {
+ *      "idPlan": 1,
+ *      "nombrePlan: Visita a Monserrate,
+ *      "descripcion": "Ir a monserrate subiendo por teleferico",
+ *      "pais": "Colombia",
+ *      "ciudad": "Bogota",
+ *      "longitud": -74.057615,
+ *      "latitud": 4.606492,
+ *      "duracion":180,
+ *      "restricciones": Menores deben ir a compañados,
+ *      "archivo": imagenLink,
+ *      "precio": 20.000,
+ *      "cantidadPersonas": 9999,
+ *      "valoraciones":[{
+ *                     "calificacion": 4,
+ *                     "comentario": fue shido
+ *                     },
+ *                     {
+ *                     "calificacion": 2,
+ *                     "comentario": no fue shido
+ *                     }
+ *                     ],
+ *      "guiasPlan":[{
+ *                     "idGuia": 1,
+ *                     "nombreGuia": Julian,
+ *                     "idiomaGuia": Español
+ *                  },
+ *                  {
+ *                     "idGuia": 2,
+ *                     "nombreGuia": pejelagarto,
+ *                     "idiomaGuia": Ingles
+ *                  }
+ *                  ],
+        "categoriasPlan":{"tiposPlan":[Religion, Montaña, Mirador]}  
+ *   }
  */
 package co.edu.uniandes.csw.turismo.dtos;
 

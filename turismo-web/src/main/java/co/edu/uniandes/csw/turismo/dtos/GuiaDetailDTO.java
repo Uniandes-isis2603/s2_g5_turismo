@@ -1,13 +1,13 @@
-/*
+/**
  * GuiaDetailDTO
  * Objeto de transferencia de datos de guias.
  * Los DTO especifican los mensajes que se envían entre el cliente y el servidor.
  * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
  * <pre>
  *   {
- *      "idGuia": number,
- *      "nombreGuia: string,
- *      "idiomaGuia": string,
+ *      "idGuia": 1,
+ *      "nombreGuia: David,
+ *      "idiomaGuia": Persa,
  *      "planesGuia":[{
  *                     "idPlan": number,
  *                     "nombrePlan: string,
@@ -22,6 +22,28 @@
  *                     "precio": number,
  *                     "cantidadPersonas": number
  *                    }]                     
+ *   }
+ * Por ejemplo un guia detallado se representa asi:<br>
+ * 
+ * <pre>
+ *   {
+ *      "idGuia": 1,
+ *      "nombreGuia: David,
+ *      "idiomaGuia": Persa,
+ *      "planesGuia":[{
+ *                     "idPlan": 1,
+ *                     "nombrePlan: Visita a Monserrate,
+ *                     "descripcion": "Ir a monserrate subiendo por teleferico",
+ *                     "pais": "Colombia",
+ *                     "ciudad": "Bogota",
+ *                     "longitud": -74.057615,
+ *                     "latitud": 4.606492,
+ *                     "duracion":180,
+ *                     "restricciones": Menores deben ir a compañados,
+ *                     "archivo": imagenLink,
+ *                     "precio": 20.000,
+ *                     "cantidadPersonas": 9999
+ *                    }]                   
  *   }
  * </pre>
  */
