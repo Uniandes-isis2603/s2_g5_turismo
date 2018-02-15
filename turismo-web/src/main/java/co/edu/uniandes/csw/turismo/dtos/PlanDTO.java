@@ -1,6 +1,5 @@
-/*
- * PlanDTO
- * Objeto de transferencia de datos de planes.
+/**
+ * PlanDTO Objeto de transferencia de datos de planes.
  * Los DTO especifican los mensajes que se envían entre el cliente y el servidor.
  * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
  * <pre>
@@ -18,6 +17,25 @@
  *      "precio": number,
  *      "cantidadPersonas": number    
  *   }
+ *   Por ejemplo un plan se representa asi:<br>
+ * 
+ * <pre>
+ * 
+ *   {
+ *      "idPlan": 1,
+ *      "nombrePlan: Visita a Monserrate,
+ *      "descripcion": "Ir a monserrate subiendo por teleferico",
+ *      "pais": "Colombia",
+ *      "ciudad": "Bogota",
+ *      "longitud": -74.057615,
+ *      "latitud": 4.606492,
+ *      "duracion":180,
+ *      "restricciones": Menores deben ir a compañados,
+ *      "archivo": imagenLink,
+ *      "precio": 20.000,
+ *      "cantidadPersonas": 9999  
+ *   }
+ *
  * </pre>
 */
 package co.edu.uniandes.csw.turismo.dtos;
@@ -54,12 +72,12 @@ public class PlanDTO
     /**
      * Atributo que modela la longitud del plan
      */
-    private String longitud;
+    private double longitud;
 
     /**
      * Atriburo que modela la latitud
      */
-    private String latitud;
+    private double latitud;
 
     /**
      * atributo que modela la duracion del plan
@@ -159,7 +177,7 @@ public class PlanDTO
     /**
      * @return la longitud
      */
-    public String getLongitud() 
+    public double getLongitud() 
     {
         return longitud;
     }
@@ -167,21 +185,21 @@ public class PlanDTO
     /**
      * @param longitud la longitud to set
      */
-    public void setLongitud(String longitud) {
+    public void setLongitud(double longitud) {
         this.longitud = longitud;
     }
 
     /**
      * @return la latitud
      */
-    public String getLatitud() {
+    public double getLatitud() {
         return latitud;
     }
 
     /**
      * @param latitud la latitud to set
      */
-    public void setLatitud(String latitud)
+    public void setLatitud(double latitud)
     {
         this.latitud = latitud;
     }

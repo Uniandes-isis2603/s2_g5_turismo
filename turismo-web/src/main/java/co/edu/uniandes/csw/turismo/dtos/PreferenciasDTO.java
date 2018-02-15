@@ -1,4 +1,4 @@
-/*
+/**
  * PrenfeciasDTO
  * Objeto de transferencia de datos de preferencias.
  * Los DTO especifican los mensajes que se envían entre el cliente y el servidor.
@@ -6,6 +6,12 @@
  * <pre>
  *   { 
  *      "tiposPlan":[string,string,string]                     
+ *   }
+ * Por ejemplo una preferencia se representa asi:<br>
+ * 
+ * <pre>
+ *   {
+ *       "tiposPlan":[Religion, Mirador, Aldultos]       
  *   }
  * </pre>
  */

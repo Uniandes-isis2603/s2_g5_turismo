@@ -1,4 +1,4 @@
-/*
+/**
  * GuiaDetailDTO
  * Objeto de transferencia de datos de guias.
  * Los DTO especifican los mensajes que se envían entre el cliente y el servidor.
@@ -9,6 +9,16 @@
  *      "nombreGuia: string,
  *      "idiomaGuia": string,                     
  *   }
+ * Por ejemplo un guia se representa asi:<br>
+ * 
+ * <pre>
+ * 
+ *   {
+ *      "idGuia": 1,
+ *      "nombreGuia: papulinoGuia,
+ *      "idiomaGuia": italiano,   
+ *   }
+ *
  * </pre>
  */
 package co.edu.uniandes.csw.turismo.dtos;
