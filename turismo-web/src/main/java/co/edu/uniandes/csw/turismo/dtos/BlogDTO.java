@@ -30,26 +30,12 @@ public class BlogDTO {
     private String tema;
     private String descripcion;
     private int likes; 
-    private List<ComentariosDTO> comentarios;
  /**
      * Constructor por defecto
      */
     public BlogDTO() {
         
-    }
- /**
-     * @return la lista de comentarios
-     */
-    public List<ComentariosDTO> getComentarios() {
-        return comentarios;
-    }
-/**
-     * @param comentariosDTO comentarios nuevos del blog
-     */
-    public void setComentarios(List<ComentariosDTO> comentarios) {
-        this.comentarios = comentarios;
-    }
-    
+    }    
     
  /**
      * @return tema del blog
