@@ -18,7 +18,11 @@ import java.util.List;
  */
 public class BlogDetailDTO  extends BlogDTO
 {
+
     
+    private List<ComentariosDTO> comentarios;
+
+
     /**
      * Constructor por defecto
      */
@@ -26,6 +30,18 @@ public class BlogDetailDTO  extends BlogDTO
         super();
     }
     
-  
+    /**
+     * @return La lista de comentarios del blog
+     */
+    public List<ComentariosDTO> getComentarios() {
+        return comentarios;
+    }
+
+    /**
+     * @param comentarios La lista de comentarios del blog actualizada
+     */
+    public void setComentarios(List<ComentariosDTO> comentarios) {
+        this.comentarios = comentarios;
+    }
     
 }
