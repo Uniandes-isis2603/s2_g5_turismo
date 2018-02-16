@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.turismo.resources;
 
 import co.edu.uniandes.csw.turismo.dtos.PaqueteTuristicoDetailDTO;
 import co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException;
+import co.edu.uniandes.csw.turismo.mappers.BusinessLogicExceptionMapper;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
@@ -96,7 +97,7 @@ public class PaqueteTuristicoResource {
      * </code> 
      * </pre>
      * @param id Identificador del paquete que se esta buscando. Este debe ser una cadena de dígitos.
-     * @return JSON {@linkpaquetesDetailDTO} - El paquete turistico buscado.
+     * @return JSON {@link PaqueteTuristicoDetailDTO} - El paquete turistico buscado.
      */
     @GET
     @Path("{id: \\d+}")

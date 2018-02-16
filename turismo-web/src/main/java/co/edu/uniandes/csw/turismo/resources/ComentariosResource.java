@@ -29,7 +29,7 @@ import javax.ws.rs.Produces;
  * @author lf.rivera10
  */
 
-@Path("BlogsYComentarios/{id: \\d+}/Comentarios")
+@Path("comentarios")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
