@@ -45,8 +45,8 @@ public class ValoracionesDTO
     
     /**
      * Crea una nueva valoración con la calificacion y comentario recibidos por parámetro
-     * @param calificacion
-     * @param comentario
+     * @param calificacion Calificacion de la valoracion
+     * @param comentario Comentario de la valoracion
      */
     public ValoracionesDTO(double calificacion, String comentario)
     {

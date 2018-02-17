@@ -88,6 +88,7 @@ import java.util.List;
  *      }]
  *      }
  *   }
+ *  </pre>
  * @author jf.gutierrez13
  */
 public class UsuarioDetailDTO extends UsuarioDTO
@@ -113,8 +114,12 @@ public class UsuarioDetailDTO extends UsuarioDTO
     
     /**
      * Crea un UsuarioDetailDTO con los elementos recibidos por parametro.
-     * @param listaFacturas
-     * @param listaTarjetas 
+     * @param listaFacturas La lista de facturas del usuario
+     * @param listaTarjetas La lista de tarjetas de credito del usuario
+     * @param paquete El paquete turistico actual del usuario
+     * @param listaBlogs La lista de blogs creados por el usuario
+     * @param listaComentarios La lista de comentarios publicados por el usuario
+     * @param listaPreferencias La lista de preferencias del usuario
      */
     public UsuarioDetailDTO(List<FacturaDTO> listaFacturas, List<TarjetaDeCreditoDTO> listaTarjetas, PaqueteTuristicoDTO paquete, List<BlogDTO> listaBlogs, List<ComentariosDTO> listaComentarios, List<PreferenciasDTO> listaPreferencias)
     {
