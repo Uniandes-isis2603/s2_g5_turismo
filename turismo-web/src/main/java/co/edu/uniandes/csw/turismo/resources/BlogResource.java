@@ -18,6 +18,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import co.edu.uniandes.csw.turismo.dtos.BlogDetailDTO;
 
 /**
  ** <pre>Clase que implementa el recurso "Blog".
@@ -95,7 +96,7 @@ public BlogDTO GetBlog (@PathParam("id") long id)
      * 412 Precodition Failed: Ya existe el blog.
      * </code>
      * </pre>
-     * @param Blog {@link BlogDetailDTO} - el blog que se desea guardar.
+     * @param blog {@link BlogDetailDTO} - el blog que se desea guardar.
      * @return JSON {@link BlogDetailDTO}  - el blog creado con el atributo id autogenerado.
      */
  
@@ -143,9 +144,9 @@ public BlogDTO GetBlog (@PathParam("id") long id)
      */
   @DELETE
   @Path("{id: \\d+}") 
-  public boolean BorrarBlog (@PathParam("id") long id)
+  public void BorrarBlog (@PathParam("id") long id)
   {
-  return true;
+  
   }
   
 
