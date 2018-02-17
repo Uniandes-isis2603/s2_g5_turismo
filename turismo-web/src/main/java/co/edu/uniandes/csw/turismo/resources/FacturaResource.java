@@ -84,7 +84,23 @@ public class FacturaResource
         return new ArrayList<>();
     }
     
-  
+       /**
+     * <h1>GET /api/facturas/{id} : Obtener factura por id.</h1>
+     * 
+     * <pre>Busca la factura con el id asociado recibido en la URL y la devuelve.
+    * 
+     * Codigos de respuesta:
+     * <code style="color: mediumseagreen; background-color: #eaffe0;">
+     * 200 OK Devuelve la factura correspondiente al id.
+     * </code> 
+     * <code style="color: #c7254e; background-color: #f9f2f4;">
+     * 404 Not Found No existe una factura con el id dado.
+     * </code> 
+    * </pre>
+    * @param id Identificador de la factura que se esta buscando. Este debe ser una cadena de dígitos.
+   * @return JSON {@link FacturaDetailDTO} - La factura buscada
+    */
+ 
     @GET
     @Path("{id: \\d+}")
     public FacturaDetailDTO getFactura(@PathParam("id") Long id) {
