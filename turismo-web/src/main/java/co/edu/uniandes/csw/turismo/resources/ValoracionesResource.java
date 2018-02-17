@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.turismo.resources;
 
 import co.edu.uniandes.csw.turismo.dtos.ValoracionesDetailDTO;
 import co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException;
+import co.edu.uniandes.csw.turismo.mappers.BusinessLogicExceptionMapper;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
@@ -118,9 +119,9 @@ public class ValoracionesResource
      * 404 Not Found. No existe una valoracion con el id dado.
      * </code> 
      * </pre>
-     * @param id
-     * @param valoracion {@link ValoracionDetailDTO} La valoracion que se desea guardar.
-     * @return JSON {@link ValoracionDetailDTO} - La valoracion guardada.
+     * @param id Identificador de la valoracion que se desea actualizar
+     * @param valoracion {@link ValoracionesDetailDTO} La valoracion que se desea guardar.
+     * @return JSON {@link ValoracionesDetailDTO} - La valoracion guardada.
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera al no poder actualizar la valoracion porque ya existe una con ese nombre.
      */
     @PUT
