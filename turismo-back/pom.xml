@@ -67,6 +67,7 @@
             <artifactId>arquillian-junit-container</artifactId>
            
             <type>jar</type>
+            <version>1.1.11.Final</version>
         </dependency>
         
     </dependencies>
