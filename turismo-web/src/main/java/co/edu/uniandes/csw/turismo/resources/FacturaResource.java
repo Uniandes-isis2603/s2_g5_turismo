@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.turismo.resources;
 
 import co.edu.uniandes.csw.turismo.dtos.FacturaDetailDTO;
 import co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException;
+import co.edu.uniandes.csw.turismo.mappers.BusinessLogicExceptionMapper;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
@@ -60,7 +61,7 @@ public class FacturaResource
      * </pre>
      * @param factura {@link FacturaDetailDTO} - La factura que se desea guardar.
      * @return JSON {@link FacturaDetailDTO}  - La factura guardada con el atributo id autogenerado.
-     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe la ciudad.
+     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe la factura.
      */
    @POST
     public FacturaDetailDTO createFactura(FacturaDetailDTO factura) throws BusinessLogicException {
@@ -76,18 +77,18 @@ public class FacturaResource
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
      * 200 OK Devuelve todas las facturas de la aplicacion.</code> 
      * </pre>
-     * @return JSONArray {@link FacturasDetailDTO} - Las facturas encontradas en la aplicación. Si no hay ninguna retorna una lista vacía.
+     * @return JSONArray {@link FacturaDetailDTO} - Las facturas encontradas en la aplicación. Si no hay ninguna retorna una lista vacía.
      */
     @GET
     public List<FacturaDetailDTO> getFactura() {
         return new ArrayList<>();
     }
     
-     /**
+       /**
      * <h1>GET /api/facturas/{id} : Obtener factura por id.</h1>
      * 
      * <pre>Busca la factura con el id asociado recibido en la URL y la devuelve.
-     * 
+    * 
      * Codigos de respuesta:
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
      * 200 OK Devuelve la factura correspondiente al id.
@@ -95,10 +96,11 @@ public class FacturaResource
      * <code style="color: #c7254e; background-color: #f9f2f4;">
      * 404 Not Found No existe una factura con el id dado.
      * </code> 
-     * </pre>
-     * @param id Identificador de la factura que se esta buscando. Este debe ser una cadena de dígitos.
-     * @return JSON {@link FacturaDetailDTO} - La factura buscada
-     */
+    * </pre>
+    * @param id Identificador de la factura que se esta buscando. Este debe ser una cadena de dígitos.
+   * @return JSON {@link FacturaDetailDTO} - La factura buscada
+    */
+ 
     @GET
     @Path("{id: \\d+}")
     public FacturaDetailDTO getFactura(@PathParam("id") Long id) {

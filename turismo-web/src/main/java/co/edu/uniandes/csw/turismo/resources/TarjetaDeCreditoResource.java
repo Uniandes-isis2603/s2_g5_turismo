@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.turismo.resources;
 
 import co.edu.uniandes.csw.turismo.dtos.TarjetaDeCreditoDetailDTO;
 import co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException;
+import co.edu.uniandes.csw.turismo.mappers.BusinessLogicExceptionMapper;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
