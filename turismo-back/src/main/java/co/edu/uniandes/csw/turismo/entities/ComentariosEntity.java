@@ -6,11 +6,13 @@
 package co.edu.uniandes.csw.turismo.entities;
 
 import java.io.Serializable;
+import javax.persistence.Entity;
 
 /**
  *
  * @author lf.rivera10
  */
+@Entity
 public class ComentariosEntity extends BaseEntity implements Serializable {
     
     private String comentario;

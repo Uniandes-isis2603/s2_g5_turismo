@@ -114,7 +114,7 @@ public class BlogPersistenceTest {
     * Prueba de creacion de un Blog     
     */
  @Test
-    public void createFacturaTest() {
+    public void createBlogTest() {
         PodamFactory factory = new PodamFactoryImpl();
         BlogEntity newEntity = factory.manufacturePojo(BlogEntity.class);
         BlogEntity result = BlogPersistence.create(newEntity);
@@ -164,10 +164,10 @@ public class BlogPersistenceTest {
     /*
     * Prueba para elimminar un Blog    
     */
-    @Test
-    public void deleteBlogTest() {
+  @Test
+    public void deleteFacturaTest() {
         BlogEntity entity = data.get(0);
-        BlogPersistence.delete(entity);
+        BlogPersistence.delete(entity.getId());
         BlogEntity deleted = em.find(BlogEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }

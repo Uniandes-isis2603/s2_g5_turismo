@@ -18,6 +18,7 @@ import javax.persistence.TypedQuery;
  *
  * @author lf.rivera10
  */
+@Stateless
 public class BlogPersistence {
     
      private static final Logger LOGGER = Logger.getLogger(BlogPersistence.class.getName());
@@ -51,7 +52,9 @@ public class BlogPersistence {
          return em.merge(entity);
     }
     
-    public void delete(BlogEntity entity) {
+   public void delete(Long id) {
+        LOGGER.log(Level.INFO, "Borrando Blog con id={0}", id);
+        BlogEntity entity = em.find(BlogEntity.class, id);
         em.remove(entity);
     }
 }
