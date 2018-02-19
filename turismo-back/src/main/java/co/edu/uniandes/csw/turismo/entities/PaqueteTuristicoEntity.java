@@ -6,11 +6,13 @@
 package co.edu.uniandes.csw.turismo.entities;
 
 import java.io.Serializable;
+import javax.persistence.Entity;
 
 /**
  *
  * @author dl.avendano
  */
+@Entity
 public class PaqueteTuristicoEntity extends BaseEntity implements Serializable {
     
 }

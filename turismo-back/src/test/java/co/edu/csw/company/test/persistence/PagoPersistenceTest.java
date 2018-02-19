@@ -1,76 +1,61 @@
 /*
-The MIT License (MIT)
-
-Copyright (c) 2015 Los Andes University
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package co.edu.csw.company.test.persistence;
 
-import co.edu.uniandes.csw.turismo.entities.GuiaEntity;
-import co.edu.uniandes.csw.turismo.persistence.GuiaPersistence;
+import co.edu.uniandes.csw.turismo.entities.PagoEntity;
+import co.edu.uniandes.csw.turismo.persistence.PagoPersistence;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.UserTransaction;
-import org.junit.Assert;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Assert;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
- * @author  dl.avendano
+ *
+ * @author dl.avendano
  */
 @RunWith(Arquillian.class)
-public class GuiaPersistenceTest {
-
-    /**
+public class PagoPersistenceTest {
+    
+     /**
      *
      * @return Devuelve el jar que Arquillian va a desplegar en el Glassfish
-     * embebido. El jar contiene las clases de Guia, el descriptor de la
+     * embebido. El jar contiene las clases de Pago, el descriptor de la
      * base de datos y el archivo benas.xml para resolver la inyección de
      * dependencias.
      */
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(GuiaEntity.class.getPackage())
-                .addPackage(GuiaPersistence.class.getPackage())
+                .addPackage(PagoEntity.class.getPackage())
+                .addPackage(PagoPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
 
     /**
-     * Inyección de la dependencia a la clase GuiaPersistence cuyos métodos
+     * Inyección de la dependencia a la clase PagoPersistence cuyos métodos
      * se van a probar.
      */
     @Inject
-    private GuiaPersistence GuiaPersistence;
+    private PagoPersistence PagoPersistence;
 
     /**
      * Contexto de Persostencia que se va autilizar para acceder a la Base de
@@ -115,13 +100,13 @@ public class GuiaPersistenceTest {
      *
      */
     private void clearData() {
-        em.createQuery("delete from GuiaEntity").executeUpdate();
+        em.createQuery("delete from PagoEntity").executeUpdate();
     }
 
     /**
      *
      */
-    private List<GuiaEntity> data = new ArrayList<GuiaEntity>();
+    private List<PagoEntity> data = new ArrayList<PagoEntity>();
 
     /**
      * Inserta los datos iniciales para el correcto funcionamiento de las
@@ -132,7 +117,7 @@ public class GuiaPersistenceTest {
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
-            GuiaEntity entity = factory.manufacturePojo(GuiaEntity.class);
+            PagoEntity entity = factory.manufacturePojo(PagoEntity.class);
 
             em.persist(entity);
             data.add(entity);
@@ -140,37 +125,38 @@ public class GuiaPersistenceTest {
     }
 
     /**
-     * Prueba para crear un Guia.
+     * Prueba para crear un Pago.
      *
      *
      */
     @Test
-    public void createGuiaTest() {
+    public void createPagoTest() {
         PodamFactory factory = new PodamFactoryImpl();
-        GuiaEntity newEntity = factory.manufacturePojo(GuiaEntity.class);
-        GuiaEntity result = GuiaPersistence.create(newEntity);
+        PagoEntity newEntity = factory.manufacturePojo(PagoEntity.class);
+        PagoEntity result = PagoPersistence.create(newEntity);
 
         Assert.assertNotNull(result);
 
-        GuiaEntity entity = em.find(GuiaEntity.class, result.getId());
+        PagoEntity entity = em.find(PagoEntity.class, result.getId());
 
         Assert.assertEquals(newEntity.getName(), entity.getName());
-        Assert.assertEquals(newEntity.getIdiomaGuia(), entity.getIdiomaGuia());
         Assert.assertEquals(newEntity.getId(), entity.getId());
+        Assert.assertEquals(newEntity.getNombrePlan(), entity.getNombrePlan());
+        Assert.assertEquals(newEntity.getCostoPlan(), entity.getCostoPlan());
     }
 
     /**
-     * Prueba para consultar la lista de Guias.
+     * Prueba para consultar la lista de Pagos.
      *
      *
      */
     @Test
-    public void getGuiasTest() {
-        List<GuiaEntity> list = GuiaPersistence.findAll();
+    public void getPagosTest() {
+        List<PagoEntity> list = PagoPersistence.findAll();
         Assert.assertEquals(data.size(), list.size());
-        for (GuiaEntity ent : list) {
+        for (PagoEntity ent : list) {
             boolean found = false;
-            for (GuiaEntity entity : data) {
+            for (PagoEntity entity : data) {
                 if (ent.getId().equals(entity.getId())) {
                     found = true;
                 }
@@ -180,52 +166,54 @@ public class GuiaPersistenceTest {
     }
 
     /**
-     * Prueba para consultar un Guia.
+     * Prueba para consultar un Pago.
      *
      *
      */
     @Test
-    public void getGuiaTest() {
-        GuiaEntity entity = data.get(0);
-        GuiaEntity newEntity = GuiaPersistence.find(entity.getId());
+    public void getPagoTest() {
+        PagoEntity entity = data.get(0);
+        PagoEntity newEntity = PagoPersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(newEntity.getName(), entity.getName());
-        Assert.assertEquals(newEntity.getIdiomaGuia(), entity.getIdiomaGuia());
         Assert.assertEquals(newEntity.getId(), entity.getId());
+        Assert.assertEquals(newEntity.getNombrePlan(), entity.getNombrePlan());
+        Assert.assertEquals(newEntity.getCostoPlan(), entity.getCostoPlan());
     }
 
     /**
-     * Prueba para eliminar un Guia.
+     * Prueba para eliminar un Pago.
      *
      *
      */
     @Test
-    public void deleteGuiaTest() {
-        GuiaEntity entity = data.get(0);
-        GuiaPersistence.delete(entity.getId());
-        GuiaEntity deleted = em.find(GuiaEntity.class, entity.getId());
+    public void deletePagoTest() {
+        PagoEntity entity = data.get(0);
+        PagoPersistence.delete(entity.getId());
+        PagoEntity deleted = em.find(PagoEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
 
     /**
-     * Prueba para actualizar un Guia.
+     * Prueba para actualizar un Pago.
      *
      *
      */
     @Test
-    public void updateGuiaTest() {
-        GuiaEntity entity = data.get(0);
+    public void updatePagoTest() {
+        PagoEntity entity = data.get(0);
         PodamFactory factory = new PodamFactoryImpl();
-        GuiaEntity newEntity = factory.manufacturePojo(GuiaEntity.class);
+        PagoEntity newEntity = factory.manufacturePojo(PagoEntity.class);
 
         newEntity.setId(entity.getId());
 
-        GuiaPersistence.update(newEntity);
+        PagoPersistence.update(newEntity);
 
-        GuiaEntity resp = em.find(GuiaEntity.class, entity.getId());
+        PagoEntity resp = em.find(PagoEntity.class, entity.getId());
 
         Assert.assertEquals(newEntity.getName(), resp.getName());
-        Assert.assertEquals(newEntity.getIdiomaGuia(), resp.getIdiomaGuia());
         Assert.assertEquals(newEntity.getId(), resp.getId());
+        Assert.assertEquals(newEntity.getNombrePlan(), resp.getNombrePlan());
+        Assert.assertEquals(newEntity.getCostoPlan(), resp.getCostoPlan());
     }
 }
