@@ -11,7 +11,7 @@
  * 
  * <pre>
  *   {
- *       "tiposPlan":[Religion, Mirador, Aldultos]       
+ *       "tiposPlan":[Religion, Mirador, Adultos]       
  *   }
  * </pre>
  */
