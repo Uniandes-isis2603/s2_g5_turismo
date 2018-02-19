@@ -15,7 +15,6 @@ import javax.persistence.Entity;
 @Entity
 public class UsuarioEntity extends BaseEntity implements Serializable
 {
-    private Long id;
     private String nombre;
     private String apellido;
     private String contrasenia;

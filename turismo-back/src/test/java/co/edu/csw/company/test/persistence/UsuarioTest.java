@@ -18,7 +18,7 @@ import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Assert;
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
@@ -67,7 +67,7 @@ public class UsuarioTest {
     /**
      * Configuracion inicial de la clase.
      */
-    @BeforeClass
+    @Before
     public void setUpClass() 
     {
         try {
