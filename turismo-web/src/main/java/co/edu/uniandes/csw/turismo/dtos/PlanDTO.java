@@ -40,6 +40,8 @@
 */
 package co.edu.uniandes.csw.turismo.dtos;
 
+import co.edu.uniandes.csw.turismo.entities.PlanEntity;
+
 /**
  *
  * Objeto de transferencia de datos de planes
@@ -297,6 +299,52 @@ public class PlanDTO
     public void setNombrePlan(String nombrePlan) 
     {
         this.nombrePlan = nombrePlan;
+    }
+    
+    /**
+     * Constructor a partir de la entidad
+     * @param planE  La entidad del plan
+     */
+    public PlanDTO(PlanEntity planE) {
+        if (planE != null) 
+        {
+            this.idPlan = planE.getId();
+            this.nombrePlan = planE.getName();
+            this.archivo = planE.getArchivo();
+            this.cantidadPersonas = planE.getCantidadPersonas();
+            this.ciudad = planE.getCiudad();
+            this.descripcion = planE.getDescripcion();
+            this.duracion = planE.getDuracion();
+            this.latitud = planE.getLatitud();
+            this.longitud = planE.getLongitud();
+            this.pais = planE.getPais();
+            this.precio = planE.getPrecio();
+            this.restricciones = planE.getRestricciones();
+            
+        }
+    }
+        
+     /**
+     * Método para transformar el DTO a una entidad.
+     * @return La entidad del libro asociado.
+     */
+    public PlanEntity toEntity() 
+    {
+
+        PlanEntity PlanE = new PlanEntity();
+        PlanE.setId(this.idPlan);
+        PlanE.setName(this.nombrePlan);
+        PlanE.setArchivo(this.archivo);
+        PlanE.setCantidadPersonas(this.cantidadPersonas);
+        PlanE.setCiudad(this.ciudad);
+        PlanE.setDescripcion(this.descripcion);
+        PlanE.setDuracion(this.duracion);
+        PlanE.setLatitud(this.latitud);
+        PlanE.setLongitud(this.longitud);
+        PlanE.setPais(this.pais);
+        PlanE.setRestricciones(this.restricciones);
+                 
+        return PlanE;
     }
 
 }

@@ -6,7 +6,11 @@
 package co.edu.uniandes.csw.turismo.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -16,6 +20,10 @@ import javax.persistence.Entity;
 public class PlanEntity extends BaseEntity implements Serializable
 {
     //ATRIBUTOS 
+    @PodamExclude
+    @ManyToMany
+    @JoinColumn(name="foraneo") 
+    private List<GuiaEntity> guias;
     
     /**
      * Atributo que modela la descripcion del plan
