@@ -23,7 +23,9 @@ SOFTWARE.
  */
 package co.edu.csw.company.test.persistence;
 
+import co.edu.uniandes.csw.turismo.entities.GuiaEntity;
 import co.edu.uniandes.csw.turismo.entities.PlanEntity;
+import co.edu.uniandes.csw.turismo.persistence.GuiaPersistence;
 import co.edu.uniandes.csw.turismo.persistence.PlanPersistence;
 import java.util.ArrayList;
 import java.util.List;
@@ -61,6 +63,8 @@ public class PlanPersistenceTest {
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(PlanEntity.class.getPackage())
                 .addPackage(PlanPersistence.class.getPackage())
+                .addPackage(GuiaEntity.class.getPackage())
+                .addPackage(GuiaPersistence.class.getPackage())          
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
@@ -133,7 +137,6 @@ public class PlanPersistenceTest {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
             PlanEntity entity = factory.manufacturePojo(PlanEntity.class);
-
             em.persist(entity);
             data.add(entity);
         }
@@ -149,6 +152,8 @@ public class PlanPersistenceTest {
         PodamFactory factory = new PodamFactoryImpl();
         PlanEntity newEntity = factory.manufacturePojo(PlanEntity.class);
         PlanEntity result = PlanPersistence.create(newEntity);
+        
+        
 
         Assert.assertNotNull(result);
 
@@ -166,6 +171,8 @@ public class PlanPersistenceTest {
         Assert.assertEquals(newEntity.getPais(), entity.getPais());
         Assert.assertEquals(newEntity.getPrecio(), entity.getPrecio());
         Assert.assertEquals(newEntity.getRestricciones(), entity.getRestricciones());
+        Assert.assertNotNull(newEntity.getGuias().get(0));
+        Assert.assertNotNull(entity.getGuias().get(0));
     }
 
     /**

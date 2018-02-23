@@ -102,7 +102,7 @@ public class PreferencesResource
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera al no poder actualizar la preferencia porque ya existe una con ese nombre.
      */
     @PUT
-    @Path("{nombreTipoPlan: [a-zA-Z][a-zA-Z_0-9]}")
+    @Path("{nombreTipoPlan: [a-zA-Z][a-zA-Z]*}")
     public PreferenciasDetailDTO updatePreferencias(@PathParam("nombreTipoPlan") String nombreTipoPlan, PreferenciasDetailDTO Preferencias) throws BusinessLogicException {
         return Preferencias;
     }
@@ -122,9 +122,34 @@ public class PreferencesResource
      * @param nombreTipoPlan  de la preferencia que se desea borrar. Este debe ser una cadena de caracteres.
      */
     @DELETE
-    @Path("{nombreTipoPlan: [a-zA-Z][a-zA-Z_0-9]}")
-     public void deletePreferencias(@PathParam("nombreTipoPlan") Long nombreTipoPlan)
+    @Path("{nombreTipoPlan: [a-zA-Z][a-zA-Z]*}")
+     public void deletePreferencias(@PathParam("nombreTipoPlan") String nombreTipoPlan)
     {
         // Void
+    }
+    
+     /**
+     * <h1>GET /api/preferences/{nombreTipoPlan} : Obtener una preferencia dado su nombre.</h1>
+     *
+     * <pre>Buscala preferencia / categoria / tipo de plan dado el nombre y lo retorna.
+     *
+     * Codigos de respuesta:
+     * <code style="color: mediumseagreen; background-color: #eaffe0;">
+     * 200 OK Devuelve el tipo plan correspondiente.
+     * </code>
+     * <code style="color: #c7254e; background-color: #f9f2f4;">
+     * 404 Not Found No existe un tipo plan con el nombre dado.
+     * </code>
+     * </pre>
+     *
+     * @param nombreTipoPlan, tipos de plan de interes. Este debe ser una cadena de
+     * caracteres.
+     * @return JSON {@link PlanDetailDTO} - la preferencia buscado
+     */
+    @GET
+    @Path("{nombreTipoPlan: [a-zA-Z][a-zA-Z]*}")
+    public List<PreferenciasDetailDTO> getTipoByName(@PathParam("nombreTipoPlan") String nombreTipoPlan)
+    {
+        return new ArrayList<>();
     }
 }

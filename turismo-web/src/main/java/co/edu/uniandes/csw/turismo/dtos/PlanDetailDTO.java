@@ -70,6 +70,7 @@
  */
 package co.edu.uniandes.csw.turismo.dtos;
 
+import co.edu.uniandes.csw.turismo.entities.PlanEntity;
 import java.util.ArrayList;
 
 /*
@@ -96,9 +97,13 @@ public class PlanDetailDTO extends PlanDTO {
 
     //CONSTRUCTOR
     /**
-     * Constructor poe defecto
+     * Constructor por defecto
+     * @param entity
      */
-    public PlanDetailDTO() { }
+    public PlanDetailDTO(PlanEntity entity)
+    {
+        super(entity);
+    }
 
     //METODOS
     /**

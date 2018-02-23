@@ -131,7 +131,7 @@ public class PlanResource {
      * @return JSON {@link PlanDetailDTO} - el Plan buscado
      */
     @GET
-    @Path("{tiposPlan: [a-zA-Z][a-zA-Z]*}}")
+    @Path("{tiposPlan: [a-zA-Z][a-zA-Z]*}")
     public List<PlanDetailDTO> getPlanType(@PathParam("tiposPlan")String tiposPlan)
     {
         return new ArrayList<>();

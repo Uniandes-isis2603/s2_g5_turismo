@@ -319,18 +319,16 @@ public class PlanDTO
             this.longitud = planE.getLongitud();
             this.pais = planE.getPais();
             this.precio = planE.getPrecio();
-            this.restricciones = planE.getRestricciones();
-            
+            this.restricciones = planE.getRestricciones();   
         }
     }
         
      /**
      * Método para transformar el DTO a una entidad.
-     * @return La entidad del libro asociado.
+     * @return La entidad del plan asociado.
      */
     public PlanEntity toEntity() 
     {
-
         PlanEntity PlanE = new PlanEntity();
         PlanE.setId(this.idPlan);
         PlanE.setName(this.nombrePlan);
