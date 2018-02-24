@@ -7,6 +7,9 @@ package co.edu.uniandes.csw.turismo.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -16,18 +19,51 @@ import javax.persistence.Entity;
 public class FacturaEntity extends  BaseEntity implements Serializable
 {
     
-    private Integer costo; // atributo del costo de la factura
+    private Long costo; // atributo del costo de la factura
+   
+    @PodamExclude
+    @ManyToOne
+    private TarjetaDeCreditoEntity tarjetadecredito;
+    
+    @OneToOne
+    private PaqueteTuristicoEntity paqueteturistico;
+    
+    @PodamExclude
+    @ManyToOne
+    private UsuarioEntity usuario;
 
-     /**
-     * @return the image
-     */
-    public Integer getCosto() {
+    public TarjetaDeCreditoEntity getTarjetadecredito() {
+        return tarjetadecredito;
+    }
+
+    public void setTarjetadecredito(TarjetaDeCreditoEntity tarjetadecredito) {
+        this.tarjetadecredito = tarjetadecredito;
+    }
+
+    public PaqueteTuristicoEntity getPaqueteturistico() {
+        return paqueteturistico;
+    }
+
+    public void setPaqueteturistico(PaqueteTuristicoEntity paqueteturistico) {
+        this.paqueteturistico = paqueteturistico;
+    }
+
+    public UsuarioEntity getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(UsuarioEntity usuario) {
+        this.usuario = usuario;
+    }
+
+    
+    public Long getCosto() {
         return costo;
     }
      /**
      * @Param costo
      */
-    public void setCosto(Integer costo) {
+    public void setCosto(Long costo) {
         this.costo = costo;
     }
     
