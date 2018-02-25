@@ -6,11 +6,14 @@
 package co.edu.uniandes.csw.turismo.resources;
 
 import co.edu.uniandes.csw.turismo.dtos.PagoDetailDTO;
+import co.edu.uniandes.csw.turismo.ejb.PagoLogic;
+import co.edu.uniandes.csw.turismo.entities.PagoEntity;
 import co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.turismo.mappers.BusinessLogicExceptionMapper;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -19,6 +22,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 
 /**
  * <pre>Clase que implementa el recurso "pagos".
@@ -41,6 +45,17 @@ import javax.ws.rs.Produces;
 @Consumes("application/json")
 @RequestScoped
 public class PagoResource {
+    
+    @Inject
+    private PagoLogic pagoLogic;
+    
+    private List<PagoDetailDTO> listEntityToDTO(List<PagoEntity> entityList) {
+        List<PagoDetailDTO> list = new ArrayList<>();
+        for(PagoEntity entity : entityList) {
+            list.add(new PagoDetailDTO(entity));
+        }
+        return list;
+    }
     /**
      * <h1>POST /api/pagos : Crear un nuevo pago.</h1>
      * 
@@ -64,7 +79,9 @@ public class PagoResource {
      */
     @POST
     public PagoDetailDTO createPago(PagoDetailDTO pago) throws BusinessLogicException {
-        return pago;
+        PagoEntity pagoEntity = pago.toEntity();
+        pagoEntity = pagoLogic.createPago(pagoEntity);
+        return new PagoDetailDTO(pagoEntity);
     }
 
     /**
@@ -80,7 +97,7 @@ public class PagoResource {
      */
     @GET
     public List<PagoDetailDTO> getPagos() {
-        return new ArrayList<>();
+        return listEntityToDTO(pagoLogic.getPagos());
     }
 
     /**
@@ -102,7 +119,10 @@ public class PagoResource {
     @GET
     @Path("{id: \\d+}")
     public PagoDetailDTO getPago(@PathParam("id") Long id) {
-        return null;
+        PagoEntity pago = pagoLogic.getPago(id);
+        if (pago == null) 
+            throw new WebApplicationException("El pago no existe");
+        return new PagoDetailDTO(pago); 
     }
     
     /**
@@ -126,7 +146,13 @@ public class PagoResource {
     @PUT
     @Path("{id: \\d+}")
     public PagoDetailDTO updatePago(@PathParam("id") Long id, PagoDetailDTO pago) throws BusinessLogicException {
-        return pago;
+        PagoEntity entity = pago.toEntity();
+        entity.setId(id);
+        PagoEntity oldEntity = pagoLogic.getPago(id);
+        if (oldEntity == null) {
+            throw new WebApplicationException("El pago no existe", 404);
+        }
+        return new PagoDetailDTO(pagoLogic.updatePago(entity));
     }
     
     /**
@@ -146,6 +172,10 @@ public class PagoResource {
     @DELETE 
     @Path("{id: \\d+}")
      public void deletePago(@PathParam("id") Long id) {
-        //void
+        PagoEntity entity = pagoLogic.getPago(id);
+        if (entity == null) {
+            throw new WebApplicationException("El pago no existe", 404);
+        }
+        pagoLogic.deletePago(id);
     }
 }

@@ -6,7 +6,11 @@
 package co.edu.uniandes.csw.turismo.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 
 /**
  *
@@ -15,8 +19,22 @@ import javax.persistence.Entity;
 @Entity
 public class PagoEntity extends BaseEntity implements Serializable{
     
+   
+    //@PodamStrategyValue(DateStrategy.class)(No se pa que es, pero lo tendre en cuenta
+    @Temporal(TemporalType.DATE)
+    private Date fechaPlan;
+    
     private String nombrePlan;
-    private Integer costoPlan;
+    private Double costoPlan;
+    
+
+    public Date getFechaPlan() {
+        return fechaPlan;
+    }
+
+    public void setFechaPlan(Date fechaPlan) {
+        this.fechaPlan = fechaPlan;
+    }
     /**
      * @return nombrePlan
      */
@@ -34,13 +52,13 @@ public class PagoEntity extends BaseEntity implements Serializable{
     /**
      * @return costoPlan 
      */
-    public Integer getCostoPlan() {
+    public Double getCostoPlan() {
         return costoPlan;
     }
     /**
      * @param costoPlan
      */
-    public void setCostoPlan(Integer costoPlan) {
+    public void setCostoPlan(Double costoPlan) {
         this.costoPlan = costoPlan;
     }
     
