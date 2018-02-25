@@ -5,6 +5,9 @@
  */
 package co.edu.uniandes.csw.turismo.dtos;
 
+import co.edu.uniandes.csw.turismo.entities.FacturaEntity;
+import co.edu.uniandes.csw.turismo.entities.TarjetaDeCreditoEntity;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,13 +16,47 @@ import java.util.List;
  */
 public class TarjetaDeCreditoDetailDTO extends TarjetaDeCreditoDTO
 {
-    private List<FacturaDTO> Factura; 
+    private List<FacturaDTO> facturas; 
     private UsuarioDTO usuario;
 
     public TarjetaDeCreditoDetailDTO() 
     {
-        
+        super();   
+    }
+
+   
+    public TarjetaDeCreditoDetailDTO(TarjetaDeCreditoEntity entity) 
+    {
+        super(entity);
+        if (entity != null)
+        {
+           facturas = new ArrayList<>();
+            for (FacturaEntity entityFacturas : entity.getFacturas())
+            {
+                facturas.add(new FacturaDTO(entityFacturas));
+                
+            }
+        }
+        if (entity.getUsuario() != null)
+        {
+            this.usuario = new usuarioDTO(entity.getUsuario());
+        }
+
     }
     
+     @Override
+    public TarjetaDeCreditoEntity toEntity() {
+        TarjetaDeCreditoEntity entity = super.toEntity();
+        if (facturas != null) {
+            List<FacturaEntity> facturaEntity = new ArrayList<>();
+            for (FacturaDTO dtofactura : facturas) {
+                facturaEntity.add(dtofactura.toEntity());
+            }
+            entity.setFacturas(facturaEntity);
+        }
+
+        return entity;
+    }
+
     
 }

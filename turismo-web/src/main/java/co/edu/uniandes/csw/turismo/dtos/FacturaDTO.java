@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.csw.turismo.dtos;
 
+import co.edu.uniandes.csw.turismo.entities.FacturaEntity;
+
 /**
  * facturaDTO Objeto de transferencia de datos de facturas. Los DTO contienen las
  * represnetaciones de los JSON que se transfieren entre el cliente y el
@@ -13,16 +15,16 @@ package co.edu.uniandes.csw.turismo.dtos;
  * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
  * <pre>
  *   {
- *      "ID": number,
+ *      "id": number
  *      "costo": number
- *   
+ *   }
  * </pre>
  * Por ejemplo una factura se representa asi:<br>
  * 
  * <pre>
  * 
  *   {
- *      "ID": 10000,
+ *      "id" : 1
  *      "costo": 1000000
  *   }
  *
@@ -32,8 +34,8 @@ package co.edu.uniandes.csw.turismo.dtos;
 
 public class FacturaDTO  {
     
-    private long ID;
-    private long Costo;
+    private Long id;
+    private Long Costo;
 /*
     Constructor por defecto
     */
@@ -41,22 +43,28 @@ public class FacturaDTO  {
         
     }
     
-     public FacturaDTO(long ID, long Costo) {
-        this.ID = ID;
-        this.Costo = Costo;
+    public FacturaDTO(FacturaEntity entity) 
+    {
+        if(entity != null)
+        {
+        this.Costo = entity.getCosto();
+        this.id = entity.getId();
+        }
+        
     }
-     /*
-     Retorna el ID de la factura
-     */
+     public FacturaEntity toEntity() {
+        FacturaEntity entity = new FacturaEntity();
+        entity.setCosto(this.getCosto());
+        entity.setId(this.getId());
+        return entity;
+    }
 
-    public long getID() {
-        return ID;
+    public Long getId() {
+        return id;
     }
-/*
-    modifica el ID de la factura
-     */
-    public void setID(long ID) {
-        this.ID = ID;
+
+    public void setId(Long id) {
+        this.id = id;
     }
 /*
      Retorna el Costo de la factura
@@ -71,7 +79,8 @@ public class FacturaDTO  {
     public void setCosto(long Costo) {
         this.Costo = Costo;
     }
-    
+     
+   
    
     
 }

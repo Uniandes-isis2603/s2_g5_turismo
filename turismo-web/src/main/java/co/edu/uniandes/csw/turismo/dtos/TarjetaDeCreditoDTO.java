@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.csw.turismo.dtos;
 
+import co.edu.uniandes.csw.turismo.entities.TarjetaDeCreditoEntity;
+
 /**
  ** TarjetaDeCreditoDTO Objeto de transferencia de datos de tarjetas de credito. Los DTO contienen las
  * represnetaciones de los JSON que se transfieren entre el cliente y el
@@ -34,8 +36,8 @@ package co.edu.uniandes.csw.turismo.dtos;
 public class TarjetaDeCreditoDTO 
 {
     private String name;
-    private long  numero;
-    private int CVD;
+    private Long  numero;
+    private Integer CVD;
      /*
     Constructor por defecto
     */
@@ -44,13 +46,24 @@ public class TarjetaDeCreditoDTO
         
     }
 
-    public TarjetaDeCreditoDTO(String name, long numero, int CVD, String otro) {
-        this.name = name;
-        this.numero = numero;
-        this.CVD = CVD;
-       
+    public TarjetaDeCreditoDTO(TarjetaDeCreditoEntity entity) {
+        if (entity != null) 
+        {    
+            this.name = entity.getName();
+            this.CVD = entity.getCDV();
+            this.numero = entity.getNumero();
+            
+        }
     }
-/*
+    
+     public TarjetaDeCreditoEntity toEntity() {
+        TarjetaDeCreditoEntity entity = new TarjetaDeCreditoEntity();
+        entity.setCDV(this.getCVD());
+        entity.setName(this.getName());
+        entity.setNumero(this.getNumero());
+        return entity;
+    }
+/*  
     retorna el nombre del dueño de la tarjeta
     */
     public String getName() {
@@ -87,7 +100,7 @@ public class TarjetaDeCreditoDTO
         this.CVD = CVD;
     }
     
-    
+   
     
     
 }
