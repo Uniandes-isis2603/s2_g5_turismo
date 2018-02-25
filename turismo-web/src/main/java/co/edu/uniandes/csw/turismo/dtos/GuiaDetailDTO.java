@@ -30,7 +30,7 @@
  *      "idGuia": 1,
  *      "nombreGuia: David,
  *      "idiomaGuia": Persa,
- *      "planesGuia":[{
+ *      "planGuia":{
  *                     "idPlan": 1,
  *                     "nombrePlan: Visita a Monserrate,
  *                     "descripcion": "Ir a monserrate subiendo por teleferico",
@@ -43,13 +43,13 @@
  *                     "archivo": imagenLink,
  *                     "precio": 20.000,
  *                     "cantidadPersonas": 9999
- *                    }]                   
+ *                    }                   
  *   }
  * </pre>
  */
 package co.edu.uniandes.csw.turismo.dtos;
 
-import java.util.ArrayList;
+import co.edu.uniandes.csw.turismo.entities.GuiaEntity;
 
 /**
  * Objeto de transferencia detallado de los guias
@@ -61,30 +61,66 @@ public class GuiaDetailDTO extends GuiaDTO
     //ATRIBURTOS
 
     /**
-     * Modela los planes a los cuales el guia esta asociado
+     * Modela el plan asociado al guia
      */
-    private ArrayList<PlanDTO> planesGuia;
+    private PlanDTO planGuia;
 
     //Constructor 
     /**
      * Constructor por defecto
      */
-    public GuiaDetailDTO(){}
+    public GuiaDetailDTO()
+    {
+        super();
+    }
+    
+    /**
+     * Constructor para transformar un Entity a un DTO
+     *
+     * @param entity La entidad de la cual se construye el DTO
+     */
+    public GuiaDetailDTO(GuiaEntity entity) {
+        super(entity);
+        if (entity.getPlanGuia()!= null)
+        {
+            this.planGuia = new PlanDTO(entity.getPlanGuia());
+        } 
+        else
+        {
+            entity.setPlanGuia(null);
+        }
+    }
+    
+    
+    /**
+     * Transformar el DTO a una entidad
+     * @return La entidad que representa el guia.
+     */
+    @Override
+    public GuiaEntity toEntity() 
+    {
+        GuiaEntity guiaE = super.toEntity();
+        if (this.getPlanGuia() != null)
+        {
+            guiaE.setPlanGuia(this.getPlanGuia().toEntity());
+        }
+        return guiaE;
+    }
 
     //METODOS
     /**
      * @return the planesGuia
      */
-    public ArrayList<PlanDTO> getPlanesGuia() 
+    public PlanDTO getPlanGuia() 
     {
-        return planesGuia;
+        return planGuia;
     }
 
     /**
      * @param planesGuia the planesGuia to set
      */
-    public void setPlanesGuia(ArrayList<PlanDTO> planesGuia)
+    public void setPlanGuia(PlanDTO planesGuia)
     {
-        this.planesGuia = planesGuia;
+        this.planGuia = planesGuia;
     }
 }

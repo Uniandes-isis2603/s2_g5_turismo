@@ -17,6 +17,8 @@
  */
 package co.edu.uniandes.csw.turismo.dtos;
 
+import co.edu.uniandes.csw.turismo.entities.PreferenciasEntity;
+
 /**
  * Objeto de transferencia detallado de las preferencias
  * @author jc.montoyar
@@ -28,6 +30,18 @@ public class PreferenciasDetailDTO extends PreferenciasDTO
      */
     public PreferenciasDetailDTO()
     {
-        
+        super();
+    }
+    
+    public PreferenciasDetailDTO(PreferenciasEntity prefE)
+    {
+        super(prefE);
+    }
+    
+    @Override
+    public PreferenciasEntity toEntity()
+    {
+        PreferenciasEntity prefE = super.toEntity();
+        return prefE;
     }
 }

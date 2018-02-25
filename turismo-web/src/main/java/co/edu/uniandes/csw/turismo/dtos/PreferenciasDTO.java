@@ -17,6 +17,9 @@
  */
 package co.edu.uniandes.csw.turismo.dtos;
 
+import co.edu.uniandes.csw.turismo.entities.PreferenciasEntity;
+import java.util.List;
+
 /**
  * Objeto de transferencia de las preferencias(tipos de plan)
  * @author jc.montoyar
@@ -28,20 +31,43 @@ public class PreferenciasDTO
     /**
      * Atriburo que modela un arreglo tipo string que contiene tipos de plan
      */
-    private String[] tiposPlan;
+    private List<String> tiposPlan;
     
     //CONSTRUCTOR
     /**
      * Constructor por defecto
      */
     public PreferenciasDTO(){}
+    
+     /**
+     * Constructor a partir de la entidad
+     * @param prefE  La entidad del la preferencia
+     */
+    public PreferenciasDTO(PreferenciasEntity prefE)
+    {
+        if (prefE != null) 
+        {
+            this.tiposPlan = prefE.getTiposPlan();
+        }
+    }
+    
+    /**
+     * Método para transformar el DTO a una entidad.
+     * @return La entidad de la preferencia asociado.
+     */
+    public PreferenciasEntity toEntity() 
+    {
+        PreferenciasEntity prefE = new PreferenciasEntity();
+        prefE.setTiposPlan(this.tiposPlan);
+        return prefE;
+    }
 
     //GETTERS AND SETTERS
     
     /**
      * @return the tiposPlan
      */
-    public String[] getTiposPlan() 
+    public List<String> getTiposPlan() 
     {
         return tiposPlan;
     }
@@ -49,7 +75,7 @@ public class PreferenciasDTO
     /**
      * @param tiposPlan the tiposPlan to set
      */
-    public void setTiposPlan(String[] tiposPlan)
+    public void setTiposPlan(List<String> tiposPlan)
     {
         this.tiposPlan = tiposPlan;
     }

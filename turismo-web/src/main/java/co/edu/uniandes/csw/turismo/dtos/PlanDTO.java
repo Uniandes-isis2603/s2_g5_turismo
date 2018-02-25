@@ -54,7 +54,7 @@ public class PlanDTO
     /**
      * Atributo que modela el id del plan
      */
-    private long idPlan;
+    private Long idPlan;
 
     /**
      * Atributo que modela la descripcion del plan
@@ -74,17 +74,17 @@ public class PlanDTO
     /**
      * Atributo que modela la longitud del plan
      */
-    private double longitud;
+    private Double longitud;
 
     /**
      * Atriburo que modela la latitud
      */
-    private double latitud;
+    private Double latitud;
 
     /**
      * atributo que modela la duracion del plan
      */
-    private int duracion;
+    private Integer duracion;
 
     /**
      * Atriburo que modela las restricciones del plan
@@ -99,12 +99,12 @@ public class PlanDTO
     /**
      * Atriburo que modela el precio del plan
      */
-    private double precio;
+    private Double precio;
 
     /**
      * Atributo que modela la cantidad de personas recomendada para el plan
      */
-    private int cantidadPersonas;
+    private Integer cantidadPersonas;
 
     /**
      * Atriburo que modela el nombre del plan
@@ -115,7 +115,7 @@ public class PlanDTO
     /**
      * @return el idPlan
      */
-    public long getIdPlan()
+    public Long getIdPlan()
     {
         return idPlan;
     }
@@ -123,7 +123,7 @@ public class PlanDTO
     /**
      * @param idPlan el idPlan to set
      */
-    public void setIdPlan(long idPlan)
+    public void setIdPlan(Long idPlan)
     {
         this.idPlan = idPlan;
     }
@@ -179,7 +179,7 @@ public class PlanDTO
     /**
      * @return la longitud
      */
-    public double getLongitud() 
+    public Double getLongitud() 
     {
         return longitud;
     }
@@ -187,21 +187,21 @@ public class PlanDTO
     /**
      * @param longitud la longitud to set
      */
-    public void setLongitud(double longitud) {
+    public void setLongitud(Double longitud) {
         this.longitud = longitud;
     }
 
     /**
      * @return la latitud
      */
-    public double getLatitud() {
+    public Double getLatitud() {
         return latitud;
     }
 
     /**
      * @param latitud la latitud to set
      */
-    public void setLatitud(double latitud)
+    public void setLatitud(Double latitud)
     {
         this.latitud = latitud;
     }
@@ -209,7 +209,7 @@ public class PlanDTO
     /**
      * @return la duracion
      */
-    public int getDuracion()
+    public Integer getDuracion()
     {
         return duracion;
     }
@@ -217,7 +217,7 @@ public class PlanDTO
     /**
      * @param duracion la duracion to set
      */
-    public void setDuracion(int duracion)
+    public void setDuracion(Integer duracion)
     {
         this.duracion = duracion;
     }
@@ -257,7 +257,7 @@ public class PlanDTO
     /**
      * @return el precio
      */
-    public double getPrecio()
+    public Double getPrecio()
     {
         return precio;
     }
@@ -265,7 +265,7 @@ public class PlanDTO
     /**
      * @param precio el precio to set
      */
-    public void setPrecio(double precio) 
+    public void setPrecio(Double precio) 
     {
         this.precio = precio;
     }
@@ -273,14 +273,14 @@ public class PlanDTO
     /**
      * @return la de cantidadPersonas
      */
-    public int getCantidadPersonas() {
+    public Integer getCantidadPersonas() {
         return cantidadPersonas;
     }
 
     /**
      * @param cantidadPersonas la de cantidadPersonas to set
      */
-    public void setCantidadPersonas(int cantidadPersonas)
+    public void setCantidadPersonas(Integer cantidadPersonas)
     {
         this.cantidadPersonas = cantidadPersonas;
     }
@@ -301,11 +301,17 @@ public class PlanDTO
         this.nombrePlan = nombrePlan;
     }
     
+    public PlanDTO()
+    {
+        
+    }
+    
     /**
      * Constructor a partir de la entidad
      * @param planE  La entidad del plan
      */
-    public PlanDTO(PlanEntity planE) {
+    public PlanDTO(PlanEntity planE)
+    {
         if (planE != null) 
         {
             this.idPlan = planE.getId();
@@ -323,7 +329,7 @@ public class PlanDTO
         }
     }
         
-     /**
+    /**
      * Método para transformar el DTO a una entidad.
      * @return La entidad del plan asociado.
      */

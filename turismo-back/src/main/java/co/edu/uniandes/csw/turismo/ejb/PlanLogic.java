@@ -44,10 +44,12 @@ public class PlanLogic {
     @Inject
     private PlanPersistence persistence; // Variable para acceder a la persistencia de la aplicación. Es un inyección de dependencias.
 
-    public PlanEntity createPlan(PlanEntity entity) throws BusinessLogicException {
+    public PlanEntity createPlan(PlanEntity entity) throws BusinessLogicException
+    {
         LOGGER.info("Inicia proceso de creación de Plan");
         // Verifica la regla de negocio que dice que no puede haber dos Planes con el mismo nombre
-        if (persistence.findByName(entity.getName()) != null) {
+        if (persistence.findByName(entity.getName()) != null) 
+        {
             throw new BusinessLogicException("Ya existe un Plan con el nombre \"" + entity.getName() + "\"");
         }
         // Invoca la persistencia para crear la Plan

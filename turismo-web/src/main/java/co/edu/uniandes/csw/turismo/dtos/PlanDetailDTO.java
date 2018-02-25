@@ -70,8 +70,12 @@
  */
 package co.edu.uniandes.csw.turismo.dtos;
 
+import co.edu.uniandes.csw.turismo.entities.GuiaEntity;
 import co.edu.uniandes.csw.turismo.entities.PlanEntity;
+import co.edu.uniandes.csw.turismo.entities.PreferenciasEntity;
+import co.edu.uniandes.csw.turismo.entities.ValoracionesEntity;
 import java.util.ArrayList;
+import java.util.List;
 
 /*
  * Objeto de transferencia detallado de datos de planes
@@ -83,33 +87,102 @@ public class PlanDetailDTO extends PlanDTO {
     /**
      * Atributo que modela la lista de guias que hay para el plan
      */
-    private ArrayList<GuiaDTO> guiasPlan;
+    private List<GuiaDTO> guiasPlan;
 
     /**
      * Atributo que modela una lista con los categorias de plan de el plan
      */
-    private ArrayList<PreferenciasDTO> categoriasPlan;
+    private List<PreferenciasDTO> categoriasPlan;
 
     /**
      * Atributo que modela las valoraciones del plan
      */
-    private ArrayList<ValoracionesDTO> valoraciones; //TODO, ES DE TIPO ValoracionDTO
+    private List<ValoracionesDTO> valoraciones; 
 
     //CONSTRUCTOR
     /**
      * Constructor por defecto
-     * @param entity
+     */
+    public PlanDetailDTO()
+    {
+        super();
+    }
+    
+    /**
+     * Constructor a partir de una entity de plan
+     * @param entity 
      */
     public PlanDetailDTO(PlanEntity entity)
     {
         super(entity);
+        if (entity.getPreferenciasPlan() != null) 
+        {
+            categoriasPlan = new ArrayList<>();
+            for (PreferenciasEntity entityPreferencias : entity.getPreferenciasPlan()) 
+            {
+                categoriasPlan.add(new PreferenciasDTO(entityPreferencias));
+            }
+        }
+        if (entity.getGuias() != null) 
+        {
+            guiasPlan = new ArrayList<>();
+            for (GuiaEntity entityGuia : entity.getGuias()) 
+            {
+                guiasPlan.add(new GuiaDTO(entityGuia));
+            }
+        }
+        if (entity.getValoracionesPlan() != null) 
+        {
+            valoraciones = new ArrayList<>();
+            for (ValoracionesEntity entityValoraciones : entity.getValoracionesPlan()) 
+            {
+                valoraciones.add(new ValoracionesDTO(entityValoraciones)); //falta el constructor en valoraciones
+            }
+        }
+    }
+    
+    /**
+     * Transformar el DTO a una entidad
+     * @return La entidad que representa el plan.
+     */
+    @Override
+    public PlanEntity toEntity() 
+    {
+        PlanEntity planE = super.toEntity();
+        if (getValoraciones() != null) 
+        {
+            List<ValoracionesEntity> valoracionesEntity = new ArrayList<>();
+            for (ValoracionesDTO dtoValoracion : getValoraciones()) 
+            {
+                valoracionesEntity.add(dtoValoracion.toEntity());
+            }
+            planE.setValoracionesPlan(valoracionesEntity);
+        }
+        if (guiasPlan != null)
+        {
+            List<GuiaEntity> guiaEntity = new ArrayList<>();
+            for (GuiaDTO dtoGuia : getGuiasPlan()) 
+            {
+                guiaEntity.add(dtoGuia.toEntity());
+            }
+            planE.setGuias(guiaEntity);
+        }
+        if (categoriasPlan != null) {
+            List<PreferenciasEntity> preferenciaEntity = new ArrayList<>();
+            for (PreferenciasDTO dtoPreferencia : getTiposPlan()) 
+            {
+                preferenciaEntity.add(dtoPreferencia.toEntity());
+            }
+            planE.setPreferenciasPlan(preferenciaEntity);
+        }
+        return planE;
     }
 
     //METODOS
     /**
      * @return los guias asociados del plan
      */
-    public ArrayList<GuiaDTO> getGuiasPlan()
+    public List<GuiaDTO> getGuiasPlan()
     {
         return this.guiasPlan;
     }
@@ -118,7 +191,7 @@ public class PlanDetailDTO extends PlanDTO {
      * Cambia los planes del guia por los dados por parametro
      * @param guiasPlan 2 set
      */ 
-    public void setGuiasPlan(ArrayList<GuiaDTO> guiasPlan) 
+    public void setGuiasPlan(List<GuiaDTO> guiasPlan) 
     {
         this.guiasPlan = guiasPlan;
     }
@@ -126,7 +199,7 @@ public class PlanDetailDTO extends PlanDTO {
     /**
      * @return los categorias de plan del plan
      */
-    public ArrayList<PreferenciasDTO> getTiposPlan() 
+    public List<PreferenciasDTO> getTiposPlan() 
     {
         return this.categoriasPlan;
     }
@@ -135,7 +208,7 @@ public class PlanDetailDTO extends PlanDTO {
      * Cambia las tipos de plan por los dados por parámetro
      * @param tiposPlan 2 set
      */
-    public void setCategoriasPlan(ArrayList<PreferenciasDTO> tiposPlan)
+    public void setCategoriasPlan(List<PreferenciasDTO> tiposPlan)
     {
         this.categoriasPlan = tiposPlan;
     }
@@ -143,7 +216,7 @@ public class PlanDetailDTO extends PlanDTO {
     /**
      * @return the valoraciones
      */
-    public ArrayList getValoraciones() 
+    public List<ValoracionesDTO> getValoraciones() 
     {
         return valoraciones;
     }
@@ -151,7 +224,7 @@ public class PlanDetailDTO extends PlanDTO {
     /**
      * @param valoraciones the valoraciones to set
      */
-    public void setValoraciones(ArrayList valoraciones) 
+    public void setValoraciones(List<ValoracionesDTO> valoraciones) 
     {
         this.valoraciones = valoraciones;
     }
