@@ -6,7 +6,10 @@
 package co.edu.uniandes.csw.turismo.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -18,7 +21,15 @@ public class BlogEntity extends BaseEntity implements Serializable {
     private String tema;
     private String descripcion;
     private int likes; 
-
+    
+    @OneToMany
+    @PodamExclude
+    private List<ComentariosEntity> comentarios;
+    
+    @OneToMany
+    @PodamExclude
+    private List<PlanEntity> planes;
+    
     
      /**
      * @return del numero el tema

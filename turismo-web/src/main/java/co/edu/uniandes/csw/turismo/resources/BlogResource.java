@@ -6,7 +6,8 @@
 package co.edu.uniandes.csw.turismo.resources;
 
 import co.edu.uniandes.csw.turismo.dtos.BlogDTO;
-import co.edu.uniandes.csw.turismo.dtos.ComentariosDTO;
+import co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException;
+import co.edu.uniandes.csw.turismo.mappers.BusinessLogicExceptionMapper;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
@@ -98,10 +99,11 @@ public BlogDTO GetBlog (@PathParam("id") long id)
      * </pre>
      * @param blog {@link BlogDetailDTO} - el blog que se desea guardar.
      * @return JSON {@link BlogDetailDTO}  - el blog creado con el atributo id autogenerado.
+     * @throws co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException
      */
  
   @POST
-  public BlogDTO CrearBlog (BlogDTO blog)
+  public BlogDTO CrearBlog (BlogDTO blog) throws BusinessLogicException
   {
   return blog;
   }
@@ -121,10 +123,11 @@ public BlogDTO GetBlog (@PathParam("id") long id)
      * @param id Identificador del blog que se desea actualizar.Este debe ser una cadena de dígitos.
      * @param blog {@link BlogDetailDTO} el blog que se desea actualizar.
      * @return JSON {@link BlogDetailDTO} - el blog guardado.
+     * @throws co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException
      */
   @PUT
   @Path("{id: \\d+}") 
-  public BlogDTO ActualizarBlog (@PathParam("id") long id, BlogDTO blog)
+  public BlogDTO ActualizarBlog (@PathParam("id") long id, BlogDTO blog) throws BusinessLogicException
   {
   return blog;
   }
