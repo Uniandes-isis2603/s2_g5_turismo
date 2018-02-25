@@ -24,7 +24,7 @@ public class BlogEntity extends BaseEntity implements Serializable {
     
     @OneToMany
     @PodamExclude
-    private List<ComentariosEntity> comentarios;
+    private List<ComentarioEntity> comentarios;
     
     @OneToMany
     @PodamExclude
@@ -67,6 +67,34 @@ public class BlogEntity extends BaseEntity implements Serializable {
      */
     public void setLikes(int likes) {
         this.likes = likes;
+    }
+
+    
+    /**
+     * @return los comentarios asociados
+     */
+    public List<ComentarioEntity> getComentarios() {
+        return comentarios;
+    }
+
+    /**
+     * @param comentarios
+     */
+    public void setComentarios(List<ComentarioEntity> comentarios) {
+        this.comentarios = comentarios;
+    }
+/**
+     * @return los planes asociados
+     */
+    public List<PlanEntity> getPlanes() {
+        return planes;
+    }
+
+     /**
+     * @param planes
+     */
+    public void setPlanes(List<PlanEntity> planes) {
+        this.planes = planes;
     }
     
     

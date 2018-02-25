@@ -5,7 +5,17 @@
  */
 package co.edu.uniandes.csw.turismo.dtos;
 
+import co.edu.uniandes.csw.turismo.entities.BlogEntity;
+import co.edu.uniandes.csw.turismo.entities.ComentariosEntity;
+import co.edu.uniandes.csw.turismo.entities.FacturaEntity;
+import co.edu.uniandes.csw.turismo.entities.PreferenciasEntity;
+import co.edu.uniandes.csw.turismo.entities.TarjetaDeCreditoEntity;
+import co.edu.uniandes.csw.turismo.entities.UsuarioEntity;
+import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  * Clase que extiende de {@link UsuarioDTO} para manejar la transformacion entre
@@ -95,10 +105,12 @@ public class UsuarioDetailDTO extends UsuarioDTO
 {
     //TODO Listas de Preferencias, Comentarios, Blog
     //TODO PaqueteTuristico, Valoracion
-    
     private List<FacturaDTO> listaFacturas;
+    
     private List<TarjetaDeCreditoDTO> listaTarjetas;
+    
     private PaqueteTuristicoDTO paquete;
+    
     private List<BlogDTO> listaBlogs;
     private List<ComentarioDTO> listaComentarios;
     private List<PreferenciasDTO> listaPreferencias;
@@ -112,25 +124,130 @@ public class UsuarioDetailDTO extends UsuarioDTO
         
     }
     
-    /**
-     * Crea un UsuarioDetailDTO con los elementos recibidos por parametro.
-     * @param listaFacturas La lista de facturas del usuario
-     * @param listaTarjetas La lista de tarjetas de credito del usuario
-     * @param paquete El paquete turistico actual del usuario
-     * @param listaBlogs La lista de blogs creados por el usuario
-     * @param listaComentarios La lista de comentarios publicados por el usuario
-     * @param listaPreferencias La lista de preferencias del usuario
-     */
-    public UsuarioDetailDTO(List<FacturaDTO> listaFacturas, List<TarjetaDeCreditoDTO> listaTarjetas, PaqueteTuristicoDTO paquete, List<BlogDTO> listaBlogs, List<ComentarioDTO> listaComentarios, List<PreferenciasDTO> listaPreferencias)
+    public UsuarioDetailDTO(UsuarioEntity entity)
     {
-        this.listaFacturas = listaFacturas;
-        this.listaTarjetas = listaTarjetas;
-        this.paquete = paquete;
-        this.listaBlogs = listaBlogs;
-        this.listaComentarios = listaComentarios;
-        this.listaPreferencias = listaPreferencias;
+        super(entity);
+        if(entity.getListaBlogs() != null)
+        {
+            listaBlogs = new ArrayList<BlogDTO>();
+            for (BlogEntity blog : entity.getListaBlogs()) 
+            {
+                listaBlogs.add(new BlogDTO(blog));
+            }
+        }
+        if(entity.getListaComentarios() != null)
+        {
+            listaComentarios = new ArrayList<ComentariosDTO>();
+            for (ComentariosEntity comentario : entity.getListaComentarios()) 
+            {
+                listaComentarios.add(new ComentariosDTO(comentario));
+            }
+        }
+        if(entity.getListaFacturas() != null)
+        {
+            listaFacturas = new ArrayList<FacturaDTO>();
+            for (FacturaEntity factura : entity.getListaFacturas()) 
+            {
+                listaFacturas.add(new FacturaDTO(factura));
+            }
+        }
+        if(entity.getListaPreferencias() != null)
+        {
+            listaPreferencias = new ArrayList<PreferenciasDTO>();
+            for (PreferenciasEntity preferencias : entity.getListaPreferencias()) 
+            {
+                listaPreferencias.add(new PreferenciasDTO(preferencias));
+            }
+        }
+        if(entity.getListaTarjetas() != null)
+        {
+            listaTarjetas = new ArrayList<TarjetaDeCreditoDTO>();
+            for (TarjetaDeCreditoEntity tarjetas : entity.getListaTarjetas()) 
+            {
+                listaTarjetas.add(new TarjetaDeCreditoDTO(tarjetas));
+            }
+        }
+        if(entity.getPaquete() != null)
+        {
+            this.paquete = new PaqueteTuristicoDTO(entity.getPaquete());
+        }
     }
+    
+//    /**
+//     * Crea un UsuarioDetailDTO con los elementos recibidos por parametro.
+//     * @param listaFacturas La lista de facturas del usuario
+//     * @param listaTarjetas La lista de tarjetas de credito del usuario
+//     * @param paquete El paquete turistico actual del usuario
+//     * @param listaBlogs La lista de blogs creados por el usuario
+//     * @param listaComentarios La lista de comentarios publicados por el usuario
+//     * @param listaPreferencias La lista de preferencias del usuario
+//     */
+//    public UsuarioDetailDTO(List<FacturaDTO> listaFacturas, List<TarjetaDeCreditoDTO> listaTarjetas, PaqueteTuristicoDTO paquete, List<BlogDTO> listaBlogs, List<ComentariosDTO> listaComentarios, List<PreferenciasDTO> listaPreferencias)
+//    {
+//        this.listaFacturas = listaFacturas;
+//        this.listaTarjetas = listaTarjetas;
+//        this.paquete = paquete;
+//        this.listaBlogs = listaBlogs;
+//        this.listaComentarios = listaComentarios;
+//        this.listaPreferencias = listaPreferencias;
+//    }
 
+    @Override
+    public UsuarioEntity toEntity()
+    {
+        UsuarioEntity entity = super.toEntity();
+        if(listaFacturas != null)
+        {
+            List<FacturaEntity> lista = new ArrayList<FacturaEntity>();
+            for(FacturaDTO factura : listaFacturas)
+            {
+                lista.add(factura);
+            }
+            entity.setListaFacturas(lista);
+        }
+        if(listaTarjetas != null)
+        {
+            List<TarjetaDeCreditoEntity> lista = new ArrayList<TarjetaDeCreditoEntity>();
+            for(TarjetaDeCreditoDTO tarjeta : listaTarjetas)
+            {
+                lista.add(tarjeta);                        
+            }
+            entity.setListaTarjetas(lista);
+        }
+        if(paquete != null)
+        {
+            entity.setPaquete(this.getPaquete().toEntity());
+        }
+        if(listaBlogs != null)
+        {
+            List<BlogEntity> lista = new ArrayList<BlogEntity>();
+            for(BlogDTO blog : listaBlogs)
+            {
+                lista.add(blog);
+            }
+            entity.setListaBlogs(lista);
+        }
+        if(listaComentarios != null)
+        {
+            List<ComentariosEntity> lista = new ArrayList<ComentariosEntity>();
+            for(ComentariosDTO comentario : listaComentarios)
+            {
+                lista.add(comentario);
+            }
+            entity.setListaComentarios(lista);
+        }
+        if(listaPreferencias != null)
+        {
+            List<PreferenciasEntity> lista = new ArrayList<PreferenciasEntity>();
+            for(PreferenciasDTO preferencia : listaPreferencias)
+            {
+                lista.add(preferencia);
+            }
+            entity.setListaPreferencias(lista);
+        }
+        return entity;
+    }
+    
     /**
      * @return La lista de facturas del usuario.
      */
@@ -214,6 +331,4 @@ public class UsuarioDetailDTO extends UsuarioDTO
     public void setListaTarjetas(List<TarjetaDeCreditoDTO> listaTarjetas) {
         this.listaTarjetas = listaTarjetas;
     }
-    
-    
 }

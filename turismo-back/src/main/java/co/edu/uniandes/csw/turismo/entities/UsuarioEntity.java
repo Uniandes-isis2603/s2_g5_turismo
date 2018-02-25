@@ -6,7 +6,11 @@
 package co.edu.uniandes.csw.turismo.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;import uk.co.jemos.podam.common.PodamExclude;
+
 
 /**
  *
@@ -19,8 +23,30 @@ public class UsuarioEntity extends BaseEntity implements Serializable
     private String apellido;
     private String contrasenia;
     private String correo;
+    private String idioma;
     private Integer telefono;
     private Boolean esAdministrador;
+    
+    @OneToMany
+    private List<FacturaEntity> listaFacturas;
+    
+    @PodamExclude
+    @OneToMany
+    private List<TarjetaDeCreditoEntity> listaTarjetas;
+    
+    @PodamExclude
+    @OneToOne
+    private PaqueteTuristicoEntity paquete;
+    
+    @OneToMany
+    private List<BlogEntity> listaBlogs;
+    
+    @OneToMany
+    private List<ComentarioEntity> listaComentarios;
+    
+    @PodamExclude
+    @OneToMany
+    private List<PreferenciasEntity> listaPreferencias;
 
     /**
      * @return Retorna el nombre del usuario
@@ -77,6 +103,20 @@ public class UsuarioEntity extends BaseEntity implements Serializable
     public void setCorreo(String correo) {
         this.correo = correo;
     }
+    
+    /**
+     * @return El idioma del usuario
+     */
+    public String getIdioma() {
+        return idioma;
+    }
+
+    /**
+     * @param idioma El nuevo idioma del usuario
+     */
+    public void setIdioma(String idioma) {
+        this.idioma = idioma;
+    }
 
     /**
      * @return Retorna el telefono del usuario
@@ -104,6 +144,54 @@ public class UsuarioEntity extends BaseEntity implements Serializable
      */
     public void setEsAdministrador(Boolean esAdministrador) {
         this.esAdministrador = esAdministrador;
+    }
+
+    public List<FacturaEntity> getListaFacturas() {
+        return listaFacturas;
+    }
+
+    public void setListaFacturas(List<FacturaEntity> listaFacturas) {
+        this.listaFacturas = listaFacturas;
+    }
+
+    public List<TarjetaDeCreditoEntity> getListaTarjetas() {
+        return listaTarjetas;
+    }
+
+    public void setListaTarjetas(List<TarjetaDeCreditoEntity> listaTarjetas) {
+        this.listaTarjetas = listaTarjetas;
+    }
+
+    public PaqueteTuristicoEntity getPaquete() {
+        return paquete;
+    }
+
+    public void setPaquete(PaqueteTuristicoEntity paquete) {
+        this.paquete = paquete;
+    }
+
+    public List<BlogEntity> getListaBlogs() {
+        return listaBlogs;
+    }
+
+    public void setListaBlogs(List<BlogEntity> listaBlogs) {
+        this.listaBlogs = listaBlogs;
+    }
+
+    public List<ComentarioEntity> getListaComentarios() {
+        return listaComentarios;
+    }
+
+    public void setListaComentarios(List<ComentarioEntity> listaComentarios) {
+        this.listaComentarios = listaComentarios;
+    }
+
+    public List<PreferenciasEntity> getListaPreferencias() {
+        return listaPreferencias;
+    }
+
+    public void setListaPreferencias(List<PreferenciasEntity> listaPreferencias) {
+        this.listaPreferencias = listaPreferencias;
     }
     
     
