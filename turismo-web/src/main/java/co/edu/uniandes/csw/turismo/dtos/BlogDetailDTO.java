@@ -21,6 +21,7 @@ public class BlogDetailDTO  extends BlogDTO
 
     
     private List<ComentariosDTO> comentarios;
+    private List<PlanDTO> planes;
 
 
     /**
@@ -43,5 +44,22 @@ public class BlogDetailDTO  extends BlogDTO
     public void setComentarios(List<ComentariosDTO> comentarios) {
         this.comentarios = comentarios;
     }
+
+    /**
+     * @return La lista de planes del blog
+     */
+    public List<PlanDTO> getPlanes() {
+        return planes;
+    }
+
+    
+    /**
+     * @param planes La lista de planes del blog actualizada
+     */
+    public void setPlanes(List<PlanDTO> planes) {
+        this.planes = planes;
+    }
+    
+    
     
 }
