@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.turismo.resources;
 
 import co.edu.uniandes.csw.turismo.dtos.TarjetaDeCreditoDetailDTO;
+import co.edu.uniandes.csw.turismo.ejb.TarjetaDeCreditoLogic;
 import co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.turismo.mappers.BusinessLogicExceptionMapper;
 import java.util.ArrayList;
@@ -42,6 +43,7 @@ import javax.ws.rs.Produces;
 @RequestScoped
 public class TarjetaDeCreditoResource 
 {
+    private TarjetaDeCreditoLogic tarjetadecreditologic;
      /**
      * <h1>POST /api/tarjetas : Crear una TarjetaDeCredito.</h1>
      * 
@@ -65,7 +67,7 @@ public class TarjetaDeCreditoResource
      */
     @POST
     public TarjetaDeCreditoDetailDTO createTarjetaDecredito(TarjetaDeCreditoDetailDTO TarjetaDecredito) throws BusinessLogicException {
-        return TarjetaDecredito;
+        return new  TarjetaDecreditoDetailDTO(tarjetadecreditologic.createTarjetaDeCredito(TarjetaDecredito.toEntity()));
     }  
      /**
      * <h1>GET /api/tarjetas : Obtener todas las Tarjetas de Credito.</h1>

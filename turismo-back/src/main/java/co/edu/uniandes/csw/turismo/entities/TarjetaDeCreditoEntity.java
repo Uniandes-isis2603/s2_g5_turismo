@@ -6,7 +6,11 @@
 package co.edu.uniandes.csw.turismo.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -16,20 +20,46 @@ import javax.persistence.Entity;
 public class TarjetaDeCreditoEntity extends BaseEntity implements Serializable
 {
     
-    private Integer numero;
+    private Long numero;
     private String name;
     private Integer CDV;
+    
+    @PodamExclude
+    @OneToMany(mappedBy = "facturas")
+    private List <FacturaEntity> facturas;
+    
+    @PodamExclude
+    @OneToOne
+    private UsuarioEntity usuario;
+
+    public UsuarioEntity getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(UsuarioEntity usuario) {
+        this.usuario = usuario;
+    }
+
+    public List<FacturaEntity> getFacturas() {
+        return facturas;
+    }
+
+    public void setFacturas(List<FacturaEntity> facturas) {
+        this.facturas = facturas;
+    }
+    
 
      /**
      * @return del numero de la tarjete
      */
-    public Integer getNumero() {
+    public Long getNumero() 
+    {
         return numero;
     }
     /**
      * @Param numero
      */
-    public void setNumero(Integer numero) {
+    public void setNumero(Long numero) {
         this.numero = numero;
     }
     /**
