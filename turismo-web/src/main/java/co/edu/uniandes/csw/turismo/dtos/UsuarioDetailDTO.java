@@ -100,7 +100,7 @@ public class UsuarioDetailDTO extends UsuarioDTO
     private List<TarjetaDeCreditoDTO> listaTarjetas;
     private PaqueteTuristicoDTO paquete;
     private List<BlogDTO> listaBlogs;
-    private List<ComentariosDTO> listaComentarios;
+    private List<ComentarioDTO> listaComentarios;
     private List<PreferenciasDTO> listaPreferencias;
     
     
@@ -121,7 +121,7 @@ public class UsuarioDetailDTO extends UsuarioDTO
      * @param listaComentarios La lista de comentarios publicados por el usuario
      * @param listaPreferencias La lista de preferencias del usuario
      */
-    public UsuarioDetailDTO(List<FacturaDTO> listaFacturas, List<TarjetaDeCreditoDTO> listaTarjetas, PaqueteTuristicoDTO paquete, List<BlogDTO> listaBlogs, List<ComentariosDTO> listaComentarios, List<PreferenciasDTO> listaPreferencias)
+    public UsuarioDetailDTO(List<FacturaDTO> listaFacturas, List<TarjetaDeCreditoDTO> listaTarjetas, PaqueteTuristicoDTO paquete, List<BlogDTO> listaBlogs, List<ComentarioDTO> listaComentarios, List<PreferenciasDTO> listaPreferencias)
     {
         this.listaFacturas = listaFacturas;
         this.listaTarjetas = listaTarjetas;
@@ -169,14 +169,14 @@ public class UsuarioDetailDTO extends UsuarioDTO
     /**
      * @return La lista de comentarios creados por un usuario
      */
-    public List<ComentariosDTO> getListaComentarios() {
+    public List<ComentarioDTO> getListaComentarios() {
         return listaComentarios;
     }
 
     /**
      * @param listaComentarios La lista de comentarios del usuario actualizada
      */
-    public void setListaComentarios(List<ComentariosDTO> listaComentarios) {
+    public void setListaComentarios(List<ComentarioDTO> listaComentarios) {
         this.listaComentarios = listaComentarios;
     }
 
