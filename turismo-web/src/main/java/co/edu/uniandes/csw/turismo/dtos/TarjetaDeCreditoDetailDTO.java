@@ -39,13 +39,14 @@ public class TarjetaDeCreditoDetailDTO extends TarjetaDeCreditoDTO
         }
         if (entity.getUsuario() != null)
         {
-            this.usuario = new usuarioDTO(entity.getUsuario());
+            this.usuario = new UsuarioDTO(entity.getUsuario());
         }
 
     }
     
      @Override
-    public TarjetaDeCreditoEntity toEntity() {
+    public TarjetaDeCreditoEntity toEntity()
+    {
         TarjetaDeCreditoEntity entity = super.toEntity();
         if (facturas != null) {
             List<FacturaEntity> facturaEntity = new ArrayList<>();
