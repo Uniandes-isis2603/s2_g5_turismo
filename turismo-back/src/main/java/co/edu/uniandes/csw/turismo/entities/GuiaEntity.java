@@ -29,7 +29,7 @@ public class GuiaEntity extends BaseEntity implements Serializable
     /**
      * @return plan asociado al guia 
      */
-    public PlanEntity getPlanGuia() 
+    public PlanEntity getPlanGuia()
     {
         return planGuia;
     }
@@ -66,4 +66,6 @@ public class GuiaEntity extends BaseEntity implements Serializable
     {
         this.idiomaGuia = idiomaGuia;
     }
+
+    
 }

@@ -315,5 +315,8 @@ public class PlanEntity extends BaseEntity implements Serializable
     {
         this.cantidadPersonas = cantidadPersonas;
     }
+
+    
+
     
 }
