@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.csw.turismo.dtos;
 
+import co.edu.uniandes.csw.turismo.entities.ComentarioEntity;
+
 /**
  * * ComentariosDTO Objeto de transferencia de datos de comentarios. Los DTO contienen las
  * represnetaciones de los JSON que se transfieren entre el cliente y el
@@ -18,13 +20,13 @@ package co.edu.uniandes.csw.turismo.dtos;
  * </pre>
  * @author lf.rivera10
  */
-public class ComentariosDTO {
+public class ComentarioDTO {
     private String comentario;
     
       /**
      * Constructor por defecto
      */
-    public ComentariosDTO(){
+    public ComentarioDTO(){
         
     }
 
@@ -40,5 +42,19 @@ public class ComentariosDTO {
     public void setComentario(String comentario) {
         this.comentario = comentario;
     }
+    
+    public ComentarioDTO(ComentarioEntity entity) 
+    {
+        if(entity != null)
+        {
+       this.comentario = entity.getComentario();
+        }
+        
+    }
+     public ComentarioEntity toEntity() {
+        ComentarioEntity entity = new ComentarioEntity();
+        entity.setComentario(comentario);
+        return entity;
+    } 
     
 }

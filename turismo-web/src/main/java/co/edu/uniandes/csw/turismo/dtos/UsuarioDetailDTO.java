@@ -112,9 +112,7 @@ public class UsuarioDetailDTO extends UsuarioDTO
     private PaqueteTuristicoDTO paquete;
     
     private List<BlogDTO> listaBlogs;
-    
-    private List<ComentariosDTO> listaComentarios;
-    
+    private List<ComentarioDTO> listaComentarios;
     private List<PreferenciasDTO> listaPreferencias;
     
     
@@ -288,14 +286,14 @@ public class UsuarioDetailDTO extends UsuarioDTO
     /**
      * @return La lista de comentarios creados por un usuario
      */
-    public List<ComentariosDTO> getListaComentarios() {
+    public List<ComentarioDTO> getListaComentarios() {
         return listaComentarios;
     }
 
     /**
      * @param listaComentarios La lista de comentarios del usuario actualizada
      */
-    public void setListaComentarios(List<ComentariosDTO> listaComentarios) {
+    public void setListaComentarios(List<ComentarioDTO> listaComentarios) {
         this.listaComentarios = listaComentarios;
     }
 

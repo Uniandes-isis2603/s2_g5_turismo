@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.turismo.dtos;
 
 
+import co.edu.uniandes.csw.turismo.entities.BlogEntity;
 import java.util.List;
 
 /**
@@ -74,6 +75,22 @@ public class BlogDTO {
         this.likes = likes;
     }
 
-    
+  public BlogDTO(BlogEntity entity) 
+    {
+        if(entity != null)
+        {
+        this.descripcion = entity.getDescripcion();
+        this.likes = entity.getLikes();
+        this.tema = entity.getTema();
+        }
+        
+    }
+     public BlogEntity toEntity() {
+        BlogEntity entity = new BlogEntity();
+        entity.setDescripcion(descripcion);
+        entity.setLikes(likes);
+        entity.setTema(tema);
+        return entity;
+    }   
     
 }
