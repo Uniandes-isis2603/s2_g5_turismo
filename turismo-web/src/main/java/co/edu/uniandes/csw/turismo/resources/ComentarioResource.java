@@ -5,7 +5,7 @@
  */
 package co.edu.uniandes.csw.turismo.resources;
 
-import co.edu.uniandes.csw.turismo.dtos.ComentariosDTO;
+import co.edu.uniandes.csw.turismo.dtos.ComentarioDTO;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
@@ -32,7 +32,7 @@ import co.edu.uniandes.csw.turismo.dtos.ComentariosDetailDTO;
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
-public class ComentariosResource {
+public class ComentarioResource {
       
     /**
      * <h1>GET /api/blogs : Obtener todos los comentarios.</h1>
@@ -46,9 +46,9 @@ public class ComentariosResource {
      * @return JSONArray {@link ComentariosDetailDTO} - los comentarios encontrados en la aplicación. Si no hay ninguno retorna una lista vacía.
      */
     @GET
-    public List<ComentariosDTO> GetComentario ()
+    public List<ComentarioDTO> GetComentario ()
     {
-    return new ArrayList<ComentariosDTO>();
+    return new ArrayList<ComentarioDTO>();
     }
     
      /**
@@ -70,9 +70,9 @@ public class ComentariosResource {
     
     @GET
     @Path("{id2: \\d+}") 
-    public ComentariosDTO GetComentario (@PathParam("id2") long id)
+    public ComentarioDTO GetComentario (@PathParam("id2") long id)
 {
-    return new ComentariosDTO();
+    return new ComentarioDTO();
 }
     
       /**
@@ -96,7 +96,7 @@ public class ComentariosResource {
      */
     
     @POST
-    public ComentariosDTO CrearComentario (ComentariosDTO comentario)
+    public ComentarioDTO CrearComentario (ComentarioDTO comentario)
     {
         return comentario;
     }
@@ -121,7 +121,7 @@ public class ComentariosResource {
     
     @PUT
     @Path("{id2: \\d+}") 
-    public ComentariosDTO ActualizarComentario (@PathParam("id2") long id,ComentariosDTO comentario )
+    public ComentarioDTO ActualizarComentario (@PathParam("id2") long id,ComentarioDTO comentario )
     {
         return comentario;
     }
