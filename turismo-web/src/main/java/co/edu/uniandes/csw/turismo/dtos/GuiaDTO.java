@@ -23,6 +23,8 @@
  */
 package co.edu.uniandes.csw.turismo.dtos;
 
+import co.edu.uniandes.csw.turismo.entities.GuiaEntity;
+
 /**
  * Objeto de transferencia de los guias
  * @author jc.montoyar
@@ -44,7 +46,7 @@ public class GuiaDTO
     /**
      * Atriburo que modela el id del guia
      */
-    private String idGuia;
+    private Long idGuia;
 
     //CONSTRUCTOR
     /**
@@ -52,6 +54,34 @@ public class GuiaDTO
      */
     public GuiaDTO() {}
 
+    /**
+     * Constructor a partir de la entidad
+     * @param guiaE  La entidad del guia
+     */
+    public GuiaDTO(GuiaEntity guiaE)
+    {
+        if (guiaE != null) 
+        {
+           this.idGuia = guiaE.getId();
+           this.idiomaGuia = guiaE.getIdiomaGuia();
+           this.nombreGuia = guiaE.getName();             
+        }
+    }
+        
+    /**
+     * Método para transformar el DTO a una entidad.
+     * @return La entidad del guia asociado.
+     */
+    public GuiaEntity toEntity() 
+    {
+        GuiaEntity guiaE = new GuiaEntity();
+        guiaE.setId(this.idGuia);
+        guiaE.setIdiomaGuia(this.idiomaGuia);
+        guiaE.setName(this.nombreGuia);
+        return guiaE;
+    }
+    
+    
     //METODOS
     /**
      * @return the nombreGuia
@@ -88,7 +118,7 @@ public class GuiaDTO
     /**
      * @return the idGuia
      */
-    public String getIdGuia() 
+    public Long getIdGuia() 
     {
         return idGuia;
     }
@@ -96,7 +126,7 @@ public class GuiaDTO
     /**
      * @param idGuia the idGuia to set
      */
-    public void setIdGuia(String idGuia)
+    public void setIdGuia(Long idGuia)
     {
         this.idGuia = idGuia;
     }
