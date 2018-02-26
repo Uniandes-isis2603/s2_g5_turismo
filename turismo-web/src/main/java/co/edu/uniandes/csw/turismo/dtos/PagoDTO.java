@@ -26,6 +26,9 @@
  */
 package co.edu.uniandes.csw.turismo.dtos;
 
+import co.edu.uniandes.csw.turismo.entities.PagoEntity;
+import java.util.Date;
+
 /**
  *
  * @author dl.avendano
@@ -44,6 +47,16 @@ public class PagoDTO {
      */
     private double costo;
     
+    private Date fechaPlan;
+
+    public Date getFechaPlan() {
+        return fechaPlan;
+    }
+
+    public void setFechaPlan(Date fechaPlan) {
+        this.fechaPlan = fechaPlan;
+    }
+    
     /**
      * Constructor por defecto
      */
@@ -51,6 +64,23 @@ public class PagoDTO {
         
     }
 
+    public PagoDTO(PagoEntity entity) 
+    {
+        if(entity != null)
+        {
+        this.costo = entity.getCostoPlan();
+        this.id = entity.getId();
+        this.fechaPlan = entity.getFechaPlan();
+        }
+        
+    }
+     public PagoEntity toEntity() {
+        PagoEntity entity = new PagoEntity();
+        entity.setCostoPlan(this.getCosto());
+        entity.setId(this.getId());
+        entity.setFechaPlan(this.getFechaPlan());
+        return entity;
+    }
     /**
      * @return El identificador del pago
      */

@@ -44,11 +44,11 @@ public class FacturaDetailDTO extends FacturaDTO
        FacturaEntity entityFactura = super.toEntity();
        if(this.getUsuario() != null)
        {
-           entityFactura.setUsuario(this.getUsuario().toEntity);
+           entityFactura.setUsuario(this.getUsuario().toEntity());
        }
        if(this.getPaquetetur() != null)
        {
-           entityFactura.setPaqueteturistico(this.getPaquetetur().toEntity);
+           entityFactura.setPaqueteturistico(this.getPaquetetur().toEntity());
        }
        if (this.getTarjetaCredito() != null)
        {
