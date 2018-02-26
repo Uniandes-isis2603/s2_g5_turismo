@@ -6,7 +6,11 @@
 package co.edu.uniandes.csw.turismo.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -14,5 +18,29 @@ import javax.persistence.Entity;
  */
 @Entity
 public class PaqueteTuristicoEntity extends BaseEntity implements Serializable {
+    @PodamExclude
+    @OneToMany
+    private List<PagoEntity> pagos = new ArrayList<PagoEntity>();
+    
+    @PodamExclude
+    @OneToMany
+    private List<PlanEntity> planes = new ArrayList<PlanEntity>();
+
+    public List<PagoEntity> getPagos() {
+        return pagos;
+    }
+
+    public void setPagos(List<PagoEntity> pagos) {
+        this.pagos = pagos;
+    }
+
+    public List<PlanEntity> getPlanes() {
+        return planes;
+    }
+
+    public void setPlanes(List<PlanEntity> planes) {
+        this.planes = planes;
+    }
+    
     
 }

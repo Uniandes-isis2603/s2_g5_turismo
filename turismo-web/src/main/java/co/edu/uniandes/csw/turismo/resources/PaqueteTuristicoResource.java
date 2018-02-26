@@ -6,11 +6,14 @@
 package co.edu.uniandes.csw.turismo.resources;
 
 import co.edu.uniandes.csw.turismo.dtos.PaqueteTuristicoDetailDTO;
+import co.edu.uniandes.csw.turismo.ejb.PaqueteTuristicoLogic;
+import co.edu.uniandes.csw.turismo.entities.PaqueteTuristicoEntity;
 import co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.turismo.mappers.BusinessLogicExceptionMapper;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -19,6 +22,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 
 /**
  * <pre>Clase que implementa el recurso "paqueteTuristico".
@@ -41,6 +45,16 @@ import javax.ws.rs.Produces;
 @Consumes("application/json")
 @RequestScoped
 public class PaqueteTuristicoResource {
+    @Inject
+    private PaqueteTuristicoLogic paqueteLogic;
+    
+    private List<PaqueteTuristicoDetailDTO> listEntityToDTO(List<PaqueteTuristicoEntity> entityList) {
+        List<PaqueteTuristicoDetailDTO> list = new ArrayList<>();
+        for(PaqueteTuristicoEntity entity : entityList) {
+            list.add(new PaqueteTuristicoDetailDTO(entity));
+        }
+        return list;
+    }
     /**
      * <h1>POST /api/paquete : Crear un nuevo paquete.</h1>
      * 
@@ -64,7 +78,9 @@ public class PaqueteTuristicoResource {
      */
     @POST
     public PaqueteTuristicoDetailDTO createPaquete(PaqueteTuristicoDetailDTO paquete) throws BusinessLogicException {
-        return paquete;
+        PaqueteTuristicoEntity paqueteTuristicoEntity = paquete.toEntity();
+        paqueteTuristicoEntity = paqueteLogic.createPaqueteTuristico(paqueteTuristicoEntity);
+        return new PaqueteTuristicoDetailDTO(paqueteTuristicoEntity);
     }
 
     /**
@@ -80,7 +96,7 @@ public class PaqueteTuristicoResource {
      */
     @GET
     public List<PaqueteTuristicoDetailDTO> getPaqueteTuristicos() {
-        return new ArrayList<>();
+        return listEntityToDTO(paqueteLogic.getPaquetes());
     }
 
     /**
@@ -102,7 +118,10 @@ public class PaqueteTuristicoResource {
     @GET
     @Path("{id: \\d+}")
     public PaqueteTuristicoDetailDTO getPaqueteTuristico(@PathParam("id") Long id) {
-        return null;
+        PaqueteTuristicoEntity paquete = paqueteLogic.getPaquete(id);
+        if (paquete == null) 
+            throw new WebApplicationException("El paqute no existe");
+        return new PaqueteTuristicoDetailDTO(paquete); 
     }
     
     
@@ -126,7 +145,13 @@ public class PaqueteTuristicoResource {
     @PUT
     @Path("{id: \\d+}")
     public PaqueteTuristicoDetailDTO updatePaqueteTuristico(@PathParam("id") Long id, PaqueteTuristicoDetailDTO paquete) throws BusinessLogicException {
-        return paquete;
+        PaqueteTuristicoEntity entity = paquete.toEntity();
+        entity.setId(id);
+        PaqueteTuristicoEntity oldEntity = paqueteLogic.getPaquete(id);
+        if (oldEntity == null) {
+            throw new WebApplicationException("El paquete no existe", 404);
+        }
+        return new PaqueteTuristicoDetailDTO(paqueteLogic.updatePaquete(entity));
     }
     
     /**
@@ -146,6 +171,10 @@ public class PaqueteTuristicoResource {
     @DELETE 
     @Path("{id: \\d+}")
      public void deletePaqueteTuristico(@PathParam("id") Long id) {
-        // Void
+        PaqueteTuristicoEntity entity = paqueteLogic.getPaquete(id);
+        if (entity == null) {
+            throw new WebApplicationException("El paquete no existe", 404);
+        }
+        paqueteLogic.deletePaqueteTuristico(id);
     }
 }

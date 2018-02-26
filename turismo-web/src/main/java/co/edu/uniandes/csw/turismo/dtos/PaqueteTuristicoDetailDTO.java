@@ -5,7 +5,11 @@
  */
 package co.edu.uniandes.csw.turismo.dtos;
 
+import co.edu.uniandes.csw.turismo.entities.PagoEntity;
+import co.edu.uniandes.csw.turismo.entities.PaqueteTuristicoEntity;
+import co.edu.uniandes.csw.turismo.entities.PlanEntity;
 import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -16,27 +20,59 @@ import java.util.ArrayList;
  * @author dl.avendano
  */
 public class PaqueteTuristicoDetailDTO  extends PaqueteTuristicoDTO{
-    private ArrayList<PagoDTO> Pagos; 
-    private ArrayList<PlanDTO> Planes; 
+    private List<PagoDTO> pagos; 
+    private List<PlanDTO> planes; 
     
-    public PaqueteTuristicoDetailDTO(){
-        
+    public PaqueteTuristicoDetailDTO(PaqueteTuristicoEntity entity) {
+        super(entity);
+        if (entity != null) {
+            pagos = new ArrayList<>();
+            planes = new ArrayList<>();
+            for (PagoEntity entityPagos : entity.getPagos()) {
+                pagos.add(new PagoDTO(entityPagos));
+            }
+            for (PlanEntity entityPlanes : entity.getPlanes()) {
+                planes.add(new PlanDTO(entityPlanes));
+            }
+        }
+
     }
 
-    public ArrayList<PagoDTO> getPagos() {
-        return Pagos;
+     @Override
+    public PaqueteTuristicoEntity toEntity() {
+        PaqueteTuristicoEntity entity = super.toEntity();
+        if (planes != null) {
+            List<PlanEntity> planesEntity = new ArrayList<>();
+            for (PlanDTO dtoPlan : planes) {
+                planesEntity.add(dtoPlan.toEntity());
+            }
+            entity.setPlanes(planesEntity);
+        }
+        if (pagos != null) {
+            List<PagoEntity> pagosEntity = new ArrayList<>();
+            for (PagoDTO dtoPago : pagos) {
+                pagosEntity.add(dtoPago.toEntity());
+            }
+            entity.setPagos(pagosEntity);
+        }
+
+        return entity;
+    }
+    
+    public List<PagoDTO> getPagos() {
+        return pagos;
     }
 
-    public void setPagos(ArrayList<PagoDTO> Pagos) {
-        this.Pagos = Pagos;
+    public void setPagos(List<PagoDTO> Pagos) {
+        this.pagos = Pagos;
     }
 
-    public ArrayList<PlanDTO> getPlanes() {
-        return Planes;
+    public List<PlanDTO> getPlanes() {
+        return planes;
     }
 
-    public void setPlanes(ArrayList<PlanDTO> Planes) {
-        this.Planes = Planes;
+    public void setPlanes(List<PlanDTO> Planes) {
+        this.planes = Planes;
     }
     
 }
