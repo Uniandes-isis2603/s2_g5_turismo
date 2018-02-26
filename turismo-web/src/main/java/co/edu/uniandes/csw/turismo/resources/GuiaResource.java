@@ -2,11 +2,14 @@ package co.edu.uniandes.csw.turismo.resources;
 
 import co.edu.uniandes.csw.turismo.dtos.GuiaDetailDTO;
 import co.edu.uniandes.csw.turismo.dtos.PlanDetailDTO;
+import co.edu.uniandes.csw.turismo.ejb.GuiaLogic;
+import co.edu.uniandes.csw.turismo.entities.GuiaEntity;
 import java.util.ArrayList;
 import java.util.List;
 import co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.turismo.mappers.BusinessLogicExceptionMapper;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -15,6 +18,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 
 /**
  * <pre>Clase que implementa el recurso "guides".
@@ -34,7 +38,10 @@ import javax.ws.rs.Produces;
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
-public class GuiaResource {
+public class GuiaResource
+{
+    @Inject
+    GuiaLogic guiaLogic;
 
     /**
      * <h1>POST /api/guides : Crear un Guia.</h1>
@@ -63,7 +70,7 @@ public class GuiaResource {
     @POST
     public GuiaDetailDTO createGuia(GuiaDetailDTO guia) throws BusinessLogicException
     {
-        return guia;
+        return new GuiaDetailDTO(guiaLogic.createGuia(guia.toEntity()));
     }
 
     /**
@@ -82,7 +89,7 @@ public class GuiaResource {
     @GET
     public List<GuiaDetailDTO> getGuias() 
     {
-        return new ArrayList<>();
+        return listGuiaEntity2DetailDTO(guiaLogic.getGuias());
     }
 
     /**
@@ -124,7 +131,7 @@ public class GuiaResource {
      * </code>
      * </pre>
      *
-     * @param idGuide Identificador del Guia que se desea actualizar.Este debe ser
+     * @param id Identificador del Guia que se desea actualizar.Este debe ser
      * una cadena de dígitos.
      * @param guia {@link GuiaDetailDTO} el Guia que se desea guardar.
      * @return JSON {@link GuiaDetailDTO} - el Guia guardado.
@@ -134,9 +141,15 @@ public class GuiaResource {
      */
     @PUT
     @Path("{id: \\d+}")
-    public GuiaDetailDTO updateGuia(@PathParam("id")Long idGuide, GuiaDetailDTO guia) throws BusinessLogicException 
+    public GuiaDetailDTO updateGuia(@PathParam("id")Long id, GuiaDetailDTO guia) throws BusinessLogicException 
     {
-        return guia;
+        guia.setIdGuia(id);
+        GuiaEntity entity = guiaLogic.getGuia(id);
+        if (entity == null)
+        {
+            throw new WebApplicationException("El recurso /guides/" + id + " no existe.", 404);
+        }
+        return new GuiaDetailDTO(guiaLogic.updateGuia(guia.toEntity()));
     }
 
     /**
@@ -152,14 +165,20 @@ public class GuiaResource {
      * </code>
      * </pre>
      *
-     * @param idGuia Identificador de el Guia que se desea borrar. Este debe ser una
+     * @param id Identificador de el Guia que se desea borrar. Este debe ser una
      * cadena de dígitos.
+     * @throws co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException
      */
     @DELETE
     @Path("{id: \\d+}")
-    public void deleteGuia(@PathParam("id")Long idGuia) 
+    public void deleteGuia(@PathParam("id")Long id) throws BusinessLogicException 
     {
-        // Void
+        GuiaEntity entity = guiaLogic.getGuia(id);
+        if (entity == null) 
+        {
+            throw new WebApplicationException("El recurso /guides/" + id + " no existe.", 404);
+        }
+        guiaLogic.deleteGuia(id);
     }
        
     /**
@@ -181,8 +200,25 @@ public class GuiaResource {
      */
      @GET
      @Path("{id: \\d+}/plans")
-     public List<PlanDetailDTO> getPlanesGuia(@PathParam("id") Long idGuia)
+     public PlanDetailDTO getPlanGuia(@PathParam("id") Long idGuia)
      {
-         return new ArrayList<>();
+         return null;
      }
+     
+     /**
+     * Recibe una lista de plan entities y la convierte a dtos
+     * @param entityList
+     * @return dtos lista
+     */
+    private List<GuiaDetailDTO> listGuiaEntity2DetailDTO(List<GuiaEntity> entityList) 
+    {
+        List<GuiaDetailDTO> list = new ArrayList<>();
+        for (GuiaEntity entity : entityList) 
+        {
+            list.add(new GuiaDetailDTO(entity));
+        }
+        return list;
+    }
+     
+     
 }

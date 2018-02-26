@@ -1,29 +1,7 @@
-/*
-MIT License
-
-Copyright (c) 2017 ISIS2603
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
- */
 package co.edu.uniandes.csw.turismo.ejb;
 
 import co.edu.uniandes.csw.turismo.entities.PlanEntity;
+import co.edu.uniandes.csw.turismo.entities.PreferenciasEntity;
 import co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.turismo.persistence.PlanPersistence;
 import java.util.List;
@@ -34,16 +12,23 @@ import javax.inject.Inject;
 
 /**
  *
- * @author ISIS2603
+ * @author jc.montoyar
  */
 @Stateless
-public class PlanLogic {
+public class PlanLogic
+{
 
     private static final Logger LOGGER = Logger.getLogger(PlanLogic.class.getName());
 
     @Inject
     private PlanPersistence persistence; // Variable para acceder a la persistencia de la aplicación. Es un inyección de dependencias.
 
+    /**
+     * Se crea un plan en persistencias si cumple con las reglas de negocio
+     * @param entity
+     * @return el entidad creada
+     * @throws BusinessLogicException 
+     */
     public PlanEntity createPlan(PlanEntity entity) throws BusinessLogicException
     {
         LOGGER.info("Inicia proceso de creación de Plan");
@@ -52,13 +37,45 @@ public class PlanLogic {
         {
             throw new BusinessLogicException("Ya existe un Plan con el nombre \"" + entity.getName() + "\"");
         }
+        boolean tipoAdulto = false;
+        boolean tipoFamiliar = false;
+        if (entity.getPreferenciasPlan() != null && !entity.getPreferenciasPlan().isEmpty()) 
+        {
+            for (PreferenciasEntity prefEntity : entity.getPreferenciasPlan()) 
+            {
+                for (String cat : prefEntity.getTiposPlan()) 
+                {
+                    if (cat.equalsIgnoreCase("adulto") || cat.equalsIgnoreCase("romantico"))
+                    {
+                        tipoAdulto = true;
+                    }
+                    if (cat.equalsIgnoreCase("familiar") || cat.equalsIgnoreCase("niños")) 
+                    {
+                        tipoFamiliar = true;
+                    }
+                    if (tipoFamiliar && tipoAdulto)
+                    {
+                        throw new BusinessLogicException("Hay conflicto en las categorias del plan ");
+                    }                         
+                }
+            }
+        }
+        else
+        {
+            throw new BusinessLogicException("El plan debe estar asociado al menos a un tipo o categoria de plan ");
+        }
         // Invoca la persistencia para crear la Plan
         persistence.create(entity);
         LOGGER.info("Termina proceso de creación de Plan");
         return entity;
     }
 
-    public List<PlanEntity> getPlans() {
+    /**
+     * Retorna una lista con todos los planes
+     * @return lista con todos los planes
+     */
+    public List<PlanEntity> getPlans() 
+    {
         LOGGER.info("Inicia proceso de consultar todas los planes");
         // Note que, por medio de la inyección de dependencias se llama al método "findAll()" que se encuentra en la persistencia.
         List<PlanEntity> editorials = persistence.findAll();
@@ -66,20 +83,67 @@ public class PlanLogic {
         return editorials;
     }
 
-    public PlanEntity getPlan(Long id) {
+    /**
+     * Retorna plan dado el id
+     * @param id
+     * @return plan con id dado
+     */
+    public PlanEntity getPlan(Long id) 
+    {
         return persistence.find(id);
     }
 
-    public PlanEntity updatePlan(PlanEntity entity) throws BusinessLogicException  {
-        if (persistence.findByName(entity.getName()) != null) {
+    /**
+     * Updatea un plan si cumple con reglas de negocio
+     * @param entity
+     * @return plan updateado
+     * @throws BusinessLogicException si no se cumple las reglas de negocio
+     */
+    public PlanEntity updatePlan(PlanEntity entity) throws BusinessLogicException 
+    {
+        if (persistence.findByName(entity.getName()) != null) 
+        {
             throw new BusinessLogicException("Ya existe un Plan con el nombre \"" + entity.getName() + "\"");
+        }
+        boolean tipoAdulto = false;
+        boolean tipoFamiliar = false;
+        if (entity.getPreferenciasPlan() != null && !entity.getPreferenciasPlan().isEmpty()) 
+        {
+            for (PreferenciasEntity prefEntity : entity.getPreferenciasPlan()) 
+            {
+                for (String cat : prefEntity.getTiposPlan()) 
+                {
+                    if (cat.equalsIgnoreCase("adulto") || cat.equalsIgnoreCase("romantico"))
+                    {
+                        tipoAdulto = true;
+                    }
+                    if (cat.equalsIgnoreCase("familiar") || cat.equalsIgnoreCase("niños")) 
+                    {
+                        tipoFamiliar = true;
+                    }
+                    if (tipoFamiliar && tipoAdulto)
+                    {
+                        throw new BusinessLogicException("Hay conflicto en las categorias del plan ");
+                    }
+                }
+            }
+        }
+        else
+        {
+            throw new BusinessLogicException("El plan debe estar asociado al menos a un tipo o categoria de plan ");
         }
         return persistence.update(entity);
     }
     
-    public void deletePlan(PlanEntity entity) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar Plan con id={0}", entity.getId());    
-        persistence.delete(entity.getId());
-        LOGGER.log(Level.INFO, "Termina proceso de borrar libro con id={0}", entity.getId());
+    /**
+     * Borra un plan dado su id
+     * @param id
+     * @throws BusinessLogicException 
+     */
+    public void deletePlan(Long id) throws BusinessLogicException 
+    {
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar Plan con id={0}", id);    
+        persistence.delete(id);
+        LOGGER.log(Level.INFO, "Termina proceso de borrar libro con id={0}", id);
     }
 }

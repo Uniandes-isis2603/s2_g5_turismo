@@ -29,6 +29,10 @@ public class PreferenciasDTO
     //ATRIBUTOS
     
     /**
+     * Modela el id
+     */
+    private Long id;
+    /**
      * Atriburo que modela un arreglo tipo string que contiene tipos de plan
      */
     private List<String> tiposPlan;
@@ -49,6 +53,23 @@ public class PreferenciasDTO
         {
             this.tiposPlan = prefE.getTiposPlan();
         }
+    }
+
+    /**
+     * @return id 
+     */
+    public Long getId()
+    {
+        return id;
+    }
+
+    /**
+     * Cambia el id por el dado por parametro
+     * @param id 
+     */
+    public void setId(Long id) 
+    {
+        this.id = id;
     }
     
     /**

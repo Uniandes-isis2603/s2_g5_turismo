@@ -1,31 +1,6 @@
-/*
-The MIT License (MIT)
-
-Copyright (c) 2015 Los Andes University
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
- */
 package co.edu.csw.company.test.persistence;
 
-import co.edu.uniandes.csw.turismo.entities.GuiaEntity;
 import co.edu.uniandes.csw.turismo.entities.PlanEntity;
-import co.edu.uniandes.csw.turismo.persistence.GuiaPersistence;
 import co.edu.uniandes.csw.turismo.persistence.PlanPersistence;
 import java.util.ArrayList;
 import java.util.List;
@@ -63,8 +38,6 @@ public class PlanPersistenceTest {
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(PlanEntity.class.getPackage())
                 .addPackage(PlanPersistence.class.getPackage())
-                .addPackage(GuiaEntity.class.getPackage())
-                .addPackage(GuiaPersistence.class.getPackage())          
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
@@ -137,6 +110,7 @@ public class PlanPersistenceTest {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
             PlanEntity entity = factory.manufacturePojo(PlanEntity.class);
+
             em.persist(entity);
             data.add(entity);
         }
@@ -152,8 +126,6 @@ public class PlanPersistenceTest {
         PodamFactory factory = new PodamFactoryImpl();
         PlanEntity newEntity = factory.manufacturePojo(PlanEntity.class);
         PlanEntity result = PlanPersistence.create(newEntity);
-        
-        
 
         Assert.assertNotNull(result);
 
@@ -171,8 +143,6 @@ public class PlanPersistenceTest {
         Assert.assertEquals(newEntity.getPais(), entity.getPais());
         Assert.assertEquals(newEntity.getPrecio(), entity.getPrecio());
         Assert.assertEquals(newEntity.getRestricciones(), entity.getRestricciones());
-        Assert.assertNotNull(newEntity.getGuias().get(0));
-        Assert.assertNotNull(entity.getGuias().get(0));
     }
 
     /**

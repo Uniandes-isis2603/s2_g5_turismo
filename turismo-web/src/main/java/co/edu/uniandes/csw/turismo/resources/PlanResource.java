@@ -4,11 +4,14 @@ import co.edu.uniandes.csw.turismo.dtos.GuiaDetailDTO;
 import co.edu.uniandes.csw.turismo.dtos.PlanDetailDTO;
 import co.edu.uniandes.csw.turismo.dtos.PreferenciasDetailDTO;
 import co.edu.uniandes.csw.turismo.dtos.ValoracionesDetailDTO;
+import co.edu.uniandes.csw.turismo.ejb.PlanLogic;
+import co.edu.uniandes.csw.turismo.entities.PlanEntity;
 import java.util.ArrayList;
 import java.util.List;
 import co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.turismo.mappers.BusinessLogicExceptionMapper;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -17,6 +20,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 
 /**
  * <pre>Clase que implementa el recurso "plans".
@@ -36,7 +40,25 @@ import javax.ws.rs.Produces;
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
-public class PlanResource {
+public class PlanResource 
+{
+    @Inject
+    PlanLogic planLogic;
+    
+    /**
+     * Recibe una lista de plan entities y la convierte a dtos
+     * @param entityList
+     * @return dtos lista
+     */
+    private List<PlanDetailDTO> listPlanEntity2DetailDTO(List<PlanEntity> entityList) 
+    {
+        List<PlanDetailDTO> list = new ArrayList<>();
+        for (PlanEntity entity : entityList) 
+        {
+            list.add(new PlanDetailDTO(entity));
+        }
+        return list;
+    }
 
     /**
      * <h1>POST /api/Planes : Crear un Plan.</h1>
@@ -65,7 +87,7 @@ public class PlanResource {
     @POST
     public PlanDetailDTO createPlan(PlanDetailDTO Plan) throws BusinessLogicException
     {
-        return Plan;
+        return new PlanDetailDTO(planLogic.createPlan(Plan.toEntity()));
     }
 
     /**
@@ -84,7 +106,7 @@ public class PlanResource {
     @GET
     public List<PlanDetailDTO> getPlans() 
     {
-        return new ArrayList<>();
+        return listPlanEntity2DetailDTO(planLogic.getPlans());
     }
 
     /**
@@ -109,7 +131,12 @@ public class PlanResource {
     @Path("{id: \\d+}")
     public PlanDetailDTO getPlan(@PathParam("id") Long id)
     {
-        return null;
+        PlanEntity entity = planLogic.getPlan(id);
+        if (entity == null) 
+        {
+            throw new WebApplicationException("El recurso /plans/" + id + " no existe.", 404);
+        }
+        return new PlanDetailDTO(entity);
     }
 
     /**
@@ -163,7 +190,13 @@ public class PlanResource {
     @Path("{id: \\d+}")
     public PlanDetailDTO updatePlan(@PathParam("id")Long id, PlanDetailDTO Plan) throws BusinessLogicException 
     {
-        return Plan;
+        Plan.setIdPlan(id);
+        PlanEntity entity = planLogic.getPlan(id);
+        if (entity == null) 
+        {
+            throw new WebApplicationException("El recurso /plans/" + id + " no existe.", 404);
+        }
+        return new PlanDetailDTO(planLogic.updatePlan(Plan.toEntity()));
     }
 
     /**
@@ -181,12 +214,18 @@ public class PlanResource {
      *
      * @param id Identificador de el Plan que se desea borrar. Este debe ser una
      * cadena de dígitos.
+     * @throws co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException
      */
     @DELETE
     @Path("{id: \\d+}")
-    public void deletePlan(@PathParam("id")Long id) 
+    public void deletePlan(@PathParam("id")Long id) throws BusinessLogicException 
     {
-        // Void
+        PlanEntity entity = planLogic.getPlan(id);
+        if (entity == null) 
+        {
+            throw new WebApplicationException("El recurso /plans/" + id + " no existe.", 404);
+        }
+        planLogic.deletePlan(id);
     }
     
     /**
