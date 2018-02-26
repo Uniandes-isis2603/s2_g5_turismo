@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.turismo.entities;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -22,7 +23,7 @@ public class BlogEntity extends BaseEntity implements Serializable {
     private String descripcion;
     private int likes; 
     
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true) 
     @PodamExclude
     private List<ComentarioEntity> comentarios;
     
