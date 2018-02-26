@@ -42,7 +42,7 @@ public class UsuarioEntity extends BaseEntity implements Serializable
     private List<BlogEntity> listaBlogs;
     
     @OneToMany
-    private List<ComentariosEntity> listaComentarios;
+    private List<ComentarioEntity> listaComentarios;
     
     @PodamExclude
     @OneToMany
@@ -178,11 +178,11 @@ public class UsuarioEntity extends BaseEntity implements Serializable
         this.listaBlogs = listaBlogs;
     }
 
-    public List<ComentariosEntity> getListaComentarios() {
+    public List<ComentarioEntity> getListaComentarios() {
         return listaComentarios;
     }
 
-    public void setListaComentarios(List<ComentariosEntity> listaComentarios) {
+    public void setListaComentarios(List<ComentarioEntity> listaComentarios) {
         this.listaComentarios = listaComentarios;
     }
 

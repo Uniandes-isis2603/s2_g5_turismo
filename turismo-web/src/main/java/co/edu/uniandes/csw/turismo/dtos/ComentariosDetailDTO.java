@@ -6,14 +6,16 @@
  */
 package co.edu.uniandes.csw.turismo.dtos;
 
+import co.edu.uniandes.csw.turismo.entities.ComentarioEntity;
+
 /**
  *
- * Clase que extiende de {@link ComentariosDTO} para manejar la transformacion entre
+ * Clase que extiende de {@link ComentarioDTO} para manejar la transformacion entre
  * los objetos JSON y las Entidades de la base de datos.
  * 
  * @author lf.rivera10
  */
-public class ComentariosDetailDTO extends ComentariosDTO {
+public class ComentariosDetailDTO extends ComentarioDTO {
     /**
      * Constructor por defecto
      */
@@ -21,5 +23,18 @@ public class ComentariosDetailDTO extends ComentariosDTO {
         
         super();
     }
+  public ComentarioEntity toEntity()
+    { 
+       ComentarioEntity entity = super.toEntity();
+       return entity;
+    }
+  
+  public ComentariosDetailDTO(ComentarioEntity entity)
+  {super(entity);
+  
+  }
+
+          
+          
     
 }
