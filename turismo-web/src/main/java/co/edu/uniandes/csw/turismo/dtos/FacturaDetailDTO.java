@@ -31,7 +31,7 @@ public class FacturaDetailDTO extends FacturaDTO
         }
         if( entity.getPaqueteturistico() != null)
         {
-            paquetetur = new PaqueteTuristicoDTO(entity.getPaqueteturistico())
+            paquetetur = new PaqueteTuristicoDTO(entity.getPaqueteturistico());
         }
         if(entity.getTarjetadecredito() != null)
         {
@@ -55,6 +55,7 @@ public class FacturaDetailDTO extends FacturaDTO
            entityFactura.setTarjetadecredito(this.getTarjetaCredito().toEntity());
            
        }
+         return entityFactura;
      
     }
     

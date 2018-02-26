@@ -8,8 +8,8 @@ package co.edu.uniandes.csw.turismo.entities;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -25,11 +25,11 @@ public class TarjetaDeCreditoEntity extends BaseEntity implements Serializable
     private Integer CDV;
     
     @PodamExclude
-    @OneToMany(mappedBy = "facturas")
+    @OneToMany(mappedBy = "tarjetadecredito")
     private List <FacturaEntity> facturas;
     
     @PodamExclude
-    @OneToOne
+    @ManyToOne
     private UsuarioEntity usuario;
 
     public UsuarioEntity getUsuario() {
