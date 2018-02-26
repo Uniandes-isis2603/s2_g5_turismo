@@ -6,7 +6,7 @@
 package co.edu.uniandes.csw.turismo.dtos;
 
 import co.edu.uniandes.csw.turismo.entities.BlogEntity;
-import co.edu.uniandes.csw.turismo.entities.ComentariosEntity;
+import co.edu.uniandes.csw.turismo.entities.ComentarioEntity;
 import co.edu.uniandes.csw.turismo.entities.FacturaEntity;
 import co.edu.uniandes.csw.turismo.entities.PreferenciasEntity;
 import co.edu.uniandes.csw.turismo.entities.TarjetaDeCreditoEntity;
@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import uk.co.jemos.podam.common.PodamExclude;
+
 
 /**
  * Clase que extiende de {@link UsuarioDTO} para manejar la transformacion entre
@@ -137,10 +137,10 @@ public class UsuarioDetailDTO extends UsuarioDTO
         }
         if(entity.getListaComentarios() != null)
         {
-            listaComentarios = new ArrayList<ComentariosDTO>();
-            for (ComentariosEntity comentario : entity.getListaComentarios()) 
+            listaComentarios = new ArrayList<ComentarioDTO>();
+            for (ComentarioEntity comentario : entity.getListaComentarios()) 
             {
-                listaComentarios.add(new ComentariosDTO(comentario));
+                listaComentarios.add(new ComentarioDTO(comentario));
             }
         }
         if(entity.getListaFacturas() != null)
@@ -201,7 +201,7 @@ public class UsuarioDetailDTO extends UsuarioDTO
             List<FacturaEntity> lista = new ArrayList<FacturaEntity>();
             for(FacturaDTO factura : listaFacturas)
             {
-                lista.add(factura);
+                lista.add(factura.toEntity());
             }
             entity.setListaFacturas(lista);
         }
@@ -210,7 +210,7 @@ public class UsuarioDetailDTO extends UsuarioDTO
             List<TarjetaDeCreditoEntity> lista = new ArrayList<TarjetaDeCreditoEntity>();
             for(TarjetaDeCreditoDTO tarjeta : listaTarjetas)
             {
-                lista.add(tarjeta);                        
+                lista.add(tarjeta.toEntity());                        
             }
             entity.setListaTarjetas(lista);
         }
@@ -223,16 +223,16 @@ public class UsuarioDetailDTO extends UsuarioDTO
             List<BlogEntity> lista = new ArrayList<BlogEntity>();
             for(BlogDTO blog : listaBlogs)
             {
-                lista.add(blog);
+                lista.add(blog.toEntity());
             }
             entity.setListaBlogs(lista);
         }
         if(listaComentarios != null)
         {
-            List<ComentariosEntity> lista = new ArrayList<ComentariosEntity>();
-            for(ComentariosDTO comentario : listaComentarios)
+            List<ComentarioEntity> lista = new ArrayList<ComentarioEntity>();
+            for(ComentarioDTO comentario : listaComentarios)
             {
-                lista.add(comentario);
+                lista.add(comentario.toEntity());
             }
             entity.setListaComentarios(lista);
         }
@@ -241,7 +241,7 @@ public class UsuarioDetailDTO extends UsuarioDTO
             List<PreferenciasEntity> lista = new ArrayList<PreferenciasEntity>();
             for(PreferenciasDTO preferencia : listaPreferencias)
             {
-                lista.add(preferencia);
+                lista.add(preferencia.toEntity());
             }
             entity.setListaPreferencias(lista);
         }
