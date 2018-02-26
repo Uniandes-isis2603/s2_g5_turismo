@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.csw.turismo.dtos;
 
+import co.edu.uniandes.csw.turismo.entities.UsuarioEntity;
+
 /**
  * UsuarioDTO Objeto de transferencia de datos de Usuaro. Los DTO contienen las
  * represnetaciones de los JSON que se transfieren entre el cliente y el
@@ -196,5 +198,32 @@ public class UsuarioDTO
      */
     public void setEsAdministrador(boolean esAdministrador) {
         this.esAdministrador = esAdministrador;
+    }
+    
+    public UsuarioEntity toEntity()
+    {
+        UsuarioEntity entity = new UsuarioEntity();
+        entity.setApellido(this.apellido);
+        entity.setNombre(this.nombre);
+        entity.setContrasenia(this.contrasenia);
+        entity.setCorreo(this.correo);
+        entity.setEsAdministrador(this.esAdministrador);
+        entity.setTelefono(this.telefono);
+        return entity;
+    }
+    
+    public UsuarioDTO(UsuarioEntity entity)
+    {
+        if(entity != null)
+        {
+            this.nombre = entity.getNombre();
+            this.apellido = entity.getApellido();
+            this.correo = entity.getCorreo();
+            this.contrasenia = entity.getContrasenia();
+            this.idioma = entity.getIdioma();
+            this.telefono = entity.getTelefono();
+            this.id = entity.getId();
+            this.esAdministrador = entity.getEsAdministrador();
+        }
     }
 }
