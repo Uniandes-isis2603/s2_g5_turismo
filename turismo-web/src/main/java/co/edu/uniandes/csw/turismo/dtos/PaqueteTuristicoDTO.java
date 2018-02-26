@@ -22,6 +22,8 @@
  */
 package co.edu.uniandes.csw.turismo.dtos;
 
+import co.edu.uniandes.csw.turismo.entities.PaqueteTuristicoEntity;
+
 /**
  *
  * @author dl.avendano
@@ -30,13 +32,26 @@ public class PaqueteTuristicoDTO {
     /**
      * Atriburo que modela el id del paquete turistico
      */
-    private long id;
+    private Long id;
     
     /**
      * Constructor por defecto
      */
     public PaqueteTuristicoDTO()
     { 
+    }
+    public PaqueteTuristicoDTO(PaqueteTuristicoEntity entity) 
+    {
+        if(entity != null)
+        {
+        this.id = entity.getId();
+        }
+        
+    }
+     public PaqueteTuristicoEntity toEntity() {
+        PaqueteTuristicoEntity entity = new PaqueteTuristicoEntity();
+        entity.setId(this.getId());
+        return entity;
     }
     /**
      * @return El identificador del paquete

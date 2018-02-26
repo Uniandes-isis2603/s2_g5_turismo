@@ -36,9 +36,9 @@ public class PreferenciasPersistence
      */
     public PreferenciasEntity create(PreferenciasEntity entity)
     {
-        LOGGER.info("Creando unas Preferencias nuevo");
+        LOGGER.info("Creando unas Preferencias nuevas");
         em.persist(entity);
-        LOGGER.info("Creando unas Preferencias nuevo");
+        LOGGER.info("Creando unas Preferencias nuevas");
         return entity;
     }
 

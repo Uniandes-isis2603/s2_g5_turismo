@@ -6,7 +6,11 @@
 package co.edu.uniandes.csw.turismo.entities;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -16,6 +20,79 @@ import javax.persistence.Entity;
 public class PlanEntity extends BaseEntity implements Serializable
 {
     //ATRIBUTOS 
+    
+    /**
+     * Modela los guias del plan
+     */
+    @PodamExclude
+    @OneToMany(mappedBy = "planGuia") 
+    private List<GuiaEntity> guias;
+    
+    /**
+     * Modela las categorias o tipos de plan asociado al plan
+     */
+    @PodamExclude
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true) 
+    private List<PreferenciasEntity> preferenciasPlan;
+    
+    /**
+     * Modela las valoraciones del plan
+     */
+    @PodamExclude
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true) 
+    private List<ValoracionesEntity> valoracionesPlan;
+
+    /**
+     * @return valoraciones asociadas al plan 
+     */
+    public List<ValoracionesEntity> getValoracionesPlan() 
+    {
+        return valoracionesPlan;
+    }
+
+    /**
+     * Cambia las valoraciones del plan por las dadas por parametro
+     * @param valoracionesPlan 
+     */
+    public void setValoracionesPlan(List<ValoracionesEntity> valoracionesPlan) {
+        this.valoracionesPlan = valoracionesPlan;
+    }
+
+    
+    /**
+     * @return preferencias/ categorias del plan
+     */
+    public List<PreferenciasEntity> getPreferenciasPlan() 
+    {
+        return preferenciasPlan;
+    }
+
+    /**
+     * Cambia las preferencias del plan por las dadas por parametro
+     * @param preferenciasPlan 
+     */
+    public void setPreferenciasPlan(List<PreferenciasEntity> preferenciasPlan) 
+    {
+        this.preferenciasPlan = preferenciasPlan;
+    }
+
+    
+    /**
+     * @return guias del plan
+     */
+    public List<GuiaEntity> getGuias() 
+    {
+        return guias;
+    }
+
+    /**
+     * Cambia los guias por los dados por parametro
+     * @param guias 
+     */
+    public void setGuias(List<GuiaEntity> guias) 
+    {
+        this.guias = guias;
+    }
     
     /**
      * Atributo que modela la descripcion del plan

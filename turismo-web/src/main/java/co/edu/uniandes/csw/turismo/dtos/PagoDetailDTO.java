@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.csw.turismo.dtos;
 
+import co.edu.uniandes.csw.turismo.entities.PagoEntity;
+
 /**
  *
  * Clase que extiende de {@link ComentariosDTO} para manejar la transformacion entre
@@ -14,4 +16,7 @@ package co.edu.uniandes.csw.turismo.dtos;
  */
 public class PagoDetailDTO extends PagoDTO{
     
+    public PagoDetailDTO(PagoEntity entity) {
+        super();
+    }
 }

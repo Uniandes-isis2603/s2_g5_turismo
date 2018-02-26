@@ -67,7 +67,7 @@ public class TarjetaDeCreditoResource
      */
     @POST
     public TarjetaDeCreditoDetailDTO createTarjetaDecredito(TarjetaDeCreditoDetailDTO TarjetaDecredito) throws BusinessLogicException {
-        return new  TarjetaDecreditoDetailDTO(tarjetadecreditologic.createTarjetaDeCredito(TarjetaDecredito.toEntity()));
+        return new  TarjetaDeCreditoDetailDTO(tarjetadecreditologic.createTarjetaDeCredito(TarjetaDecredito.toEntity()));
     }  
      /**
      * <h1>GET /api/tarjetas : Obtener todas las Tarjetas de Credito.</h1>

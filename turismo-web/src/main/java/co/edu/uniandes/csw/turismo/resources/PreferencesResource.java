@@ -6,11 +6,14 @@
 package co.edu.uniandes.csw.turismo.resources;
 
 import co.edu.uniandes.csw.turismo.dtos.PreferenciasDetailDTO;
+import co.edu.uniandes.csw.turismo.ejb.PreferenciasLogic;
+import co.edu.uniandes.csw.turismo.entities.PreferenciasEntity;
 import co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.turismo.mappers.BusinessLogicExceptionMapper;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -19,6 +22,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 /**
  * <pre>Clase que implementa el recurso "preferences".
  * URL: /api/preferences
@@ -40,6 +44,8 @@ import javax.ws.rs.Produces;
 @RequestScoped
 public class PreferencesResource
 {
+    @Inject
+    PreferenciasLogic preferenciasLogic;
 
     /**
      * <h1>POST /api/preferences : Crear una preferencia.</h1>
@@ -63,8 +69,9 @@ public class PreferencesResource
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe la preferencia.
      */
     @POST
-    public PreferenciasDetailDTO createPreferencias(PreferenciasDetailDTO Preferencias) throws BusinessLogicException {
-        return Preferencias;
+    public PreferenciasDetailDTO createPreferencias(PreferenciasDetailDTO Preferencias) throws BusinessLogicException
+    {
+        return new PreferenciasDetailDTO(preferenciasLogic.createPreferencias(Preferencias.toEntity()));
     }
 
     /**
@@ -79,8 +86,9 @@ public class PreferencesResource
      * @return JSONArray {@link PreferenciasDetailDTO} - Las preferencias encontradas en la aplicación. Si no hay ninguna retorna una lista vacía.
      */
     @GET
-    public List<PreferenciasDetailDTO> getpreferences() {
-        return new ArrayList<>();
+    public List<PreferenciasDetailDTO> getpreferences() 
+    {
+        return listPreferenciasEntity2DetailDTO(preferenciasLogic.getPreferenciass());
     }
     
     /**
@@ -96,15 +104,22 @@ public class PreferencesResource
      * 404 Not Found. No existe una preferencia con el nombre dado.
      * </code> 
      * </pre>
-     * @param nombreTipoPlan de la preferencia que se desea actualizar.Este debe ser una cadena de caracteres.
+     * @param id 
      * @param Preferencias {@link PreferenciasDetailDTO} La preferencia que se desea guardar.
      * @return JSON {@link PreferenciasDetailDTO} - La preferencia guardada.
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera al no poder actualizar la preferencia porque ya existe una con ese nombre.
      */
     @PUT
-    @Path("{nombreTipoPlan: [a-zA-Z][a-zA-Z_0-9]}")
-    public PreferenciasDetailDTO updatePreferencias(@PathParam("nombreTipoPlan") String nombreTipoPlan, PreferenciasDetailDTO Preferencias) throws BusinessLogicException {
-        return Preferencias;
+    @Path("{id: \\d+}")
+    public PreferenciasDetailDTO updatePreferencias(@PathParam("id") Long id, PreferenciasDetailDTO Preferencias) throws BusinessLogicException
+    {
+        Preferencias.setId(id);
+        PreferenciasEntity entity = preferenciasLogic.getPreferencias(id);
+        if (entity == null) 
+        {
+            throw new WebApplicationException("El recurso /preferences/" + id + " no existe.", 404);
+        }
+        return new PreferenciasDetailDTO(preferenciasLogic.updatePreferencias(Preferencias.toEntity()));
     }
     
     /**
@@ -119,12 +134,62 @@ public class PreferencesResource
      * 404 Not Found. No existe una preferencia con el nombre dado.
      * </code>
      * </pre>
-     * @param nombreTipoPlan  de la preferencia que se desea borrar. Este debe ser una cadena de caracteres.
+     * @param id  
+     * @throws co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException
      */
     @DELETE
-    @Path("{nombreTipoPlan: [a-zA-Z][a-zA-Z_0-9]}")
-     public void deletePreferencias(@PathParam("nombreTipoPlan") Long nombreTipoPlan)
+    @Path("{id: \\d+}")
+     public void deletePreferencias(@PathParam("id") Long id) throws BusinessLogicException
     {
-        // Void
+        PreferenciasEntity entity = preferenciasLogic.getPreferencias(id);
+        if (entity == null) 
+        {
+            throw new WebApplicationException("El recurso /preferences/" + id + " no existe.", 404);
+        }
+        preferenciasLogic.deletePreferencias(id);
+    }
+    
+     /**
+     * <h1>GET /api/preferences/{nombreTipoPlan} : Obtener una preferencia dado su nombre.</h1>
+     *
+     * <pre>Buscala preferencia / categoria / tipo de plan dado el nombre y lo retorna.
+     *
+     * Codigos de respuesta:
+     * <code style="color: mediumseagreen; background-color: #eaffe0;">
+     * 200 OK Devuelve el tipo plan correspondiente.
+     * </code>
+     * <code style="color: #c7254e; background-color: #f9f2f4;">
+     * 404 Not Found No existe un tipo plan con el nombre dado.
+     * </code>
+     * </pre>
+     *
+     * @param id
+     * @return JSON {@link PlanDetailDTO} - la preferencia buscada
+     */
+    @GET
+    @Path("{id: \\d+}")
+    public PreferenciasDetailDTO getPreferencia(@PathParam("id") Long id)
+    {
+        PreferenciasEntity entity = preferenciasLogic.getPreferencias(id);
+        if (entity == null) 
+        {
+            throw new WebApplicationException("El recurso /preferences/" + id + " no existe.", 404);
+        }
+        return new PreferenciasDetailDTO(entity);
+    }
+
+    /**
+     * Recibe una lista de plan entities y la convierte a dtos
+     * @param entityList
+     * @return dtos lista
+     */
+    private List<PreferenciasDetailDTO> listPreferenciasEntity2DetailDTO(List<PreferenciasEntity> entityList) 
+    {
+        List<PreferenciasDetailDTO> list = new ArrayList<>();
+        for (PreferenciasEntity entity : entityList) 
+        {
+            list.add(new PreferenciasDetailDTO(entity));
+        }
+        return list;
     }
 }

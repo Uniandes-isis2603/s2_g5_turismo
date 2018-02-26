@@ -7,6 +7,8 @@ package co.edu.uniandes.csw.turismo.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -16,6 +18,30 @@ import javax.persistence.Entity;
 public class GuiaEntity extends BaseEntity implements Serializable 
 {
     //ATRIBUTOS
+    
+    /**
+     * Modela los guias del plan
+     */
+    @PodamExclude
+    @ManyToOne 
+    private PlanEntity planGuia; 
+
+    /**
+     * @return plan asociado al guia 
+     */
+    public PlanEntity getPlanGuia() 
+    {
+        return planGuia;
+    }
+
+    /**
+     * Cambia el plan asociado al guia por el dado por parametro
+     * @param planGuia 
+     */
+    public void setPlanGuia(PlanEntity planGuia) 
+    {
+        this.planGuia = planGuia;
+    }
     
     /**
      * Modela el idioma del guia
