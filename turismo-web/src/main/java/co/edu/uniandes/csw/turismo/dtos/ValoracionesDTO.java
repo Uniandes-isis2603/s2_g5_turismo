@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.csw.turismo.dtos;
 
+import co.edu.uniandes.csw.turismo.entities.ValoracionesEntity;
+
 /**
  *Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
  * <pre>
@@ -41,6 +43,23 @@ public class ValoracionesDTO
     public ValoracionesDTO()
     {
         
+    }
+    
+    public ValoracionesDTO (ValoracionesEntity entity)
+    {
+        if(entity != null)
+        {
+            this.calificacion = entity.getCalificacion();
+            this.comentario = entity.getComentario();
+        }
+    }
+    
+    public ValoracionesEntity toEntity()
+    {
+        ValoracionesEntity entity = new ValoracionesEntity();
+        entity.setCalificacion(this.calificacion);
+        entity.setComentario(this.comentario);
+        return entity;
     }
     
     /**
