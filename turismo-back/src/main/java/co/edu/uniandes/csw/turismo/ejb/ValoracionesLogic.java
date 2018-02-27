@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.turismo.ejb;
 import co.edu.uniandes.csw.turismo.entities.ValoracionesEntity;
 import co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.turismo.persistence.ValoracionesPersistence;
+import java.util.List;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -36,5 +37,39 @@ public class ValoracionesLogic
         persistence.create(entity);
         LOGGER.info("Termina proceso de creación de usuario");
         return entity;
+    }
+    
+    public List<ValoracionesEntity> getValoraciones()
+    {
+        LOGGER.info("Inicia proceso de consultar todas las valoraciones");
+        List<ValoracionesEntity> lista = persistence.findAll();
+        LOGGER.info("Termina proceso de consultar todas las valoraciones");
+        return lista;
+    }
+    
+    public ValoracionesEntity getValoracion(Long id)
+    {
+        return persistence.find(id);
+    }
+    
+    public ValoracionesEntity updateValoracion(ValoracionesEntity entity) throws BusinessLogicException
+    {
+        LOGGER.info("Inicia proceso de creación del usuario");
+        
+        if(entity.getCalificacion() < 0 || entity.getCalificacion() > 5)
+        {
+            throw new BusinessLogicException("La calificacion debe estar entre cero y cinco");
+        }
+        
+        persistence.update(entity);
+        LOGGER.info("Termina proceso de creación de usuario");
+        return entity;
+    }
+    
+    public void deleteValoracion(Long id)
+    {
+        LOGGER.info("Inicia proceso de borrar Plan con id={0}");    
+        persistence.delete(id);
+        LOGGER.info("Termina proceso de borrar libro con id={0}");
     }
 }
