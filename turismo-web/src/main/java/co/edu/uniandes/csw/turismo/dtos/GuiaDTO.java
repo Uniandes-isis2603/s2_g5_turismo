@@ -13,11 +13,11 @@
  * 
  * <pre>
  * 
- *   {
- *      "idGuia": 1,
- *      "nombreGuia: papulinoGuia,
- *      "idiomaGuia": italiano,   
- *   }
+    {
+       "idGuia": 1,
+       "nombreGuia: "papulinoGuia",
+       "idiomaGuia": "italiano"  
+   }
  *
  * </pre>
  */
