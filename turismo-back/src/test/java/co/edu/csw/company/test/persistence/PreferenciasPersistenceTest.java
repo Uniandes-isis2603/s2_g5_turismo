@@ -155,7 +155,7 @@ public class PreferenciasPersistenceTest {
         PreferenciasEntity entity = em.find(PreferenciasEntity.class, result.getId());
 
         Assert.assertEquals(newEntity.getName(), entity.getName());
-        Assert.assertEquals(newEntity.getTiposPlan(), entity.getTiposPlan());
+        Assert.assertEquals(newEntity.getTipoPlan(), entity.getTipoPlan());
         Assert.assertEquals(newEntity.getId(), entity.getId());
     }
 
@@ -190,7 +190,7 @@ public class PreferenciasPersistenceTest {
         PreferenciasEntity newEntity = PreferenciasPersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(newEntity.getName(), entity.getName());
-        Assert.assertEquals(newEntity.getTiposPlan(), entity.getTiposPlan());
+        Assert.assertEquals(newEntity.getTipoPlan(), entity.getTipoPlan());
         Assert.assertEquals(newEntity.getId(), entity.getId());
     }
 
@@ -226,6 +226,6 @@ public class PreferenciasPersistenceTest {
 
         Assert.assertEquals(newEntity.getName(), resp.getName());
         Assert.assertEquals(newEntity.getId(), resp.getId());
-        Assert.assertEquals(newEntity.getTiposPlan(),resp.getTiposPlan());
+        Assert.assertEquals(newEntity.getTipoPlan(),resp.getTipoPlan());
     }
 }

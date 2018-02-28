@@ -30,66 +30,23 @@ public class PreferenciasLogic
      */
     public PreferenciasEntity createPreferencias(PreferenciasEntity entity) throws BusinessLogicException
     {
-        LOGGER.info("Inicia proceso de creación de Preferencias");
-       if(entity.getTiposPlan() != null || !entity.getTiposPlan().isEmpty())
+       LOGGER.info("Inicia proceso de creación de Preferencias");
+       if(entity.getTipoPlan() == null)
        {
-           for(int i = 0; i <entity.getTiposPlan().size(); i++)
-           {
-               String tipoPlan = entity.getTiposPlan().get(i);
-               for(int j = 0; j <entity.getTiposPlan().size(); j++ )
-               {
-                   if(i!=j)
-                   {
-                       String tipoPlan2 = entity.getTiposPlan().get(j);
-                       if(tipoPlan.equalsIgnoreCase(tipoPlan2))
-                       {
-                           throw  new BusinessLogicException("Se intento crear preferencia repetida");
-                       }
-                   }
-               }
-           }
+           throw  new BusinessLogicException("El nombre de la preferencia no puede ser null");
        }
-       else 
+       if(persistence.findByName(entity.getTipoPlan()) != null)
        {
-           throw  new BusinessLogicException("Debe haber al menos un tipo de plan");
+      
+            throw  new BusinessLogicException("Ya existe la preferencia \"" + entity.getName() + "\"" + " en el sistema");
        }
-       List<PreferenciasEntity> todas = getPreferenciass();
-       for(PreferenciasEntity ent : todas)
-       {
-           for(String tipo : entity.getTiposPlan())
-           {
-               if(preferenciaTieneTipo(tipo, ent))
-               {
-                   throw  new BusinessLogicException("Ya existe la preferencia \"" + tipo + "\"" + " en el sistema");
-               }
-           }
-       }
+                   
         // Invoca la persistencia para crear la Preferencias
         persistence.create(entity);
         LOGGER.info("Termina proceso de creación de Preferencias");
         return entity;
     }
     
-    /**
-     * Retorna true si n una preferencia entity hay un tipo dado por parametro
-     * @param tipo
-     * @param prefE
-     * @return true si existe el tipo en la preferencia, false de lo contrario
-     */
-    public boolean preferenciaTieneTipo(String tipo, PreferenciasEntity prefE)
-    {
-        if(prefE != null && prefE.getTiposPlan() != null)
-        {
-            for(String prefEnt : prefE.getTiposPlan())
-            {
-                if(prefEnt.equals(tipo))
-                {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
     
     /**
      * Retorna una lista con todos los Preferenciass
@@ -122,38 +79,14 @@ public class PreferenciasLogic
      */
     public PreferenciasEntity updatePreferencias(PreferenciasEntity entity) throws BusinessLogicException 
     {
-        if(entity.getTiposPlan() != null || !entity.getTiposPlan().isEmpty())
+       if(entity.getTipoPlan() == null)
        {
-           for(int i = 0; i <entity.getTiposPlan().size(); i++)
-           {
-               String tipoPlan = entity.getTiposPlan().get(i);
-               for(int j = 0; j <entity.getTiposPlan().size(); j++ )
-               {
-                   if(i!=j)
-                   {
-                       String tipoPlan2 = entity.getTiposPlan().get(j);
-                       if(tipoPlan.equalsIgnoreCase(tipoPlan2))
-                       {
-                           throw  new BusinessLogicException("Se intento crear preferencia repetida");
-                       }
-                   }
-               }
-           }
+           throw  new BusinessLogicException("El nombre de la preferencia no puede ser null");
        }
-       else 
+       if(persistence.findByName(entity.getTipoPlan()) != null)
        {
-           throw  new BusinessLogicException("Debe haber al menos un tipo de plan");
-       }
-       List<PreferenciasEntity> todas = getPreferenciass();
-       for(PreferenciasEntity ent : todas)
-       {
-           for(String tipo : entity.getTiposPlan())
-           {
-               if(preferenciaTieneTipo(tipo, ent))
-               {
-                   throw  new BusinessLogicException("Ya existe la preferencia \"" + tipo + "\"" + " en el sistema");
-               }
-           }
+      
+            throw  new BusinessLogicException("Ya existe la preferencia \"" + entity.getName() + "\"" + " en el sistema");
        }
         return persistence.update(entity);
     }

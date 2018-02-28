@@ -8,7 +8,7 @@
  *      "idGuia": 1,
  *      "nombreGuia: David,
  *      "idiomaGuia": Persa,
- *      "planesGuia":[{
+ *      "planGuia":{
  *                     "idPlan": number,
  *                     "nombrePlan: string,
  *                     "descripcion": string,
@@ -21,7 +21,7 @@
  *                     "archivo": string,
  *                     "precio": number,
  *                     "cantidadPersonas": number
- *                    }]                     
+ *                    }                   
  *   }
  * Por ejemplo un guia detallado se representa asi:<br>
  * 
@@ -58,12 +58,12 @@ import co.edu.uniandes.csw.turismo.entities.GuiaEntity;
 public class GuiaDetailDTO extends GuiaDTO
 {
     
-    //ATRIBURTOS
+    //ATRIBUTOS
 
-    /**
-     * Modela el plan asociado al guia
-     */
-    private PlanDTO planGuia;
+    ///**
+     //* Modela el plan asociado al guia
+     //*/
+    //private PlanDTO planGuia;
 
     //Constructor 
     /**
@@ -81,14 +81,14 @@ public class GuiaDetailDTO extends GuiaDTO
      */
     public GuiaDetailDTO(GuiaEntity entity) {
         super(entity);
-        if (entity.getPlanGuia()!= null)
-        {
-            this.planGuia = new PlanDTO(entity.getPlanGuia());
-        } 
-        else
-        {
-            entity.setPlanGuia(null);
-        }
+        //if (entity.getPlanGuia()!= null)
+        //{
+           // this.planGuia = new PlanDTO(entity.getPlanGuia());
+        //} 
+        //else
+        //{
+         //   entity.setPlanGuia(null);
+        //}
     }
     
     
@@ -100,27 +100,27 @@ public class GuiaDetailDTO extends GuiaDTO
     public GuiaEntity toEntity() 
     {
         GuiaEntity guiaE = super.toEntity();
-        if (this.getPlanGuia() != null)
-        {
-            guiaE.setPlanGuia(this.getPlanGuia().toEntity());
-        }
+        //if (this.getPlanGuia() != null)
+        //{
+         //   guiaE.setPlanGuia(this.getPlanGuia().toEntity());
+        //}
         return guiaE;
     }
 
     //METODOS
-    /**
-     * @return the planesGuia
-     */
-    public PlanDTO getPlanGuia() 
-    {
-        return planGuia;
-    }
+    ///**
+     //* @return the planGuia
+     //*/
+   // public PlanDTO getPlanGuia() 
+    //{
+     //   return planGuia;
+   // }
 
-    /**
-     * @param planesGuia the planesGuia to set
-     */
-    public void setPlanGuia(PlanDTO planesGuia)
-    {
-        this.planGuia = planesGuia;
-    }
+    ///**
+     //* @param planesGuia the planesGuia to set
+     //*/
+    //public void setPlanGuia(PlanDTO planesGuia)
+    //{
+     //   this.planGuia = planesGuia;
+    //}
 }
