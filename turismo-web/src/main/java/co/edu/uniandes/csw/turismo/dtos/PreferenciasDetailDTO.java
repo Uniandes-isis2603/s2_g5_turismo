@@ -5,13 +5,14 @@
  * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
  * <pre>
  *   { 
- *      "tiposPlan":[string,string,string]                     
+ *      "tiposPlan": string                    
  *   }
  * Por ejemplo una preferencia detallada se representa asi:<br>
  * 
  * <pre>
  *   {
- *       "tiposPlan":[Religion, Mirador, Adultos]       
+ *       "id": 1,
+ *       "tiposPlan": "mirador"      
  *   }
  * </pre>
  */

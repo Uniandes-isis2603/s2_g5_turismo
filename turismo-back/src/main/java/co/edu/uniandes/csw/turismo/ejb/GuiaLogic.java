@@ -40,6 +40,10 @@ public class GuiaLogic
         {
            throw new BusinessLogicException("El nombre del guia no debe contener numeros"); 
         }
+        if(entity.getIdiomaGuia() == null || entity.getIdiomaGuia().length()==0)
+        {
+            throw new BusinessLogicException("El guia debe tener un idioma no null"); 
+        }
         // Invoca la persistencia para crear la Guia
         persistence.create(entity);
         LOGGER.info("Termina proceso de creación de Guia");
@@ -86,6 +90,10 @@ public class GuiaLogic
         else if(entity.getName().matches(".*\\d+.*"))
         {
            throw new BusinessLogicException("El nombre del guia no debe contener numeros"); 
+        }
+        if(entity.getIdiomaGuia() == null || entity.getIdiomaGuia().length()==0)
+        {
+            throw new BusinessLogicException("El guia debe tener un idioma no null"); 
         }
         return persistence.update(entity);
     }
