@@ -89,6 +89,30 @@ public class GuiaPersistence
         LOGGER.log(Level.INFO, "Consultando guia con id={0}", id);
         return em.find(GuiaEntity.class, id);
     }
+    
+    /* Busca si hay alguna reseña asociada a un libro y con un ID específico
+     * @param bookid El ID del libro con respecto al cual se busca
+     * @param reviewid El ID de la reseña buscada
+     * @return La reseña encontrada o null. Nota: Si existe una o más reseñas 
+     * devuelve siempre la primera que encuentra
+     */
+    public GuiaEntity find(Long planid, Long guiaid)
+    {
+        TypedQuery<GuiaEntity> q = em.createQuery("select p from GuiaEntity p where (p.planGuia.id = :planid) and (p.id = :guiaid)", GuiaEntity.class);
+        q.setParameter("id", planid);
+        q.setParameter("reviewid", guiaid);
+        List<GuiaEntity> results = q.getResultList();
+        GuiaEntity review = null;
+        if (results == null) {
+            review = null;
+        } else if (results.isEmpty()) {
+            review = null;
+        } else if (results.size() >= 1) {
+            review = results.get(0);
+        }
+
+        return review;
+    }
 
     /**
      * Actualiza el Guia dado su entity

@@ -25,14 +25,21 @@ public class PlanEntity extends BaseEntity implements Serializable
      * Modela los guias del plan
      */
     @PodamExclude
-    @OneToMany(mappedBy = "planGuia") 
+    @OneToMany() 
     private List<GuiaEntity> guias;
+    
+    /**
+     * Modela la ubicacion del plan
+     */
+    //@PodamExclude
+    //@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.PERSIST) 
+    //private UbicacionEntity ubicacion;
     
     /**
      * Modela las categorias o tipos de plan asociado al plan
      */
     @PodamExclude
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true) 
+    @OneToMany() 
     private List<PreferenciasEntity> preferenciasPlan;
     
     /**
@@ -42,6 +49,23 @@ public class PlanEntity extends BaseEntity implements Serializable
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true) 
     private List<ValoracionesEntity> valoracionesPlan;
 
+    ///**
+     //* @return ubicacion asociada al plan 
+     //*/
+    //public UbicacionEntity getUbicacion() 
+    //{
+    //    return ubicacion;
+    //}
+
+    ///**
+     //* Cambia la ubicacion del plan por la dada por parametro
+     //* @param ubicacion 
+     //*/
+    //public void setUbicacion(UbicacionEntity ubicacion)
+    //{
+      //  this.ubicacion = ubicacion;
+    //}
+    
     /**
      * @return valoraciones asociadas al plan 
      */
@@ -315,5 +339,8 @@ public class PlanEntity extends BaseEntity implements Serializable
     {
         this.cantidadPersonas = cantidadPersonas;
     }
+
+    
+
     
 }

@@ -6,7 +6,6 @@
 package co.edu.uniandes.csw.turismo.entities;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Entity;
 
 /**
@@ -21,24 +20,24 @@ public class PreferenciasEntity extends BaseEntity implements Serializable
     /**
      * Modela los tipos de plan (preferencias)
      */
-    private List<String> tiposPlan;
+    private String tipoPlan;
 
     //GETTERS y SETTERS
     
     /**
-     * @return los tipos plan 
+     * @return el tipo de plan 
      */
-    public List<String> getTiposPlan() 
+    public String getTipoPlan() 
     {
-        return tiposPlan;
+        return tipoPlan;
     }
 
     /**
-     * Cambia los tipos plan por los dados por parametro
-     * @param tiposPlan 
+     * Cambia el tipo de plan por los dados por parametro
+     * @param tipoPlan 
      */
-    public void setTiposPlan(List<String> tiposPlan) 
+    public void setTipoPlan(String tipoPlan) 
     {
-        this.tiposPlan = tiposPlan;
+        this.tipoPlan = tipoPlan;
     }
 }

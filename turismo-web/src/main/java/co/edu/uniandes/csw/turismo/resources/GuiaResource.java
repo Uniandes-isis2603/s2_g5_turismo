@@ -114,7 +114,12 @@ public class GuiaResource
     @Path("{id: \\d+}")
     public GuiaDetailDTO getGuia(@PathParam("id") Long id)
     {
-        return null;
+        GuiaEntity entity = guiaLogic.getGuia(id);
+        if (entity == null) 
+        {
+            throw new WebApplicationException("El recurso /guides/" + id + " no existe.", 404);
+        }
+        return new GuiaDetailDTO(entity);
     }
 
     /**
