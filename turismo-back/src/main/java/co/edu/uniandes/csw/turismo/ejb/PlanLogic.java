@@ -1,7 +1,9 @@
 package co.edu.uniandes.csw.turismo.ejb;
 
+import co.edu.uniandes.csw.turismo.entities.GuiaEntity;
 import co.edu.uniandes.csw.turismo.entities.PlanEntity;
 import co.edu.uniandes.csw.turismo.entities.PreferenciasEntity;
+import co.edu.uniandes.csw.turismo.entities.ValoracionesEntity;
 import co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.turismo.persistence.PlanPersistence;
 import java.util.List;
@@ -22,6 +24,12 @@ public class PlanLogic
 
     @Inject
     private PlanPersistence persistence; // Variable para acceder a la persistencia de la aplicación. Es un inyección de dependencias.
+    @Inject
+    private GuiaLogic guiaLogic;
+    //@Inject
+    //private ValoracionesLogic valoracionLogic;
+    @Inject
+    private PreferenciasLogic preferenciasLogic;
 
     /**
      * Se crea un plan en persistencias si cumple con las reglas de negocio
@@ -32,41 +40,29 @@ public class PlanLogic
     public PlanEntity createPlan(PlanEntity entity) throws BusinessLogicException
     {
         LOGGER.info("Inicia proceso de creación de Plan");
+        if(entity.getName() == null)
+        {
+            throw new BusinessLogicException("El plan debe tener un nombre");
+        }
         // Verifica la regla de negocio que dice que no puede haber dos Planes con el mismo nombre
+        if (entity.getPreferenciasPlan() == null || entity.getPreferenciasPlan().isEmpty()) 
+        {
+            throw new BusinessLogicException("El plan debe estar asociado al menos a un tipo o categoria de plan ");
+        }
+        
         if (persistence.findByName(entity.getName()) != null) 
         {
             throw new BusinessLogicException("Ya existe un Plan con el nombre \"" + entity.getName() + "\"");
         }
-        boolean tipoAdulto = false;
-        boolean tipoFamiliar = false;
-        if (entity.getPreferenciasPlan() != null && !entity.getPreferenciasPlan().isEmpty()) 
+
+        if(entity.getLatitud() == null || entity.getLongitud() == null || entity.getCiudad() == null || entity.getPais() == null)
         {
-            for (PreferenciasEntity prefEntity : entity.getPreferenciasPlan()) 
-            {
-                for (String cat : prefEntity.getTiposPlan()) 
-                {
-                    if (cat.equalsIgnoreCase("adulto") || cat.equalsIgnoreCase("romantico"))
-                    {
-                        tipoAdulto = true;
-                    }
-                    if (cat.equalsIgnoreCase("familiar") || cat.equalsIgnoreCase("niños")) 
-                    {
-                        tipoFamiliar = true;
-                    }
-                    if (tipoFamiliar && tipoAdulto)
-                    {
-                        throw new BusinessLogicException("Hay conflicto en las categorias del plan ");
-                    }                         
-                }
-            }
-        }
-        else
-        {
-            throw new BusinessLogicException("El plan debe estar asociado al menos a un tipo o categoria de plan ");
+            //falta cambiar esto entity.getUbicacion().getLatitud...
+            throw new BusinessLogicException("El plan debe tener datos de ubicación (latitud, longitud, ciudad y pais)");
         }
         // Invoca la persistencia para crear la Plan
         persistence.create(entity);
-        LOGGER.info("Termina proceso de creación de Plan");
+        LOGGER.info("Termina proceso de creacion de Plan");
         return entity;
     }
 
@@ -105,32 +101,22 @@ public class PlanLogic
         {
             throw new BusinessLogicException("Ya existe un Plan con el nombre \"" + entity.getName() + "\"");
         }
-        boolean tipoAdulto = false;
-        boolean tipoFamiliar = false;
-        if (entity.getPreferenciasPlan() != null && !entity.getPreferenciasPlan().isEmpty()) 
+        if (entity.getPreferenciasPlan() == null || entity.getPreferenciasPlan().isEmpty()) 
         {
-            for (PreferenciasEntity prefEntity : entity.getPreferenciasPlan()) 
-            {
-                for (String cat : prefEntity.getTiposPlan()) 
-                {
-                    if (cat.equalsIgnoreCase("adulto") || cat.equalsIgnoreCase("romantico"))
-                    {
-                        tipoAdulto = true;
-                    }
-                    if (cat.equalsIgnoreCase("familiar") || cat.equalsIgnoreCase("niños")) 
-                    {
-                        tipoFamiliar = true;
-                    }
-                    if (tipoFamiliar && tipoAdulto)
-                    {
-                        throw new BusinessLogicException("Hay conflicto en las categorias del plan ");
-                    }
-                }
-            }
+           throw new BusinessLogicException("El plan debe estar asociado al menos a un tipo o categoria de plan ");
         }
         else
         {
-            throw new BusinessLogicException("El plan debe estar asociado al menos a un tipo o categoria de plan ");
+            for(int i = 0; i < entity.getPreferenciasPlan().size(); i++)
+            {
+                for(int j = 0; j < entity.getPreferenciasPlan().size(); j++)
+                {
+                    if(i!=j && entity.getPreferenciasPlan().get(i).equals(entity.getPreferenciasPlan().get(j)))
+                    {
+                         throw new BusinessLogicException("Se intento asociar el plan con categorias repetidas");
+                    }
+                }
+            }
         }
         return persistence.update(entity);
     }
@@ -144,6 +130,235 @@ public class PlanLogic
     {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar Plan con id={0}", id);    
         persistence.delete(id);
-        LOGGER.log(Level.INFO, "Termina proceso de borrar libro con id={0}", id);
+        LOGGER.log(Level.INFO, "Termina proceso de borrar plan con id={0}", id);
     }
+    
+    /**
+     * Retorna guias del plan con id dado
+     * @param planId
+     * @return guias del plan
+     */
+    public List<GuiaEntity> listGuias (Long planId) 
+    {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar todos los guias del plan con id = {0}", planId);
+        return getPlan(planId).getGuias();
+    }
+    
+    
+    /**
+     * Agregar un Guia al Plan
+     *
+     * @param GuiaId El id guia a guardar
+     * @param PlanId El id de el Plan en la cual se va a guardar el
+     * guia
+     * @return El guia que fue agregado al Plan.
+     */
+    public GuiaEntity addGuia(Long GuiaId, Long PlanId)
+    {
+        PlanEntity planEntity = getPlan(PlanId);
+        GuiaEntity guiaEntity = guiaLogic.getGuia(GuiaId);
+        planEntity.getGuias().add(guiaEntity);
+        return guiaEntity;
+    }
+
+    /**
+     * Borrar un Guia de un Plan
+     *
+     * @param GuiaId El guia que se desea borrar del plan.
+     * @param PlanId el Plan del cual se desea eliminar.
+     */
+    public void removeGuia(Long GuiaId, Long PlanId) 
+    {
+        PlanEntity planEntity = getPlan(PlanId);
+        GuiaEntity guia = guiaLogic.getGuia(GuiaId);
+        planEntity.getGuias().remove(guia);
+    }
+
+    /**
+     * Remplazar Guias de un Plan
+     *
+     * @param Guias Lista de guias que serán los del Plan.
+     * @param PlanId El id de el Plan que se quiere actualizar.
+     * @return La lista de guias actualizada.
+     */
+    public List<GuiaEntity> replaceGuias(Long PlanId, List<GuiaEntity> Guias)
+    {
+        //Se obtiene el plan
+        PlanEntity plan = getPlan(PlanId);
+        
+        plan.setGuias(Guias);
+        return Guias;
+    }
+
+    /**
+     * Retorna un Guia asociado a una Plan
+     *
+     * @param PlanId El id del Plan a buscar.
+     * @param GuiaId El id del guia a buscar
+     * @return El guia encontrado dentro de la Plan.
+     * @throws BusinessLogicException Si el guia no se encuentra en el Plan
+     */
+    public GuiaEntity getGuia(Long PlanId, Long GuiaId) throws BusinessLogicException
+    {
+        List<GuiaEntity> Guias = getPlan(PlanId).getGuias();
+        GuiaEntity Guia = guiaLogic.getGuia(GuiaId);
+        int index = Guias.indexOf(Guia);
+        if (index >= 0) {
+            return Guias.get(index);
+        }
+        throw new BusinessLogicException("El guia no está asociado a el Plan");
+
+    }
+    
+    /**
+     * Agregar una valoracion al Plan
+     *
+     * @param ValoracionId la valoracion a guardar
+     * @param PlanId El id de el Plan en la cual se va a guardar la
+     * valoracion
+     * @return La valoracion que fue agregado al Plan.
+     */
+    //public ValoracionEntity addValoracion(Long ValoracionId, Long PlanId)
+    //{
+        //PlanEntity planEntity = getPlan(PlanId);
+        //ValoracionesEntity valEntity = valoracionesLogic.getGuia(ValoracionId);
+        //planEntity.getValoracionesPlan().add(valEntity);
+        //return valEntity;
+    //}
+
+    /**
+     * Borrar una valoracion de un Plan
+     *
+     * @param valoracionId El guia que se desea borrar del plan.
+     * @param PlanId el Plan del cual se desea eliminar.
+     */
+    //public void removeValoracion(Long valoracionId, Long PlanId) 
+    //{
+        //PlanEntity planEntity = getPlan(PlanId);
+        //ValoracionEntity val = valoracionLogic.getValoracion(valoracionId);
+      //  planEntity.getValoracionesPlan().remove(val);
+    //}
+
+    /**
+     * Remplazar valoraciones de un Plan
+     *
+     * @param vals Lista de valoraciones que serán las del Plan.
+     * @param PlanId El id de el Plan que se quiere actualizar.
+     * @return La lista de valoraciones actualizada.
+     */
+    public List<ValoracionesEntity> replaceValoraciones(Long PlanId, List<ValoracionesEntity> vals)
+    {
+        //Se obtiene el plan
+        PlanEntity plan = getPlan(PlanId);
+        plan.setValoracionesPlan(vals);
+        return vals;
+    }
+
+    /**
+     * Retorna una valoracion asociada a un Plan
+     *
+     * @param PlanId El id del Plan a buscar.
+     * @param valId El id de la val a buscar
+     * @return La val encontrada dentro del Plan.
+     * @throws BusinessLogicException Si la val no se encuentra en el Plan
+     */
+    //public ValoracionesEntity getVal(Long PlanId, Long valId) throws BusinessLogicException
+    //{
+      //  List<ValoracionesEntity> vals = getPlan(PlanId).getValoracionesPlan();
+        //ValoracionEntity val = valoracionesLogic.getValoracion(valId);
+        //int index = vals.indexOf(val);
+        //if (index >= 0) {
+         //   return vals.get(index);
+        //}
+        //throw new BusinessLogicException("La valoracion no está asociada a el Plan");
+
+    //}
+          
+    /**
+     * Retorna las valoraciones del plan con id dado
+     * @param planId
+     * @return valoraciones del plan
+     */
+    public List<ValoracionesEntity> listValoraciones(Long planId) 
+    {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar todos las valoraciones del plan con id = {0}", planId);
+        return getPlan(planId).getValoracionesPlan();
+    }
+    
+    /**
+     * Retorna las caterogias del plan con id dado
+     * @param planId
+     * @return categorias del plan
+     */
+    public List<PreferenciasEntity> listCategorias(Long planId) 
+    {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar todos las categorias del plan con id = {0}", planId);
+        return getPlan(planId).getPreferenciasPlan();
+    }
+    
+    /**
+     * Agregar un Guia al Plan
+     *
+     * @param prefId El id guia a guardar
+     * @param PlanId El id de el Plan en la cual se va a guardar el
+     * guia
+     * @return El guia que fue agregado al Plan.
+     */
+    public PreferenciasEntity addPreferencia(Long prefId, Long PlanId)
+    {
+        PlanEntity planEntity = getPlan(PlanId);
+        PreferenciasEntity prefEntity = preferenciasLogic.getPreferencias(prefId);
+        planEntity.getPreferenciasPlan().add(prefEntity);
+        return prefEntity;
+    }
+
+    /**
+     * Borrar unas categorias de un Plan
+     *
+     * @param prefId Las categorias que se desea borrar del plan.
+     * @param PlanId el Plan del cual se desea eliminar.
+     */
+    public void removePreferencia(Long prefId, Long PlanId) 
+    {
+        PlanEntity planEntity = getPlan(PlanId);
+        PreferenciasEntity pref = preferenciasLogic.getPreferencias(prefId);
+        planEntity.getPreferenciasPlan().remove(pref);
+    }
+
+    /**
+     * Remplazar prefs de un Plan
+     *
+     * @param prefs Lista de prefs que serán los del Plan.
+     * @param PlanId El id de el Plan que se quiere actualizar.
+     * @return La lista de prefs actualizada.
+     */
+    public List<PreferenciasEntity> replacePreferencias(Long PlanId, List<PreferenciasEntity> prefs)
+    {
+        //Se obtiene el plan
+        PlanEntity plan = getPlan(PlanId);
+        
+        plan.setPreferenciasPlan(prefs);
+        return prefs;
+    }
+
+    /**
+     * Retorna unas preferencias asociadas a un Plan
+     *
+     * @param PlanId El id del Plan a buscar.
+     * @param PreferenciasId El id de las preferencias a buscar
+     * @return Las preferencias encontrado dentro de la Plan.
+     * @throws BusinessLogicException Si el guia no se encuentran las prefs
+     */
+    public PreferenciasEntity getPreferencias(Long PlanId, Long PreferenciasId) throws BusinessLogicException
+    {
+        List<PreferenciasEntity> prefs = getPlan(PlanId).getPreferenciasPlan();
+        PreferenciasEntity pref = preferenciasLogic.getPreferencias(PreferenciasId);
+        int index = prefs.indexOf(pref);
+        if (index >= 0) {
+            return prefs.get(index);
+        }
+        throw new BusinessLogicException("Las preferencias no están asociadas a el Plan");
+
+    }
+    
 }

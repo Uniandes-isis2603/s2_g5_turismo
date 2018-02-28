@@ -5,20 +5,20 @@
  * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
  * <pre>
  *   { 
- *      "tiposPlan":[string,string,string]                     
+ *      "tiposPlan": string                    
  *   }
- * Por ejemplo una preferencia se representa asi:<br>
+ * Por ejemplo una preferencia detallada se representa asi:<br>
  * 
  * <pre>
  *   {
- *       "tiposPlan":[Religion, Mirador, Adultos]       
+ *       "id": 1,
+ *       "tiposPlan": "mirador"      
  *   }
  * </pre>
  */
 package co.edu.uniandes.csw.turismo.dtos;
 
 import co.edu.uniandes.csw.turismo.entities.PreferenciasEntity;
-import java.util.List;
 
 /**
  * Objeto de transferencia de las preferencias(tipos de plan)
@@ -35,7 +35,7 @@ public class PreferenciasDTO
     /**
      * Atriburo que modela un arreglo tipo string que contiene tipos de plan
      */
-    private List<String> tiposPlan;
+    private String tipoPlan;
     
     //CONSTRUCTOR
     /**
@@ -51,7 +51,8 @@ public class PreferenciasDTO
     {
         if (prefE != null) 
         {
-            this.tiposPlan = prefE.getTiposPlan();
+            this.tipoPlan = prefE.getTipoPlan();
+            this.id = prefE.getId();
         }
     }
 
@@ -79,25 +80,26 @@ public class PreferenciasDTO
     public PreferenciasEntity toEntity() 
     {
         PreferenciasEntity prefE = new PreferenciasEntity();
-        prefE.setTiposPlan(this.tiposPlan);
+        prefE.setTipoPlan(this.tipoPlan);
+        prefE.setId(this.id);
         return prefE;
     }
 
     //GETTERS AND SETTERS
     
     /**
-     * @return the tiposPlan
+     * @return the tipoPlan
      */
-    public List<String> getTiposPlan() 
+    public String getTipoPlan() 
     {
-        return tiposPlan;
+        return tipoPlan;
     }
 
     /**
-     * @param tiposPlan the tiposPlan to set
+     * @param tipoPlan the tipoPlan to set
      */
-    public void setTiposPlan(List<String> tiposPlan)
+    public void setTipoPlan(String tipoPlan)
     {
-        this.tiposPlan = tiposPlan;
+        this.tipoPlan = tipoPlan;
     }
 }

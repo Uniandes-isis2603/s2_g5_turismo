@@ -8,10 +8,6 @@
  *      "idPlan": number,
  *      "nombrePlan: string,
  *      "descripcion": string,
- *      "pais": string,
- *      "ciudad": string,
- *      "longitud": number,
- *      "latitud": number,
  *      "duracion":number,
  *      "restricciones": string,
  *      "archivo": string,
@@ -22,51 +18,55 @@
  *                     "comentario": string,
  *                     }],
  *      "guiasPlan":[{
+ *                     "id":number,
  *                     "nombreGuia": number,
  *                     "idiomaGuia": string,
  *                     "idiomaGuia": string,
  *                  }],
-        "categoriasPlan":{"tiposPlan":[string]}                     
+        "categoriasPlan":[{"tipoPlan": string},{"tipoPlan": string }]   
+ *      "ubicacion":{
+ *                  "id": number, 
+ *                  "ciudad":string,
+ *                  "pais":string,
+ *                  "latitud":number,
+ *                  "longitud":number                
+ *                  }
  *   }
  * Por ejemplo una plan detallado se representa asi:<br>
  * 
  * <pre>
  * 
  *   {
- *      "idPlan": 1,
- *      "nombrePlan: Visita a Monserrate,
- *      "descripcion": "Ir a monserrate subiendo por teleferico",
- *      "pais": "Colombia",
- *      "ciudad": "Bogota",
- *      "longitud": -74.057615,
- *      "latitud": 4.606492,
- *      "duracion":180,
- *      "restricciones": Menores deben ir a compañados,
- *      "archivo": imagenLink,
- *      "precio": 20.000,
- *      "cantidadPersonas": 9999,
- *      "valoraciones":[{
- *                     "calificacion": 4,
- *                     "comentario": fue shido
- *                     },
- *                     {
- *                     "calificacion": 2,
- *                     "comentario": no fue shido
- *                     }
- *                     ],
- *      "guiasPlan":[{
- *                     "idGuia": 1,
- *                     "nombreGuia": Julian,
- *                     "idiomaGuia": Español
- *                  },
- *                  {
- *                     "idGuia": 2,
- *                     "nombreGuia": pejelagarto,
- *                     "idiomaGuia": Ingles
- *                  }
- *                  ],
-        "categoriasPlan":{"tiposPlan":[Religion, Montaña, Mirador]}  
- *   }
+       "idPlan": 1,
+       "nombrePlan": "Visita a Monserrate",
+       "descripcion": "Ir a monserrate subiendo por teleferico",
+       "duracion":180,
+       "restricciones": "Menores deben ir a compañados",
+       "archivo": "imagenLink",
+       "precio": 20.000,
+       "cantidadPersonas": 9999,
+       "valoraciones":[{
+                      "calificacion": 4,
+                      "comentario": fue shido
+                      },
+                      {
+                      "calificacion": 2,
+                      "comentario": "no fue shido"
+                      }
+                      ],
+       "guiasPlan":[{
+                      "idGuia": 1,
+                      "nombreGuia": "Julian",
+                      "idiomaGuia": "Español"
+                   },
+                   {
+                      "idGuia": 2,
+                      "nombreGuia": "pejelagarto",
+                      "idiomaGuia": "Ingles"
+                   }
+                   ],
+        "categoriasPlan":[{"tipoPlan":"Religion"},{"tipoPlan":"Mirador"}]  
+    }
  */
 package co.edu.uniandes.csw.turismo.dtos;
 
@@ -98,6 +98,11 @@ public class PlanDetailDTO extends PlanDTO {
      * Atributo que modela las valoraciones del plan
      */
     private List<ValoracionesDTO> valoraciones; 
+    
+    /**
+     * Atributo que modela la ubicacion del plan
+     */
+    //private UbicacionDTO ubicacion;
 
     //CONSTRUCTOR
     /**
@@ -115,6 +120,14 @@ public class PlanDetailDTO extends PlanDTO {
     public PlanDetailDTO(PlanEntity entity)
     {
         super(entity);
+        //if (entity.getUbicacion() != null)
+        //{
+          //  this.ubicacion = new UbicacionDTO(entity.getUbicacion());
+        //} 
+        //else 
+        //{
+          //  entity.setUbicacion(null);
+        //}
         if (entity.getPreferenciasPlan() != null) 
         {
             categoriasPlan = new ArrayList<>();
@@ -149,6 +162,10 @@ public class PlanDetailDTO extends PlanDTO {
     public PlanEntity toEntity() 
     {
         PlanEntity planE = super.toEntity();
+        //if (this.getUbicacion() != null) 
+        //{
+          //  planE.setUbicacion(this.getUbicacion().toEntity());
+        //}
         if (getValoraciones() != null) 
         {
             List<ValoracionesEntity> valoracionesEntity = new ArrayList<>();
@@ -169,7 +186,7 @@ public class PlanDetailDTO extends PlanDTO {
         }
         if (categoriasPlan != null) {
             List<PreferenciasEntity> preferenciaEntity = new ArrayList<>();
-            for (PreferenciasDTO dtoPreferencia : getTiposPlan()) 
+            for (PreferenciasDTO dtoPreferencia : getCategoriasPlan()) 
             {
                 preferenciaEntity.add(dtoPreferencia.toEntity());
             }
@@ -179,6 +196,24 @@ public class PlanDetailDTO extends PlanDTO {
     }
 
     //METODOS
+    
+    //**
+     //* @return la ubicacion asociada del plan
+     //*/
+    //public UbicacionDTO getUbicacion()
+    //{
+      //  return this.guiasPlan;
+    //}
+
+    ///**
+     //* Cambia la ubicacion del plan por la dada por parametro
+     //* @param ubicacion 2 set
+     //*/ 
+    //public void setUbicacion(Ubicacion ubicacion) 
+    //{
+      //  this.ubicacion = ubicacion;
+    //}
+    
     /**
      * @return los guias asociados del plan
      */
@@ -199,18 +234,18 @@ public class PlanDetailDTO extends PlanDTO {
     /**
      * @return los categorias de plan del plan
      */
-    public List<PreferenciasDTO> getTiposPlan() 
+    public List<PreferenciasDTO> getCategoriasPlan() 
     {
         return this.categoriasPlan;
     }
 
     /**
      * Cambia las tipos de plan por los dados por parámetro
-     * @param tiposPlan 2 set
+     * @param categoriasPlan 2 set
      */
-    public void setCategoriasPlan(List<PreferenciasDTO> tiposPlan)
+    public void setCategoriasPlan(List<PreferenciasDTO> categoriasPlan)
     {
-        this.categoriasPlan = tiposPlan;
+        this.categoriasPlan = categoriasPlan;
     }
 
     /**

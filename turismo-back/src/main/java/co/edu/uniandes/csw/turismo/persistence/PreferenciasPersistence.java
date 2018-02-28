@@ -54,7 +54,7 @@ public class PreferenciasPersistence
         LOGGER.log(Level.INFO, "Consultando Preferencias por nombre ", name);
 
         // Se crea un query para buscar Preferencias con el nombre que recibe el método como argumento. ":name" es un placeholder que debe ser remplazado
-        TypedQuery query = em.createQuery("Select e From PreferenciasEntity e where e.name = :name", PreferenciasEntity.class);
+        TypedQuery query = em.createQuery("Select e From PreferenciasEntity e where e.tipoPlan = :name", PreferenciasEntity.class);
         // Se remplaza el placeholder ":name" con el valor del argumento 
         query = query.setParameter("name", name);
         // Se invoca el query se obtiene la lista resultado
