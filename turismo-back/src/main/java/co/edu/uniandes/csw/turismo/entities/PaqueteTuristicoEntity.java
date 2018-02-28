@@ -18,6 +18,7 @@ import uk.co.jemos.podam.common.PodamExclude;
  */
 @Entity
 public class PaqueteTuristicoEntity extends BaseEntity implements Serializable {
+   
     @PodamExclude
     @OneToMany
     private List<PagoEntity> pagos = new ArrayList<PagoEntity>();

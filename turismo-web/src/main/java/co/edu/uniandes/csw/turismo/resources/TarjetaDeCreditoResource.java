@@ -9,9 +9,11 @@ import co.edu.uniandes.csw.turismo.dtos.TarjetaDeCreditoDetailDTO;
 import co.edu.uniandes.csw.turismo.ejb.TarjetaDeCreditoLogic;
 import co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.turismo.mappers.BusinessLogicExceptionMapper;
+import co.edu.uniandes.csw.turismo.persistence.UsuarioPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -37,13 +39,18 @@ import javax.ws.rs.Produces;
  * </pre>
  * @author s.benitez10
  */
-@Path("tarjetas")
+@Path("usuarios/{usuarioid: \\d+}/tarjetas")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
 public class TarjetaDeCreditoResource 
 {
+    @Inject
     private TarjetaDeCreditoLogic tarjetadecreditologic;
+    
+    @Inject
+    private UsuarioPersistence recursousuario;
+    
      /**
      * <h1>POST /api/tarjetas : Crear una TarjetaDeCredito.</h1>
      * 
@@ -66,8 +73,17 @@ public class TarjetaDeCreditoResource
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe la ciudad.
      */
     @POST
-    public TarjetaDeCreditoDetailDTO createTarjetaDecredito(TarjetaDeCreditoDetailDTO TarjetaDecredito) throws BusinessLogicException {
-        return new  TarjetaDeCreditoDetailDTO(tarjetadecreditologic.createTarjetaDeCredito(TarjetaDecredito.toEntity()));
+    public TarjetaDeCreditoDetailDTO createTarjetaDecredito(TarjetaDeCreditoDetailDTO TarjetaDecredito ,@PathParam("usuarioid")Long id) throws BusinessLogicException 
+    {
+        if (recursousuario.find(id) == null)
+        {
+            throw new BusinessLogicException("El usuario no existe");
+            
+        }
+        else
+        {
+        return new  TarjetaDeCreditoDetailDTO(tarjetadecreditologic.createTarjetaDeCredito(TarjetaDecredito.toEntity(recursousuario.find(id))));
+        }
     }  
      /**
      * <h1>GET /api/tarjetas : Obtener todas las Tarjetas de Credito.</h1>

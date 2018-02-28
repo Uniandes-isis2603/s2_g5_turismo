@@ -28,12 +28,12 @@ public class TarjetaDeCreditoLogic
     {
         LOGGER.info("Inicia proceso de creación de TarjetaDeCredito");
         // Verifica la regla de negocio que dice que el nombre de la tarjeta debe concidir con el del usuario dueña de ella
-        if(entity.getName().compareTo(entity.getUsuario().getNombre()) != 0)
-        {
-             throw new BusinessLogicException("el nombre de la tarjeta :" + entity.getName() + "es diferente al de el usuario:"+ entity.getUsuario().getNombre()+" ");
-        }
+//        if(entity.getName().compareTo(entity.getUsuario().getNombre()) != 0)
+//        {
+//             throw new BusinessLogicException("el nombre de la tarjeta :" + entity.getName() + "es diferente al de el usuario:"+ entity.getUsuario().getNombre()+" ");
+//        }
         // Verifica la regla de negocio que dice que una tarjeta debe tener un CDV de 3 digitos
-        if(Integer.toString(entity.getCDV()).length() != 3)
+        if(Long.toString(entity.getCDV()).length() != 3)
         {
             throw new BusinessLogicException("la tarjeta de credito tiene un CDV mayor o menor a 3 digitos" + entity.getCDV() + "\"");
         }
@@ -43,10 +43,10 @@ public class TarjetaDeCreditoLogic
              throw new BusinessLogicException("la tarjeta de credito tiene un numero mayor o menor a 16 digitos" + entity.getNumero() + "\"");
         }
         // Verifica la regla de negocio que dice que no puede haber dos tarjetas de credito con el mismo numero
-        if (persistence.findByNumber(entity.getNumero()) != null) 
-        {
-            throw new BusinessLogicException("Ya existe una tarjeta de credito con el numero" + entity.getNumero() + "\"");
-        }
+//        if (persistence.findByNumber(entity.getNumero()) != null) 
+//        {
+//            throw new BusinessLogicException("Ya existe una tarjeta de credito con el numero" + entity.getNumero() + "\"");
+//        }
         // Invoca la persistencia para crear la tarjeta
         persistence.create(entity);
         LOGGER.info("Termina proceso de creación de TarjetaDeCredito");

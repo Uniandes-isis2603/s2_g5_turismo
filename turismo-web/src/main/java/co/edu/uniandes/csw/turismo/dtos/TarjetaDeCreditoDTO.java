@@ -37,7 +37,8 @@ public class TarjetaDeCreditoDTO
 {
     private String name;
     private Long  numero;
-    private Integer CVD;
+    private Long CVD;
+    private Long cedula;
      /*
     Constructor por defecto
     */
@@ -52,16 +53,29 @@ public class TarjetaDeCreditoDTO
             this.name = entity.getName();
             this.CVD = entity.getCDV();
             this.numero = entity.getNumero();
+            this.cedula= entity.getCedula();
+            
             
         }
     }
+
+ 
     
      public TarjetaDeCreditoEntity toEntity() {
         TarjetaDeCreditoEntity entity = new TarjetaDeCreditoEntity();
         entity.setCDV(this.getCVD());
         entity.setName(this.getName());
         entity.setNumero(this.getNumero());
+        entity.setCedula(this.getCedula());
         return entity;
+    }
+     
+        public Long getCedula() {
+        return cedula;
+    }
+
+    public void setCedula(Long cedula) {
+        this.cedula = cedula;
     }
 /*  
     retorna el nombre del dueño de la tarjeta
@@ -90,13 +104,14 @@ public class TarjetaDeCreditoDTO
 /*
     retorna el codigo CVD de la tarjeta
     */
-    public int getCVD() {
+    public Long getCVD() {
         return CVD;
     }
 /*
     modeifica el CVD de la tarjeta
     */
-    public void setCVD(int CVD) {
+    public void setCVD(Long CVD)
+    {
         this.CVD = CVD;
     }
     

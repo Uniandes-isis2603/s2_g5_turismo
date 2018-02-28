@@ -1,7 +1,37 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * FacturaDetailDTO
+ * Objeto de transferencia de datos de planes.
+ * Los DTO especifican los mensajes que se envían entre el cliente y el servidor.
+ * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
+ * <pre>
+ *   {
+ *      "id": number,
+ *      "costo": number,
+ *      "paquetetur":  {
+ *                          "id": number
+ *                       },
+ *      "tarjetadecredito":{
+ *                           "name": String,
+ *                           "numero": number,
+ *                           "CDV":numero
+ *                          }            
+ *   }
+ * Por ejemplo una plan detallado se representa asi:<br>
+ * 
+ * <pre>
+ * 
+ *   {
+ *      "id": 1,
+ *      "costo": 1000,
+ *      "paquetetur":  {
+ *                          "id":1,
+ *                       },
+ *      "tarjetaCredito":{
+ *                           "name": "sebastian",
+ *                           "numero":1234567891011324,
+ *                           "CVD":213
+ *                          }            
+ *   }
  */
 package co.edu.uniandes.csw.turismo.dtos;
 
@@ -13,7 +43,7 @@ import co.edu.uniandes.csw.turismo.entities.FacturaEntity;
  */
 public class FacturaDetailDTO extends FacturaDTO 
 {
-     private UsuarioDTO usuario;
+//     private UsuarioDTO usuario;
      private PaqueteTuristicoDTO paquetetur;
      private TarjetaDeCreditoDTO tarjetaCredito;
     //TODO paquete Turistico private PaqueteTuristicoDTO PaqueteTuristico;
@@ -25,10 +55,10 @@ public class FacturaDetailDTO extends FacturaDTO
     public FacturaDetailDTO(FacturaEntity entity)
     {   
         super(entity);
-        if( entity.getUsuario() != null)
-        {
-            usuario =new UsuarioDTO(entity.getUsuario());
-        }
+//        if( entity.getUsuario() != null)
+//        {
+//            usuario =new UsuarioDTO(entity.getUsuario());
+//        }
         if( entity.getPaqueteturistico() != null)
         {
             paquetetur = new PaqueteTuristicoDTO(entity.getPaqueteturistico());
@@ -42,10 +72,10 @@ public class FacturaDetailDTO extends FacturaDTO
     public FacturaEntity toEntity()
     { 
        FacturaEntity entityFactura = super.toEntity();
-       if(this.getUsuario() != null)
-       {
-           entityFactura.setUsuario(this.getUsuario().toEntity());
-       }
+//       if(this.getUsuario() != null)
+//       {
+//           entityFactura.setUsuario(this.getUsuario().toEntity());
+//       }
        if(this.getPaquetetur() != null)
        {
            entityFactura.setPaqueteturistico(this.getPaquetetur().toEntity());
@@ -62,14 +92,14 @@ public class FacturaDetailDTO extends FacturaDTO
     
     //TODO: getter and Setters
 
-    public UsuarioDTO getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(UsuarioDTO usuario) {
-        this.usuario = usuario;
-    }
-
+//    public UsuarioDTO getUsuario() {
+//        return usuario;
+//    }
+//
+//    public void setUsuario(UsuarioDTO usuario) {
+//        this.usuario = usuario;
+//    }
+//
     public PaqueteTuristicoDTO getPaquetetur() {
         return paquetetur;
     }

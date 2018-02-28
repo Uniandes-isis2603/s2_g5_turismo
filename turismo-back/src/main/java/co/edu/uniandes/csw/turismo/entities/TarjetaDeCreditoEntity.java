@@ -22,16 +22,22 @@ public class TarjetaDeCreditoEntity extends BaseEntity implements Serializable
     
     private Long numero;
     private String name;
-    private Integer CDV;
-    
-    @PodamExclude
-    @OneToMany(mappedBy = "tarjetadecredito")
-    private List <FacturaEntity> facturas;
+    private Long CDV;
+    private Long cedula;
     
     @PodamExclude
     @ManyToOne
     private UsuarioEntity usuario;
 
+    public Long getCedula() {
+        return cedula;
+    }
+
+    public void setCedula(Long cedula) {
+        this.cedula = cedula;
+    }
+
+    
     public UsuarioEntity getUsuario() {
         return usuario;
     }
@@ -39,15 +45,6 @@ public class TarjetaDeCreditoEntity extends BaseEntity implements Serializable
     public void setUsuario(UsuarioEntity usuario) {
         this.usuario = usuario;
     }
-
-    public List<FacturaEntity> getFacturas() {
-        return facturas;
-    }
-
-    public void setFacturas(List<FacturaEntity> facturas) {
-        this.facturas = facturas;
-    }
-    
 
      /**
      * @return del numero de la tarjete
@@ -77,13 +74,13 @@ public class TarjetaDeCreditoEntity extends BaseEntity implements Serializable
     /**
      * @return del numero de CDV
      */
-    public Integer getCDV() {
+    public Long getCDV() {
         return CDV;
     }
     /**
      * @Param CDV
      */
-    public void setCDV(Integer CDV) {
+    public void setCDV(Long CDV) {
         this.CDV = CDV;
     }
     

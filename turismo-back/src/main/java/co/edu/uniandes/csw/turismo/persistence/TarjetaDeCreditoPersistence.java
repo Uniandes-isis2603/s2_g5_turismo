@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.turismo.persistence;
 
 import co.edu.uniandes.csw.turismo.entities.TarjetaDeCreditoEntity;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -41,13 +42,13 @@ public class TarjetaDeCreditoPersistence
       public TarjetaDeCreditoEntity findByNumber(Long numero) 
       {
         LOGGER.log(Level.INFO, "Consultando heroe por nombre ", numero);
-
+      
         // Se crea un query para buscar tarjetas de credito recibe el m�todo como argumento. ":numero" es un placeholder que debe ser remplazado
         TypedQuery query = em.createQuery("Select e From TarjetaDeCreditoEntity e where e.numero = :numero", TarjetaDeCreditoEntity.class);
         // Se remplaza el placeholder ":name" con el valor del argumento 
         query = query.setParameter("numero", numero);
         // Se invoca el query se obtiene la lista resultado
-        List<TarjetaDeCreditoEntity> sameName = query.getResultList();
+        List<TarjetaDeCreditoEntity> sameName =  query.getResultList();
         if (sameName.isEmpty()) {
             return null;
         } else {
