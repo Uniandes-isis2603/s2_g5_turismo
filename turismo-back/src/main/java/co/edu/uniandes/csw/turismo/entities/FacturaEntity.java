@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.turismo.entities;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
@@ -25,12 +26,12 @@ public class FacturaEntity extends  BaseEntity implements Serializable
     @ManyToOne
     private TarjetaDeCreditoEntity tarjetadecredito;
     
-    @OneToOne
+    @OneToOne( cascade= CascadeType.PERSIST, orphanRemoval = true)
     private PaqueteTuristicoEntity paqueteturistico;
     
-    @PodamExclude
-    @ManyToOne
-    private UsuarioEntity usuario;
+//    @PodamExclude
+//    @ManyToOne
+//    private UsuarioEntity usuario;
 
     public TarjetaDeCreditoEntity getTarjetadecredito() {
         return tarjetadecredito;
@@ -46,14 +47,6 @@ public class FacturaEntity extends  BaseEntity implements Serializable
 
     public void setPaqueteturistico(PaqueteTuristicoEntity paqueteturistico) {
         this.paqueteturistico = paqueteturistico;
-    }
-
-    public UsuarioEntity getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(UsuarioEntity usuario) {
-        this.usuario = usuario;
     }
 
     
