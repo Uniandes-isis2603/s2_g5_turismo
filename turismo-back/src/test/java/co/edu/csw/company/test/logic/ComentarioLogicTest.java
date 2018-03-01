@@ -131,7 +131,7 @@ public class ComentarioLogicTest
     }
     
     @Test
-    public void getFacturaTest() throws BusinessLogicException 
+    public void getComentarioTest() throws BusinessLogicException 
     {
         List<ComentarioEntity> list = ComentarioLogic.getComentarios();
         Assert.assertEquals(ComentarioData.size(), list.size());
@@ -149,7 +149,7 @@ public class ComentarioLogicTest
     }
     
     @Test
-    public void deletefacturaTest() throws BusinessLogicException
+    public void deleteComentarioTest() throws BusinessLogicException
     {
          ComentarioEntity entity = ComentarioData.get(0);
          ComentarioLogic.deleteComentario(entity);
@@ -158,7 +158,7 @@ public class ComentarioLogicTest
     }
     
      @Test
-    public void updateFacturaTest() throws BusinessLogicException
+    public void updateComentarioTest() throws BusinessLogicException
     {
          ComentarioEntity entity = ComentarioData.get(0);
          ComentarioEntity pojoEntity = factory.manufacturePojo( ComentarioEntity.class);
