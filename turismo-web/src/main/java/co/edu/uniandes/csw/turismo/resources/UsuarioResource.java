@@ -6,11 +6,14 @@
 package co.edu.uniandes.csw.turismo.resources;
 
 import co.edu.uniandes.csw.turismo.dtos.UsuarioDetailDTO;
+import co.edu.uniandes.csw.turismo.ejb.UsuarioLogic;
+import co.edu.uniandes.csw.turismo.entities.UsuarioEntity;
 import co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.turismo.mappers.BusinessLogicExceptionMapper;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -19,6 +22,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 
 /**
  * <pre>Clase que implementa el recurso "usuario".
@@ -43,6 +47,16 @@ import javax.ws.rs.Produces;
 
 public class UsuarioResource 
 {
+    @Inject
+    private UsuarioLogic logic;
+    
+    private List<UsuarioDetailDTO> listEntityToDTO(List<UsuarioEntity> entityList) {
+        List<UsuarioDetailDTO> list = new ArrayList<>();
+        for(UsuarioEntity entity : entityList) {
+            list.add(new UsuarioDetailDTO(entity));
+        }
+        return list;
+    }
     /**
      * <h1>POST /api/usuario : Crear un usuario.</h1>
      * 
@@ -66,7 +80,9 @@ public class UsuarioResource
      */
     @POST
     public UsuarioDetailDTO createUsuario(UsuarioDetailDTO usuario) throws BusinessLogicException {
-        return usuario;
+        UsuarioEntity entity = usuario.toEntity();
+        logic.createUsuario(entity);
+        return new UsuarioDetailDTO(entity);
     }
     
     /**
@@ -82,7 +98,7 @@ public class UsuarioResource
      */
     @GET
     public List<UsuarioDetailDTO> getUsuarios() {
-        return new ArrayList<>();
+        return listEntityToDTO(logic.getUsuarios());
     }
     
     /**
@@ -104,7 +120,10 @@ public class UsuarioResource
     @GET
     @Path("{id: \\d+}")
     public UsuarioDetailDTO getUsuario(@PathParam("id") Long id) {
-        return null;
+        UsuarioEntity entity = logic.getUsuario(id);
+        if(entity == null)
+            throw new WebApplicationException("El usuario no existe", 404);
+        return new UsuarioDetailDTO(entity);
     }
     
     /**
@@ -128,7 +147,12 @@ public class UsuarioResource
     @PUT
     @Path("{id: \\d+}")
     public UsuarioDetailDTO updateUsuario(@PathParam("id") Long id, UsuarioDetailDTO usuario) throws BusinessLogicException {
-        return usuario;
+        UsuarioEntity entity = usuario.toEntity();
+        entity.setId(id);
+        UsuarioEntity vieja = logic.getUsuario(id);
+        if(vieja == null)
+            throw new WebApplicationException("No existe el usuario", 404);
+        return new UsuarioDetailDTO(logic.updateUsuario(entity));
     }
     
     /**
@@ -148,6 +172,10 @@ public class UsuarioResource
     @DELETE
     @Path("{id: \\d+}")
      public void deleteUsuario(@PathParam("id") Long id) {
-        // Void
+        UsuarioEntity entity = logic.getUsuario(id);
+        if (entity == null) {
+            throw new WebApplicationException("El usuario no existe", 404);
+        }
+        logic.deleteUsuario(id);
     }
 }
