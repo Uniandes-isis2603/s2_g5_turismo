@@ -24,7 +24,7 @@ public class PaqueteTuristicoEntity extends BaseEntity implements Serializable {
     
     @PodamExclude
     @OneToMany
-    private List<PlanEntity> planes = new ArrayList<PlanEntity>();
+    private List<PlanAjendadoEntity> planes = new ArrayList<PlanAjendadoEntity>();
 
     public List<PagoEntity> getPagos() {
         return pagos;
@@ -34,11 +34,11 @@ public class PaqueteTuristicoEntity extends BaseEntity implements Serializable {
         this.pagos = pagos;
     }
 
-    public List<PlanEntity> getPlanes() {
+    public List<PlanAjendadoEntity> getPlanes() {
         return planes;
     }
 
-    public void setPlanes(List<PlanEntity> planes) {
+    public void setPlanes(List<PlanAjendadoEntity> planes) {
         this.planes = planes;
     }
     

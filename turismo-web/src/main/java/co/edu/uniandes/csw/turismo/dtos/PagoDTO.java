@@ -47,15 +47,7 @@ public class PagoDTO {
      */
     private double costo;
     
-    private Date fechaPlan;
-
-    public Date getFechaPlan() {
-        return fechaPlan;
-    }
-
-    public void setFechaPlan(Date fechaPlan) {
-        this.fechaPlan = fechaPlan;
-    }
+   
     
     /**
      * Constructor por defecto
@@ -70,7 +62,6 @@ public class PagoDTO {
         {
         this.costo = entity.getCostoPlan();
         this.id = entity.getId();
-        this.fechaPlan = entity.getFechaPlan();
         }
         
     }
@@ -78,7 +69,6 @@ public class PagoDTO {
         PagoEntity entity = new PagoEntity();
         entity.setCostoPlan(this.getCosto());
         entity.setId(this.getId());
-        entity.setFechaPlan(this.getFechaPlan());
         return entity;
     }
     /**
