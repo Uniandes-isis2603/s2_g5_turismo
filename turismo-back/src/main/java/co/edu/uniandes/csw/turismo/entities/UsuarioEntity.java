@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.turismo.entities;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;import uk.co.jemos.podam.common.PodamExclude;
@@ -31,7 +32,7 @@ public class UsuarioEntity extends BaseEntity implements Serializable
     private List<FacturaEntity> listaFacturas;
     
     @PodamExclude
-    @OneToMany
+    @OneToMany(mappedBy = "usuario" , cascade =CascadeType.PERSIST, orphanRemoval = true)
     private List<TarjetaDeCreditoEntity> listaTarjetas;
     
     @PodamExclude

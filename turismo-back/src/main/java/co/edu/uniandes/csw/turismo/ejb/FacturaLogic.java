@@ -19,36 +19,31 @@ import javax.inject.Inject;
  * @author s.benitez10
  */
 @Stateless
-public class FacturaLogica 
+public class FacturaLogic 
 {
-     private static final Logger LOGGER = Logger.getLogger(FacturaLogica.class.getName());
+     private static final Logger LOGGER = Logger.getLogger(FacturaLogic.class.getName());
      
     @Inject
     private FacturaPersistence persistence;
     
-     public FacturaEntity createTarjetaDeCredito(FacturaEntity entity) throws BusinessLogicException 
+     public FacturaEntity createFactura(FacturaEntity entity) throws BusinessLogicException 
     {
-        boolean tarjetasiguales = false;
+       
         LOGGER.info("Inicia proceso de creación de la Factura");
        //verifica la regla de negocio de que no pueden haber 2 facturas con el mismo id
         if (persistence.find(entity.getId())!= null) 
         {
             throw new BusinessLogicException("Ya existe una factura con el id" + entity.getId() + "\"");
         }
-        List<TarjetaDeCreditoEntity> TarjetasUsuario = entity.getUsuario().getListaTarjetas();
-        for(TarjetaDeCreditoEntity a:TarjetasUsuario)
+        
+        // verifica que la factura no tenga un costo negativo
+        if(entity.getCosto() < 0)
         {
-            if(a.getNumero()==entity.getTarjetadecredito().getNumero() && a.getCDV() == entity.getTarjetadecredito().getCDV() && a.getName().compareToIgnoreCase(entity.getTarjetadecredito().getName())== 0)
-            {
-                tarjetasiguales = true;
-            }
+            throw new BusinessLogicException("La factura no puede tener un costo negativo o un costo 0. Costo= " + entity.getCosto() );
+            
         }
-        // verifica la relga de negocio de que la factura sea pagada por una de las tarjetas del usuario
-        if(!tarjetasiguales)
-        {
-            throw new BusinessLogicException("la  factura no se puede pagar porque el usuario no posee esa tarjeta" );
-        }
-        // Invoca la persistencia para crear la tarjeta
+       
+//     
         persistence.create(entity);
         LOGGER.info("Termina proceso de creación de Factura");
         return entity;
