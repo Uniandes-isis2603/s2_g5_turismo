@@ -5,6 +5,12 @@
  */
 package co.edu.csw.company.test.logic;
 
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert.*;
 import co.edu.uniandes.csw.turismo.ejb.PagoLogic;
 import co.edu.uniandes.csw.turismo.entities.PagoEntity;
 import co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException;
@@ -20,11 +26,10 @@ import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
+
 
 /**
  *
@@ -193,3 +198,7 @@ public class PagoLogicTest {
         Assert.assertEquals(pojoEntity.getCostoPlan(), resp.getCostoPlan());
     }
 }
+
+
+
+
