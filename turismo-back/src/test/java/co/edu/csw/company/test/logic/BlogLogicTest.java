@@ -129,7 +129,7 @@ public class BlogLogicTest
     }
     
     @Test
-    public void getFacturaTest() throws BusinessLogicException 
+    public void getBlogTest() throws BusinessLogicException 
     {
         List<BlogEntity> list = BlogLogic.getBlogs();
         Assert.assertEquals(BlogData.size(), list.size());
@@ -147,7 +147,7 @@ public class BlogLogicTest
     }
     
     @Test
-    public void deletefacturaTest() throws BusinessLogicException
+    public void deleteBlogTest() throws BusinessLogicException
     {
          BlogEntity entity = BlogData.get(0);
          BlogLogic.deleteBlog(entity);
@@ -156,7 +156,7 @@ public class BlogLogicTest
     }
     
      @Test
-    public void updateFacturaTest() throws BusinessLogicException
+    public void updateBlogTest() throws BusinessLogicException
     {
          BlogEntity entity = BlogData.get(0);
          BlogEntity pojoEntity = factory.manufacturePojo( BlogEntity.class);
