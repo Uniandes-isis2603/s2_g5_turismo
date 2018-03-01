@@ -21,7 +21,7 @@ public class PagoEntity extends BaseEntity implements Serializable{
     
    
     //@PodamStrategyValue(DateStrategy.class)(No se pa que es, pero lo tendre en cuenta
-    @Temporal(TemporalType.DATE)
+
     
     private String nombrePlan;
     private Double costoPlan;

@@ -5,12 +5,15 @@
  */
 package co.edu.uniandes.csw.turismo.resources;
 
-import co.edu.uniandes.csw.turismo.dtos.ValoracionesDetailDTO;
+import co.edu.uniandes.csw.turismo.dtos.ValoracionesDTO;
+import co.edu.uniandes.csw.turismo.ejb.ValoracionesLogic;
+import co.edu.uniandes.csw.turismo.entities.ValoracionesEntity;
 import co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.turismo.mappers.BusinessLogicExceptionMapper;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -19,6 +22,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 
 /**
  * <pre>Clase que implementa el recurso "valoraciones".
@@ -42,6 +46,16 @@ import javax.ws.rs.Produces;
 @RequestScoped
 public class ValoracionesResource 
 {
+    @Inject
+    private ValoracionesLogic logic;
+    
+    private List<ValoracionesDTO> listEntityToDTO(List<ValoracionesEntity> entityList) {
+        List<ValoracionesDTO> list = new ArrayList<>();
+        for(ValoracionesEntity entity : entityList) {
+            list.add(new ValoracionesDTO(entity));
+        }
+        return list;
+    }
     /**
      * <h1>POST /api/valoraciones : Crear una valoracion.</h1>
      * 
@@ -64,8 +78,10 @@ public class ValoracionesResource
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe la valoracion.
      */
     @POST
-    public ValoracionesDetailDTO createValoracion(ValoracionesDetailDTO valoracion) throws BusinessLogicException {
-        return valoracion;
+    public ValoracionesDTO createValoracion(ValoracionesDTO valoracion) throws BusinessLogicException {
+        ValoracionesEntity entity = valoracion.toEntity();
+        logic.createValoracion(entity);
+        return new ValoracionesDTO(entity);
     }
     
     /**
@@ -80,8 +96,8 @@ public class ValoracionesResource
      * @return JSONArray {@link ValoracionesDetailDTO} - Las valoraciones encontradas en la aplicación. Si no hay ninguna retorna una lista vacía.
      */
     @GET
-    public List<ValoracionesDetailDTO> getValoraciones() {
-        return new ArrayList<>();
+    public List<ValoracionesDTO> getValoraciones() {
+        return listEntityToDTO(logic.getValoraciones());
     }
     
     /**
@@ -102,8 +118,11 @@ public class ValoracionesResource
      */
     @GET
     @Path("{id: \\d+}")
-    public ValoracionesDetailDTO getValoraciones(@PathParam("id") Long id) {
-        return null;
+    public ValoracionesDTO getValoraciones(@PathParam("id") Long id) {
+        ValoracionesEntity entity = logic.getValoracion(id);
+        if(entity == null)
+            throw new WebApplicationException("La valoracion no existe", 404);
+        return new ValoracionesDTO(entity);
     }
     
     /**
@@ -126,8 +145,13 @@ public class ValoracionesResource
      */
     @PUT
     @Path("{id: \\d+}")
-    public ValoracionesDetailDTO updateCity(@PathParam("id") Long id, ValoracionesDetailDTO valoracion) throws BusinessLogicException {
-        return valoracion;
+    public ValoracionesDTO updateCity(@PathParam("id") Long id, ValoracionesDTO valoracion) throws BusinessLogicException {
+        ValoracionesEntity entity = valoracion.toEntity();
+        entity.setId(id);
+        ValoracionesEntity vieja = logic.getValoracion(id);
+        if(vieja == null)
+            throw new WebApplicationException("La valoracion no existe", 404);
+        return new ValoracionesDTO(logic.updateValoracion(entity));
     }
     
     /**
@@ -147,6 +171,10 @@ public class ValoracionesResource
     @DELETE
     @Path("{id: \\d+}")
      public void deleteValoracion(@PathParam("id") Long id) {
-        // Void
+        ValoracionesEntity entity = logic.getValoracion(id);
+        if (entity == null) {
+            throw new WebApplicationException("La valoracion no existe", 404);
+        }
+        logic.deleteValoracion(id);
     }
 }

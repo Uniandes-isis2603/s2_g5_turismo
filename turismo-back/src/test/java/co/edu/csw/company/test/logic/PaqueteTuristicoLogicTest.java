@@ -19,9 +19,13 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
+import static org.junit.Assert.*;
 import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
@@ -32,6 +36,8 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  */
 @RunWith(Arquillian.class)
 public class PaqueteTuristicoLogicTest {
+    
+
     private PodamFactory factory = new PodamFactoryImpl();
 
     @Inject
@@ -187,3 +193,4 @@ public class PaqueteTuristicoLogicTest {
         Assert.assertEquals(pojoEntity.getName(), resp.getName());
     }
 }
+
