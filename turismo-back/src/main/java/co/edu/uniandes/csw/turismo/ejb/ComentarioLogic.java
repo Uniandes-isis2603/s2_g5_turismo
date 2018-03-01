@@ -29,7 +29,7 @@ public class ComentarioLogic {
      
      public ComentarioEntity createComentario(ComentarioEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de creación de Comentario");
-       
+       if (entity.getComentario() != null && !entity.getComentario().isEmpty()){
         if (persistence.find(entity.getId()) != null) 
         {
             throw new BusinessLogicException("Ya existe este Comentario");
@@ -38,6 +38,12 @@ public class ComentarioLogic {
         persistence.create(entity);
         LOGGER.info("Termina proceso de creación Comentarios");
         return entity;
+       }
+       
+       else 
+       {
+       throw new BusinessLogicException(" no puede ser vacio Comentario");
+       }
     }
      
       public List<ComentarioEntity> getComentarios() {
@@ -52,8 +58,13 @@ public class ComentarioLogic {
     }
         
         public ComentarioEntity updateComentario(ComentarioEntity entity) throws BusinessLogicException  {
-        
-        return persistence.update(entity);
+         if (entity.getComentario() != null && !entity.getComentario().isEmpty()){
+        return persistence.update(entity);}
+         
+         else 
+         {
+         throw new BusinessLogicException(" no puede ser vacio Comentario");
+         }
     }
         
         public void deleteComentario(ComentarioEntity entity) throws BusinessLogicException {
