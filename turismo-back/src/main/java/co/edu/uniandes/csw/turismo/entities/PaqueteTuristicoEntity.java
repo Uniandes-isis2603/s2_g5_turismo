@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.turismo.entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -24,8 +25,8 @@ public class PaqueteTuristicoEntity extends BaseEntity implements Serializable {
     private List<PagoEntity> pagos = new ArrayList<PagoEntity>();
     
     @PodamExclude
-    @OneToMany
-    private List<PlanEntity> planes = new ArrayList<PlanEntity>();
+    @OneToMany (cascade = CascadeType.ALL, orphanRemoval = true) 
+    private List<PlanAjendadoEntity> planes = new ArrayList<PlanAjendadoEntity>();
 
     public List<PagoEntity> getPagos() {
         return pagos;
@@ -35,11 +36,11 @@ public class PaqueteTuristicoEntity extends BaseEntity implements Serializable {
         this.pagos = pagos;
     }
 
-    public List<PlanEntity> getPlanes() {
+    public List<PlanAjendadoEntity> getPlanes() {
         return planes;
     }
 
-    public void setPlanes(List<PlanEntity> planes) {
+    public void setPlanes(List<PlanAjendadoEntity> planes) {
         this.planes = planes;
     }
     
