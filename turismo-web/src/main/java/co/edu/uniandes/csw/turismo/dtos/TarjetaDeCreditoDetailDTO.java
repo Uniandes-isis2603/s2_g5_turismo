@@ -1,14 +1,50 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * TarjetaDeCreditoDetailDTO
+ * Objeto de transferencia de datos de planes.
+ * Los DTO especifican los mensajes que se envían entre el cliente y el servidor.
+ * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
+ * <pre>
+ *   {
+ *        "name": String,
+ *         "numero": number,
+ *         "CDV":numero,
+ *         "usuario":{
+ *                      "id": number,
+ *                       "nombre": string,
+ *                       "apellido": string,
+ *                       "contrasenia": string,
+ *                       "correo": string,
+ *                       "telefono": number,
+ *                       "idioma": string,
+ *                       "esAdministrador": boolean
+ *                   }
+ *                                   
+ *   }
+ * Por ejemplo una plan detallado se representa asi:<br>
+ * 
+ * <pre>
+ * 
+ *   {
+ *      "name": sebastian,
+ *      "numero":1234567891011324,
+ *      "CDV":213,
+ *      "cedula":1016078997
+ *      "usuario":{
+ *                  "id": 534682,
+ *                  "nombre": Juan,
+ *                  "apellido": Perez,
+ *                  "contrasenia": rplc6519,
+ *                  "correo": jperez@gmail.com,
+ *                  "telefono": 3103334455,
+ *                  "idioma": Ingles,
+ *                  "esAdministrador": false
+ *                 }
+ *   }
  */
 package co.edu.uniandes.csw.turismo.dtos;
 
-import co.edu.uniandes.csw.turismo.entities.FacturaEntity;
 import co.edu.uniandes.csw.turismo.entities.TarjetaDeCreditoEntity;
-import java.util.ArrayList;
-import java.util.List;
+import co.edu.uniandes.csw.turismo.entities.UsuarioEntity;
 
 /**
  *
@@ -16,27 +52,19 @@ import java.util.List;
  */
 public class TarjetaDeCreditoDetailDTO extends TarjetaDeCreditoDTO
 {
-    private List<FacturaDTO> facturas; 
+   
     private UsuarioDTO usuario;
 
     public TarjetaDeCreditoDetailDTO() 
     {
-        super();   
+         
     }
 
    
     public TarjetaDeCreditoDetailDTO(TarjetaDeCreditoEntity entity) 
     {
-        super(entity);
-        if (entity != null)
-        {
-           facturas = new ArrayList<>();
-            for (FacturaEntity entityFacturas : entity.getFacturas())
-            {
-                facturas.add(new FacturaDTO(entityFacturas));
-                
-            }
-        }
+      super(entity);
+
         if (entity.getUsuario() != null)
         {
             this.usuario = new UsuarioDTO(entity.getUsuario());
@@ -44,19 +72,20 @@ public class TarjetaDeCreditoDetailDTO extends TarjetaDeCreditoDTO
 
     }
     
-     @Override
-    public TarjetaDeCreditoEntity toEntity()
+   // @Override
+    public TarjetaDeCreditoEntity toEntity( UsuarioEntity user)
     {
         TarjetaDeCreditoEntity entity = super.toEntity();
-        if (facturas != null) {
-            List<FacturaEntity> facturaEntity = new ArrayList<>();
-            for (FacturaDTO dtofactura : facturas) {
-                facturaEntity.add(dtofactura.toEntity());
-            }
-            entity.setFacturas(facturaEntity);
-        }
-
+        entity.setUsuario(user);
         return entity;
+    }
+
+    public UsuarioDTO getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(UsuarioDTO usuario) {
+        this.usuario = usuario;
     }
 
     

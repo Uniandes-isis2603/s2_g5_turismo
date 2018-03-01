@@ -7,11 +7,15 @@ package co.edu.uniandes.csw.turismo.resources;
 
 import co.edu.uniandes.csw.turismo.dtos.TarjetaDeCreditoDetailDTO;
 import co.edu.uniandes.csw.turismo.ejb.TarjetaDeCreditoLogic;
+import co.edu.uniandes.csw.turismo.ejb.UsuarioLogic;
+import co.edu.uniandes.csw.turismo.entities.TarjetaDeCreditoEntity;
+import co.edu.uniandes.csw.turismo.entities.UsuarioEntity;
 import co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.turismo.mappers.BusinessLogicExceptionMapper;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -37,13 +41,18 @@ import javax.ws.rs.Produces;
  * </pre>
  * @author s.benitez10
  */
-@Path("tarjetas")
+@Path("usuarios/{usuarioid: \\d+}/tarjetas")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
 public class TarjetaDeCreditoResource 
 {
+    @Inject
     private TarjetaDeCreditoLogic tarjetadecreditologic;
+    
+    @Inject
+    private UsuarioLogic recursousuario;
+    
      /**
      * <h1>POST /api/tarjetas : Crear una TarjetaDeCredito.</h1>
      * 
@@ -66,8 +75,17 @@ public class TarjetaDeCreditoResource
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe la ciudad.
      */
     @POST
-    public TarjetaDeCreditoDetailDTO createTarjetaDecredito(TarjetaDeCreditoDetailDTO TarjetaDecredito) throws BusinessLogicException {
-        return new  TarjetaDeCreditoDetailDTO(tarjetadecreditologic.createTarjetaDeCredito(TarjetaDecredito.toEntity()));
+    public TarjetaDeCreditoDetailDTO createTarjetaDecredito(TarjetaDeCreditoDetailDTO TarjetaDecredito ,@PathParam("usuarioid")Long id) throws BusinessLogicException 
+    {
+        if (recursousuario.getUsuario(id) == null)
+        {
+            throw new BusinessLogicException("El usuario no existe");
+            
+        }
+        else
+        {
+        return new  TarjetaDeCreditoDetailDTO(tarjetadecreditologic.createTarjetaDeCredito(TarjetaDecredito.toEntity(recursousuario.getUsuario(id))));
+        }
     }  
      /**
      * <h1>GET /api/tarjetas : Obtener todas las Tarjetas de Credito.</h1>
@@ -82,8 +100,25 @@ public class TarjetaDeCreditoResource
      */
     
     @GET
-    public List<TarjetaDeCreditoDetailDTO> geTarjetaDecredito() {
-        return new ArrayList<>();
+    public List<TarjetaDeCreditoDetailDTO> geTarjetaDecredito(@PathParam("usuarioid")Long id) throws BusinessLogicException
+    {
+        UsuarioEntity user =recursousuario.getUsuario(id); 
+        
+        if (recursousuario.getUsuario(id) == null)
+        {
+            throw new BusinessLogicException("El usuario no existe");
+            
+        }
+        else
+        {
+            List<TarjetaDeCreditoDetailDTO> tarjetasuser =new ArrayList();
+            for (TarjetaDeCreditoEntity tarjeta : user.getListaTarjetas()) 
+            {
+                tarjetasuser.add(new TarjetaDeCreditoDetailDTO(tarjeta));
+            }
+            return tarjetasuser;
+        }
+        
     }
     
      /**
@@ -103,9 +138,30 @@ public class TarjetaDeCreditoResource
      * @return JSON {@link TarjetaDeCreditoDetailDTO} - La factura buscada
      */
     @GET
-    @Path("{id: \\d+}")
-    public TarjetaDeCreditoDetailDTO getTarjetaDecredito(@PathParam("id") Long id) {
-        return null;
+    @Path("{numero: \\d+}")
+    public TarjetaDeCreditoDetailDTO getTarjetaDecredito(@PathParam("usuarioid")Long id,@PathParam("numero") Long numero) throws BusinessLogicException
+    {
+        UsuarioEntity user =recursousuario.getUsuario(id); 
+        
+        if (recursousuario.getUsuario(id) == null)
+        {
+            throw new BusinessLogicException("El usuario no existe");
+            
+        }
+        else
+        {
+            TarjetaDeCreditoDetailDTO tarjetasuser = new TarjetaDeCreditoDetailDTO();
+            for (TarjetaDeCreditoEntity tarjeta : user.getListaTarjetas()) 
+            {
+                if(tarjeta.getNumero() == numero)
+                {
+                    tarjetasuser= new TarjetaDeCreditoDetailDTO(tarjeta);
+                }
+            }
+            return tarjetasuser;
+        }
+        
+        
     }
     /**
      * <h1>PUT /api/tarjetas/{id} : Actualizar tarjeta de credito con el id dado.</h1>
@@ -126,9 +182,10 @@ public class TarjetaDeCreditoResource
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera al no poder actualizar la tarjeta de credito porque ya existe una con ese nombre.
      */
     
-     @PUT
+    @PUT
     @Path("{id: \\d+}")
-    public TarjetaDeCreditoDetailDTO updateTarjetaDeCredito(@PathParam("id") Long id, TarjetaDeCreditoDetailDTO TarjetaDeCredito) throws BusinessLogicException {
+    public TarjetaDeCreditoDetailDTO updateTarjetaDeCredito(@PathParam("id") Long id, TarjetaDeCreditoDetailDTO TarjetaDeCredito) throws BusinessLogicException 
+    {
         return TarjetaDeCredito;
     }
     /**

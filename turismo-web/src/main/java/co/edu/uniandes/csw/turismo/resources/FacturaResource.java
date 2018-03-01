@@ -6,11 +6,13 @@
 package co.edu.uniandes.csw.turismo.resources;
 
 import co.edu.uniandes.csw.turismo.dtos.FacturaDetailDTO;
+import co.edu.uniandes.csw.turismo.ejb.FacturaLogic;
 import co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.turismo.mappers.BusinessLogicExceptionMapper;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -42,6 +44,8 @@ import javax.ws.rs.Produces;
 @RequestScoped
 public class FacturaResource
 {
+    @Inject
+    private FacturaLogic facturalogic;
       /**
      * <h1>POST /api/facturas : Crear una factura.</h1>
      * 
@@ -65,7 +69,7 @@ public class FacturaResource
      */
    @POST
     public FacturaDetailDTO createFactura(FacturaDetailDTO factura) throws BusinessLogicException {
-        return factura;
+        return new FacturaDetailDTO(facturalogic.createFactura(factura.toEntity()));
     }  
     
     /**
