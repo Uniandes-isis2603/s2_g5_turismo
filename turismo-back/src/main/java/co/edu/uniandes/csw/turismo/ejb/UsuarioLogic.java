@@ -12,8 +12,6 @@ import java.util.List;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import org.slf4j.spi.LocationAwareLogger;
-
 /**
  *
  * @author jf.gutierrez13

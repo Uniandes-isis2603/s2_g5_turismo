@@ -25,13 +25,18 @@ public class BlogLogic {
     private static final Logger LOGGER = Logger.getLogger(BlogLogic.class.getName());
      
     
+     
+    
+    
      @Inject
     private BlogPersistence persistence;
     
      
      public BlogEntity createBlog(BlogEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de creación de Blog");
-       
+        
+        if(entity.getDescripcion() != null && entity.getTema() != null && !entity.getTema().isEmpty()  && !entity.getDescripcion().isEmpty() ){
+  
         if (persistence.find(entity.getId()) != null) 
         {
             throw new BusinessLogicException("Ya existe este blog");
@@ -41,6 +46,12 @@ public class BlogLogic {
         LOGGER.info("Termina proceso de creación blogs");
         return entity;
     }
+        else 
+        {
+        throw new BusinessLogicException("tema y descripcion no pueden ser nulos");
+        }
+     
+     }
      
       public List<BlogEntity> getBlogs() {
         LOGGER.info("Inicia proceso de consultar todos los blogs");
@@ -54,8 +65,16 @@ public class BlogLogic {
     }
         
         public BlogEntity updateBlog(BlogEntity entity) throws BusinessLogicException  {
+            
+            if(entity.getDescripcion() != null && entity.getTema() != null && !entity.getTema().isEmpty()  && !entity.getDescripcion().isEmpty()){
         
         return persistence.update(entity);
+            
+            }
+            else 
+        {
+        throw new BusinessLogicException("tema y descripcion no pueden ser nulos");
+        }
     }
         
         public void deleteBlog(BlogEntity entity) throws BusinessLogicException {
