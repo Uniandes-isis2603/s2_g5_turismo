@@ -5,6 +5,7 @@ import co.edu.uniandes.csw.turismo.ejb.PlanLogic;
 import co.edu.uniandes.csw.turismo.entities.GuiaEntity;
 import co.edu.uniandes.csw.turismo.entities.PlanEntity;
 import co.edu.uniandes.csw.turismo.entities.PreferenciasEntity;
+import co.edu.uniandes.csw.turismo.entities.ValoracionesEntity;
 import co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.turismo.persistence.PlanPersistence;
 import java.util.ArrayList;
@@ -49,7 +50,8 @@ public class PlanLogicTest
     private List<GuiaEntity> GuiasData = new ArrayList();
     
     private List<PreferenciasEntity> preferenciasData = new ArrayList();
-     private List<PreferenciasEntity> preferenciasData2 = new ArrayList();
+    private List<PreferenciasEntity> preferenciasData2 = new ArrayList();
+    private List<ValoracionesEntity> valoracionesData = new ArrayList();
 
     @Deployment
     public static JavaArchive createDeployment() {
@@ -86,10 +88,12 @@ public class PlanLogicTest
      * Limpia las tablas que están implicadas en la prueba.
      *
      */
-    private void clearData() {
-        //em.createQuery("delete from GuiaEntity").executeUpdate();
+    private void clearData()
+    {
         em.createQuery("delete from PlanEntity").executeUpdate();
-        //em.createQuery("delete from PreferenciasEntity").executeUpdate();
+        em.createQuery("delete from GuiaEntity").executeUpdate();
+        em.createQuery("delete from PreferenciasEntity").executeUpdate();
+        em.createQuery("delete from ValoracionesEntity").executeUpdate();
     }
 
     /**
@@ -104,6 +108,12 @@ public class PlanLogicTest
             GuiasData.add(Guias);
         }
         for (int i = 0; i < 3; i++) {
+            ValoracionesEntity vals = factory.manufacturePojo(ValoracionesEntity.class);
+            vals.setCalificacion(4.0);
+            em.persist(vals);
+            valoracionesData.add(vals);
+        }
+        for (int i = 0; i < 3; i++) {
             PreferenciasEntity prefs = factory.manufacturePojo(PreferenciasEntity.class);
             em.persist(prefs);
             preferenciasData.add(prefs);
@@ -115,6 +125,7 @@ public class PlanLogicTest
             PlanEntity entity = factory.manufacturePojo(PlanEntity.class);
             if(i == 0)
             {
+                entity.setValoracionesPlan(valoracionesData);
                entity.setGuias(GuiasData);
             }
             entity.setPreferenciasPlan(preferenciasData);
@@ -186,16 +197,23 @@ public class PlanLogicTest
      * Prueba para eliminar un Plan
      *
      * 
+     * @throws co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException
      */
     @Test
     public void deletePlanTest() throws BusinessLogicException {
         PlanEntity entity = data.get(0);
         Long idPref = data.get(0).getPreferenciasPlan().get(0).getId();
+        Long idGuia = data.get(0).getGuias().get(0).getId();
+        Long idVal = data.get(0).getValoracionesPlan().get(0).getId();
         PlanLogic.removeGuia(GuiasData.get(0).getId(), entity.getId());
         PlanLogic.deletePlan(entity.getId());
         PlanEntity deleted = em.find(PlanEntity.class, entity.getId());
         PreferenciasEntity deletedPref = em.find(PreferenciasEntity.class, idPref);
+        GuiaEntity deletedGuia = em.find(GuiaEntity.class, idGuia);
+        ValoracionesEntity deletedVal = em.find(ValoracionesEntity.class, idVal);
         Assert.assertNotNull(deletedPref);
+        Assert.assertNotNull(deletedGuia);
+        Assert.assertNull(deletedVal);
         Assert.assertNull(deleted);
     }
 
@@ -380,6 +398,89 @@ public class PlanLogicTest
         try {
             PlanLogic.removePreferencia( preferenciasData.get(0).getId(),data.get(0).getId());
             PreferenciasEntity response = PlanLogic.getPreferencias(data.get(0).getId(), preferenciasData.get(0).getId());
+            
+        } catch (BusinessLogicException e) {
+            estaBien = true;
+        }
+        Assert.assertTrue(estaBien);
+
+    }
+    
+    /**
+     * Prueba para obtener una instancia de Valoraciones asociada a una instancia
+     * Plan
+     *
+     * 
+     * @throws co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException
+     */
+    @Test
+    public void getValoracionesTest() throws BusinessLogicException 
+    {
+        PlanEntity entity = data.get(0);
+        ValoracionesEntity ValoracionEntity = valoracionesData.get(0);
+        ValoracionesEntity response = PlanLogic.getVal(entity.getId(), ValoracionEntity.getId());
+
+        Assert.assertEquals(ValoracionEntity.getId(), response.getId());
+    }
+
+    /**
+     * Prueba para obtener una colección de instancias de Valoraciones asociadas a una
+     * instancia Plan
+     *
+     * 
+     */
+    @Test
+    public void listValoracionesTest() {
+        List<ValoracionesEntity> list = PlanLogic.listValoraciones(data.get(0).getId());
+        Assert.assertEquals(3, list.size());
+    }
+
+    /**
+     * Prueba para asociar un Valoraciones existente a un Plan
+     *
+     * 
+     */
+    @Test
+    public void addValoracionesTest() 
+    {
+        PlanEntity entity = data.get(1);
+        ValoracionesEntity ValoracionEntity = valoracionesData.get(1);
+        ValoracionesEntity response = PlanLogic.addValoracion(ValoracionEntity.getId(), entity.getId());
+
+        Assert.assertNotNull(response);
+        Assert.assertEquals(ValoracionEntity.getId(), response.getId());
+    }
+
+    /**
+     * Prueba para remplazar las instancias de Valoraciones asociadas a una instancia
+     * de Plan
+     *
+     * 
+     */
+    @Test
+    public void replaceValoracionesTest() {
+        PlanEntity entity = data.get(1);
+        List<ValoracionesEntity> list = valoracionesData.subList(1, 3);
+        PlanLogic.replaceValoraciones(entity.getId(), list);
+
+        entity = PlanLogic.getPlan(entity.getId());
+        Assert.assertFalse(entity.getValoracionesPlan().contains(valoracionesData.get(0)));
+        Assert.assertTrue(entity.getValoracionesPlan().contains(valoracionesData.get(1)));
+        Assert.assertTrue(entity.getValoracionesPlan().contains(valoracionesData.get(2)));
+    }
+
+    /**
+     * Prueba para desasociar un Valoracion existente de un Plan existente
+     *
+     * 
+     * @throws co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException
+     */
+    @Test
+    public void removeValoracionesTest() throws BusinessLogicException {
+        boolean estaBien = false;
+        try {
+            PlanLogic.removeValoracion( valoracionesData.get(0).getId(),data.get(0).getId());
+            ValoracionesEntity response = PlanLogic.getVal(data.get(0).getId(), valoracionesData.get(0).getId());
             
         } catch (BusinessLogicException e) {
             estaBien = true;

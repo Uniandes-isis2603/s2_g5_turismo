@@ -26,8 +26,8 @@ public class PlanLogic
     private PlanPersistence persistence; // Variable para acceder a la persistencia de la aplicación. Es un inyección de dependencias.
     @Inject
     private GuiaLogic guiaLogic;
-    //@Inject
-    //private ValoracionesLogic valoracionLogic;
+    @Inject
+    private ValoracionesLogic valoracionLogic;
     @Inject
     private PreferenciasLogic preferenciasLogic;
 
@@ -218,26 +218,26 @@ public class PlanLogic
      * valoracion
      * @return La valoracion que fue agregado al Plan.
      */
-    //public ValoracionEntity addValoracion(Long ValoracionId, Long PlanId)
-    //{
-        //PlanEntity planEntity = getPlan(PlanId);
-        //ValoracionesEntity valEntity = valoracionesLogic.getGuia(ValoracionId);
-        //planEntity.getValoracionesPlan().add(valEntity);
-        //return valEntity;
-    //}
+    public ValoracionesEntity addValoracion(Long ValoracionId, Long PlanId)
+    {
+        PlanEntity planEntity = getPlan(PlanId);
+        ValoracionesEntity valEntity = valoracionLogic.getValoracion(ValoracionId);
+        planEntity.getValoracionesPlan().add(valEntity);
+        return valEntity;
+    }
 
     /**
      * Borrar una valoracion de un Plan
      *
-     * @param valoracionId El guia que se desea borrar del plan.
+     * @param valoracionId La valoracion que se desea borrar del plan.
      * @param PlanId el Plan del cual se desea eliminar.
      */
-    //public void removeValoracion(Long valoracionId, Long PlanId) 
-    //{
-        //PlanEntity planEntity = getPlan(PlanId);
-        //ValoracionEntity val = valoracionLogic.getValoracion(valoracionId);
-      //  planEntity.getValoracionesPlan().remove(val);
-    //}
+    public void removeValoracion(Long valoracionId, Long PlanId) 
+    {
+        PlanEntity planEntity = getPlan(PlanId);
+        ValoracionesEntity val = valoracionLogic.getValoracion(valoracionId);
+        planEntity.getValoracionesPlan().remove(val);
+    }
 
     /**
      * Remplazar valoraciones de un Plan
@@ -262,17 +262,17 @@ public class PlanLogic
      * @return La val encontrada dentro del Plan.
      * @throws BusinessLogicException Si la val no se encuentra en el Plan
      */
-    //public ValoracionesEntity getVal(Long PlanId, Long valId) throws BusinessLogicException
-    //{
-      //  List<ValoracionesEntity> vals = getPlan(PlanId).getValoracionesPlan();
-        //ValoracionEntity val = valoracionesLogic.getValoracion(valId);
-        //int index = vals.indexOf(val);
-        //if (index >= 0) {
-         //   return vals.get(index);
-        //}
-        //throw new BusinessLogicException("La valoracion no está asociada a el Plan");
+    public ValoracionesEntity getVal(Long PlanId, Long valId) throws BusinessLogicException
+    {
+        List<ValoracionesEntity> vals = getPlan(PlanId).getValoracionesPlan();
+        ValoracionesEntity val = valoracionLogic.getValoracion(valId);
+        int index = vals.indexOf(val);
+        if (index >= 0) {
+            return vals.get(index);
+        }
+        throw new BusinessLogicException("La valoracion no está asociada a el Plan");
 
-    //}
+    }
           
     /**
      * Retorna las valoraciones del plan con id dado
