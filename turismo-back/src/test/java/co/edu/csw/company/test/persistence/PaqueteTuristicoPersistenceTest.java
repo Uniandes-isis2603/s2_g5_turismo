@@ -33,7 +33,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  * @author dl.avendano
  */
 @RunWith(Arquillian.class)
-public class PaqueteTuristicoTest {
+public class PaqueteTuristicoPersistenceTest {
     
     /**
      *
@@ -150,7 +150,7 @@ public class PaqueteTuristicoTest {
      *
      */
     @Test
-    public void getPaqueteTuristicosTest() {
+    public void getPaquetesTuristicosTest() {
         List<PaqueteTuristicoEntity> list = PaqueteTuristicoPersistence.findAll();
         Assert.assertEquals(data.size(), list.size());
         for (PaqueteTuristicoEntity ent : list) {
