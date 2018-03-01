@@ -25,6 +25,9 @@ public class BlogLogic {
     private static final Logger LOGGER = Logger.getLogger(BlogLogic.class.getName());
      
     
+     
+    
+    
      @Inject
     private BlogPersistence persistence;
     
@@ -33,7 +36,7 @@ public class BlogLogic {
         LOGGER.info("Inicia proceso de creación de Blog");
         
         if(entity.getDescripcion() != null && entity.getTema() != null && !entity.getTema().isEmpty()  && !entity.getDescripcion().isEmpty() ){
-       
+  
         if (persistence.find(entity.getId()) != null) 
         {
             throw new BusinessLogicException("Ya existe este blog");
