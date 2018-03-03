@@ -6,6 +6,7 @@ import co.edu.uniandes.csw.turismo.entities.PreferenciasEntity;
 import co.edu.uniandes.csw.turismo.entities.ValoracionesEntity;
 import co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.turismo.persistence.PlanPersistence;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -60,9 +61,31 @@ public class PlanLogic
             //falta cambiar esto entity.getUbicacion().getLatitud...
             throw new BusinessLogicException("El plan debe tener datos de ubicación (latitud, longitud, ciudad y pais)");
         }
+        List<PreferenciasEntity> prefs = new ArrayList();
+        for(int i = 0; i < entity.getPreferenciasPlan().size(); i++ )
+        {
+            prefs.add(entity.getPreferenciasPlan().get(i));
+        }
+        entity.setPreferenciasPlan(new ArrayList());
+        
         // Invoca la persistencia para crear la Plan
         persistence.create(entity);
         LOGGER.info("Termina proceso de creacion de Plan");
+        
+        for(int i = 0; i < prefs.size(); i++ )
+        {
+            PreferenciasEntity pref = prefs.get(i);
+            PreferenciasEntity prefEm = preferenciasLogic.getByName(pref.getTipoPlan());
+            if(prefEm != null)
+            {
+                addPreferencia(prefEm.getId(), entity.getId());
+            }
+            else
+            {
+                entity.getPreferenciasPlan().add(pref);
+            }
+            
+        }
         return entity;
     }
 
@@ -220,7 +243,7 @@ public class PlanLogic
      */
     public ValoracionesEntity addValoracion(Long ValoracionId, Long PlanId)
     {
-        PlanEntity planEntity = getPlan(PlanId);
+        PlanEntity planEntity = getPlan(PlanId); 
         ValoracionesEntity valEntity = valoracionLogic.getValoracion(ValoracionId);
         planEntity.getValoracionesPlan().add(valEntity);
         return valEntity;

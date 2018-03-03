@@ -1,0 +1,447 @@
+{
+	"info": {
+		"name": "Pruebas guias",
+		"_postman_id": "2df7d159-59aa-1976-fa9a-f787bc9f9350",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get todos los guias",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "28bf9e2a-a3bc-4a58-bcb3-46b198d90e03",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n       \"nombrePlan\": \"Museo del oro\",\r\n       \"descripcion\": \"Conocer balblabla en el museo del oro\",\r\n       \"pais\": \"Colombia\", \r\n       \"ciudad\": \"Bogota\", \r\n       \"longitud\": -74.057615, \r\n       \"latitud\": 4.606492, \r\n       \"duracion\":180,\r\n       \"restricciones\": \"Menores deben ir a compañados\",\r\n       \"archivo\": \"soyUnLink\",\r\n       \"precio\": 20.000,\r\n       \"cantidadPersonas\": 9999,\r\n       \"categoriasPlan\":[{\"tipoPlan\":\"Cultura\"}]\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/guides",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"guides"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET guia que existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "28bf9e2a-a3bc-4a58-bcb3-46b198d90e03",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n       \"nombrePlan\": \"Museo del oro\",\r\n       \"descripcion\": \"Conocer balblabla en el museo del oro\",\r\n       \"pais\": \"Colombia\", \r\n       \"ciudad\": \"Bogota\", \r\n       \"longitud\": -74.057615, \r\n       \"latitud\": 4.606492, \r\n       \"duracion\":180,\r\n       \"restricciones\": \"Menores deben ir a compañados\",\r\n       \"archivo\": \"soyUnLink\",\r\n       \"precio\": 20.000,\r\n       \"cantidadPersonas\": 9999,\r\n       \"categoriasPlan\":[{\"tipoPlan\":\"Cultura\"}]\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/guides/10000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"guides",
+						"10000"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET guia que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c0159ca8-1a0d-4a7c-8a5c-0adba85aab83",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"] = responseCode.code === 404;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n       \"nombrePlan\": \"Museo del oro\",\r\n       \"descripcion\": \"Conocer balblabla en el museo del oro\",\r\n       \"pais\": \"Colombia\", \r\n       \"ciudad\": \"Bogota\", \r\n       \"longitud\": -74.057615, \r\n       \"latitud\": 4.606492, \r\n       \"duracion\":180,\r\n       \"restricciones\": \"Menores deben ir a compañados\",\r\n       \"archivo\": \"soyUnLink\",\r\n       \"precio\": 20.000,\r\n       \"cantidadPersonas\": 9999,\r\n       \"categoriasPlan\":[{\"tipoPlan\":\"Cultura\"}]\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/guides/100000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"guides",
+						"100000"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Delete guia que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "27344aad-c340-4a31-8ac8-ead4cd5dd850",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"] = responseCode.code === 404;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/guides/100000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"guides",
+						"100000"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Delete guia que existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "be236f84-2702-45c4-9778-636dd68904e4",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 204\"] = responseCode.code === 204;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/guides/10000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"guides",
+						"10000"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "POST guia correctamente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "40687bb7-096d-41e0-8180-5507807f0c9a",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombreGuia\":\"nombrecito\",\n\t\"idiomaGuia\":\"unIdioma\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/guides",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"guides"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Post guia con nombre incorrecto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b3540747-7138-4fdf-8d90-49f3acba4549",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombreGuia\":\"\",\n\t\"idiomaGuia\":\"unIdioma\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/guides",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"guides"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "PUT en id que no existe en la DB",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6c4b5554-8b28-4664-8543-49bba695a51b",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"] = responseCode.code === 404;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombreGuia\":\"oligui\",\n\t\"idiomaGuia\":\"unIdioma\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/guides/100000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"guides",
+						"100000"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Put con con id que existe, pero nombre incorrecto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b50238cc-819c-4b16-a1e1-d4d59ccd1a2e",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombreGuia\":\"\",\n\t\"idiomaGuia\":\"unIdioma\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/guides/10001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"guides",
+						"10001"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "PUT correcto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9fe5d87f-6ac0-4c78-ba92-3fc4faba5b33",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombreGuia\":\"oligui\",\n\t\"idiomaGuia\":\"unIdioma\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/guides/10001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"guides",
+						"10001"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
