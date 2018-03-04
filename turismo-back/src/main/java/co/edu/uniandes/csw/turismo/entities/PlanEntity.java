@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.turismo.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -25,7 +26,7 @@ public class PlanEntity extends BaseEntity implements Serializable
      * Modela los guias del plan
      */
     @PodamExclude
-    @OneToMany() 
+    @OneToMany(cascade = CascadeType.PERSIST) 
     private List<GuiaEntity> guias;
     
     /**
@@ -39,8 +40,8 @@ public class PlanEntity extends BaseEntity implements Serializable
      * Modela las categorias o tipos de plan asociado al plan
      */
     @PodamExclude
-    @OneToMany() 
-    private List<PreferenciasEntity> preferenciasPlan;
+    @OneToMany(cascade = CascadeType.PERSIST) 
+    private List<PreferenciasEntity> preferenciasPlan = new ArrayList<>();
     
     /**
      * Modela las valoraciones del plan

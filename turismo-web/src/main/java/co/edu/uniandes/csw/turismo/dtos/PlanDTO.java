@@ -22,19 +22,19 @@
  * <pre>
  * 
  *   {
- *      "idPlan": 1,
- *      "nombrePlan": "Visita a Monserrate",
- *      "descripcion": "Ir a monserrate subiendo por teleferico",
- *      "pais": "Colombia", //esto ahora va el la clase ubicacion
- *      "ciudad": "Bogota", //*2
- *      "longitud": -74.057615, //*3
- *      "latitud": 4.606492, //*4
- *      "duracion":180,
- *      "restricciones": "Menores deben ir a compañados",
- *      "archivo": "imagenLink",
- *      "precio": 20.000,
- *      "cantidadPersonas": 9999  
- *   }
+       "idPlan": 1,
+       "nombrePlan": "Visita a Monserrate",
+       "descripcion": "Ir a monserrate subiendo por teleferico",
+       "pais": "Colombia", //esto ahora va el la clase ubicacion
+       "ciudad": "Bogota", //*2
+       "longitud": -74.057615, //*3
+       "latitud": 4.606492, //*4
+       "duracion":180,
+       "restricciones": "Menores deben ir a compañados",
+       "archivo": "imagenLink",
+       "precio": 20.000,
+       "cantidadPersonas": 9999  
+    }
  *
  * </pre>
 */

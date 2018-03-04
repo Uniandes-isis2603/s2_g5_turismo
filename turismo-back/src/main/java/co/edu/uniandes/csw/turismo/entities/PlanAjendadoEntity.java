@@ -9,6 +9,8 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -26,6 +28,7 @@ public class PlanAjendadoEntity extends BaseEntity implements Serializable
     @OneToOne
     private PlanEntity plan = new PlanEntity();
 
+    @Temporal(TemporalType.DATE)
     Date fecha = new Date();
 
     public Date getFecha() {

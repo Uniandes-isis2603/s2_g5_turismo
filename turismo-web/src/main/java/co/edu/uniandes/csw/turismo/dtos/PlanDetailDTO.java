@@ -47,7 +47,7 @@
        "cantidadPersonas": 9999,
        "valoraciones":[{
                       "calificacion": 4,
-                      "comentario": fue shido
+                      "comentario": "fue shido"
                       },
                       {
                       "calificacion": 2,

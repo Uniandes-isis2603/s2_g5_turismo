@@ -123,15 +123,15 @@ public class PreferencesResource
     }
     
     /**
-     * <h1>DELETE /api/preferences/{nombreTipoPlan} : Borrar preferencia por nombre.</h1>
+     * <h1>DELETE /api/preferences/{id} : Borrar preferencia por nombre.</h1>
      * 
-     * <pre>Borra la preferencia con el nombre dado.
+     * <pre>Borra la preferencia con el id dado.
      * 
      * Códigos de respuesta:<br>
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
-     * 200 OK Elimina la preferencia correspondiente al nombre dado.</code>
+     * 200 OK Elimina la preferencia correspondiente al id dado.</code>
      * <code style="color: #c7254e; background-color: #f9f2f4;">
-     * 404 Not Found. No existe una preferencia con el nombre dado.
+     * 404 Not Found. No existe una preferencia con el id dado.
      * </code>
      * </pre>
      * @param id  
@@ -139,7 +139,7 @@ public class PreferencesResource
      */
     @DELETE
     @Path("{id: \\d+}")
-     public void deletePreferencias(@PathParam("id") Long id) throws BusinessLogicException
+    public void deletePreferencias(@PathParam("id") Long id) throws BusinessLogicException
     {
         PreferenciasEntity entity = preferenciasLogic.getPreferencias(id);
         if (entity == null) 
