@@ -90,7 +90,6 @@ public class PaqueteTuristicoLogicTest {
      */
     private void clearData() {
         em.createQuery("delete from PaqueteTuristicoEntity").executeUpdate();
-        em.createQuery("delete from BookEntity").executeUpdate();
     }
 
     /**
