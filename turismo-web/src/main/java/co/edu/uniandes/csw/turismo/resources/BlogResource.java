@@ -87,9 +87,9 @@ public class BlogResource {
   
   @GET
   @Path("{id: \\d+}") 
-public BlogDTO GetBlog (@PathParam("id") long id)  
+public BlogDTO GetBlog (@PathParam("id") long id) throws BusinessLogicException  
 {
- return new BlogDTO(BlogLogic.getBlogs(id));
+ return new BlogDetailDTO(BlogLogic.getBlogs(id));
 }
 
   
@@ -139,8 +139,7 @@ public BlogDTO GetBlog (@PathParam("id") long id)
      * @throws co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException
      */
   @PUT
-  @Path("{id: \\d+}") 
-  public BlogDTO ActualizarBlog (@PathParam("id") long id, BlogDTO blog) throws BusinessLogicException
+  public BlogDTO ActualizarBlog ( BlogDTO blog) throws BusinessLogicException
   {
   BlogLogic.updateBlog(blog.toEntity());
         return blog;
@@ -160,12 +159,20 @@ public BlogDTO GetBlog (@PathParam("id") long id)
      * @param id Identificador del blog que se desea borrar. Este debe ser una cadena de dígitos.
      */
   @DELETE
-  @Path("{id: \\d+}") 
+  @Path("{id: \\d+}")  
   public boolean BorrarBlog (@PathParam("id") long id) throws BusinessLogicException
   {
-  BlogEntity borrar = BlogLogic.getBlogs(id);
+      BlogEntity borrar = BlogLogic.getBlogs(id);
+  
+      if (borrar == null)
+        {
+        throw new BusinessLogicException("el blog no existe");
+        
+        }
+      else {
+        
         BlogLogic.deleteBlog(borrar);
-        return true;
+        return true;}
   }
   
 

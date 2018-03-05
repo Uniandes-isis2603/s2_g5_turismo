@@ -60,8 +60,15 @@ public class BlogLogic {
         return editorials;
     }
       
-        public BlogEntity getBlogs(Long id) {
+        public BlogEntity getBlogs(Long id) throws BusinessLogicException {
+            BlogEntity a = persistence.find(id);
+            if (a!= null){
         return persistence.find(id);
+            }
+            else
+            {
+             throw new BusinessLogicException("el blog no existe");
+            }
     }
         
         public BlogEntity updateBlog(BlogEntity entity) throws BusinessLogicException  {

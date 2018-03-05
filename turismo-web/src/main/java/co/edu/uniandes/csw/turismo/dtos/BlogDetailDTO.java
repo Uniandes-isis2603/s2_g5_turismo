@@ -9,6 +9,7 @@ package co.edu.uniandes.csw.turismo.dtos;
 import co.edu.uniandes.csw.turismo.entities.BlogEntity;
 import co.edu.uniandes.csw.turismo.entities.ComentarioEntity;
 import co.edu.uniandes.csw.turismo.entities.PlanEntity;
+import co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException;
 import java.util.Iterator;
 import java.util.List;
 
@@ -98,11 +99,17 @@ public class BlogDetailDTO  extends BlogDTO
        return entity;
     }
     
-    public BlogDetailDTO(BlogEntity entity) {
+    public BlogDetailDTO(BlogEntity entity) throws BusinessLogicException {
         
         super(entity);
         
-        List<ComentarioEntity> comen =  entity.getComentarios();
+        if (entity == null)
+        {
+        throw new BusinessLogicException("el blog no existe");
+        
+        }
+        else{
+        List<ComentarioEntity> comen =   entity.getComentarios();
         List<PlanEntity> pla = entity.getPlanes();
         
         Iterator e = comen.iterator();
@@ -129,6 +136,7 @@ public class BlogDetailDTO  extends BlogDTO
         }
         
         
+    }
     }
     
 }
