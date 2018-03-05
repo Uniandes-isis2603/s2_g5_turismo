@@ -8,7 +8,6 @@ package co.edu.csw.company.test.logic;
 import co.edu.uniandes.csw.turismo.ejb.ComentarioLogic;
 
 import co.edu.uniandes.csw.turismo.entities.ComentarioEntity;
-import co.edu.uniandes.csw.turismo.entities.ComentarioEntity;
 
 import co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.turismo.persistence.ComentarioPersistence;
@@ -50,7 +49,7 @@ public class ComentarioLogicTest
     private UserTransaction utx;
 
     private List<ComentarioEntity> ComentarioData = new ArrayList<ComentarioEntity>();
-    private List<ComentarioEntity> ComentariosData = new ArrayList<ComentarioEntity>();
+    
 
 
 
@@ -106,11 +105,7 @@ public class ComentarioLogicTest
             em.persist(Comentario);
             ComentarioData.add(Comentario);
         }
-        for (int i = 0; i < 3; i++) {
-            ComentarioEntity Comentario = factory.manufacturePojo(ComentarioEntity.class);
-            em.persist(Comentario);
-            ComentariosData.add(Comentario);
-        }
+      
         
     }
     
