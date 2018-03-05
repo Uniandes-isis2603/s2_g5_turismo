@@ -6,7 +6,7 @@
 package co.edu.uniandes.csw.turismo.dtos;
 
 import co.edu.uniandes.csw.turismo.entities.GuiaEntity;
-import co.edu.uniandes.csw.turismo.entities.PlanAjendadoEntity;
+import co.edu.uniandes.csw.turismo.entities.PlanAgendadoEntity;
 import co.edu.uniandes.csw.turismo.entities.PlanEntity;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,11 +15,11 @@ import java.util.List;
  *
  * @author dl.avendano
  */
-public class PlanAjendadoDetailDTO extends PlanAjendadoDTO {
+public class PlanAjendadoDetailDTO extends PlanAgendadoDTO {
     private GuiaDTO guia;
     private PlanDTO plan;
 
-    public PlanAjendadoDetailDTO(PlanAjendadoEntity entity) {
+    public PlanAjendadoDetailDTO(PlanAgendadoEntity entity) {
         super(entity);
         if (entity != null) {
             if( entity.getGuia() != null)
@@ -34,9 +34,9 @@ public class PlanAjendadoDetailDTO extends PlanAjendadoDTO {
     }
     
     @Override
-    public PlanAjendadoEntity toEntity() {
+    public PlanAgendadoEntity toEntity() {
         
-        PlanAjendadoEntity entity = super.toEntity();
+        PlanAgendadoEntity entity = super.toEntity();
         if (this.getPlan() != null) {
             entity.setPlan(this.getPlan().toEntity());
         }

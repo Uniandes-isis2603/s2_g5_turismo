@@ -191,5 +191,81 @@ public class PaqueteTuristicoLogicTest {
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
         Assert.assertEquals(pojoEntity.getName(), resp.getName());
     }
+     @Test
+    public void getGuiasTest() throws BusinessLogicException 
+    {
+        PaqueteTuristicoEntityEntity entity = data.get(0);
+        GuiaEntity GuiaEntity = GuiasData.get(0);
+        GuiaEntity response = PlanLogic.getGuia(entity.getId(), GuiaEntity.getId());
+
+        Assert.assertEquals(GuiaEntity.getId(), response.getId());
+        Assert.assertEquals(GuiaEntity.getName(), response.getName());
+    }
+
+    /**
+     * Prueba para obtener una colección de instancias de Guias asociadas a una
+     * instancia Plan
+     *
+     * 
+     */
+    @Test
+    public void listGuiasTest() {
+        List<GuiaEntity> list = PlanLogic.listGuias(data.get(0).getId());
+        Assert.assertEquals(3, list.size());
+    }
+
+    /**
+     * Prueba para asociar un Guias existente a un Plan
+     *
+     * 
+     */
+    @Test
+    public void addGuiasTest() 
+    {
+        PlanEntity entity = data.get(1);
+        GuiaEntity guiaEntity = GuiasData.get(1);
+        GuiaEntity response = PlanLogic.addGuia(guiaEntity.getId(), entity.getId());
+
+        Assert.assertNotNull(response);
+        Assert.assertEquals(guiaEntity.getId(), response.getId());
+    }
+
+    /**
+     * Prueba para remplazar las instancias de Guias asociadas a una instancia
+     * de Plan
+     *
+     * 
+     */
+    @Test
+    public void replaceGuiasTest() {
+        PlanEntity entity = data.get(0);
+        List<GuiaEntity> list = GuiasData.subList(1, 3);
+        PlanLogic.replaceGuias(entity.getId(), list);
+
+        entity = PlanLogic.getPlan(entity.getId());
+        Assert.assertFalse(entity.getGuias().contains(GuiasData.get(0)));
+        Assert.assertTrue(entity.getGuias().contains(GuiasData.get(1)));
+        Assert.assertTrue(entity.getGuias().contains(GuiasData.get(2)));
+    }
+
+    /**
+     * Prueba para desasociar un Guia existente de un Plan existente
+     *
+     * 
+     * @throws co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException
+     */
+    @Test
+    public void removeGuiasTest() throws BusinessLogicException {
+        boolean estaBien = false;
+        try {
+            PlanLogic.removeGuia( GuiasData.get(0).getId(),data.get(0).getId());
+            GuiaEntity response = PlanLogic.getGuia(data.get(0).getId(), GuiasData.get(0).getId());
+            
+        } catch (BusinessLogicException e) {
+            estaBien = true;
+        }
+        Assert.assertTrue(estaBien);
+
+    }
 }
 

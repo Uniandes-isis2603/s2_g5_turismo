@@ -7,7 +7,7 @@ package co.edu.uniandes.csw.turismo.ejb;
 
 import co.edu.uniandes.csw.turismo.entities.PagoEntity;
 import co.edu.uniandes.csw.turismo.entities.PaqueteTuristicoEntity;
-import co.edu.uniandes.csw.turismo.entities.PlanAjendadoEntity;
+import co.edu.uniandes.csw.turismo.entities.PlanAgendadoEntity;
 import co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.turismo.persistence.PagoPersistence;
 import co.edu.uniandes.csw.turismo.persistence.PaqueteTuristicoPersistence;
@@ -40,7 +40,7 @@ public class PaqueteTuristicoLogic {
     public PaqueteTuristicoEntity createPaqueteTuristico(PaqueteTuristicoEntity entity) throws BusinessLogicException{
         
         List <PagoEntity> pagos = entity.getPagos();
-        List <PlanAjendadoEntity> planes = entity.getPlanes();
+        List <PlanAgendadoEntity> planes = entity.getPlanes();
         for(int i=0; i<pagos.size();i++)
         {
         if (pagos.size()!=planes.size())

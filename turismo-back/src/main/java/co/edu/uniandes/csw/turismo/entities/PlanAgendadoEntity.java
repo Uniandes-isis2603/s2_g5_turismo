@@ -18,7 +18,7 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author dl.avendano
  */
 @Entity
-public class PlanAjendadoEntity extends BaseEntity implements Serializable
+public class PlanAgendadoEntity extends BaseEntity implements Serializable
 {
     @PodamExclude
     @OneToOne
