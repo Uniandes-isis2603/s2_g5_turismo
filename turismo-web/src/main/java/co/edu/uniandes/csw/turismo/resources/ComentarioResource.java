@@ -5,8 +5,7 @@
  */
 package co.edu.uniandes.csw.turismo.resources;
 
-import co.edu.uniandes.csw.turismo.dtos.BlogDTO;
-import co.edu.uniandes.csw.turismo.dtos.BlogDetailDTO;
+
 import co.edu.uniandes.csw.turismo.dtos.ComentarioDTO;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +19,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import co.edu.uniandes.csw.turismo.dtos.ComentariosDetailDTO;
-import co.edu.uniandes.csw.turismo.ejb.BlogLogic;
 import co.edu.uniandes.csw.turismo.ejb.ComentarioLogic;
 import co.edu.uniandes.csw.turismo.entities.ComentarioEntity;
 import co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException;
@@ -35,14 +33,14 @@ import javax.inject.Inject;
  * @author lf.rivera10
  */
 
-@Path("blogs/{BlogId: \\d+}/comentarios")
+@Path("blogs/{blogId: \\d+}/comentarios")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
 public class ComentarioResource {
     
      @Inject
-    ComentarioLogic ComentarioLogic;
+    ComentarioLogic comentarioLogic;
      
      
       
@@ -55,14 +53,14 @@ public class ComentarioResource {
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
      * 200 OK Devuelve todos los comentarios del blog </code> 
      * </pre>
-     * @param BlogId
+     * @param blogId
      * @return JSONArray {@link ComentariosDetailDTO} - los comentarios encontrados en la aplicación. Si no hay ninguno retorna una lista vacía.
      */
     @GET
-    public ArrayList<ComentarioDTO> GetComentarios (@PathParam("BlogId") long BlogId) throws BusinessLogicException
+    public List<ComentarioDTO> getComentarios (@PathParam("blogId") long blogId) throws BusinessLogicException
     {
-       List<ComentarioEntity> lista =ComentarioLogic.getComentarios(BlogId);
-       ArrayList<ComentarioDTO> respuesta = new ArrayList<ComentarioDTO>();
+       List<ComentarioEntity> lista =comentarioLogic.getComentarios(blogId);
+       ArrayList<ComentarioDTO> respuesta = new ArrayList<>();
          for (ComentarioEntity Entity : lista) {
              respuesta.add(new ComentarioDTO(Entity));
          }
@@ -83,15 +81,15 @@ public class ComentarioResource {
      * </code> 
      * </pre>
      * @param id Identificador del comentario que se esta buscando. Este debe ser una cadena de dígitos.
-     * @param BlogId
+     * @param blogId
      * @return JSON {@link ComentariosDetailDTO} - el comentario buscado
      */
     
     @GET
     @Path("{id2: \\d+}") 
-    public ComentarioDTO GetComentario (@PathParam("id2") long id,@PathParam("BlogId") long BlogId ) throws BusinessLogicException
+    public ComentarioDTO getComentario (@PathParam("id2") long id,@PathParam("blogId") long blogId ) throws BusinessLogicException
 {
-       return new ComentarioDTO(ComentarioLogic.getComentarios(id, BlogId));
+       return new ComentarioDTO(comentarioLogic.getComentarios(id, blogId));
     
 }
     
@@ -112,15 +110,15 @@ public class ComentarioResource {
      * </code>
      * </pre>
      * @param comentario {@link ComentariosDetailDTO} - el comentario que se desea guardar.
-     * @param BlogId
+     * @param blogId
      * @return JSON {@link ComentariosDetailDTO}  - el comentario creado con el atributo id autogenerado.
      * @throws co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException
      */
     
     @POST
-    public ComentarioDTO CrearComentario (ComentarioDTO comentario, @PathParam("BlogId") long BlogId) throws BusinessLogicException
+    public ComentarioDTO crearComentario (ComentarioDTO comentario, @PathParam("blogId") long blogId) throws BusinessLogicException
     {
-        return new ComentarioDTO (ComentarioLogic.createComentario(comentario.toEntity(), BlogId));
+        return new ComentarioDTO (comentarioLogic.createComentario(comentario.toEntity(), blogId));
     }
     
     /**
@@ -143,9 +141,9 @@ public class ComentarioResource {
      */
     
     @PUT
-    public ComentarioDTO ActualizarComentario (@PathParam("id2") long id,ComentarioDTO comentario ) throws BusinessLogicException
+    public ComentarioDTO actualizarComentario (ComentarioDTO comentario ) throws BusinessLogicException
     {
-        ComentarioLogic.updateComentario(comentario.toEntity());
+        comentarioLogic.updateComentario(comentario.toEntity());
         return comentario;
     }
     
@@ -162,17 +160,17 @@ public class ComentarioResource {
      * </code>
      * </pre>
      * @param id Identificador del comentario que se desea borrar. Este debe ser una cadena de dígitos.
-     * @param BlogId
+     * @param blogId
      * @return 
      * @throws co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException
      */
     
     @DELETE
     @Path("{id2: \\d+}") 
-    public void  BorrarComentario (@PathParam("id2") long id, @PathParam("BlogId") long BlogId) throws BusinessLogicException
+    public void  borrarComentario (@PathParam("id2") long id, @PathParam("blogId") long blogId) throws BusinessLogicException
     {
-        ComentarioEntity borrar = ComentarioLogic.getComentarios(id, BlogId);
-        ComentarioLogic.deleteComentario(borrar, BlogId);
+        ComentarioEntity borrar = comentarioLogic.getComentarios(id, blogId);
+        comentarioLogic.deleteComentario(borrar, blogId);
         
     }
     

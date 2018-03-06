@@ -30,6 +30,15 @@ public class ComentarioDTO {
     public ComentarioDTO(){
         
     }
+    
+    public ComentarioDTO(ComentarioEntity entity) 
+    {
+       
+       this.comentario = entity.getComentario();
+       this.id = entity.getId();
+       
+                
+    }
 
     public long getId() {
         return id;
@@ -52,14 +61,7 @@ public class ComentarioDTO {
         this.comentario = comentario;
     }
     
-    public ComentarioDTO(ComentarioEntity entity) 
-    {
-       
-       this.comentario = entity.getComentario();
-       this.id = entity.getId();
-       
-                
-    }
+    
      public ComentarioEntity toEntity() {
         ComentarioEntity entity = new ComentarioEntity();
         entity.setComentario(comentario);
