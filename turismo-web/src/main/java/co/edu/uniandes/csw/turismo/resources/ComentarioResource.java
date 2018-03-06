@@ -35,7 +35,7 @@ import javax.inject.Inject;
  * @author lf.rivera10
  */
 
-@Path("Blog/{BlogId: \\d+}/Comentario")
+@Path("blogs/{BlogId: \\d+}/comentarios")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
@@ -59,7 +59,7 @@ public class ComentarioResource {
      * @return JSONArray {@link ComentariosDetailDTO} - los comentarios encontrados en la aplicación. Si no hay ninguno retorna una lista vacía.
      */
     @GET
-    public ArrayList<ComentarioDTO> GetComentarios (@PathParam("BlogId") long BlogId)
+    public ArrayList<ComentarioDTO> GetComentarios (@PathParam("BlogId") long BlogId) throws BusinessLogicException
     {
        List<ComentarioEntity> lista =ComentarioLogic.getComentarios(BlogId);
        ArrayList<ComentarioDTO> respuesta = new ArrayList<ComentarioDTO>();
@@ -89,7 +89,7 @@ public class ComentarioResource {
     
     @GET
     @Path("{id2: \\d+}") 
-    public ComentarioDTO GetComentario (@PathParam("id2") long id,@PathParam("BlogId") long BlogId )
+    public ComentarioDTO GetComentario (@PathParam("id2") long id,@PathParam("BlogId") long BlogId ) throws BusinessLogicException
 {
        return new ComentarioDTO(ComentarioLogic.getComentarios(id, BlogId));
     
@@ -143,7 +143,6 @@ public class ComentarioResource {
      */
     
     @PUT
-    @Path("{id2: \\d+}") 
     public ComentarioDTO ActualizarComentario (@PathParam("id2") long id,ComentarioDTO comentario ) throws BusinessLogicException
     {
         ComentarioLogic.updateComentario(comentario.toEntity());
@@ -170,12 +169,11 @@ public class ComentarioResource {
     
     @DELETE
     @Path("{id2: \\d+}") 
-    
-    public boolean  BorrarComentario (@PathParam("id2") long id, @PathParam("BlogId") long BlogId) throws BusinessLogicException
+    public void  BorrarComentario (@PathParam("id2") long id, @PathParam("BlogId") long BlogId) throws BusinessLogicException
     {
         ComentarioEntity borrar = ComentarioLogic.getComentarios(id, BlogId);
-        ComentarioLogic.deleteComentario(borrar);
-        return true;
+        ComentarioLogic.deleteComentario(borrar, BlogId);
+        
     }
     
     

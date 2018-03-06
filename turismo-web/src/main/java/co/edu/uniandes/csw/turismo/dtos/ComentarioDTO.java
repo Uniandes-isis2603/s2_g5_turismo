@@ -22,12 +22,21 @@ import co.edu.uniandes.csw.turismo.entities.ComentarioEntity;
  */
 public class ComentarioDTO {
     private String comentario;
+    private long id;
     
       /**
      * Constructor por defecto
      */
     public ComentarioDTO(){
         
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     /**
@@ -45,15 +54,16 @@ public class ComentarioDTO {
     
     public ComentarioDTO(ComentarioEntity entity) 
     {
-        if(entity != null)
-        {
+       
        this.comentario = entity.getComentario();
-        }
-        
+       this.id = entity.getId();
+       
+                
     }
      public ComentarioEntity toEntity() {
         ComentarioEntity entity = new ComentarioEntity();
         entity.setComentario(comentario);
+        entity.setId(id);
         return entity;
     } 
     
