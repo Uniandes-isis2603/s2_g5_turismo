@@ -72,10 +72,7 @@ public class FacturaDetailDTO extends FacturaDTO
     public FacturaEntity toEntity()
     { 
        FacturaEntity entityFactura = super.toEntity();
-//       if(this.getUsuario() != null)
-//       {
-//           entityFactura.setUsuario(this.getUsuario().toEntity());
-//       }
+       
        if(this.getPaquetetur() != null)
        {
            entityFactura.setPaqueteturistico(this.getPaquetetur().toEntity());
