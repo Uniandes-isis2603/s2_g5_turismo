@@ -56,7 +56,7 @@ public class ComentarioLogicTest
 
     private List<ComentarioEntity> ComentarioData = new ArrayList<ComentarioEntity>();
     
-     private List<BlogEntity> BlogData = new ArrayList<BlogEntity>();
+     private BlogEntity BlogData = new BlogEntity();
     
 
 
@@ -111,17 +111,19 @@ public class ComentarioLogicTest
      *
      */
     private void insertData() {
+         BlogEntity Blog = factory.manufacturePojo(BlogEntity.class);
+            
         for (int i = 0; i < 3; i++) {
+            
             ComentarioEntity Comentario = factory.manufacturePojo(ComentarioEntity.class);
             em.persist(Comentario);
             ComentarioData.add(Comentario);
+
+           
         }
-        
-         for (int i = 0; i < 3; i++) {
-            BlogEntity Blog = factory.manufacturePojo(BlogEntity.class);
+            Blog.setComentarios(ComentarioData);
             em.persist(Blog);
-            BlogData.add(Blog);
-        }
+          
       
         
     }
@@ -169,7 +171,7 @@ public class ComentarioLogicTest
     public void deleteComentarioTest() throws BusinessLogicException
     {
          ComentarioEntity entity = ComentarioData.get(0);
-         ComentarioLogic.deleteComentario(entity);
+         ComentarioLogic.deleteComentario(entity, BlogData.getId());
          ComentarioEntity deleted = em.find( ComentarioEntity.class, entity.getId());
          Assert.assertNull(deleted);
     }

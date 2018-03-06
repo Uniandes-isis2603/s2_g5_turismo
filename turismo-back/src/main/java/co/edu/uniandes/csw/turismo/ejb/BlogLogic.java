@@ -49,14 +49,6 @@ public class BlogLogic {
         }
         // Invoca la persistencia para crear el Blog
         persistence.create(entity);
-        
-      List<ComentarioEntity> comentar = entity.getComentarios();
-      
-      Iterator e = comentar.iterator();
-      while(e.hasNext())
-      {
-      persistenceComentario.create((ComentarioEntity) e.next());
-      }
       List<ComentarioEntity> plan = entity.getComentarios();
       
       Iterator e2 = plan.iterator();
@@ -85,7 +77,7 @@ public class BlogLogic {
         public BlogEntity getBlogs(Long id) throws BusinessLogicException {
             BlogEntity a = persistence.find(id);
             if (a!= null){
-        return persistence.find(id);
+            return a;
             }
             else
             {

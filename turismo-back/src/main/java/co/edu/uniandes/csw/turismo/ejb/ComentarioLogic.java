@@ -36,11 +36,7 @@ public class ComentarioLogic {
         LOGGER.info("Inicia proceso de creación de Comentario");
        if (entity.getComentario() != null && !entity.getComentario().isEmpty()){
            BlogEntity blog = BlogLogic.getBlogs(BlogId);
-        if (persistence.find(entity.getId()) != null) 
-        {
-            throw new BusinessLogicException("Ya existe este Comentario");
-        }
-        else if (blog != null){
+       if (blog != null){
             List<ComentarioEntity> com = blog.getComentarios();
             com.add(entity);
             blog.setComentarios(com);
@@ -62,7 +58,7 @@ public class ComentarioLogic {
        }
     }
      
-      public List<ComentarioEntity> getComentarios(long BlogId) {
+      public List<ComentarioEntity> getComentarios(long BlogId) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de consultar todos los Comentarios");
        BlogEntity blog = BlogLogic.getBlogs(BlogId);
         List<ComentarioEntity> com = blog.getComentarios();
@@ -70,7 +66,7 @@ public class ComentarioLogic {
         return com;
     }
       
-        public ComentarioEntity getComentarios(Long id, long BlogId) 
+        public ComentarioEntity getComentarios(Long id, long BlogId) throws BusinessLogicException 
     {   BlogEntity blog = BlogLogic.getBlogs(BlogId);
         List<ComentarioEntity> com = blog.getComentarios();
         ComentarioEntity encontrado = null;
@@ -86,7 +82,16 @@ public class ComentarioLogic {
         }
         
         }
-        return encontrado;
+        if(encontrado == null)
+        {
+       
+            throw new BusinessLogicException("el comentario no existe");
+
+        }
+            
+            return encontrado;
+        
+        
         
     }
         
@@ -100,8 +105,13 @@ public class ComentarioLogic {
          }
     }
         
-        public void deleteComentario(ComentarioEntity entity) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar Comentario con id={0}", entity.getId());    
+        public void deleteComentario(ComentarioEntity entity, long BlogId) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar Comentario con id={0}", entity.getId());
+       BlogEntity update = BlogLogic.getBlogs(BlogId);
+       List<ComentarioEntity> comen = update.getComentarios();
+       comen.remove(entity);
+       update.setComentarios(comen);
+       BlogLogic.updateBlog(update);
         persistence.delete(entity.getId());
         LOGGER.log(Level.INFO, "Termina proceso de borrar Comentario con id={0}", entity.getId());
     }
