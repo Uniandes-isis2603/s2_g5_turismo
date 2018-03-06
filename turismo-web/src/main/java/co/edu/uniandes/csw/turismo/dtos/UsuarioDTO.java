@@ -45,14 +45,14 @@ import co.edu.uniandes.csw.turismo.entities.UsuarioEntity;
  */
 public class UsuarioDTO 
 {
-    private long id;
+    private Long id;
     private String nombre;
     private String apellido;
     private String contrasenia;
     private String correo;
-    private int telefono;
+    private Integer telefono;
     private String idioma;
-    private boolean esAdministrador;
+    private Boolean esAdministrador;
     
     /**
      * Constructor por defecto
@@ -73,7 +73,7 @@ public class UsuarioDTO
      * @param idioma idioma del usuario
      * @param esAdministrador indica si el usuario es o no administrador
      */
-    public UsuarioDTO(long id, String nombre, String apellido, String contrasenia, String correo, int telefono, String idioma, boolean esAdministrador)
+    public UsuarioDTO(Long id, String nombre, String apellido, String contrasenia, String correo, int telefono, String idioma, boolean esAdministrador)
     {
         this.id = id;
         this.nombre = nombre;
@@ -88,14 +88,14 @@ public class UsuarioDTO
     /**
      * @return El id del usuario
      */
-    public long getId() {
+    public Long getId() {
         return id;
     }
     
     /**
      * @param id Nuevo ID del usuario
      */
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -160,14 +160,14 @@ public class UsuarioDTO
     /**
      * @return El telefono del usuario 
      */
-    public int getTelefono() {
+    public Integer getTelefono() {
         return telefono;
     }
 
     /**
      * @param telefono El nuevo telefono del usuario
      */
-    public void setTelefono(int telefono) {
+    public void setTelefono(Integer telefono) {
         this.telefono = telefono;
     }
 
@@ -189,14 +189,14 @@ public class UsuarioDTO
     /**
      * @return true si es un usuario administrador, false de lo contrario
      */
-    public boolean isEsAdministrador() {
+    public Boolean isEsAdministrador() {
         return esAdministrador;
     }
 
     /**
      * @param esAdministrador El nuevo estado de la cuenta, true si es administrador, false de lo contrario.
      */
-    public void setEsAdministrador(boolean esAdministrador) {
+    public void setEsAdministrador(Boolean esAdministrador) {
         this.esAdministrador = esAdministrador;
     }
     
@@ -204,7 +204,7 @@ public class UsuarioDTO
     {
         UsuarioEntity entity = new UsuarioEntity();
         entity.setApellido(this.apellido);
-        entity.setNombre(this.nombre);
+        entity.setName(this.nombre);
         entity.setContrasenia(this.contrasenia);
         entity.setCorreo(this.correo);
         entity.setEsAdministrador(this.esAdministrador);
@@ -216,7 +216,7 @@ public class UsuarioDTO
     {
         if(entity != null)
         {
-            this.nombre = entity.getNombre();
+            this.nombre = entity.getName();
             this.apellido = entity.getApellido();
             this.correo = entity.getCorreo();
             this.contrasenia = entity.getContrasenia();
