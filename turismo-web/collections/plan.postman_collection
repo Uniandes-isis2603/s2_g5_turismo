@@ -1,0 +1,490 @@
+{
+	"info": {
+		"name": "Pruebas Plan",
+		"_postman_id": "9bfa35bd-8990-3130-8636-caaea339a20b",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get planes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "28bf9e2a-a3bc-4a58-bcb3-46b198d90e03",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"tipoPlan\":\"Parque\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/plans",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"plans"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET plan que existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "28bf9e2a-a3bc-4a58-bcb3-46b198d90e03",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"tipoPlan\":\"Parque\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/plans/10000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"plans",
+						"10000"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET plan que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2a3ccf02-7f4d-4e99-85cd-e69e4aaa464b",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"] = responseCode.code === 404;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"tipoPlan\":\"Parque\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/plans/100000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"plans",
+						"100000"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Post plan correctamente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "28bf9e2a-a3bc-4a58-bcb3-46b198d90e03",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n       \"nombrePlan\": \"Museo del oro\",\r\n       \"descripcion\": \"Conocer balblabla en el museo del oro\",\r\n       \"pais\": \"Colombia\", \r\n       \"ciudad\": \"Bogota\", \r\n       \"longitud\": -74.057615, \r\n       \"latitud\": 4.606492, \r\n       \"duracion\":180,\r\n       \"restricciones\": \"Menores deben ir a compañados\",\r\n       \"archivo\": \"soyUnLink\",\r\n       \"precio\": 20.000,\r\n       \"cantidadPersonas\": 9999,\r\n       \"categoriasPlan\":[{\"tipoPlan\":\"Cultura\"}]\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/plans",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"plans"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Post plan que tiene nombre repetido en DB",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1d38d1d2-7683-4a3f-8c77-dd4735126f95",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n       \"nombrePlan\": \"Museo del oro\",\r\n       \"descripcion\": \"Conocer balblabla en el museo del oro\",\r\n       \"pais\": \"Colombia\", \r\n       \"ciudad\": \"Bogota\", \r\n       \"longitud\": -74.057615, \r\n       \"latitud\": 4.606492, \r\n       \"duracion\":180,\r\n       \"restricciones\": \"Menores deben ir a compañados\",\r\n       \"archivo\": \"soyUnLink\",\r\n       \"precio\": 20.000,\r\n       \"cantidadPersonas\": 9999,\r\n       \"categoriasPlan\":[{\"tipoPlan\":\"categoriaxd\"}]\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/plans",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"plans"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "POST plan sin categorias",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7f5ec4b9-3050-4ccd-aab7-f5a337dc4712",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n       \"nombrePlan\": \"prebita\",\r\n       \"descripcion\": \"Conocer balblabla en el museo del oro\",\r\n       \"pais\": \"Colombia\", \r\n       \"ciudad\": \"Bogota\", \r\n       \"longitud\": -74.057615, \r\n       \"latitud\": 4.606492, \r\n       \"duracion\":180,\r\n       \"restricciones\": \"Menores deben ir a compañados\",\r\n       \"archivo\": \"soyUnLink\",\r\n       \"precio\": 20.000,\r\n       \"cantidadPersonas\": 9999\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/plans",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"plans"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Delete plan que existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6e275f7e-6680-4e65-8f3d-e8aa61a85276",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 204\"] = responseCode.code === 204;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/plans/10000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"plans",
+						"10000"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE plan que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9f09a593-74e9-4252-b65c-765d5cef933d",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"] = responseCode.code === 404;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/plans/100000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"plans",
+						"100000"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "put plan con id que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f9209f51-bb1d-4d9a-af1c-a21d5ca8b910",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"] = responseCode.code === 404;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n       \"nombrePlan\": \"prebita2\",\r\n       \"descripcion\": \"Conocer balblabla en el museo del oro\",\r\n       \"pais\": \"Colombia\", \r\n       \"ciudad\": \"Bogota\", \r\n       \"longitud\": -74.057615, \r\n       \"latitud\": 4.606492, \r\n       \"duracion\":180,\r\n       \"restricciones\": \"Menores deben ir a compañados\",\r\n       \"archivo\": \"soyUnLink\",\r\n       \"precio\": 20.000,\r\n       \"cantidadPersonas\": 9999,\r\n       \"categoriasPlan\":[{\"tipoPlan\":\"categoriaxd\"}]\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/plans/100000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"plans",
+						"100000"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "put plan en id que existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "28bf9e2a-a3bc-4a58-bcb3-46b198d90e03",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n       \"nombrePlan\": \"prebita2\",\r\n       \"descripcion\": \"Conocer balblabla en el museo del oro\",\r\n       \"pais\": \"Colombia\", \r\n       \"ciudad\": \"Bogota\", \r\n       \"longitud\": -74.057615, \r\n       \"latitud\": 4.606492, \r\n       \"duracion\":180,\r\n       \"restricciones\": \"Menores deben ir a compañados\",\r\n       \"archivo\": \"soyUnLink\",\r\n       \"precio\": 20.000,\r\n       \"cantidadPersonas\": 9999,\r\n       \"categoriasPlan\":[{\"tipoPlan\":\"categoriaxd\"}]\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/plans/10001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"plans",
+						"10001"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "put plan incorrectamente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "78849279-43f9-46e2-b972-884a0796dc23",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n       \"nombrePlan\": \"prebita3\",\r\n       \"descripcion\": \"Conocer balblabla en el museo del oro\",\r\n       \"pais\": \"Colombia\", \r\n       \"ciudad\": \"Bogota\", \r\n       \"longitud\": -74.057615, \r\n       \"latitud\": 4.606492, \r\n       \"duracion\":180,\r\n       \"restricciones\": \"Menores deben ir a compañados\",\r\n       \"archivo\": \"soyUnLink\",\r\n       \"precio\": 20.000,\r\n       \"cantidadPersonas\": 9999\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/plans/10001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"plans",
+						"10001"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

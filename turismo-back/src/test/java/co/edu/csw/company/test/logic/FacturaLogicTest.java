@@ -84,8 +84,7 @@ public class FacturaLogicTest
     }
      private void clearData() 
      {
-        em.createQuery("delete from PaqueteEntity").executeUpdate();
-        em.createQuery("delete from FacturaEntity").executeUpdate();
+        em.createQuery("delete from PaqueteTuristicoEntity").executeUpdate();
         em.createQuery("delete from FacturaEntity").executeUpdate();
     }
     /**

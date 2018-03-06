@@ -28,7 +28,7 @@ public class PlanAjendadoEntity extends BaseEntity implements Serializable
     @OneToOne
     private PlanEntity plan = new PlanEntity();
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     Date fecha = new Date();
 
     public Date getFecha() {

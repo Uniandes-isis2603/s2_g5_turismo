@@ -38,7 +38,7 @@ public class PreferenciasLogic
        if(persistence.findByName(entity.getTipoPlan()) != null)
        {
       
-            throw  new BusinessLogicException("Ya existe la preferencia \"" + entity.getName() + "\"" + " en el sistema");
+            throw  new BusinessLogicException("Ya existe la preferencia \"" + entity.getTipoPlan() + "\"" + " en el sistema");
        }
                    
         // Invoca la persistencia para crear la Preferencias
@@ -86,7 +86,7 @@ public class PreferenciasLogic
        if(persistence.findByName(entity.getTipoPlan()) != null)
        {
       
-            throw  new BusinessLogicException("Ya existe la preferencia \"" + entity.getName() + "\"" + " en el sistema");
+            throw  new BusinessLogicException("Ya existe la preferencia \"" + entity.getTipoPlan() + "\"" + " en el sistema");
        }
         return persistence.update(entity);
     }
@@ -101,5 +101,10 @@ public class PreferenciasLogic
         LOGGER.log(Level.INFO, "Inicia proceso de borrar Preferencias con id={0}", id);    
         persistence.delete(id);
         LOGGER.log(Level.INFO, "Termina proceso de borrar libro con id={0}", id);
+    }
+    
+    public PreferenciasEntity getByName(String name)
+    {
+        return persistence.findByName(name);
     }
 }

@@ -99,8 +99,7 @@ public class Plan_ValoracionesResource
         {
             throw new WebApplicationException("El recurso /plans/" + plansId + " no existe.", 404);
         }
-        //return ValoracionesListEntity2DTO(planLogic.listValoraciones(plansId));
-        return new ArrayList<>();
+        return ValoracionesListEntity2DTO(planLogic.listValoraciones(plansId));
     }
 
     /**
@@ -130,8 +129,7 @@ public class Plan_ValoracionesResource
         {
             throw new WebApplicationException("El recurso /plans/" + plansId + " no existe.", 404);
         }
-      //  return new ValoracionesDetailDTO(planLogic.getValoraciones(plansId, ValoracionesId));
-      return new ValoracionesDTO();
+      return new ValoracionesDTO(planLogic.getVal(plansId, ValoracionesId));
     }
 
     /**
@@ -160,8 +158,7 @@ public class Plan_ValoracionesResource
         {
             throw new WebApplicationException("El recurso /plans/" + plansId + " no existe.", 404);
         }
-      //  return new ValoracionesDetailDTO(planLogic.addValoraciones(ValoracionesId, plansId));
-      return new ValoracionesDTO();
+      return new ValoracionesDTO(planLogic.addValoracion(ValoracionesId, plansId));
     }
 
     /**
@@ -192,8 +189,7 @@ public class Plan_ValoracionesResource
         {
             throw new WebApplicationException("El recurso /plans/" + plansId + " no existe.", 404);
         }
-       // return ValoracionesListEntity2DTO(planLogic.replaceValoraciones(plansId, ValoracionesListDTO2Entity(Valoraciones)));
-       return new ArrayList<>();
+       return ValoracionesListEntity2DTO(planLogic.replaceValoraciones(plansId, ValoracionesListDTO2Entity(Valoraciones)));
     }
 
     /**
@@ -220,7 +216,7 @@ public class Plan_ValoracionesResource
         {
             throw new WebApplicationException("El recurso /plans/" + plansId + " no existe.", 404);
         }
-        //planLogic.removeValoraciones(ValoracionesId, plansId);
+        planLogic.removeValoracion(ValoracionesId, plansId);
     }
 
 }

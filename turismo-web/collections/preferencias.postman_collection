@@ -1,0 +1,431 @@
+{
+	"info": {
+		"name": "Pruebas preferencias",
+		"_postman_id": "2bd6264b-0f68-6771-4009-3fce45fdb757",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get todas las preferencias",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "aebd8bd3-1850-4521-958a-43ececb51e3a",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/preferences",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"preferences"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get preferencia que existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6cdce89f-d51f-4afc-bf77-030621bfdd22",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/preferences/10000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"preferences",
+						"10000"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get preferencia que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a391a6d5-9ca4-4cb0-b12a-f9eb99aae884",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"] = responseCode.code === 404;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"tipoPlan\":\"Compras\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/preferences/100000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"preferences",
+						"100000"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Delete preferencia que existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a040ed59-2645-4f1c-9369-7ff63e8814f0",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 204\"] = responseCode.code === 204;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/preferences/10000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"preferences",
+						"10000"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Preferencia que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "73c6ae5f-db9c-462d-898c-28f318747e74",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"] = responseCode.code === 404;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/preferences/100000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"preferences",
+						"100000"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Post preferencia sin nombre repetido en la DB",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "eb777d62-281f-497f-b808-2d8b3e55261c",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"tipoPlan\":\"Fiesta\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/preferences",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"preferences"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Post preferencia que tiene nombre repetido en la DB",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "905921d2-77d5-4b95-8308-556a3dc6e132",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"tipoPlan\":\"Fiesta\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/preferences",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"preferences"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Put preferencia en id que existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "28bf9e2a-a3bc-4a58-bcb3-46b198d90e03",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"tipoPlan\":\"Parque\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/preferences/10001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"preferences",
+						"10001"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Put preferencia con nombre repetido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4abea2f3-d1c5-4abc-8c23-b3f1afcb59b6",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"tipoPlan\":\"Museo\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/preferences/10001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"preferences",
+						"10001"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Put preferencia en id que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4cf04407-6f76-4129-807c-cb44c9e4eab7",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"] = responseCode.code === 404;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"tipoPlan\":\"wtf\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/plans/100000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"plans",
+						"100000"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
