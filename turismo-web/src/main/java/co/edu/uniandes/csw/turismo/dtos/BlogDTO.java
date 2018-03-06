@@ -18,10 +18,23 @@ import java.util.List;
  * <pre>
  *   {
  *      "tema": string,
- *      "descripcion: string,
- *      "likes": number
- *      "comentarios": list
+ *      "descripcion": string,
+ *      "likes": number,
+ *      "id":numbre
+ *
  *   }
+ * 
+ * ejemplo :
+ * 
+ * {
+ "tema": "prueba",
+ "descripcion": "esto es una prueba",
+ "likes":100,
+ "id":1,
+ "comentarios":  {},
+ 
+"planes":{}            
+}
  * </pre>
  
 
@@ -31,6 +44,7 @@ public class BlogDTO {
     private String tema;
     private String descripcion;
     private int likes; 
+    private long id;
  /**
      * Constructor por defecto
      */
@@ -75,6 +89,16 @@ public class BlogDTO {
         this.likes = likes;
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+    
+    
+
   public BlogDTO(BlogEntity entity) 
     {
         if(entity != null)
@@ -82,6 +106,7 @@ public class BlogDTO {
         this.descripcion = entity.getDescripcion();
         this.likes = entity.getLikes();
         this.tema = entity.getTema();
+        this.id = entity.getId();
         }
         
     }
@@ -90,6 +115,7 @@ public class BlogDTO {
         entity.setDescripcion(descripcion);
         entity.setLikes(likes);
         entity.setTema(tema);
+        entity.setId(id);
         return entity;
     }   
     

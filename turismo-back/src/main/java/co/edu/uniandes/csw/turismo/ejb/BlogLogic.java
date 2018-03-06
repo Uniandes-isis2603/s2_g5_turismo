@@ -6,8 +6,12 @@
 package co.edu.uniandes.csw.turismo.ejb;
 
 import co.edu.uniandes.csw.turismo.entities.BlogEntity;
+import co.edu.uniandes.csw.turismo.entities.ComentarioEntity;
 import co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.turismo.persistence.BlogPersistence;
+import co.edu.uniandes.csw.turismo.persistence.ComentarioPersistence;
+import static java.util.Collections.list;
+import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,6 +34,8 @@ public class BlogLogic {
     
      @Inject
     private BlogPersistence persistence;
+     @Inject
+    private ComentarioPersistence persistenceComentario;
     
      
      public BlogEntity createBlog(BlogEntity entity) throws BusinessLogicException {
@@ -43,6 +49,14 @@ public class BlogLogic {
         }
         // Invoca la persistencia para crear el Blog
         persistence.create(entity);
+      List<ComentarioEntity> plan = entity.getComentarios();
+      
+      Iterator e2 = plan.iterator();
+      while(e2.hasNext())
+      {
+      persistenceComentario.create((ComentarioEntity) e2.next());
+      }
+        
         LOGGER.info("Termina proceso de creación blogs");
         return entity;
     }
@@ -60,8 +74,15 @@ public class BlogLogic {
         return editorials;
     }
       
-        public BlogEntity getBlogs(Long id) {
-        return persistence.find(id);
+        public BlogEntity getBlogs(Long id) throws BusinessLogicException {
+            BlogEntity a = persistence.find(id);
+            if (a!= null){
+            return a;
+            }
+            else
+            {
+             throw new BusinessLogicException("el blog no existe");
+            }
     }
         
         public BlogEntity updateBlog(BlogEntity entity) throws BusinessLogicException  {

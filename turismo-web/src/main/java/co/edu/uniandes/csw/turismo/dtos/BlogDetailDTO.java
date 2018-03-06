@@ -9,6 +9,8 @@ package co.edu.uniandes.csw.turismo.dtos;
 import co.edu.uniandes.csw.turismo.entities.BlogEntity;
 import co.edu.uniandes.csw.turismo.entities.ComentarioEntity;
 import co.edu.uniandes.csw.turismo.entities.PlanEntity;
+import co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -71,8 +73,8 @@ public class BlogDetailDTO  extends BlogDTO
        Iterator e = comentarios.iterator();
        Iterator e2 = planes.iterator();
        
-       List <ComentarioEntity> comen = entity.getComentarios();
-       comen.clear();
+       List <ComentarioEntity> comen = new ArrayList <ComentarioEntity>();
+       
        
        while (e.hasNext())
        {
@@ -84,8 +86,8 @@ public class BlogDetailDTO  extends BlogDTO
        
        entity.setComentarios(comen);
        
-       List <PlanEntity> pla = entity.getPlanes();
-       pla.clear();
+       List <PlanEntity> pla = new ArrayList <PlanEntity> ();
+   
        
        while (e2.hasNext())
        {
@@ -98,11 +100,18 @@ public class BlogDetailDTO  extends BlogDTO
        return entity;
     }
     
-    public BlogDetailDTO(BlogEntity entity) {
+    public BlogDetailDTO(BlogEntity entity) throws BusinessLogicException {
         
         super(entity);
+        comentarios = new ArrayList<>();
         
-        List<ComentarioEntity> comen =  entity.getComentarios();
+        if (entity == null)
+        {
+        throw new BusinessLogicException("el blog no existe");
+        
+        }
+        else{
+        List<ComentarioEntity> comen =   entity.getComentarios();
         List<PlanEntity> pla = entity.getPlanes();
         
         Iterator e = comen.iterator();
@@ -129,6 +138,7 @@ public class BlogDetailDTO  extends BlogDTO
         }
         
         
+    }
     }
     
 }
