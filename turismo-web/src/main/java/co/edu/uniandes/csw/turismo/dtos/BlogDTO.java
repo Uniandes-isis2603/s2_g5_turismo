@@ -7,7 +7,7 @@ package co.edu.uniandes.csw.turismo.dtos;
 
 
 import co.edu.uniandes.csw.turismo.entities.BlogEntity;
-import java.util.List;
+
 
 /**
  ** BlogDTO Objeto de transferencia de datos de Blogs. Los DTO contienen las
@@ -50,7 +50,18 @@ public class BlogDTO {
      */
     public BlogDTO() {
         }
-
+    
+  public BlogDTO(BlogEntity entity) 
+    {
+        if(entity != null)
+        {
+        this.descripcion = entity.getDescripcion();
+        this.likes = entity.getLikes();
+        this.tema = entity.getTema();
+        this.id = entity.getId();
+        }
+        
+    }
     
  /**
      * @return tema del blog
@@ -99,17 +110,7 @@ public class BlogDTO {
     
     
 
-  public BlogDTO(BlogEntity entity) 
-    {
-        if(entity != null)
-        {
-        this.descripcion = entity.getDescripcion();
-        this.likes = entity.getLikes();
-        this.tema = entity.getTema();
-        this.id = entity.getId();
-        }
-        
-    }
+
      public BlogEntity toEntity() {
         BlogEntity entity = new BlogEntity();
         entity.setDescripcion(descripcion);

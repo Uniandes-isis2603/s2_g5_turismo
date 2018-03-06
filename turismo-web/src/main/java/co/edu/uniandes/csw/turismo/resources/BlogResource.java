@@ -7,7 +7,6 @@ package co.edu.uniandes.csw.turismo.resources;
 
 import co.edu.uniandes.csw.turismo.dtos.BlogDTO;
 import co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException;
-import co.edu.uniandes.csw.turismo.mappers.BusinessLogicExceptionMapper;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
@@ -40,7 +39,7 @@ import javax.inject.Inject;
 public class BlogResource {
     
     @Inject
-    BlogLogic BlogLogic;
+    BlogLogic blogLogic;
     
     /**
      * <h1>GET /api/blogs : Obtener todos los blogs.</h1>
@@ -52,14 +51,15 @@ public class BlogResource {
      * 200 OK Devuelve todos los blogs de la aplicacion.</code> 
      * </pre>
      * @return JSONArray {@link BlogDetailDTO} - los blogs encontrados en la aplicación. Si no hay ninguno retorna una lista vacía.
+     * @throws co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException
      */
     
     @GET
-  public ArrayList<BlogDetailDTO> GetBlogs () throws BusinessLogicException
+  public List<BlogDetailDTO> getBlogs () throws BusinessLogicException
   {
       
-       List<BlogEntity> lista =BlogLogic.getBlogs();
-       ArrayList<BlogDetailDTO> respuesta = new ArrayList<BlogDetailDTO>();
+       List<BlogEntity> lista =blogLogic.getBlogs();
+       ArrayList<BlogDetailDTO> respuesta = new ArrayList<>();
          for (BlogEntity Entity : lista) {
              respuesta.add(new BlogDetailDTO(Entity));
          }
@@ -87,9 +87,9 @@ public class BlogResource {
   
   @GET
   @Path("{id: \\d+}") 
-public BlogDTO GetBlog (@PathParam("id") long id) throws BusinessLogicException  
+public BlogDTO getBlog (@PathParam("id") long id) throws BusinessLogicException  
 {
- return new BlogDetailDTO(BlogLogic.getBlogs(id));
+ return new BlogDetailDTO(blogLogic.getBlogs(id));
 }
 
   
@@ -116,9 +116,9 @@ public BlogDTO GetBlog (@PathParam("id") long id) throws BusinessLogicException
      */
  
   @POST
-  public BlogDTO CrearBlog (BlogDetailDTO blog) throws BusinessLogicException
+  public BlogDTO crearBlog (BlogDetailDTO blog) throws BusinessLogicException
   {
- return new BlogDTO (BlogLogic.createBlog(blog.toEntity()));
+ return new BlogDTO (blogLogic.createBlog(blog.toEntity()));
   }
 /**
      * <h1>PUT /api/blogs/{id} : Actualizar blog con el id dado.</h1>
@@ -139,9 +139,9 @@ public BlogDTO GetBlog (@PathParam("id") long id) throws BusinessLogicException
      * @throws co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException
      */
   @PUT
-  public BlogDTO ActualizarBlog ( BlogDetailDTO blog) throws BusinessLogicException
+  public BlogDTO actualizarBlog ( BlogDetailDTO blog) throws BusinessLogicException
   {
-  BlogLogic.updateBlog(blog.toEntity());
+  blogLogic.updateBlog(blog.toEntity());
         return blog;
   }
   /**
@@ -160,9 +160,9 @@ public BlogDTO GetBlog (@PathParam("id") long id) throws BusinessLogicException
      */
   @DELETE
   @Path("{id: \\d+}")  
-  public void BorrarBlog (@PathParam("id") long id) throws BusinessLogicException
+  public void borrarBlog (@PathParam("id") long id) throws BusinessLogicException
   {
-      BlogEntity borrar = BlogLogic.getBlogs(id);
+      BlogEntity borrar = blogLogic.getBlogs(id);
   
       if (borrar == null)
         {
@@ -171,7 +171,7 @@ public BlogDTO GetBlog (@PathParam("id") long id) throws BusinessLogicException
         }
       else {
         
-        BlogLogic.deleteBlog(borrar);
+        blogLogic.deleteBlog(borrar);
         }
   }
   
