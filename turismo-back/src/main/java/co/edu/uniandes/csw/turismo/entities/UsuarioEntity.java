@@ -28,6 +28,7 @@ public class UsuarioEntity extends BaseEntity implements Serializable
     private Integer telefono;
     private Boolean esAdministrador;
     
+    @PodamExclude
     @OneToMany
     private List<FacturaEntity> listaFacturas;
     
@@ -39,9 +40,11 @@ public class UsuarioEntity extends BaseEntity implements Serializable
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     private PaqueteTuristicoEntity paquete;
     
+    @PodamExclude
     @OneToMany
     private List<BlogEntity> listaBlogs;
     
+    @PodamExclude
     @OneToMany
     private List<ComentarioEntity> listaComentarios;
     

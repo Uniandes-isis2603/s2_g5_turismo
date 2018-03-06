@@ -25,6 +25,9 @@ public class FacturaLogic
      
     @Inject
     private FacturaPersistence persistence;
+   
+    @Inject
+    private TarjetaDeCreditoLogic TarjetaLogic;
     
      public FacturaEntity createFactura(FacturaEntity entity) throws BusinessLogicException 
     {
@@ -35,7 +38,11 @@ public class FacturaLogic
         {
             throw new BusinessLogicException("Ya existe una factura con el id" + entity.getId() + "\"");
         }
-        
+        //verifica que la tarjeta exista.
+        //if(TarjetaLogic.getTrajetaDeCreditoNumero(entity.getTarjetadecredito().getNumero()) == null )
+//        {
+//            throw new BusinessLogicException("la tarjeta de credito no existe " + entity.getTarjetadecredito().getNumero() + "\"");
+//        }
         // verifica que la factura no tenga un costo negativo
         if(entity.getCosto() < 0)
         {

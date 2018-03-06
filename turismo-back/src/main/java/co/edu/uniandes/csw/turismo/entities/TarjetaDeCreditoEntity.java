@@ -26,6 +26,7 @@ public class TarjetaDeCreditoEntity extends BaseEntity implements Serializable
     private Long cedula;
     
 
+    @PodamExclude
     @ManyToOne
     private UsuarioEntity usuario;
 

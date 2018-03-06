@@ -150,15 +150,7 @@ public class TarjetaDeCreditoResource
         }
         else
         {
-            TarjetaDeCreditoDetailDTO tarjetasuser = new TarjetaDeCreditoDetailDTO();
-            for (TarjetaDeCreditoEntity tarjeta : user.getListaTarjetas()) 
-            {
-                if(tarjeta.getNumero() == numero)
-                {
-                    tarjetasuser= new TarjetaDeCreditoDetailDTO(tarjeta);
-                }
-            }
-            return tarjetasuser;
+          return new TarjetaDeCreditoDetailDTO( tarjetadecreditologic.getTrajetaDeCreditoNumero(id,numero));
         }
         
         
@@ -186,6 +178,7 @@ public class TarjetaDeCreditoResource
     @Path("{id: \\d+}")
     public TarjetaDeCreditoDetailDTO updateTarjetaDeCredito(@PathParam("id") Long id, TarjetaDeCreditoDetailDTO TarjetaDeCredito) throws BusinessLogicException 
     {
+         tarjetadecreditologic.updateTarjetaDeCredito(id,TarjetaDeCredito.toEntity());
         return TarjetaDeCredito;
     }
     /**
@@ -200,12 +193,22 @@ public class TarjetaDeCreditoResource
      * 404 Not Found. No existe una tarjeta de credito con el id dado.
      * </code>
      * </pre>
-     * @param id Identificador de la tarjeta de credito que se desea borrar. Este debe ser una cadena de dígitos.
+     * @param numero Identificador de la tarjeta de credito que se desea borrar. Este debe ser una cadena de dígitos.
      */
     @DELETE
     @Path("{id: \\d+}")
-     public void deleteTarjetaDeCredito(@PathParam("id") Long id) {
-        // Void
+     public void deleteTarjetaDeCredito(@PathParam("usuarioid") Long id,@PathParam("id") Long numero) throws BusinessLogicException
+    {
+        if (recursousuario.getUsuario(id) == null)
+        {
+            throw new BusinessLogicException("El usuario no existe");
+            
+        }
+        else
+        {
+        
+        tarjetadecreditologic.deleteTarjetaDeCredito(id,numero);
+        }
     }
     
 }

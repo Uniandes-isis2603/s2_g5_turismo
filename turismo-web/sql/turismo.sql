@@ -3,6 +3,8 @@ delete from PlanEntity_GuiaEntity;
 delete from PlanEntity;
 delete from PreferenciasEntity;
 delete from GuiaEntity;
+delete from TARJETADECREDITOENTITY;
+delete from USUARIOENTITY;
 
 insert into PreferenciasEntity (id, tipoPlan) values (10000,'Familiar');
 insert into PreferenciasEntity (id, tipoPlan) values (10001,'Compras');
@@ -15,3 +17,12 @@ insert into PlanEntity (id, archivo, cantidadpersonas, ciudad, descripcion, dura
 insert into GuiaEntity (id, idiomaguia, name) values (10000,'espaniol','w');
 insert into GuiaEntity (id, idiomaguia, name) values (10001,'espaniol','t');
 insert into GuiaEntity (id, idiomaguia, name) values (10002,'espaniol','f');
+
+
+/* Parte que se nececita para tajetas*/
+insert into UsuarioEntity (id,apellido,contrasenia,correo,esAdministrador,idioma,name,nombre,telefono) values (10001,'benitez','1234','benitez@gmail.com',0,'español','a','sebastian',4276067);
+
+
+insert into TarjetaDeCreditoEntity (id,cdv,cedula,name,numero,Usuario_id) values (10000,123,1016078997,'sebastian',1234123412341234,10001);
+insert into TarjetaDeCreditoEntity (id,cdv,cedula,name,numero,Usuario_id) values (10001,123,1016078997,'sebastian',1234123412341235,10001);
+insert into TarjetaDeCreditoEntity (id,cdv,cedula,name,numero,Usuario_id) values (10002,123,1016078997,'sebastian',1234123412341236,10001);

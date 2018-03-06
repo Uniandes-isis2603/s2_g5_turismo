@@ -6,7 +6,6 @@
 package co.edu.uniandes.csw.turismo.persistence;
 
 import co.edu.uniandes.csw.turismo.entities.TarjetaDeCreditoEntity;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -39,15 +38,13 @@ public class TarjetaDeCreditoPersistence
         return q.getResultList();
     }
     
-      public TarjetaDeCreditoEntity findByNumber(Long numero) 
+      public TarjetaDeCreditoEntity findByNumber(Long id,Long numero) 
       {
-        LOGGER.log(Level.INFO, "Consultando heroe por nombre ", numero);
+        LOGGER.log(Level.INFO, "Consultando tarjeta de credito por numero ", numero);
       
-        // Se crea un query para buscar tarjetas de credito recibe el m�todo como argumento. ":numero" es un placeholder que debe ser remplazado
-        TypedQuery query = em.createQuery("Select e From TarjetaDeCreditoEntity e where e.numero = :numero", TarjetaDeCreditoEntity.class);
-        // Se remplaza el placeholder ":name" con el valor del argumento 
-        query = query.setParameter("numero", numero);
-        // Se invoca el query se obtiene la lista resultado
+       
+        TypedQuery query = em.createQuery("Select e From TarjetaDeCreditoEntity e where e.numero = "+ numero +" and e.usuario = " + id, TarjetaDeCreditoEntity.class);
+        
         List<TarjetaDeCreditoEntity> sameName =  query.getResultList();
         if (sameName.isEmpty()) {
             return null;
@@ -68,9 +65,24 @@ public class TarjetaDeCreditoPersistence
         return em.merge(entity);
     }
       
-        public void delete(Long id) {
+        public void delete(Long id) 
+        {
         LOGGER.log(Level.INFO, "Borrando Tarjeta De Credito con id={0}", id);
         TarjetaDeCreditoEntity entity = em.find(TarjetaDeCreditoEntity.class, id);
         em.remove(entity);
     }
+        
+        public void deletebynumber(Long id,Long numero) 
+       {
+        // Se crea un query para buscar tarjetas de credito recibe el m�todo como argumento. ":numero" es un placeholder que debe ser remplazado
+        TypedQuery query = em.createQuery("Select e From TarjetaDeCreditoEntity e where e.numero = :numero and e.usuario = :usuario", TarjetaDeCreditoEntity.class);
+        // Se remplaza el placeholder ":name" con el valor del argumento 
+        query = query.setParameter("numero", numero);
+        query= query.setParameter("usuario", id);
+        // Se invoca el query se obtiene la lista resultado
+        List<TarjetaDeCreditoEntity> sameName =  query.getResultList();
+        
+            em.remove(sameName.get(0));
+        
+       }
 }
