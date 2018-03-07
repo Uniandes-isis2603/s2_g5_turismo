@@ -5,12 +5,14 @@
  */
 package co.edu.csw.company.test.logic;
 
+import co.edu.uniandes.csw.turismo.ejb.BlogLogic;
 import co.edu.uniandes.csw.turismo.ejb.ComentarioLogic;
+import co.edu.uniandes.csw.turismo.entities.BlogEntity;
 
-import co.edu.uniandes.csw.turismo.entities.ComentarioEntity;
 import co.edu.uniandes.csw.turismo.entities.ComentarioEntity;
 
 import co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException;
+import co.edu.uniandes.csw.turismo.persistence.BlogPersistence;
 import co.edu.uniandes.csw.turismo.persistence.ComentarioPersistence;
 
 import java.util.ArrayList;
@@ -42,6 +44,9 @@ public class ComentarioLogicTest
 
     @Inject
     private ComentarioLogic ComentarioLogic;
+    
+    @Inject
+    private BlogLogic BlogLogic;
 
     @PersistenceContext
     private EntityManager em;
@@ -50,7 +55,9 @@ public class ComentarioLogicTest
     private UserTransaction utx;
 
     private List<ComentarioEntity> ComentarioData = new ArrayList<ComentarioEntity>();
-    private List<ComentarioEntity> ComentariosData = new ArrayList<ComentarioEntity>();
+    
+     private BlogEntity BlogData = new BlogEntity();
+    
 
 
 
@@ -60,6 +67,8 @@ public class ComentarioLogicTest
                 .addPackage(ComentarioEntity.class.getPackage())
                 .addPackage(ComentarioLogic.class.getPackage())
                 .addPackage(ComentarioPersistence.class.getPackage())
+                .addPackage(BlogEntity.class.getPackage())
+                .addPackage(BlogLogic.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
@@ -92,7 +101,8 @@ public class ComentarioLogicTest
     private void clearData() {
         em.createQuery("delete from ComentarioEntity").executeUpdate();
         em.createQuery("delete from ComentarioEntity").executeUpdate();
-        
+         em.createQuery("delete from BlogEntity").executeUpdate();
+        em.createQuery("delete from BlogEntity").executeUpdate();
     }
 
     /**
@@ -101,16 +111,20 @@ public class ComentarioLogicTest
      *
      */
     private void insertData() {
+         BlogEntity Blog = factory.manufacturePojo(BlogEntity.class);
+            
         for (int i = 0; i < 3; i++) {
+            
             ComentarioEntity Comentario = factory.manufacturePojo(ComentarioEntity.class);
             em.persist(Comentario);
             ComentarioData.add(Comentario);
+
+           
         }
-        for (int i = 0; i < 3; i++) {
-            ComentarioEntity Comentario = factory.manufacturePojo(ComentarioEntity.class);
-            em.persist(Comentario);
-            ComentariosData.add(Comentario);
-        }
+            Blog.setComentarios(ComentarioData);
+            em.persist(Blog);
+          
+      
         
     }
     
@@ -118,8 +132,12 @@ public class ComentarioLogicTest
     @Test
     public void createComentarioTest() throws BusinessLogicException 
     {
-       ComentarioEntity newEntity = factory.manufacturePojo(ComentarioEntity.class);       
-        ComentarioEntity result = ComentarioLogic.createComentario(newEntity);
+        BlogEntity a = new BlogEntity();
+       ComentarioEntity newEntity = factory.manufacturePojo(ComentarioEntity.class); 
+       List<ComentarioEntity> lista = a.getComentarios();
+       lista.add(newEntity);
+       a.setComentarios(lista);
+        ComentarioEntity result = ComentarioLogic.createComentario(newEntity, a.getId());
         
       
 
@@ -133,7 +151,8 @@ public class ComentarioLogicTest
     @Test
     public void getComentarioTest() throws BusinessLogicException 
     {
-        List<ComentarioEntity> list = ComentarioLogic.getComentarios();
+        BlogEntity newEntity = factory.manufacturePojo(BlogEntity.class); 
+        List<ComentarioEntity> list = ComentarioLogic.getComentarios(newEntity.getId());
         Assert.assertEquals(ComentarioData.size(), list.size());
         for (ComentarioEntity entity : list) 
         {
@@ -152,7 +171,7 @@ public class ComentarioLogicTest
     public void deleteComentarioTest() throws BusinessLogicException
     {
          ComentarioEntity entity = ComentarioData.get(0);
-         ComentarioLogic.deleteComentario(entity);
+         ComentarioLogic.deleteComentario(entity, BlogData.getId());
          ComentarioEntity deleted = em.find( ComentarioEntity.class, entity.getId());
          Assert.assertNull(deleted);
     }
