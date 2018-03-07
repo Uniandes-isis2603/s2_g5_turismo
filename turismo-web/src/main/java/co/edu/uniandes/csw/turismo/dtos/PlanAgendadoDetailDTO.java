@@ -15,11 +15,11 @@ import java.util.List;
  *
  * @author dl.avendano
  */
-public class PlanAjendadoDetailDTO extends PlanAgendadoDTO {
+public class PlanAgendadoDetailDTO extends PlanAgendadoDTO {
     private GuiaDTO guia;
     private PlanDTO plan;
 
-    public PlanAjendadoDetailDTO(PlanAgendadoEntity entity) {
+    public PlanAgendadoDetailDTO(PlanAgendadoEntity entity) {
         super(entity);
         if (entity != null) {
             if( entity.getGuia() != null)

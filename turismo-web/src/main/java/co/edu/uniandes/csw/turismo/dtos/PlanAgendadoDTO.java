@@ -36,12 +36,14 @@ public class PlanAgendadoDTO {
     {
         if(entity != null)
         {
+        this.id = entity.getId();
         this.fecha = entity.getFecha();
         }
         
     }
      public PlanAgendadoEntity toEntity() {
         PlanAgendadoEntity entity = new PlanAgendadoEntity();
+        entity.setId(id);
         entity.setFecha(fecha);
         return entity;
     } 

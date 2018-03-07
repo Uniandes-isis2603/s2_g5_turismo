@@ -38,7 +38,7 @@ public class PlanPersistence
     {
         LOGGER.info("Creando un plan nuevo");
         em.persist(entity);
-        LOGGER.info("Creando un plan nuevo");
+        LOGGER.info("plan creado");
         return entity;
     }
 
