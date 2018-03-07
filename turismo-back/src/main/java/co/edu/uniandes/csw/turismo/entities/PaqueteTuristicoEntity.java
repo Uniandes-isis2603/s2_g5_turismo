@@ -25,7 +25,7 @@ public class PaqueteTuristicoEntity extends BaseEntity implements Serializable {
     private List<PagoEntity> pagos = new ArrayList<PagoEntity>();
     
     @PodamExclude
-    @OneToMany (cascade = CascadeType.ALL, orphanRemoval = true) 
+    @OneToMany (cascade = CascadeType.PERSIST, orphanRemoval = true) 
     private List<PlanAjendadoEntity> planes = new ArrayList<PlanAjendadoEntity>();
 
     public List<PagoEntity> getPagos() {
