@@ -6,6 +6,7 @@
 package co.edu.csw.company.test.logic;
 
 import co.edu.uniandes.csw.turismo.ejb.PaqueteTuristicoLogic;
+import co.edu.uniandes.csw.turismo.entities.PagoEntity;
 import co.edu.uniandes.csw.turismo.entities.PaqueteTuristicoEntity;
 import co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.turismo.persistence.PaqueteTuristicoPersistence;
@@ -50,6 +51,8 @@ public class PaqueteTuristicoLogicTest {
     private UserTransaction utx;
 
     private List<PaqueteTuristicoEntity> data = new ArrayList<PaqueteTuristicoEntity>();
+    
+    private List<PagoEntity> pagosData = new ArrayList();
 
     @Deployment
     public static JavaArchive createDeployment() {
@@ -90,7 +93,7 @@ public class PaqueteTuristicoLogicTest {
      */
     private void clearData() {
         em.createQuery("delete from PaqueteTuristicoEntity").executeUpdate();
-        em.createQuery("delete from BookEntity").executeUpdate();
+        em.createQuery("delete from PagoEntity").executeUpdate();
     }
 
     /**
@@ -102,7 +105,13 @@ public class PaqueteTuristicoLogicTest {
     private void insertData() {
 
         for (int i = 0; i < 3; i++) {
+            PagoEntity pagos = factory.manufacturePojo(PagoEntity.class);
+            em.persist(pagos);
+            pagosData.add(pagos);
+        }
+        for (int i = 0; i < 3; i++) {
             PaqueteTuristicoEntity entity = factory.manufacturePojo(PaqueteTuristicoEntity.class);
+            entity.setPagos(pagosData);
             em.persist(entity);
             data.add(entity);
          
@@ -132,7 +141,7 @@ public class PaqueteTuristicoLogicTest {
      *
      */
     @Test
-    public void getPaqueteTuristicosTest() {
+    public void getPaquetesTuristicosTest() {
         List<PaqueteTuristicoEntity> list = paqueteTuristicoLogic.getPaquetes();
         Assert.assertEquals(data.size(), list.size());
         for (PaqueteTuristicoEntity entity : list) {
@@ -192,5 +201,16 @@ public class PaqueteTuristicoLogicTest {
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
         Assert.assertEquals(pojoEntity.getName(), resp.getName());
     }
+     @Test
+    public void getPagosTest() throws BusinessLogicException 
+    {
+        PaqueteTuristicoEntity entity = data.get(0);
+        PagoEntity pagoEntity = pagosData.get(0);
+        PagoEntity response = paqueteTuristicoLogic.getPago(entity.getId(), pagoEntity.getId());
+
+        Assert.assertEquals(pagoEntity.getId(), response.getId());
+        Assert.assertEquals(pagoEntity.getName(), response.getName());
+    }
+
 }
 

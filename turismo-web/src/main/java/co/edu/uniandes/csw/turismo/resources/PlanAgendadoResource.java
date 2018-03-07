@@ -6,8 +6,8 @@
 package co.edu.uniandes.csw.turismo.resources;
 
 import co.edu.uniandes.csw.turismo.dtos.PlanAjendadoDetailDTO;
-import co.edu.uniandes.csw.turismo.ejb.PlanAjendadoLogic;
-import co.edu.uniandes.csw.turismo.entities.PlanAjendadoEntity;
+import co.edu.uniandes.csw.turismo.ejb.PlanAgendadoLogic;
+import co.edu.uniandes.csw.turismo.entities.PlanAgendadoEntity;
 import co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +32,6 @@ import javax.ws.rs.WebApplicationException;
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
-public class PlanAjendadoResource {
+public class PlanAgendadoResource {
     
 }

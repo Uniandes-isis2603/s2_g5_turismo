@@ -5,14 +5,14 @@
  */
 package co.edu.uniandes.csw.turismo.dtos;
 
-import co.edu.uniandes.csw.turismo.entities.PlanAjendadoEntity;
+import co.edu.uniandes.csw.turismo.entities.PlanAgendadoEntity;
 import java.util.Date;
 
 /**
  *
  * @author dl.avendano
  */
-public class PlanAjendadoDTO {
+public class PlanAgendadoDTO {
     Date fecha;
     
     Long id;
@@ -32,7 +32,7 @@ public class PlanAjendadoDTO {
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
-    public PlanAjendadoDTO(PlanAjendadoEntity entity) 
+    public PlanAgendadoDTO(PlanAgendadoEntity entity) 
     {
         if(entity != null)
         {
@@ -40,8 +40,8 @@ public class PlanAjendadoDTO {
         }
         
     }
-     public PlanAjendadoEntity toEntity() {
-        PlanAjendadoEntity entity = new PlanAjendadoEntity();
+     public PlanAgendadoEntity toEntity() {
+        PlanAgendadoEntity entity = new PlanAgendadoEntity();
         entity.setFecha(fecha);
         return entity;
     } 
