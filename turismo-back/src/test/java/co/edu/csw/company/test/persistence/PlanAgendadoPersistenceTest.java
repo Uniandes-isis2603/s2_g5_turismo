@@ -5,8 +5,8 @@
  */
 package co.edu.csw.company.test.persistence;
 
-import co.edu.uniandes.csw.turismo.entities.PaqueteTuristicoEntity;
-import co.edu.uniandes.csw.turismo.persistence.PaqueteTuristicoPersistence;
+import co.edu.uniandes.csw.turismo.entities.PlanAgendadoEntity;
+import co.edu.uniandes.csw.turismo.persistence.PlanAgendadoPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -33,30 +33,23 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  * @author dl.avendano
  */
 @RunWith(Arquillian.class)
-public class PaqueteTuristicoPersistenceTest {
+public class PlanAgendadoPersistenceTest {
     
-    /**
-     *
-     * @return Devuelve el jar que Arquillian va a desplegar en el Glassfish
-     * embebido. El jar contiene las clases de PaqueteTuristico, el descriptor de la
-     * base de datos y el archivo benas.xml para resolver la inyección de
-     * dependencias.
-     */
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(PaqueteTuristicoEntity.class.getPackage())
-                .addPackage(PaqueteTuristicoPersistence.class.getPackage())
+                .addPackage(PlanAgendadoEntity.class.getPackage())
+                .addPackage(PlanAgendadoPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
 
     /**
-     * Inyección de la dependencia a la clase PaqueteTuristicoPersistence cuyos métodos
+     * Inyección de la dependencia a la clase PlanAgendadoPersistence cuyos métodos
      * se van a probar.
      */
     @Inject
-    private PaqueteTuristicoPersistence paqueteTuristicoPersistence;
+    private PlanAgendadoPersistence planAgendadoPersistence;
 
     /**
      * Contexto de Persostencia que se va autilizar para acceder a la Base de
@@ -101,13 +94,13 @@ public class PaqueteTuristicoPersistenceTest {
      *
      */
     private void clearData() {
-        em.createQuery("delete from PaqueteTuristicoEntity").executeUpdate();
+        em.createQuery("delete from PlanAgendadoEntity").executeUpdate();
     }
 
     /**
      *
      */
-    private List<PaqueteTuristicoEntity> data = new ArrayList<PaqueteTuristicoEntity>();
+    private List<PlanAgendadoEntity> data = new ArrayList<PlanAgendadoEntity>();
 
     /**
      * Inserta los datos iniciales para el correcto funcionamiento de las
@@ -118,7 +111,7 @@ public class PaqueteTuristicoPersistenceTest {
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
-            PaqueteTuristicoEntity entity = factory.manufacturePojo(PaqueteTuristicoEntity.class);
+            PlanAgendadoEntity entity = factory.manufacturePojo(PlanAgendadoEntity.class);
 
             em.persist(entity);
             data.add(entity);
@@ -126,36 +119,37 @@ public class PaqueteTuristicoPersistenceTest {
     }
 
     /**
-     * Prueba para crear un PaqueteTuristico.
+     * Prueba para crear un PlanAgendado.
      *
      *
      */
     @Test
-    public void createPaqueteTuristicoTest() {
+    public void createPlanAgendadoTest() {
         PodamFactory factory = new PodamFactoryImpl();
-        PaqueteTuristicoEntity newEntity = factory.manufacturePojo(PaqueteTuristicoEntity.class);
-        PaqueteTuristicoEntity result = paqueteTuristicoPersistence.create(newEntity);
+        PlanAgendadoEntity newEntity = factory.manufacturePojo(PlanAgendadoEntity.class);
+        PlanAgendadoEntity result = planAgendadoPersistence.create(newEntity);
 
         Assert.assertNotNull(result);
 
-        PaqueteTuristicoEntity entity = em.find(PaqueteTuristicoEntity.class, result.getId());
+        PlanAgendadoEntity entity = em.find(PlanAgendadoEntity.class, result.getId());
 
         Assert.assertEquals(newEntity.getName(), entity.getName());
         Assert.assertEquals(newEntity.getId(), entity.getId());
+        Assert.assertEquals(newEntity.getFecha(), entity.getFecha());
     }
 
     /**
-     * Prueba para consultar la lista de PaqueteTuristicos.
+     * Prueba para consultar la lista de PlanAgendados.
      *
      *
      */
     @Test
     public void getPaquetesTuristicosTest() {
-        List<PaqueteTuristicoEntity> list = paqueteTuristicoPersistence.findAll();
+        List<PlanAgendadoEntity> list = planAgendadoPersistence.findAll();
         Assert.assertEquals(data.size(), list.size());
-        for (PaqueteTuristicoEntity ent : list) {
+        for (PlanAgendadoEntity ent : list) {
             boolean found = false;
-            for (PaqueteTuristicoEntity entity : data) {
+            for (PlanAgendadoEntity entity : data) {
                 if (ent.getId().equals(entity.getId())) {
                     found = true;
                 }
@@ -165,50 +159,54 @@ public class PaqueteTuristicoPersistenceTest {
     }
 
     /**
-     * Prueba para consultar un PaqueteTuristico.
+     * Prueba para consultar un PlanAgendado.
      *
      *
      */
     @Test
-    public void getPaqueteTuristicoTest() {
-        PaqueteTuristicoEntity entity = data.get(0);
-        PaqueteTuristicoEntity newEntity = paqueteTuristicoPersistence.find(entity.getId());
+    public void getPlanAgendadoTest() {
+        PlanAgendadoEntity entity = data.get(0);
+        PlanAgendadoEntity newEntity = planAgendadoPersistence.find(entity.getId());
+        
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(newEntity.getName(), entity.getName());
         Assert.assertEquals(newEntity.getId(), entity.getId());
+        Assert.assertEquals(newEntity.getFecha(), entity.getFecha());
     }
 
     /**
-     * Prueba para eliminar un PaqueteTuristico.
+     * Prueba para eliminar un PlanAgendado.
      *
      *
      */
     @Test
-    public void deletePaqueteTuristicoTest() {
-        PaqueteTuristicoEntity entity = data.get(0);
-        paqueteTuristicoPersistence.delete(entity.getId());
-        PaqueteTuristicoEntity deleted = em.find(PaqueteTuristicoEntity.class, entity.getId());
+    public void deletePlanAgendadoTest() {
+        PlanAgendadoEntity entity = data.get(0);
+        planAgendadoPersistence.delete(entity.getId());
+        PlanAgendadoEntity deleted = em.find(PlanAgendadoEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
 
     /**
-     * Prueba para actualizar un PaqueteTuristico.
+     * Prueba para actualizar un PlanAgendado.
      *
      *
      */
     @Test
-    public void updatePaqueteTuristicoTest() {
-        PaqueteTuristicoEntity entity = data.get(0);
+    public void updatePlanAgendadoTest() {
+        PlanAgendadoEntity entity = data.get(0);
         PodamFactory factory = new PodamFactoryImpl();
-        PaqueteTuristicoEntity newEntity = factory.manufacturePojo(PaqueteTuristicoEntity.class);
+        PlanAgendadoEntity newEntity = factory.manufacturePojo(PlanAgendadoEntity.class);
 
         newEntity.setId(entity.getId());
+        newEntity.setFecha(entity.getFecha());
 
-        paqueteTuristicoPersistence.update(newEntity);
+        planAgendadoPersistence.update(newEntity);
 
-        PaqueteTuristicoEntity resp = em.find(PaqueteTuristicoEntity.class, entity.getId());
+        PlanAgendadoEntity resp = em.find(PlanAgendadoEntity.class, entity.getId());
 
         Assert.assertEquals(newEntity.getName(), resp.getName());
         Assert.assertEquals(newEntity.getId(), resp.getId());
+        Assert.assertEquals(newEntity.getFecha(), resp.getFecha());
     }
 }
