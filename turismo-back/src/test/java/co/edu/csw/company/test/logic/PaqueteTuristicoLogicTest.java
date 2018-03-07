@@ -6,6 +6,7 @@
 package co.edu.csw.company.test.logic;
 
 import co.edu.uniandes.csw.turismo.ejb.PaqueteTuristicoLogic;
+import co.edu.uniandes.csw.turismo.entities.PagoEntity;
 import co.edu.uniandes.csw.turismo.entities.PaqueteTuristicoEntity;
 import co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.turismo.persistence.PaqueteTuristicoPersistence;
@@ -50,6 +51,8 @@ public class PaqueteTuristicoLogicTest {
     private UserTransaction utx;
 
     private List<PaqueteTuristicoEntity> data = new ArrayList<PaqueteTuristicoEntity>();
+    
+    private List<PagoEntity> pagosData = new ArrayList();
 
     @Deployment
     public static JavaArchive createDeployment() {
@@ -90,6 +93,7 @@ public class PaqueteTuristicoLogicTest {
      */
     private void clearData() {
         em.createQuery("delete from PaqueteTuristicoEntity").executeUpdate();
+        em.createQuery("delete from PagoEntity").executeUpdate();
     }
 
     /**
@@ -101,7 +105,13 @@ public class PaqueteTuristicoLogicTest {
     private void insertData() {
 
         for (int i = 0; i < 3; i++) {
+            PagoEntity pagos = factory.manufacturePojo(PagoEntity.class);
+            em.persist(pagos);
+            pagosData.add(pagos);
+        }
+        for (int i = 0; i < 3; i++) {
             PaqueteTuristicoEntity entity = factory.manufacturePojo(PaqueteTuristicoEntity.class);
+            entity.setPagos(pagosData);
             em.persist(entity);
             data.add(entity);
          
@@ -131,7 +141,7 @@ public class PaqueteTuristicoLogicTest {
      *
      */
     @Test
-    public void getPaqueteTuristicosTest() {
+    public void getPaquetesTuristicosTest() {
         List<PaqueteTuristicoEntity> list = paqueteTuristicoLogic.getPaquetes();
         Assert.assertEquals(data.size(), list.size());
         for (PaqueteTuristicoEntity entity : list) {
@@ -192,80 +202,15 @@ public class PaqueteTuristicoLogicTest {
         Assert.assertEquals(pojoEntity.getName(), resp.getName());
     }
      @Test
-    public void getGuiasTest() throws BusinessLogicException 
+    public void getPagosTest() throws BusinessLogicException 
     {
-        PaqueteTuristicoEntityEntity entity = data.get(0);
-        GuiaEntity GuiaEntity = GuiasData.get(0);
-        GuiaEntity response = PlanLogic.getGuia(entity.getId(), GuiaEntity.getId());
+        PaqueteTuristicoEntity entity = data.get(0);
+        PagoEntity pagoEntity = pagosData.get(0);
+        PagoEntity response = paqueteTuristicoLogic.getPago(entity.getId(), pagoEntity.getId());
 
-        Assert.assertEquals(GuiaEntity.getId(), response.getId());
-        Assert.assertEquals(GuiaEntity.getName(), response.getName());
+        Assert.assertEquals(pagoEntity.getId(), response.getId());
+        Assert.assertEquals(pagoEntity.getName(), response.getName());
     }
 
-    /**
-     * Prueba para obtener una colección de instancias de Guias asociadas a una
-     * instancia Plan
-     *
-     * 
-     */
-    @Test
-    public void listGuiasTest() {
-        List<GuiaEntity> list = PlanLogic.listGuias(data.get(0).getId());
-        Assert.assertEquals(3, list.size());
-    }
-
-    /**
-     * Prueba para asociar un Guias existente a un Plan
-     *
-     * 
-     */
-    @Test
-    public void addGuiasTest() 
-    {
-        PlanEntity entity = data.get(1);
-        GuiaEntity guiaEntity = GuiasData.get(1);
-        GuiaEntity response = PlanLogic.addGuia(guiaEntity.getId(), entity.getId());
-
-        Assert.assertNotNull(response);
-        Assert.assertEquals(guiaEntity.getId(), response.getId());
-    }
-
-    /**
-     * Prueba para remplazar las instancias de Guias asociadas a una instancia
-     * de Plan
-     *
-     * 
-     */
-    @Test
-    public void replaceGuiasTest() {
-        PlanEntity entity = data.get(0);
-        List<GuiaEntity> list = GuiasData.subList(1, 3);
-        PlanLogic.replaceGuias(entity.getId(), list);
-
-        entity = PlanLogic.getPlan(entity.getId());
-        Assert.assertFalse(entity.getGuias().contains(GuiasData.get(0)));
-        Assert.assertTrue(entity.getGuias().contains(GuiasData.get(1)));
-        Assert.assertTrue(entity.getGuias().contains(GuiasData.get(2)));
-    }
-
-    /**
-     * Prueba para desasociar un Guia existente de un Plan existente
-     *
-     * 
-     * @throws co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException
-     */
-    @Test
-    public void removeGuiasTest() throws BusinessLogicException {
-        boolean estaBien = false;
-        try {
-            PlanLogic.removeGuia( GuiasData.get(0).getId(),data.get(0).getId());
-            GuiaEntity response = PlanLogic.getGuia(data.get(0).getId(), GuiasData.get(0).getId());
-            
-        } catch (BusinessLogicException e) {
-            estaBien = true;
-        }
-        Assert.assertTrue(estaBien);
-
-    }
 }
 
