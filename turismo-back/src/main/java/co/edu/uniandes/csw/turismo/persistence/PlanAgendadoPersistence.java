@@ -5,7 +5,7 @@
  */
 package co.edu.uniandes.csw.turismo.persistence;
 
-import co.edu.uniandes.csw.turismo.entities.PlanAjendadoEntity;
+import co.edu.uniandes.csw.turismo.entities.PlanAgendadoEntity;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,45 +20,45 @@ import javax.persistence.TypedQuery;
  * @author dl.avendano
  */
 @Stateless
-public class PlanAjendadoPersistence {
-     private static final Logger LOGGER = Logger.getLogger(PlanAjendadoPersistence.class.getName());
+public class PlanAgendadoPersistence {
+     private static final Logger LOGGER = Logger.getLogger(PlanAgendadoPersistence.class.getName());
 
     @PersistenceContext(unitName = "TurismoPU")
     protected EntityManager em;
 
-    public PlanAjendadoEntity find(Long id) {
+    public PlanAgendadoEntity find(Long id) {
         LOGGER.log(Level.INFO, "Consultando plan ajendado con id={0}", id);
-        return em.find(PlanAjendadoEntity.class, id);
+        return em.find(PlanAgendadoEntity.class, id);
     }
 
-    public PlanAjendadoEntity findByName(String name) {
+    public PlanAgendadoEntity findByName(String name) {
         LOGGER.log(Level.INFO, "Consultando plan ajendado con name= ", name);
-        TypedQuery<PlanAjendadoEntity> q = em.createQuery("select u from PlanAjendadoEntity u where u.name = :name", PlanAjendadoEntity.class);
+        TypedQuery<PlanAgendadoEntity> q = em.createQuery("select u from PlanAjendadoEntity u where u.name = :name", PlanAgendadoEntity.class);
         q = q.setParameter("name", name);
         return q.getSingleResult();
     }
 
-    public List<PlanAjendadoEntity> findAll() {
+    public List<PlanAgendadoEntity> findAll() {
         LOGGER.info("Consultando todos los plan ajendado");
         Query q = em.createQuery("select u from PlanAjendadoEntity u");
         return q.getResultList();
     }
 
-    public PlanAjendadoEntity create(PlanAjendadoEntity entity) {
+    public PlanAgendadoEntity create(PlanAgendadoEntity entity) {
         LOGGER.info("Creando un plan ajendado nuevo");
         em.persist(entity);
         LOGGER.info("PlanAjendado creado");
         return entity;
     }
 
-    public PlanAjendadoEntity update(PlanAjendadoEntity entity) {
+    public PlanAgendadoEntity update(PlanAgendadoEntity entity) {
         LOGGER.log(Level.INFO, "Actualizando plan ajendado con id={0}", entity.getId());
         return em.merge(entity);
     }
 
     public void delete(Long id) {
         LOGGER.log(Level.INFO, "Borrando plan ajendado con id={0}", id);
-        PlanAjendadoEntity entity = em.find(PlanAjendadoEntity.class, id);
+        PlanAgendadoEntity entity = em.find(PlanAgendadoEntity.class, id);
         em.remove(entity);
     }
 }

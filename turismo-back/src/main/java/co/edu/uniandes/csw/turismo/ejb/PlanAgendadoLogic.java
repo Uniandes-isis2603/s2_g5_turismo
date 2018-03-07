@@ -23,8 +23,8 @@ import javax.inject.Inject;
  * @author dl.avendano
  */
 @Stateless
-public class PlanAjendadoLogic {
-    private static final Logger LOGGER = Logger.getLogger(PlanAjendadoLogic.class.getName());
+public class PlanAgendadoLogic {
+    private static final Logger LOGGER = Logger.getLogger(PlanAgendadoLogic.class.getName());
 
      Date fechaActual = new Date();
     @Inject

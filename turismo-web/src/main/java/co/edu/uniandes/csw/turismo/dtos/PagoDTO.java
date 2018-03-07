@@ -39,9 +39,9 @@ public class PagoDTO {
      */
     private long id;
     /**
-     * Atriburo que modela el id del plan
+     * Atriburo que modela el nombre del plan
      */
-    private long idPlan;
+    private String nombrePlan;
     /**
      * Atriburo que modela el el costo del plan endurante el pago
      */
@@ -60,6 +60,7 @@ public class PagoDTO {
     {
         if(entity != null)
         {
+        this.nombrePlan = entity.getName();
         this.costo = entity.getCostoPlan();
         this.id = entity.getId();
         }
@@ -69,6 +70,7 @@ public class PagoDTO {
         PagoEntity entity = new PagoEntity();
         entity.setCostoPlan(this.getCosto());
         entity.setId(this.getId());
+        entity.setName(this.getNombrePlan());
         return entity;
     }
     /**
@@ -85,19 +87,15 @@ public class PagoDTO {
         this.id = id;
     }
 
-    /**
-     * @return El identificador del plan
-     */
-    public long getIdPlan() {
-        return idPlan;
+    public String getNombrePlan() {
+        return nombrePlan;
     }
 
-    /**
-     * @param idPlan Identificador del plan
-     */
-    public void setIdPlan(long idPlan) {
-        this.idPlan = idPlan;
+    public void setNombrePlan(String nombrePlan) {
+        this.nombrePlan = nombrePlan;
     }
+
+    
 
     /**
      * @return El costo del plan
