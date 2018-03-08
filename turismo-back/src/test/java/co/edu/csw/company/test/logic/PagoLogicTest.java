@@ -89,7 +89,6 @@ public class PagoLogicTest {
      */
     private void clearData() {
         em.createQuery("delete from PagoEntity").executeUpdate();
-        em.createQuery("delete from BookEntity").executeUpdate();
     }
 
     /**
@@ -122,7 +121,6 @@ public class PagoLogicTest {
         PagoEntity entity = em.find(PagoEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getName(), entity.getName());
-        Assert.assertEquals(newEntity.getNombrePlan(), entity.getNombrePlan());
         Assert.assertEquals(newEntity.getCostoPlan(), entity.getCostoPlan());
        
     }
@@ -160,7 +158,6 @@ public class PagoLogicTest {
         Assert.assertEquals(entity.getId(), resultEntity.getId());
         Assert.assertEquals(entity.getName(), resultEntity.getName());
         Assert.assertEquals(entity.getCostoPlan(), entity.getCostoPlan());
-        Assert.assertEquals(entity.getNombrePlan(), resultEntity.getNombrePlan());
     }
 
     /**
@@ -182,10 +179,9 @@ public class PagoLogicTest {
      *
      */
     @Test
-    public void updatePagoTest() {
+    public void updatePagoTest()throws BusinessLogicException {
         PagoEntity entity = data.get(0);
         PagoEntity pojoEntity = factory.manufacturePojo(PagoEntity.class);
-
         pojoEntity.setId(entity.getId());
 
         pagoLogic.updatePago(pojoEntity);
@@ -194,7 +190,6 @@ public class PagoLogicTest {
 
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
         Assert.assertEquals(pojoEntity.getName(), resp.getName());
-        Assert.assertEquals(pojoEntity.getNombrePlan(), resp.getNombrePlan());
         Assert.assertEquals(pojoEntity.getCostoPlan(), resp.getCostoPlan());
     }
 }

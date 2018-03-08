@@ -90,7 +90,7 @@ public class TarjetaDeCreditoLogic
         else
         {
          LOGGER.log(Level.INFO, "Inicia proceso de Eliminar Tarjeta con numero", numero);
-         persistence.deletebynumber(id,numero);
+         persistence.delete(tarjeta.getId());
          LOGGER.log(Level.INFO, "Termina proceso de Eliminar tarjeta con numero", numero);
         }   
      };
@@ -106,6 +106,7 @@ public class TarjetaDeCreditoLogic
         {
              throw new BusinessLogicException("la tarjeta de credito tiene un numero mayor o menor a 16 digitos" + entity.getNumero() + "\"");
         }
+        entity.setId(id);
         TarjetaDeCreditoEntity newEntity = persistence.update(entity);
         return newEntity;
      }

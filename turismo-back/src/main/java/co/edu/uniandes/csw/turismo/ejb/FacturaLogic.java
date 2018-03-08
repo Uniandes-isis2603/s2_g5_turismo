@@ -38,12 +38,6 @@ public class FacturaLogic
         {
             throw new BusinessLogicException("Ya existe una factura con el id" + entity.getId() + "\"");
         }
-        //verifica que la tarjeta exista.
-        //if(TarjetaLogic.getTrajetaDeCreditoNumero(entity.getTarjetadecredito().getNumero()) == null )
-//        {
-//            throw new BusinessLogicException("la tarjeta de credito no existe " + entity.getTarjetadecredito().getNumero() + "\"");
-//        }
-        // verifica que la factura no tenga un costo negativo
         if(entity.getCosto() < 0)
         {
             throw new BusinessLogicException("La factura no puede tener un costo negativo o un costo 0. Costo= " + entity.getCosto() );
@@ -56,7 +50,7 @@ public class FacturaLogic
         return entity;
     }
      
-    public List<FacturaEntity> getTrajetasDeCredito()
+    public List<FacturaEntity> getFacturas()
     {
         LOGGER.info("Inicia proceso de consultar todos los facturas");
         List<FacturaEntity> facturas = persistence.findAll();
@@ -64,7 +58,7 @@ public class FacturaLogic
         return facturas;
         
     }
-    public FacturaEntity getTrajetaDeCredito(Long id) 
+    public FacturaEntity getFactura(Long id) 
     {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar Factura con id={0}", id);
         FacturaEntity factura= persistence.find(id);
@@ -82,18 +76,14 @@ public class FacturaLogic
      };
      public FacturaEntity updateFactura(Long id, FacturaEntity entity) throws BusinessLogicException 
      {
-       //verifica la regla de negocio de que no pueden haber 2 facturas con el mismo id
-        if (persistence.find(entity.getId())!= null) 
-        {
-            throw new BusinessLogicException("Ya existe una factura con el id" + entity.getId() + "\"");
-        }
-        
+      
         // verifica que la factura no tenga un costo negativo
         if(entity.getCosto() < 0)
         {
             throw new BusinessLogicException("La factura no puede tener un costo negativo o un costo 0. Costo= " + entity.getCosto() );
             
         }
+        entity.setId(id);
         FacturaEntity newEntity = persistence.update(entity);
         return newEntity;
      }
