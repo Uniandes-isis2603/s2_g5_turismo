@@ -3,6 +3,8 @@ delete from PlanEntity_GuiaEntity;
 delete from PlanEntity;
 delete from PreferenciasEntity;
 delete from GuiaEntity;
+delete from FACTURAENTITY;
+delete from PAQUETETURISTICOENTITY;
 delete from TARJETADECREDITOENTITY;
 delete from USUARIOENTITY;
 
@@ -26,3 +28,12 @@ insert into UsuarioEntity (id,apellido,contrasenia,correo,esAdministrador,idioma
 insert into TarjetaDeCreditoEntity (id,cdv,cedula,name,numero,Usuario_id) values (10000,123,1016078997,'sebastian',1234123412341234,10001);
 insert into TarjetaDeCreditoEntity (id,cdv,cedula,name,numero,Usuario_id) values (10001,123,1016078997,'sebastian',1234123412341235,10001);
 insert into TarjetaDeCreditoEntity (id,cdv,cedula,name,numero,Usuario_id) values (10002,123,1016078997,'sebastian',1234123412341236,10001);
+
+
+/* Parte Facturas*/
+
+insert into PAQUETETURISTICOENTITY(id,Name) values (10000,'a');
+
+insert into FACTURAENTITY (id,costo,name,TARJETADECREDITO_ID,PAQUETETURISTICO_ID) values (10000,800000,'a',10001,10000);
+insert into FACTURAENTITY (id,costo,name,TARJETADECREDITO_ID,PAQUETETURISTICO_ID) values (10001,900000,'b',10001,10000);
+insert into FACTURAENTITY (id,costo,name,TARJETADECREDITO_ID,PAQUETETURISTICO_ID) values (10002,1000000,'c',10001,10000);

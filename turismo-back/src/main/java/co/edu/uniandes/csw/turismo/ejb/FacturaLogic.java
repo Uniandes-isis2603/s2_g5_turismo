@@ -83,6 +83,7 @@ public class FacturaLogic
             throw new BusinessLogicException("La factura no puede tener un costo negativo o un costo 0. Costo= " + entity.getCosto() );
             
         }
+        entity.setId(id);
         FacturaEntity newEntity = persistence.update(entity);
         return newEntity;
      }
