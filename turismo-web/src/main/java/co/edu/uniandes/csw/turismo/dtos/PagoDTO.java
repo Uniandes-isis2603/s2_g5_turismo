@@ -22,12 +22,11 @@
  *   }
  *
  * </pre>
- * @author ISIS2603
+ * @author dl.avendano
  */
 package co.edu.uniandes.csw.turismo.dtos;
 
 import co.edu.uniandes.csw.turismo.entities.PagoEntity;
-import java.util.Date;
 
 /**
  *
@@ -47,15 +46,11 @@ public class PagoDTO {
      */
     private double costo;
     
-   
-    
-    /**
-     * Constructor por defecto
-     */
-    public PagoDTO(){
+    public PagoDTO()
+    {
         
     }
-
+    
     public PagoDTO(PagoEntity entity) 
     {
         if(entity != null)

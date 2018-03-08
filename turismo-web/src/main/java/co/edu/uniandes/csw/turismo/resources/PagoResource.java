@@ -49,13 +49,7 @@ public class PagoResource {
     @Inject
     private PagoLogic pagoLogic;
     
-    private List<PagoDetailDTO> listEntityToDTO(List<PagoEntity> entityList) {
-        List<PagoDetailDTO> list = new ArrayList<>();
-        for(PagoEntity entity : entityList) {
-            list.add(new PagoDetailDTO(entity));
-        }
-        return list;
-    }
+    
     /**
      * <h1>POST /api/pagos : Crear un nuevo pago.</h1>
      * 
@@ -97,7 +91,7 @@ public class PagoResource {
      */
     @GET
     public List<PagoDetailDTO> getPagos() {
-        return listEntityToDTO(pagoLogic.getPagos());
+        return new ArrayList<>();
     }
 
     /**
