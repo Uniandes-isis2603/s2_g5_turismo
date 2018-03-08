@@ -1,0 +1,362 @@
+{
+	"info": {
+		"name": "Pruebas-tarjetadecredito",
+		"_postman_id": "410d4fc8-8b13-2e52-2982-20836374d2c7",
+		"description": "Estas son las pruebas iniciales del proyecto para el recurso tarjeta de credito",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/turismo-web/api/usuarios/10001/tarjetas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d23932af-bbb2-45b0-9684-1d4a060c2b19",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n       \"name\": \"sebastian\",\r\n       \"numero\":1234567891011326,\r\n       \"CVD\":213,\r\n       \"cedula\":1016078997\r\n   \r\n   }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/facturas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"facturas"
+					]
+				},
+				"description": "Consulata todas las tarjetas de un usuario"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/turismo-web/api/usuarios/10001/tarjetas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3d3e5832-968d-4535-af1a-942f857b35d5",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n       \"name\": \"sebastian\",\r\n       \"numero\":1234567891011326,\r\n       \"CVD\":213,\r\n       \"cedula\":1016078997\r\n   \r\n   }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/usuarios/10001/tarjetas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"usuarios",
+						"10001",
+						"tarjetas"
+					]
+				},
+				"description": "Crea una nueva tarjeta a un nuevo usuario"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/turismo-web/api/usuarios/10001/tarjetas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "55524258-e34a-43d9-a048-495e9c098f3c",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n       \"name\": \"sebastian\",\r\n       \"numero\":12345678910113267,\r\n       \"CVD\":213,\r\n       \"cedula\":1016078997\r\n   \r\n   }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/usuarios/10001/tarjetas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"usuarios",
+						"10001",
+						"tarjetas"
+					]
+				},
+				"description": "Verifica que no se puede agregar una tarjeta que tenga mas de 16 digitos\n"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/turismo-web/api/usuarios/10001/tarjetas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1e4772fd-6d63-40b6-982b-d13d9a102c2d",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n       \"name\": \"sebastian\",\r\n       \"numero\":123456789101132,\r\n       \"CVD\":213,\r\n       \"cedula\":1016078997\r\n   \r\n   }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/usuarios/10001/tarjetas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"usuarios",
+						"10001",
+						"tarjetas"
+					]
+				},
+				"description": "Verifica que no se puede agregar una tarjeta que tenga menos de 16 digitos"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/turismo-web/api/usuarios/10001/tarjetas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ccad3a53-a881-40af-a435-f282c29bfb73",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n       \"name\": \"sebastian\",\r\n       \"numero\":1234567891011326,\r\n       \"CVD\":2134,\r\n       \"cedula\":1016078997\r\n   \r\n   }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/usuarios/10001/tarjetas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"usuarios",
+						"10001",
+						"tarjetas"
+					]
+				},
+				"description": "Verifica que no puede haber un CVD mayor de 3 digitos"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/turismo-web/api/usuarios/10001/tarjetas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e2a0a87c-9036-4984-bd78-92ef7868979e",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n       \"name\": \"sebastian\",\r\n       \"numero\":1234567891011326,\r\n       \"CVD\":21,\r\n       \"cedula\":1016078997\r\n   \r\n   }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/usuarios/10001/tarjetas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"usuarios",
+						"10001",
+						"tarjetas"
+					]
+				},
+				"description": "Verifica que no puede haber un cdv menor a 3 digitos"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/turismo-web/api/usuarios/10001/tarjetas/1234123412341235",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6db955aa-944f-4ed0-89a4-2027c8225c72",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 204\"] = responseCode.code === 204;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/usuarios/10001/tarjetas/1234123412341235",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"usuarios",
+						"10001",
+						"tarjetas",
+						"1234123412341235"
+					]
+				},
+				"description": "Verifica que la eliminacion de una tarjeta se haga de manera correcta"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/turismo-web/api/usuarios/10001/tarjetas/10001",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b63f77ef-6405-41ac-a049-65353db40edd",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n       \"name\": \"sebastian\",\r\n       \"numero\":2222222222222222,\r\n       \"CVD\":987,\r\n       \"cedula\":1016078997\r\n   \r\n   }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/usuarios/10001/tarjetas/10001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"usuarios",
+						"10001",
+						"tarjetas",
+						"10001"
+					]
+				},
+				"description": "Revisa que se actualize una tarjeta"
+			},
+			"response": []
+		}
+	]
+}
