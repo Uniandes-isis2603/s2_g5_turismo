@@ -56,7 +56,7 @@ public class PaqueteTuristicoPersistenceTest {
      * se van a probar.
      */
     @Inject
-    private PaqueteTuristicoPersistence PaqueteTuristicoPersistence;
+    private PaqueteTuristicoPersistence paqueteTuristicoPersistence;
 
     /**
      * Contexto de Persostencia que se va autilizar para acceder a la Base de
@@ -134,7 +134,7 @@ public class PaqueteTuristicoPersistenceTest {
     public void createPaqueteTuristicoTest() {
         PodamFactory factory = new PodamFactoryImpl();
         PaqueteTuristicoEntity newEntity = factory.manufacturePojo(PaqueteTuristicoEntity.class);
-        PaqueteTuristicoEntity result = PaqueteTuristicoPersistence.create(newEntity);
+        PaqueteTuristicoEntity result = paqueteTuristicoPersistence.create(newEntity);
 
         Assert.assertNotNull(result);
 
@@ -151,7 +151,7 @@ public class PaqueteTuristicoPersistenceTest {
      */
     @Test
     public void getPaquetesTuristicosTest() {
-        List<PaqueteTuristicoEntity> list = PaqueteTuristicoPersistence.findAll();
+        List<PaqueteTuristicoEntity> list = paqueteTuristicoPersistence.findAll();
         Assert.assertEquals(data.size(), list.size());
         for (PaqueteTuristicoEntity ent : list) {
             boolean found = false;
@@ -172,7 +172,7 @@ public class PaqueteTuristicoPersistenceTest {
     @Test
     public void getPaqueteTuristicoTest() {
         PaqueteTuristicoEntity entity = data.get(0);
-        PaqueteTuristicoEntity newEntity = PaqueteTuristicoPersistence.find(entity.getId());
+        PaqueteTuristicoEntity newEntity = paqueteTuristicoPersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(newEntity.getName(), entity.getName());
         Assert.assertEquals(newEntity.getId(), entity.getId());
@@ -186,7 +186,7 @@ public class PaqueteTuristicoPersistenceTest {
     @Test
     public void deletePaqueteTuristicoTest() {
         PaqueteTuristicoEntity entity = data.get(0);
-        PaqueteTuristicoPersistence.delete(entity.getId());
+        paqueteTuristicoPersistence.delete(entity.getId());
         PaqueteTuristicoEntity deleted = em.find(PaqueteTuristicoEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
@@ -204,7 +204,7 @@ public class PaqueteTuristicoPersistenceTest {
 
         newEntity.setId(entity.getId());
 
-        PaqueteTuristicoPersistence.update(newEntity);
+        paqueteTuristicoPersistence.update(newEntity);
 
         PaqueteTuristicoEntity resp = em.find(PaqueteTuristicoEntity.class, entity.getId());
 

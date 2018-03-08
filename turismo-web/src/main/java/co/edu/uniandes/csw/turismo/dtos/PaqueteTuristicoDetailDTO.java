@@ -7,7 +7,7 @@ package co.edu.uniandes.csw.turismo.dtos;
 
 import co.edu.uniandes.csw.turismo.entities.PagoEntity;
 import co.edu.uniandes.csw.turismo.entities.PaqueteTuristicoEntity;
-import co.edu.uniandes.csw.turismo.entities.PlanAjendadoEntity;
+import co.edu.uniandes.csw.turismo.entities.PlanAgendadoEntity;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +21,7 @@ import java.util.List;
  */
 public class PaqueteTuristicoDetailDTO  extends PaqueteTuristicoDTO{
     private List<PagoDTO> pagos; 
-    private List<PlanAjendadoDTO> planes; 
+    private List<PlanAgendadoDTO> planes; 
     
     public PaqueteTuristicoDetailDTO(PaqueteTuristicoEntity entity) {
         super(entity);
@@ -31,8 +31,8 @@ public class PaqueteTuristicoDetailDTO  extends PaqueteTuristicoDTO{
             for (PagoEntity entityPagos : entity.getPagos()) {
                 pagos.add(new PagoDTO(entityPagos));
             }
-            for (PlanAjendadoEntity entityPlanes : entity.getPlanes()) {
-                planes.add(new PlanAjendadoDTO(entityPlanes));
+            for (PlanAgendadoEntity entityPlanes : entity.getPlanes()) {
+                planes.add(new PlanAgendadoDTO(entityPlanes));
             }
         }
 
@@ -42,8 +42,8 @@ public class PaqueteTuristicoDetailDTO  extends PaqueteTuristicoDTO{
     public PaqueteTuristicoEntity toEntity() {
         PaqueteTuristicoEntity entity = super.toEntity();
         if (planes != null) {
-            List<PlanAjendadoEntity> planesEntity = new ArrayList<>();
-            for (PlanAjendadoDTO dtoPlan : planes) {
+            List<PlanAgendadoEntity> planesEntity = new ArrayList<>();
+            for (PlanAgendadoDTO dtoPlan : planes) {
                 planesEntity.add(dtoPlan.toEntity());
             }
             entity.setPlanes(planesEntity);
@@ -67,11 +67,11 @@ public class PaqueteTuristicoDetailDTO  extends PaqueteTuristicoDTO{
         this.pagos = Pagos;
     }
 
-    public List<PlanAjendadoDTO> getPlanes() {
+    public List<PlanAgendadoDTO> getPlanes() {
         return planes;
     }
 
-    public void setPlanes(List<PlanAjendadoDTO> Planes) {
+    public void setPlanes(List<PlanAgendadoDTO> Planes) {
         this.planes = Planes;
     }
     

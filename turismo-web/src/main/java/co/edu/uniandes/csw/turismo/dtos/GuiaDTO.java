@@ -52,7 +52,10 @@ public class GuiaDTO
     /**
      * Constructor por defecto
      */
-    public GuiaDTO() {}
+    public GuiaDTO()
+    {
+        //constructor vacio
+    }
 
     /**
      * Constructor a partir de la entidad

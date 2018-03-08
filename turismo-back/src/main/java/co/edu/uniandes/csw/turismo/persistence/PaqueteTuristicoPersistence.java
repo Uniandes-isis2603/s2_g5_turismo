@@ -32,12 +32,6 @@ public class PaqueteTuristicoPersistence {
         return em.find(PaqueteTuristicoEntity.class, id);
     }
 
-    public PaqueteTuristicoEntity findByName(String name) {
-        LOGGER.log(Level.INFO, "Consultando paquete turistico con name= ", name);
-        TypedQuery<PaqueteTuristicoEntity> q = em.createQuery("select u from PaqueteTuristicoEntity u where u.name = :name", PaqueteTuristicoEntity.class);
-        q = q.setParameter("name", name);
-        return q.getSingleResult();
-    }
 
     public List<PaqueteTuristicoEntity> findAll() {
         LOGGER.info("Consultando todos los paquete turisticos");
