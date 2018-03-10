@@ -37,12 +37,13 @@ public class ComentarioLogic {
        if (entity.getComentario() != null && !entity.getComentario().isEmpty()){
            BlogEntity blog = blogLogic.getBlogs(blogId);
        if (blog != null){
+           entity = persistence.create(entity);
             List<ComentarioEntity> com = blog.getComentarios();
             com.add(entity);
             blog.setComentarios(com);
             blogLogic.updateBlog(blog);
         // Invoca la persistencia para crear el Comentario
-        persistence.create(entity);
+        
         LOGGER.info("Termina proceso de creación Comentarios");
         return entity;
         }
@@ -66,7 +67,23 @@ public class ComentarioLogic {
         return com;
     }
       
-        public ComentarioEntity getComentarios(Long id, long blogId) throws BusinessLogicException 
+        public ComentarioEntity getComentarioId(long id) throws BusinessLogicException {
+        LOGGER.info("Inicia proceso de consultar todos los Comentarios");
+      ComentarioEntity comen = persistence.find(id);
+      if (comen != null)
+      {
+           LOGGER.info("Termina proceso de consultar todos los Comentarios");
+          return comen;
+      }
+      else {
+          throw new BusinessLogicException("el comentario no existe");
+        }
+     
+      
+        
+    }
+      
+        public ComentarioEntity getComentario(Long id, long blogId) throws BusinessLogicException 
     {   BlogEntity blog = blogLogic.getBlogs(blogId);
         List<ComentarioEntity> com = blog.getComentarios();
         ComentarioEntity encontrado = null;

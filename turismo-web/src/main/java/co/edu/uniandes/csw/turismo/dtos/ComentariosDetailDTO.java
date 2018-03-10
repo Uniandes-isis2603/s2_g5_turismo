@@ -29,11 +29,7 @@ public class ComentariosDetailDTO extends ComentarioDTO {
   {super(entity);
   
   }
-   @Override
-  public ComentarioEntity toEntity()
-    { 
-       return super.toEntity();
-    }
+ 
 
           
           

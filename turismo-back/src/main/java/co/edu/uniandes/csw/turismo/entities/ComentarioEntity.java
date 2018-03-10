@@ -17,6 +17,7 @@ public class ComentarioEntity extends BaseEntity implements Serializable {
     
     private String comentario;
    
+    
 
     /**
      * @return El contenido del comentario

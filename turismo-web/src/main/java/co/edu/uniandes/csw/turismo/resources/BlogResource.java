@@ -87,7 +87,7 @@ public class BlogResource {
   
   @GET
   @Path("{id: \\d+}") 
-public BlogDTO getBlog (@PathParam("id") long id) throws BusinessLogicException  
+public BlogDetailDTO getBlog (@PathParam("id") long id) throws BusinessLogicException  
 {
  return new BlogDetailDTO(blogLogic.getBlogs(id));
 }

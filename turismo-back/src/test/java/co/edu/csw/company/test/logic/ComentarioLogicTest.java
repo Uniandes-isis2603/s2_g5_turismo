@@ -43,10 +43,10 @@ public class ComentarioLogicTest
     private PodamFactory factory = new PodamFactoryImpl();
 
     @Inject
-    private ComentarioLogic ComentarioLogic;
+    private BlogLogic BlogLogic;
     
     @Inject
-    private BlogLogic BlogLogic;
+    private ComentarioLogic ComentarioLogic;
 
     @PersistenceContext
     private EntityManager em;
@@ -54,21 +54,20 @@ public class ComentarioLogicTest
     @Inject
     private UserTransaction utx;
 
-    private List<ComentarioEntity> ComentarioData = new ArrayList<ComentarioEntity>();
-    
-     private BlogEntity BlogData = new BlogEntity();
-    
+    private List<BlogEntity> BlogData = new ArrayList<>();
+    private List<ComentarioEntity> ComentariosData = new ArrayList<>();
 
 
 
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
+                .addPackage(BlogEntity.class.getPackage())
+                .addPackage(BlogLogic.class.getPackage())
+                .addPackage(BlogPersistence.class.getPackage())
                 .addPackage(ComentarioEntity.class.getPackage())
                 .addPackage(ComentarioLogic.class.getPackage())
                 .addPackage(ComentarioPersistence.class.getPackage())
-                .addPackage(BlogEntity.class.getPackage())
-                .addPackage(BlogLogic.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
@@ -99,10 +98,10 @@ public class ComentarioLogicTest
      *
      */
     private void clearData() {
-        em.createQuery("delete from ComentarioEntity").executeUpdate();
-        em.createQuery("delete from ComentarioEntity").executeUpdate();
-         em.createQuery("delete from BlogEntity").executeUpdate();
         em.createQuery("delete from BlogEntity").executeUpdate();
+        em.createQuery("delete from ComentarioEntity").executeUpdate();
+     
+        
     }
 
     /**
@@ -111,20 +110,18 @@ public class ComentarioLogicTest
      *
      */
     private void insertData() {
-         BlogEntity Blog = factory.manufacturePojo(BlogEntity.class);
-            
         for (int i = 0; i < 3; i++) {
-            
+            BlogEntity Blog = factory.manufacturePojo(BlogEntity.class);
+            em.persist(Blog);
+            BlogData.add(Blog);
+        }
+        for (int i = 0; i < 3; i++) {
             ComentarioEntity Comentario = factory.manufacturePojo(ComentarioEntity.class);
             em.persist(Comentario);
-            ComentarioData.add(Comentario);
-
-           
+            ComentariosData.add(Comentario);
         }
-            Blog.setComentarios(ComentarioData);
-            em.persist(Blog);
-          
-      
+        BlogData.get(0).setComentarios(ComentariosData);
+        em.persist( BlogData.get(0));
         
     }
     
@@ -132,32 +129,27 @@ public class ComentarioLogicTest
     @Test
     public void createComentarioTest() throws BusinessLogicException 
     {
-        BlogEntity a = new BlogEntity();
-       ComentarioEntity newEntity = factory.manufacturePojo(ComentarioEntity.class); 
-       List<ComentarioEntity> lista = a.getComentarios();
-       lista.add(newEntity);
-       a.setComentarios(lista);
-        ComentarioEntity result = ComentarioLogic.createComentario(newEntity, a.getId());
-        
-      
-
+        PodamFactory factory = new PodamFactoryImpl();
+       ComentarioEntity newEntity = factory.manufacturePojo(ComentarioEntity.class);       
+        ComentarioEntity result = ComentarioLogic.createComentario(newEntity, BlogData.get(1).getId());
+   
         Assert.assertNotNull(result);
         ComentarioEntity entity = em.find(ComentarioEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getComentario(), entity.getComentario());
         Assert.assertNotNull(entity.getComentario());
+        
     }
     
     @Test
     public void getComentarioTest() throws BusinessLogicException 
     {
-        BlogEntity newEntity = factory.manufacturePojo(BlogEntity.class); 
-        List<ComentarioEntity> list = ComentarioLogic.getComentarios(newEntity.getId());
-        Assert.assertEquals(ComentarioData.size(), list.size());
+        List<ComentarioEntity> list = BlogData.get(0).getComentarios();
+        Assert.assertEquals(ComentariosData.size(), list.size());
         for (ComentarioEntity entity : list) 
         {
             boolean found = false;
-            for (ComentarioEntity storedEntity : ComentarioData) 
+            for (ComentarioEntity storedEntity : ComentariosData) 
             {
                 if (entity.getId().equals(storedEntity.getId())) {
                     found = true;
@@ -170,16 +162,16 @@ public class ComentarioLogicTest
     @Test
     public void deleteComentarioTest() throws BusinessLogicException
     {
-         ComentarioEntity entity = ComentarioData.get(0);
-         ComentarioLogic.deleteComentario(entity, BlogData.getId());
+         ComentarioEntity entity = ComentariosData.get(0);
+         ComentarioLogic.deleteComentario(entity, BlogData.get(0).getId());
          ComentarioEntity deleted = em.find( ComentarioEntity.class, entity.getId());
          Assert.assertNull(deleted);
     }
     
      @Test
-    public void updateComentarioTest() throws BusinessLogicException
+    public void updateBlogTest() throws BusinessLogicException
     {
-         ComentarioEntity entity = ComentarioData.get(0);
+         ComentarioEntity entity = ComentariosData.get(0);
          ComentarioEntity pojoEntity = factory.manufacturePojo( ComentarioEntity.class);
 
         pojoEntity.setId(entity.getId());
