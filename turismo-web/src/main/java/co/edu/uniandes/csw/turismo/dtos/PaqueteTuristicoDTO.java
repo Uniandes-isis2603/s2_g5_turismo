@@ -56,7 +56,7 @@ public class PaqueteTuristicoDTO {
     /**
      * @return El identificador del paquete
      */
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

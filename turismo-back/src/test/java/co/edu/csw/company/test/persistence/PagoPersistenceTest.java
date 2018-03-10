@@ -142,7 +142,7 @@ public class PagoPersistenceTest {
         Assert.assertEquals(newEntity.getName(), entity.getName());
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getName(), entity.getName());
-        Assert.assertEquals(newEntity.getCostoPlan(), entity.getCostoPlan());
+        Assert.assertEquals(newEntity.getCosto(), entity.getCosto());
     }
 
     /**
@@ -178,7 +178,7 @@ public class PagoPersistenceTest {
         Assert.assertEquals(newEntity.getName(), entity.getName());
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getName(), entity.getName());
-        Assert.assertEquals(newEntity.getCostoPlan(), entity.getCostoPlan());
+        Assert.assertEquals(newEntity.getCosto(), entity.getCosto());
     }
 
     /**
@@ -211,9 +211,8 @@ public class PagoPersistenceTest {
 
         PagoEntity resp = em.find(PagoEntity.class, entity.getId());
 
-        Assert.assertEquals(newEntity.getName(), resp.getName());
         Assert.assertEquals(newEntity.getId(), resp.getId());
         Assert.assertEquals(newEntity.getName(), resp.getName());
-        Assert.assertEquals(newEntity.getCostoPlan(), resp.getCostoPlan());
+        Assert.assertEquals(newEntity.getCosto(), resp.getCosto());
     }
 }

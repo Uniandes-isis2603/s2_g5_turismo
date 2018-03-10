@@ -30,11 +30,7 @@ public class PagoLogic {
     private PlanPersistence persistencePlan;
     
     public PagoEntity createPago(PagoEntity entity) throws BusinessLogicException{
-        if (entity.getName()==null)
-            throw new BusinessLogicException("El nombre del pago no debe ser nulo \"" + entity.getName()+"\"");
-        //if (persistencePlan.findByName(entity.getName())== null)
-          //  throw new BusinessLogicException("No existe un plan con el nombre \"" + entity.getName()+"\"");
-        if (entity.getCostoPlan()==null || entity.getCostoPlan() <0)
+        if (entity.getCosto()==null || entity.getCosto() <0.0)
             throw new BusinessLogicException("El costo del plan debe ser valido");
         return persistence.create(entity);
     }
@@ -54,7 +50,7 @@ public class PagoLogic {
             throw new BusinessLogicException("El nombre del pago no debe ser nulo \"" + entity.getName()+"\"");
         //if (persistencePlan.findByName(entity.getName())== null)
           //  throw new BusinessLogicException("No existe un plan con el nombre \"" + entity.getName()+"\"");
-        if (entity.getCostoPlan()==null || entity.getCostoPlan() <0)
+        if (entity.getCosto()==null || entity.getCosto() <0)
             throw new BusinessLogicException("El costo del plan debe ser valido");
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar un pago ");
         return persistence.update(entity);

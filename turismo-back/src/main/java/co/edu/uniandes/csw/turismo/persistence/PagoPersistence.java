@@ -31,12 +31,7 @@ public class PagoPersistence {
         return em.find(PagoEntity.class, id);
     }
 
-    public PagoEntity findByName(String name) {
-        LOGGER.log(Level.INFO, "Consultando pago con name= ", name);
-        TypedQuery<PagoEntity> q = em.createQuery("select u from PagoEntity u where u.name = :name", PagoEntity.class);
-        q = q.setParameter("name", name);
-        return q.getSingleResult();
-    }
+
 
     public List<PagoEntity> findAll() {
         LOGGER.info("Consultando todos los pagos");

@@ -23,6 +23,11 @@ public class PaqueteTuristicoDetailDTO  extends PaqueteTuristicoDTO{
     private List<PagoDTO> pagos; 
     private List<PlanAgendadoDTO> planes; 
     
+    public PaqueteTuristicoDetailDTO ()
+    {
+        super();
+
+    }
     public PaqueteTuristicoDetailDTO(PaqueteTuristicoEntity entity) {
         super(entity);
         if (entity != null) {

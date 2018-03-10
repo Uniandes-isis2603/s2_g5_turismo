@@ -1,0 +1,403 @@
+{
+	"info": {
+		"name": "Pruebas postman pago",
+		"_postman_id": "fc6c6a46-8bc0-135a-e1c7-4c16ba62ee4f",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/turismo-web/api/pagos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f4e3949d-9bd5-48af-a677-de39b0004a5e",
+						"type": "text/javascript",
+						"exec": [
+							"tests [\"Status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"id\": 91852,\r\n     \"nombrePlan\": \"Monserrate\",\r\n     \"costo\": -1.23\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/pagos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"pagos"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/turismo-web/api/pagos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6e58c76a-e11e-4cb3-812b-42913b01a30d",
+						"type": "text/javascript",
+						"exec": [
+							"tests [\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"id\": 91852,\r\n     \"nombrePlan\": \"Monserrate\",\r\n     \"costo\": 63.23\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/pagos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"pagos"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/turismo-web/api/pagos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6e58c76a-e11e-4cb3-812b-42913b01a30d",
+						"type": "text/javascript",
+						"exec": [
+							"tests [\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"id\": 91852,\r\n     \"nombrePlan\": \"Monserrate\",\r\n     \"costo\": 63.23\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/pagos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"pagos"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/turismo-web/api/pagos/10000",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6e58c76a-e11e-4cb3-812b-42913b01a30d",
+						"type": "text/javascript",
+						"exec": [
+							"tests [\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"id\": 91852,\r\n     \"nombrePlan\": \"Monserrate\",\r\n     \"costo\": 63.23\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/pagos/10000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"pagos",
+						"10000"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/turismo-web/api/pagos/12",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c88b5613-8ee5-4bdd-844e-daa952c6078d",
+						"type": "text/javascript",
+						"exec": [
+							"tests [\"Status code is 404\"] = responseCode.code === 404;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"id\": 91852,\r\n     \"nombrePlan\": \"Monserrate\",\r\n     \"costo\": 63.23\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/pagos/12",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"pagos",
+						"12"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/turismo-web/api/pagos/10000",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7bdc7c15-e872-4d04-90d3-0782db9b8fe6",
+						"type": "text/javascript",
+						"exec": [
+							"tests [\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"nombrePlan\": \"Monserrate\",\r\n     \"costo\": 93.52\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/pagos/10000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"pagos",
+						"10000"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/turismo-web/api/pagos/65",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a88141d0-3b18-440b-bd5f-6dd1a264c7f6",
+						"type": "text/javascript",
+						"exec": [
+							"tests [\"Status code is 404\"] = responseCode.code === 404;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"nombrePlan\": \"Monserrate\",\r\n     \"costo\": 93.52\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/pagos/65",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"pagos",
+						"65"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/turismo-web/api/pagos/9000",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "701114f1-6a21-4a1f-bf9d-e8f7e597fa4d",
+						"type": "text/javascript",
+						"exec": [
+							"tests [\"Status code is 404\"] = responseCode.code === 404;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/pagos/9000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"pagos",
+						"9000"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/turismo-web/api/pagos/10000",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9f9a74db-4fd1-4284-81a8-145015f974f2",
+						"type": "text/javascript",
+						"exec": [
+							"tests [\"Status code is 204\"] = responseCode.code === 204;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/pagos/10000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"pagos",
+						"10000"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

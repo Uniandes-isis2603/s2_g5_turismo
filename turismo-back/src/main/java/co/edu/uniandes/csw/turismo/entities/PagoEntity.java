@@ -17,21 +17,21 @@ import javax.persistence.Entity;
 public class PagoEntity extends BaseEntity implements Serializable{
 
     
-    private Double costoPlan;
+    private Double costo;
     
    
 
     /**
-     * @return costoPlan 
+     * @return costo
      */
-    public Double getCostoPlan() {
-        return costoPlan;
+    public Double getCosto() {
+        return costo;
     }
     /**
-     * @param costoPlan
+     * @param costo
      */
-    public void setCostoPlan(Double costoPlan) {
-        this.costoPlan = costoPlan;
+    public void setCosto(Double costo) {
+        this.costo = costo;
     }
     
     
