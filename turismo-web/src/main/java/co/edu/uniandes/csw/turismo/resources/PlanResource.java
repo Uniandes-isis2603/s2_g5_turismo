@@ -1,9 +1,6 @@
 package co.edu.uniandes.csw.turismo.resources;
 
-import co.edu.uniandes.csw.turismo.dtos.GuiaDetailDTO;
 import co.edu.uniandes.csw.turismo.dtos.PlanDetailDTO;
-import co.edu.uniandes.csw.turismo.dtos.PreferenciasDetailDTO;
-import co.edu.uniandes.csw.turismo.dtos.ValoracionesDetailDTO;
 import co.edu.uniandes.csw.turismo.ejb.PlanLogic;
 import co.edu.uniandes.csw.turismo.entities.PlanEntity;
 import java.util.ArrayList;

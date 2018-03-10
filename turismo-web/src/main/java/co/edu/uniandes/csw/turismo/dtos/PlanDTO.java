@@ -5,7 +5,7 @@
  * <pre>
  *   {
  *      "idPlan": number,
- *      "nombrePlan: string,
+ *      "name: string,
  *      "descripcion": string,
  *      "pais": string,
  *      "ciudad": string,
@@ -23,7 +23,7 @@
  * 
  *   {
        "idPlan": 1,
-       "nombrePlan": "Visita a Monserrate",
+       "name": "Visita a Monserrate",
        "descripcion": "Ir a monserrate subiendo por teleferico",
        "pais": "Colombia", //esto ahora va el la clase ubicacion
        "ciudad": "Bogota", //*2
@@ -109,7 +109,7 @@ public class PlanDTO
     /**
      * Atriburo que modela el nombre del plan
      */
-    private String nombrePlan;
+    private String name;
 
     //GETTERS Y SETTERS
     /**
@@ -286,24 +286,27 @@ public class PlanDTO
     }
 
     /**
-     * @return the nombrePlan
+     * @return the name
      */
-    public String getNombrePlan() 
+    public String getName() 
     {
-        return nombrePlan;
+        return name;
     }
 
     /**
-     * @param nombrePlan the nombrePlan to set
+     * @param name the name to set
      */
-    public void setNombrePlan(String nombrePlan) 
+    public void setName(String name) 
     {
-        this.nombrePlan = nombrePlan;
+        this.name = name;
     }
     
+    /**
+     * Constructor por defecto
+     */
     public PlanDTO()
     {
-        
+        //constructor vacio
     }
     
     /**
@@ -315,7 +318,7 @@ public class PlanDTO
         if (planE != null) 
         {
             this.idPlan = planE.getId();
-            this.nombrePlan = planE.getName();
+            this.name = planE.getName();
             this.archivo = planE.getArchivo();
             this.cantidadPersonas = planE.getCantidadPersonas();
             this.ciudad = planE.getCiudad();
@@ -335,20 +338,20 @@ public class PlanDTO
      */
     public PlanEntity toEntity() 
     {
-        PlanEntity PlanE = new PlanEntity();
-        PlanE.setId(this.idPlan);
-        PlanE.setName(this.nombrePlan);
-        PlanE.setArchivo(this.archivo);
-        PlanE.setCantidadPersonas(this.cantidadPersonas);
-        PlanE.setCiudad(this.ciudad);
-        PlanE.setDescripcion(this.descripcion);
-        PlanE.setDuracion(this.duracion);
-        PlanE.setLatitud(this.latitud);
-        PlanE.setLongitud(this.longitud);
-        PlanE.setPais(this.pais);
-        PlanE.setRestricciones(this.restricciones);
+        PlanEntity planE = new PlanEntity();
+        planE.setId(this.idPlan);
+        planE.setName(this.name);
+        planE.setArchivo(this.archivo);
+        planE.setCantidadPersonas(this.cantidadPersonas);
+        planE.setCiudad(this.ciudad);
+        planE.setDescripcion(this.descripcion);
+        planE.setDuracion(this.duracion);
+        planE.setLatitud(this.latitud);
+        planE.setLongitud(this.longitud);
+        planE.setPais(this.pais);
+        planE.setRestricciones(this.restricciones);
                  
-        return PlanE;
+        return planE;
     }
 
 }

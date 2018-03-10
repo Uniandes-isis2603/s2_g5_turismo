@@ -5,46 +5,18 @@
  * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
  * <pre>
  *   {
- *      "idGuia": 1,
- *      "nombreGuia: David,
- *      "idiomaGuia": Persa,
- *      "planGuia":{
- *                     "idPlan": number,
- *                     "nombrePlan: string,
- *                     "descripcion": string,
- *                     "pais": string,
- *                     "ciudad": string,
- *                     "longitud": number,
- *                     "latitud": number,
- *                     "duracion":number,
- *                     "restricciones": string,
- *                     "archivo": string,
- *                     "precio": number,
- *                     "cantidadPersonas": number
- *                    }                   
- *   }
+       "idGuia": 1,
+       "nombreGuia: David,
+       "idiomaGuia": Persa                  
+     }
  * Por ejemplo un guia detallado se representa asi:<br>
  * 
  * <pre>
  *   {
- *      "idGuia": 1,
- *      "nombreGuia: David,
- *      "idiomaGuia": Persa,
- *      "planGuia":{
- *                     "idPlan": 1,
- *                     "nombrePlan: Visita a Monserrate,
- *                     "descripcion": "Ir a monserrate subiendo por teleferico",
- *                     "pais": "Colombia",
- *                     "ciudad": "Bogota",
- *                     "longitud": -74.057615,
- *                     "latitud": 4.606492,
- *                     "duracion":180,
- *                     "restricciones": Menores deben ir a compañados,
- *                     "archivo": imagenLink,
- *                     "precio": 20.000,
- *                     "cantidadPersonas": 9999
- *                    }                   
- *   }
+      "idGuia": 1,
+      "nombreGuia: David,
+      "idiomaGuia": Persa                
+     }
  * </pre>
  */
 package co.edu.uniandes.csw.turismo.dtos;
@@ -79,16 +51,9 @@ public class GuiaDetailDTO extends GuiaDTO
      *
      * @param entity La entidad de la cual se construye el DTO
      */
-    public GuiaDetailDTO(GuiaEntity entity) {
+    public GuiaDetailDTO(GuiaEntity entity) 
+    {
         super(entity);
-        //if (entity.getPlanGuia()!= null)
-        //{
-           // this.planGuia = new PlanDTO(entity.getPlanGuia());
-        //} 
-        //else
-        //{
-         //   entity.setPlanGuia(null);
-        //}
     }
     
     
@@ -100,27 +65,6 @@ public class GuiaDetailDTO extends GuiaDTO
     public GuiaEntity toEntity() 
     {
         GuiaEntity guiaE = super.toEntity();
-        //if (this.getPlanGuia() != null)
-        //{
-         //   guiaE.setPlanGuia(this.getPlanGuia().toEntity());
-        //}
         return guiaE;
     }
-
-    //METODOS
-    ///**
-     //* @return the planGuia
-     //*/
-   // public PlanDTO getPlanGuia() 
-    //{
-     //   return planGuia;
-   // }
-
-    ///**
-     //* @param planesGuia the planesGuia to set
-     //*/
-    //public void setPlanGuia(PlanDTO planesGuia)
-    //{
-     //   this.planGuia = planesGuia;
-    //}
 }
