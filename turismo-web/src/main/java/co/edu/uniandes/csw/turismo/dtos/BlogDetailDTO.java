@@ -111,10 +111,10 @@ public class BlogDetailDTO  extends BlogDTO
   public BlogEntity toEntity()
     { 
        BlogEntity entity = super.toEntity();
-       
+      if(comentarios != null)
+      {
        Iterator e = comentarios.iterator();
-       Iterator e2 = planes.iterator();
-       
+        
        List <ComentarioEntity> comen = new ArrayList <>();
        
        
@@ -127,18 +127,18 @@ public class BlogDetailDTO  extends BlogDTO
        }
        
        entity.setComentarios(comen);
-       
+      }
+      if(planes != null){
        List <PlanEntity> pla = new ArrayList <> ();
-   
-       
+      Iterator e2 = planes.iterator();
        while (e2.hasNext())
        {
-       PlanDTO nuevo = (PlanDTO) e.next();
+       PlanDTO nuevo = (PlanDTO) e2.next();
        
        pla.add(nuevo.toEntity());
                
        }
-       
+      }
        return entity;
     }
     

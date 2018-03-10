@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.turismo.ejb;
 
 import co.edu.uniandes.csw.turismo.entities.BlogEntity;
 import co.edu.uniandes.csw.turismo.entities.ComentarioEntity;
+import co.edu.uniandes.csw.turismo.entities.PlanEntity;
 import co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.turismo.persistence.BlogPersistence;
 import co.edu.uniandes.csw.turismo.persistence.ComentarioPersistence;
@@ -34,6 +35,10 @@ public class BlogLogic {
     
      @Inject
     private BlogPersistence persistence;
+     
+     @Inject
+    private PlanLogic planLogic;
+     
      @Inject
     private ComentarioPersistence persistenceComentario;
     
@@ -48,23 +53,32 @@ public class BlogLogic {
             throw new BusinessLogicException("Ya existe este blog");
         }
         // Invoca la persistencia para crear el Blog
-        persistence.create(entity);
-      List<ComentarioEntity> plan = entity.getComentarios();
+        if(entity.getPlanes() !=null){ 
+            List<PlanEntity> plan = entity.getPlanes();
       
-      Iterator e2 = plan.iterator();
-      while(e2.hasNext())
-      {
-      persistenceComentario.create((ComentarioEntity) e2.next());
-      }
-        
-        LOGGER.info("Termina proceso de creación blogs");
+            Iterator e2 = plan.iterator();
+             while(e2.hasNext())
+            {
+                 PlanEntity buscado = (PlanEntity) e2.next();
+                 PlanEntity real = planLogic.getPlan(buscado.getId());
+                if(real == null)
+                 {
+                throw new BusinessLogicException("No existe el plan");
+                }
+                else
+                {
+                persistence.create(entity);
+                }
+      }}
+     
+       LOGGER.info("Termina proceso de creación blogs");
         return entity;
     }
         else 
         {
         throw new BusinessLogicException("tema y descripcion no pueden ser nulos");
         }
-     
+        
      }
      
       public List<BlogEntity> getBlogs() {
@@ -86,16 +100,42 @@ public class BlogLogic {
     }
         
         public BlogEntity updateBlog(BlogEntity entity) throws BusinessLogicException  {
-            
+            if(persistence.find(entity.getId()) != null){
             if(entity.getDescripcion() != null && entity.getTema() != null && !entity.getTema().isEmpty()  && !entity.getDescripcion().isEmpty()){
         
-        return persistence.update(entity);
+                if(persistence.find(entity.getId()).getComentarios() != null){
+               List<ComentarioEntity> temp = persistence.find(entity.getId()).getComentarios();
+               entity.setComentarios(temp);}
+               
+               if(entity.getPlanes() !=null){ 
+            List<PlanEntity> plan = entity.getPlanes();
+      
+            Iterator e2 = plan.iterator();
+             while(e2.hasNext())
+            {
+                 PlanEntity buscado = (PlanEntity) e2.next();
+                 PlanEntity real = planLogic.getPlan(buscado.getId());
+                if(real == null)
+                 {
+                throw new BusinessLogicException("No existe el plan");
+                }
+                
+      }}
+               
+               
+               
+                return persistence.update(entity);
+                
+                
             
             }
             else 
         {
         throw new BusinessLogicException("tema y descripcion no pueden ser nulos");
         }
+            }
+            throw new BusinessLogicException("No existe el blog");
+        
     }
         
         public void deleteBlog(BlogEntity entity) throws BusinessLogicException {

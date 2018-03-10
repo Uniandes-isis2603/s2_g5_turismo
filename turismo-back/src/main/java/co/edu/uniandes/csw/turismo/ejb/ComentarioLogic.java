@@ -37,12 +37,13 @@ public class ComentarioLogic {
        if (entity.getComentario() != null && !entity.getComentario().isEmpty()){
            BlogEntity blog = blogLogic.getBlogs(blogId);
        if (blog != null){
+           entity = persistence.create(entity);
             List<ComentarioEntity> com = blog.getComentarios();
             com.add(entity);
             blog.setComentarios(com);
             blogLogic.updateBlog(blog);
         // Invoca la persistencia para crear el Comentario
-        persistence.create(entity);
+        
         LOGGER.info("Termina proceso de creación Comentarios");
         return entity;
         }

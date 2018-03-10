@@ -6,7 +6,23 @@ delete from GuiaEntity;
 delete from FACTURAENTITY;
 delete from PAQUETETURISTICOENTITY;
 delete from TARJETADECREDITOENTITY;
+delete from BLOGENTITY_COMENTARIOENTITY;
+delete from COMENTARIOENTITY;
+delete from BLOGENTITY;
 delete from USUARIOENTITY;
+
+
+insert into BlogEntity (id, descripcion, likes, tema) values (10000,'primer blog',0,'este es mi primer blog');
+insert into BlogEntity (id, descripcion, likes, tema) values (20000,'segundo blog',20,'este es mi segundo blog');
+insert into BlogEntity (id, descripcion, likes, tema) values (30000,'tercer blog',30,'este es mi tercero blog');
+
+insert into ComentarioEntity (id, comentario) values (10000,'me gusta comentar');
+insert into ComentarioEntity (id, comentario) values (20000,'comentar o no comentar esa es la cuestion');
+insert into ComentarioEntity (id, comentario) values (30000,'taque taraque taque');
+
+insert into BLOGENTITY_COMENTARIOENTITY (BLOGENTITY_ID, COMENTARIOS_ID) values (10000,10000);
+insert into BLOGENTITY_COMENTARIOENTITY (BLOGENTITY_ID, COMENTARIOS_ID) values (20000,20000);
+insert into BLOGENTITY_COMENTARIOENTITY (BLOGENTITY_ID, COMENTARIOS_ID) values (30000,30000);
 
 insert into PreferenciasEntity (id, tipoPlan) values (10000,'Familiar');
 insert into PreferenciasEntity (id, tipoPlan) values (10001,'Compras');
