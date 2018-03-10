@@ -149,12 +149,4 @@ public class PaqueteTuristicoLogic {
         return paqueteEntity.getPlanes();
         }
 
-    
-    public void removePlan(Long IdPaquete, Long IdPlanAgendado) {
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar un plan del paquete con id = {0}", IdPaquete);
-        PaqueteTuristicoEntity entity = getPaquete(IdPaquete);
-        PlanAgendadoEntity planesEntity = new PlanAgendadoEntity();
-        planesEntity.setId(IdPlanAgendado);
-        entity.getPlanes().remove(planesEntity);
-    }
 }

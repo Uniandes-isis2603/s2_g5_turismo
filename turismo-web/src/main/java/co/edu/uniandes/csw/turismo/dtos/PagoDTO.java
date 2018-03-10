@@ -36,15 +36,15 @@ public class PagoDTO {
     /**
      * Atriburo que modela el id del pago
      */
-    private long id;
+    private Long id;
     /**
      * Atriburo que modela el nombre del plan
      */
     private String nombrePlan;
     /**
-     * Atriburo que modela el el costo del plan endurante el pago
+     * Atriburo que modela el el costo del plan 
      */
-    private double costo;
+    private Double costo;
     
     public PagoDTO()
     {
@@ -56,14 +56,14 @@ public class PagoDTO {
         if(entity != null)
         {
         this.nombrePlan = entity.getName();
-        this.costo = entity.getCostoPlan();
+        this.costo = entity.getCosto();
         this.id = entity.getId();
         }
         
     }
      public PagoEntity toEntity() {
         PagoEntity entity = new PagoEntity();
-        entity.setCostoPlan(this.getCosto());
+        entity.setCosto(this.getCosto());
         entity.setId(this.getId());
         entity.setName(this.getNombrePlan());
         return entity;
@@ -71,14 +71,14 @@ public class PagoDTO {
     /**
      * @return El identificador del pago
      */
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
     /**
      * @param id Identificador del pago
      */
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -95,13 +95,13 @@ public class PagoDTO {
     /**
      * @return El costo del plan
      */
-    public double getCosto() {
+    public Double getCosto() {
         return costo;
     }
     /**
      * @param costo costo del plan durante el pago
      */
-    public void setCosto(double costo) {
+    public void setCosto(Double costo) {
         this.costo = costo;
     }
     

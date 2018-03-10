@@ -120,7 +120,7 @@ public class PaqueteTuristicoResource {
     public PaqueteTuristicoDetailDTO getPaqueteTuristico(@PathParam("id") Long id) {
         PaqueteTuristicoEntity paquete = paqueteLogic.getPaquete(id);
         if (paquete == null) 
-            throw new WebApplicationException("El paqute no existe");
+            throw new WebApplicationException("El paqute no existe",404);
         return new PaqueteTuristicoDetailDTO(paquete); 
     }
     

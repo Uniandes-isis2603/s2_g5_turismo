@@ -49,6 +49,13 @@ public class PagoResource {
     @Inject
     private PagoLogic pagoLogic;
     
+    private List<PagoDetailDTO> listEntityToDTO(List<PagoEntity> entityList) {
+        List<PagoDetailDTO> list = new ArrayList<>();
+        for(PagoEntity entity : entityList) {
+            list.add(new PagoDetailDTO(entity));
+        }
+        return list;
+    }
     
     /**
      * <h1>POST /api/pagos : Crear un nuevo pago.</h1>
@@ -91,7 +98,7 @@ public class PagoResource {
      */
     @GET
     public List<PagoDetailDTO> getPagos() {
-        return new ArrayList<>();
+        return listEntityToDTO(pagoLogic.getPagos());
     }
 
     /**
@@ -115,7 +122,7 @@ public class PagoResource {
     public PagoDetailDTO getPago(@PathParam("id") Long id) {
         PagoEntity pago = pagoLogic.getPago(id);
         if (pago == null) 
-            throw new WebApplicationException("El pago no existe");
+            throw new WebApplicationException("El pago no existe",404);
         return new PagoDetailDTO(pago); 
     }
     

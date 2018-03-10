@@ -7,6 +7,7 @@ delete from FACTURAENTITY;
 delete from PAQUETETURISTICOENTITY;
 delete from TARJETADECREDITOENTITY;
 delete from USUARIOENTITY;
+delete from PAGOENTITY;
 
 insert into PreferenciasEntity (id, tipoPlan) values (10000,'Familiar');
 insert into PreferenciasEntity (id, tipoPlan) values (10001,'Compras');
@@ -37,3 +38,7 @@ insert into PAQUETETURISTICOENTITY(id,Name) values (10000,'a');
 insert into FACTURAENTITY (id,costo,name,TARJETADECREDITO_ID,PAQUETETURISTICO_ID) values (10000,800000,'a',10001,10000);
 insert into FACTURAENTITY (id,costo,name,TARJETADECREDITO_ID,PAQUETETURISTICO_ID) values (10001,900000,'b',10001,10000);
 insert into FACTURAENTITY (id,costo,name,TARJETADECREDITO_ID,PAQUETETURISTICO_ID) values (10002,1000000,'c',10001,10000);
+
+insert into PAGOENTITY (id,costo, name) values (10000,80.33,'monserrate');
+insert into PAGOENTITY (id,costo, name) values (10003,80.33,'monserrate');
+insert into PAGOENTITY (id,costo, name) values (10005,80.33,'monserrate');
