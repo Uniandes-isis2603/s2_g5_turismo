@@ -134,15 +134,6 @@ public class PlanLogicTest
         }
     }
 
-    private void adicionarCat (PlanEntity pe)
-    {
-        List<PreferenciasEntity> p = new ArrayList();
-        PreferenciasEntity pref = new PreferenciasEntity();
-        pref.setTipoPlan("xd");
-        p.add(pref);
-        pe.setPreferenciasPlan(p);
-    }
-    
     /**
      * Prueba para crear un Plan
      *
@@ -486,6 +477,24 @@ public class PlanLogicTest
             estaBien = true;
         }
         Assert.assertTrue(estaBien);
+
+    }
+    
+    /**
+     * Prueba psi el metodo findByNameTabBien
+     *
+     * 
+     * @throws co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException
+     */
+    @Test
+    public void finByNameTest() throws BusinessLogicException {
+        String name = data.get(0).getName();
+        PlanEntity e = PlanLogic.getByName(name);
+        Assert.assertEquals(data.get(0), e);
+        
+        String name1 = "notAChanceDeQueEsteNombreExistalulnomamesfwef";
+        PlanEntity en = PlanLogic.getByName(name1);
+        Assert.assertNull(en);
 
     }
 }
