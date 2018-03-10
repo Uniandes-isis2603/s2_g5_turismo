@@ -120,14 +120,6 @@ public class PlanDetailDTO extends PlanDTO {
     public PlanDetailDTO(PlanEntity entity)
     {
         super(entity);
-        //if (entity.getUbicacion() != null)
-        //{
-          //  this.ubicacion = new UbicacionDTO(entity.getUbicacion());
-        //} 
-        //else 
-        //{
-          //  entity.setUbicacion(null);
-        //}
         if (entity.getPreferenciasPlan() != null) 
         {
             categoriasPlan = new ArrayList<>();
@@ -149,7 +141,7 @@ public class PlanDetailDTO extends PlanDTO {
             valoraciones = new ArrayList<>();
             for (ValoracionesEntity entityValoraciones : entity.getValoracionesPlan()) 
             {
-                valoraciones.add(new ValoracionesDTO(entityValoraciones)); //falta el constructor en valoraciones
+                valoraciones.add(new ValoracionesDTO(entityValoraciones));
             }
         }
     }
@@ -162,10 +154,6 @@ public class PlanDetailDTO extends PlanDTO {
     public PlanEntity toEntity() 
     {
         PlanEntity planE = super.toEntity();
-        //if (this.getUbicacion() != null) 
-        //{
-          //  planE.setUbicacion(this.getUbicacion().toEntity());
-        //}
         if (getValoraciones() != null) 
         {
             List<ValoracionesEntity> valoracionesEntity = new ArrayList<>();

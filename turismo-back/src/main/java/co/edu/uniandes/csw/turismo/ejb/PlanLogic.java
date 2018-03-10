@@ -95,10 +95,10 @@ public class PlanLogic
      */
     public List<PlanEntity> getPlans() 
     {
-        LOGGER.info("Inicia proceso de consultar todas los planes");
+        LOGGER.info("Inicia proceso de consultar todos los planes");
         // Note que, por medio de la inyección de dependencias se llama al método "findAll()" que se encuentra en la persistencia.
         List<PlanEntity> editorials = persistence.findAll();
-        LOGGER.info("Termina proceso de consultar todas los planes");
+        LOGGER.info("Termina proceso de consultar todos los planes");
         return editorials;
     }
 
@@ -127,19 +127,6 @@ public class PlanLogic
         if (entity.getPreferenciasPlan() == null || entity.getPreferenciasPlan().isEmpty()) 
         {
            throw new BusinessLogicException("El plan debe estar asociado al menos a un tipo o categoria de plan ");
-        }
-        else
-        {
-            for(int i = 0; i < entity.getPreferenciasPlan().size(); i++)
-            {
-                for(int j = 0; j < entity.getPreferenciasPlan().size(); j++)
-                {
-                    if(i!=j && entity.getPreferenciasPlan().get(i).equals(entity.getPreferenciasPlan().get(j)))
-                    {
-                         throw new BusinessLogicException("Se intento asociar el plan con categorias repetidas");
-                    }
-                }
-            }
         }
         return persistence.update(entity);
     }
@@ -384,4 +371,8 @@ public class PlanLogic
 
     }
     
+    public PlanEntity getByName(String name)
+    {
+        return persistence.findByName(name);
+    }
 }

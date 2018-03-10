@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.csw.turismo.entities;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -18,7 +17,7 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author jc.montoyar
  */
 @Entity
-public class PlanEntity extends BaseEntity implements Serializable
+public class PlanEntity extends BaseEntity
 {
     //ATRIBUTOS 
     
