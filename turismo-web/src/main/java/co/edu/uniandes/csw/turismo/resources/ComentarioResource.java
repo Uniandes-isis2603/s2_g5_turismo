@@ -141,9 +141,9 @@ public class ComentarioResource {
      */
     
     @PUT
-    public ComentarioDTO actualizarComentario (ComentarioDTO comentario ) throws BusinessLogicException
+    public ComentarioDTO actualizarComentario (ComentarioDTO comentario, @PathParam("blogId") long blogId ) throws BusinessLogicException
     {
-        comentarioLogic.updateComentario(comentario.toEntity());
+        comentarioLogic.updateComentario(comentario.toEntity(), blogId);
         return comentario;
     }
     

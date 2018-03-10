@@ -176,7 +176,7 @@ public class ComentarioLogicTest
 
         pojoEntity.setId(entity.getId());
 
-         ComentarioLogic.updateComentario(pojoEntity);
+         ComentarioLogic.updateComentario(pojoEntity, BlogData.get(0).getId());
 
          ComentarioEntity resp = em.find( ComentarioEntity.class, entity.getId());
 
