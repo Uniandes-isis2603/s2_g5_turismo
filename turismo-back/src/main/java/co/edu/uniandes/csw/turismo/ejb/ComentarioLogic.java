@@ -11,6 +11,7 @@ import co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.turismo.persistence.ComentarioPersistence;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
@@ -91,8 +92,8 @@ public class ComentarioLogic {
         boolean finalizar = false;
         while(e.hasNext() && !finalizar)
         {
-            ComentarioEntity a = (ComentarioEntity) e.next();
-        if(a.getId() == id)
+        ComentarioEntity a = (ComentarioEntity) e.next();
+        if(Objects.equals(a.getId(), id))
         {
             encontrado = a;
             finalizar = true;
@@ -112,8 +113,10 @@ public class ComentarioLogic {
         
     }
         
-        public ComentarioEntity updateComentario(ComentarioEntity entity) throws BusinessLogicException  {
+        public ComentarioEntity updateComentario(ComentarioEntity entity,long blogId) throws BusinessLogicException  {
          if (entity.getComentario() != null && !entity.getComentario().isEmpty()){
+             if(blogLogic.getBlogs(blogId) == null){throw new BusinessLogicException(" no existe este blog");}
+             if(getComentario(entity.getId(), blogId) == null){throw new BusinessLogicException(" no existe este comentario");}
         return persistence.update(entity);}
          
          else 
