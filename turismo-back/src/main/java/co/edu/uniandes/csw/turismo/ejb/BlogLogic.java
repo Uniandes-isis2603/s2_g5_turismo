@@ -65,11 +65,9 @@ public class BlogLogic {
                  {
                 throw new BusinessLogicException("No existe el plan");
                 }
-                else
-                {
-                persistence.create(entity);
-                }
+               
       }}
+      persistence.create(entity);
      
        LOGGER.info("Termina proceso de creación blogs");
         return entity;
