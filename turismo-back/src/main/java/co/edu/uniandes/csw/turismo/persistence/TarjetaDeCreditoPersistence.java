@@ -43,8 +43,12 @@ public class TarjetaDeCreditoPersistence
         LOGGER.log(Level.INFO, "Consultando tarjeta de credito por numero ", numero);
       
        
-        TypedQuery query = em.createQuery("Select e From TarjetaDeCreditoEntity e where e.numero = "+ numero +" and e.usuario = " + id, TarjetaDeCreditoEntity.class);
-        
+      //  TypedQuery query = em.createQuery("SELECT * FROM TarjetaDeCreditoEntity e WHERE e.numero = "+ numero +" and e.usuario.id = " + id, TarjetaDeCreditoEntity.class);
+          TypedQuery query = em.createQuery("Select e From TarjetaDeCreditoEntity e where e.numero = :numero and e.usuario.id = :usuario", TarjetaDeCreditoEntity.class);
+        // Se remplaza el placeholder ":name" con el valor del argumento 
+        query = query.setParameter("numero", numero);
+        query= query.setParameter("usuario", id);
+
         List<TarjetaDeCreditoEntity> sameName =  query.getResultList();
         if (sameName.isEmpty()) {
             return null;
@@ -75,7 +79,7 @@ public class TarjetaDeCreditoPersistence
         public void deletebynumber(Long id,Long numero) 
        {
         // Se crea un query para buscar tarjetas de credito recibe el m�todo como argumento. ":numero" es un placeholder que debe ser remplazado
-        TypedQuery query = em.createQuery("Select e From TarjetaDeCreditoEntity e where e.numero = :numero and e.usuario = :usuario", TarjetaDeCreditoEntity.class);
+        TypedQuery query = em.createQuery("Select e From TarjetaDeCreditoEntity e where e.numero = :numero and e.usuario.id = :usuario", TarjetaDeCreditoEntity.class);
         // Se remplaza el placeholder ":name" con el valor del argumento 
         query = query.setParameter("numero", numero);
         query= query.setParameter("usuario", id);
