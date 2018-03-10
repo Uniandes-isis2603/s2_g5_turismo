@@ -59,6 +59,7 @@ public class PlanPersistence
         query = query.setParameter("name", name);
         // Se invoca el query se obtiene la lista resultado
         List<PlanEntity> sameName = query.getResultList();
+
         if (sameName.isEmpty())
         {
             return null;

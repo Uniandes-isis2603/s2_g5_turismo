@@ -41,7 +41,10 @@ public class PreferenciasDTO
     /**
      * Constructor por defecto
      */
-    public PreferenciasDTO(){}
+    public PreferenciasDTO()
+    {
+        //constructor vacio
+    }
     
      /**
      * Constructor a partir de la entidad
