@@ -1,0 +1,313 @@
+{
+	"info": {
+		"name": "Pruebas facturas",
+		"_postman_id": "6da959e9-b3cb-bfed-c53a-c406aed7399a",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/turismo-web/api/facturas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d23932af-bbb2-45b0-9684-1d4a060c2b19",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n       \"name\": \"sebastian\",\r\n       \"numero\":1234567891011326,\r\n       \"CVD\":213,\r\n       \"cedula\":1016078997\r\n   \r\n   }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/facturas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"facturas"
+					]
+				},
+				"description": "Esta prueba deberia devolver todas las facturas que se encuentran\n"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/turismo-web/api/facturas/10000/10001",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "da1185bd-768d-444a-a4b0-f4596a51492f",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {  \n    \t\"id\":1,\n    \t\"costo\": 500000\n        \n    }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/facturas/10000/10001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"facturas",
+						"10000",
+						"10001"
+					]
+				},
+				"description": "Prueba la creacion de una factura\n"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/turismo-web/api/facturas/10000/10001",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6a1f707c-f378-4dc4-9693-d4dcef0c0805",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {  \n    \t\"id\":2,\n    \t\"costo\": -500000\n        \n    }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/facturas/10000/10001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"facturas",
+						"10000",
+						"10001"
+					]
+				},
+				"description": "Verifica que un factura no se puede agregar si tiene un costo negativo"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/turismo-web/api/facturas/10000/10001",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "38d423b1-ca74-4407-ace1-06291ff4c7b1",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {  \n    \t\"id\":10001,\n    \t\"costo\": 500000\n        \n    }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/facturas/10000/10001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"facturas",
+						"10000",
+						"10001"
+					]
+				},
+				"description": "Comprueba que no se pueden crear dos facturas con el mismo id."
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/turismo-web/api/facturas/100/10001",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "74136e54-321a-43e5-b18f-23adbc3167fd",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {  \n    \t\"id\":1,\n    \t\"costo\": 500000\n        \n    }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/facturas/100/10001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"facturas",
+						"100",
+						"10001"
+					]
+				},
+				"description": "Comprueba de que no se puede crear una factura si esta no tiene un paquete existente"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/turismo-web/api/facturas/10000/1001",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3673189f-1500-4e90-bfc2-d8cc27500c8b",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\":15000,\n    \"costo\": 10000000\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/facturas/10000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"facturas",
+						"10000"
+					]
+				},
+				"description": "Comprueba que no se puede crear una factura si no existe una tarjeta"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/turismo-web/api/facturas/10000",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a802f09b-f6da-4f8f-9888-a2357b3de256",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/facturas/10000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"facturas",
+						"10000"
+					]
+				},
+				"description": "Prueba que se pueda eliminar la tarjeta"
+			},
+			"response": []
+		}
+	]
+}

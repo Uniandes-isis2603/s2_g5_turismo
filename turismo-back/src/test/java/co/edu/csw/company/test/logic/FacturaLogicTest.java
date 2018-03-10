@@ -66,9 +66,8 @@ public class FacturaLogicTest
     }
     
     @Before
-    public void setUp() 
-    {
-       try {
+    public void configTest() {
+        try {
             utx.begin();
             clearData();
             insertData();
@@ -84,8 +83,11 @@ public class FacturaLogicTest
     }
      private void clearData() 
      {
-        em.createQuery("delete from PaqueteTuristicoEntity").executeUpdate();
         em.createQuery("delete from FacturaEntity").executeUpdate();
+        em.createQuery("delete from UsuarioEntity").executeUpdate();
+        em.createQuery("delete from TarjetaDeCreditoEntity").executeUpdate(); 
+        em.createQuery("delete from PaqueteTuristicoEntity").executeUpdate();
+      
     }
     /**
      * Inserta los datos iniciales para el correcto funcionamiento de las
@@ -106,7 +108,7 @@ public class FacturaLogicTest
         
         
         for (int i = 0; i < 3; i++) {
-            FacturaEntity entity = factory.manufacturePojo( FacturaEntity.class);
+            FacturaEntity entity = factory.manufacturePojo(FacturaEntity.class);
             entity.setPaqueteturistico(PaqueteData);
             entity.setTarjetadecredito(Tarjetadata);
 
@@ -132,7 +134,7 @@ public class FacturaLogicTest
     @Test
     public void getFacturaTest() throws BusinessLogicException 
     {
-        List<FacturaEntity> list = FacturaLogic.getTrajetasDeCredito();
+        List<FacturaEntity> list = FacturaLogic.getFacturas();
         Assert.assertEquals(FacturaData.size(), list.size());
         for (FacturaEntity entity : list) 
         {
@@ -163,6 +165,8 @@ public class FacturaLogicTest
          FacturaEntity pojoEntity = factory.manufacturePojo( FacturaEntity.class);
 
         pojoEntity.setId(entity.getId());
+        pojoEntity.setPaqueteturistico(PaqueteData);
+        pojoEntity.setTarjetadecredito(Tarjetadata);
 
          FacturaLogic.updateFactura(pojoEntity.getId(), pojoEntity);
 

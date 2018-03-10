@@ -7,7 +7,7 @@ package co.edu.uniandes.csw.turismo.ejb;
 
 import co.edu.uniandes.csw.turismo.entities.PagoEntity;
 import co.edu.uniandes.csw.turismo.entities.PaqueteTuristicoEntity;
-import co.edu.uniandes.csw.turismo.entities.PlanAjendadoEntity;
+import co.edu.uniandes.csw.turismo.entities.PlanAgendadoEntity;
 import co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.turismo.persistence.PagoPersistence;
 import co.edu.uniandes.csw.turismo.persistence.PaqueteTuristicoPersistence;
@@ -40,7 +40,7 @@ public class PaqueteTuristicoLogic {
     public PaqueteTuristicoEntity createPaqueteTuristico(PaqueteTuristicoEntity entity) throws BusinessLogicException{
         
         List <PagoEntity> pagos = entity.getPagos();
-        List <PlanAjendadoEntity> planes = entity.getPlanes();
+        List <PlanAgendadoEntity> planes = entity.getPlanes();
         for(int i=0; i<pagos.size();i++)
         {
         if (pagos.size()!=planes.size())
@@ -60,8 +60,6 @@ public class PaqueteTuristicoLogic {
         return persistence.findAll();
     }
     
-   
-    
     public PaqueteTuristicoEntity updatePaquete(PaqueteTuristicoEntity entity) {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar un paquete ");
         return persistence.update(entity);
@@ -69,5 +67,94 @@ public class PaqueteTuristicoLogic {
     public void deletePaqueteTuristico(Long id) {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar un paquete ");
         persistence.delete(id);
+    }
+    
+   public List<PagoEntity> listPagos(Long IdPaquete) {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar todos los pagos del paquete con id = {0}", IdPaquete);
+        return getPaquete(IdPaquete).getPagos();
+    }
+    
+    public PagoEntity getPago(Long IdPaquete, Long IdPago) {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar un pago del paquete con id = {0}", IdPaquete);
+        List<PagoEntity> list = getPaquete(IdPaquete).getPagos();
+        PagoEntity pagosEntity = new PagoEntity();
+        pagosEntity.setId(IdPago);
+        int index = list.indexOf(pagosEntity);
+        if (index >= 0) {
+            return list.get(index);
+        }
+        return null;
+    }
+
+    
+    public PagoEntity addPago(Long IdPaquete, Long IdPago) {
+        LOGGER.log(Level.INFO, "Inicia proceso de asociar un pago al paquete con id = {0}", IdPaquete);
+        PaqueteTuristicoEntity paqueteEntity = getPaquete(IdPaquete);
+        PagoEntity pagosEntity = new PagoEntity();
+        pagosEntity.setId(IdPago);
+        paqueteEntity.getPagos().add(pagosEntity);
+        return getPago(IdPaquete, IdPago);
+    }
+
+   
+    public List<PagoEntity> replacePagos(Long IdPaquete, List<PagoEntity> list) {
+        LOGGER.log(Level.INFO, "Inicia proceso de reemplazar un pago del paquete con id = {0}", IdPaquete);
+        PaqueteTuristicoEntity paqueteEntity = getPaquete(IdPaquete);
+        paqueteEntity.setPagos(list);
+        return paqueteEntity.getPagos();
+        }
+
+    
+    public void removePago(Long IdPaquete, Long IdPago) {
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar un pago del paquete con id = {0}", IdPaquete);
+        PaqueteTuristicoEntity entity = getPaquete(IdPaquete);
+        PagoEntity pagosEntity = new PagoEntity();
+        pagosEntity.setId(IdPago);
+        entity.getPagos().remove(pagosEntity);
+    }
+    
+    public List<PlanAgendadoEntity> listPlanes(Long IdPaquete) {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar todos los planes del paquete con id = {0}", IdPaquete);
+        return getPaquete(IdPaquete).getPlanes();
+    }
+    
+    
+    public PlanAgendadoEntity getPlan(Long IdPaquete, Long IdPlanAgendado) {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar un plan del paquete con id = {0}", IdPaquete);
+        List<PlanAgendadoEntity> list = getPaquete(IdPaquete).getPlanes();
+        PlanAgendadoEntity planesEntity = new PlanAgendadoEntity();
+        planesEntity.setId(IdPlanAgendado);
+        int index = list.indexOf(planesEntity);
+        if (index >= 0) {
+            return list.get(index);
+        }
+        return null;
+    }
+
+    
+    public PlanAgendadoEntity addPlan(Long IdPaquete, Long IdPlanAgendado) {
+        LOGGER.log(Level.INFO, "Inicia proceso de asociar un plan al paquete con id = {0}", IdPaquete);
+        PaqueteTuristicoEntity paqueteEntity = getPaquete(IdPaquete);
+        PlanAgendadoEntity planesEntity = new PlanAgendadoEntity();
+        planesEntity.setId(IdPlanAgendado);
+        paqueteEntity.getPlanes().add(planesEntity);
+        return getPlan(IdPaquete, IdPlanAgendado);
+    }
+
+   
+    public List<PlanAgendadoEntity> replacePlanes(Long IdPaquete, List<PlanAgendadoEntity> list) {
+        LOGGER.log(Level.INFO, "Inicia proceso de reemplazar un plan del paquete con id = {0}", IdPaquete);
+        PaqueteTuristicoEntity paqueteEntity = getPaquete(IdPaquete);
+        paqueteEntity.setPlanes(list);
+        return paqueteEntity.getPlanes();
+        }
+
+    
+    public void removePlan(Long IdPaquete, Long IdPlanAgendado) {
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar un plan del paquete con id = {0}", IdPaquete);
+        PaqueteTuristicoEntity entity = getPaquete(IdPaquete);
+        PlanAgendadoEntity planesEntity = new PlanAgendadoEntity();
+        planesEntity.setId(IdPlanAgendado);
+        entity.getPlanes().remove(planesEntity);
     }
 }

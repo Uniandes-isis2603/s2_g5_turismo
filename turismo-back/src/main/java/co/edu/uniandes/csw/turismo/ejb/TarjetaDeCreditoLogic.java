@@ -33,19 +33,19 @@ public class TarjetaDeCreditoLogic
         // Verifica la regla de negocio que dice que una tarjeta debe tener un CDV de 3 digitos
         if(Long.toString(entity.getCDV()).length() != 3)
         {
-            throw new BusinessLogicException("la tarjeta de credito tiene un CDV mayor o menor a 3 digitos" + entity.getCDV() + "\"");
+            throw new BusinessLogicException("la tarjeta de credito tiene un CDV mayor o menor a 3 digitos " + entity.getCDV() + "\"");
         }
         // Verifica la regla de negocio que dice que una tarjeta debe tener 16 digitos en su numero
         if(Long.toString(entity.getNumero()).length() != 16)
         {
-             throw new BusinessLogicException("la tarjeta de credito tiene un numero mayor o menor a 16 digitos" + entity.getNumero() + "\"");
+             throw new BusinessLogicException("la tarjeta de credito tiene un numero mayor o menor a 16 digitos " + entity.getNumero() + "\"");
         }
         // Verifica la regla de negocio que dice que no puede haber dos tarjetas de credito con el mismo numero
 //        if (persistence.findByNumber(entity.getNumero()) != null) 
 //        {
 //            throw new BusinessLogicException("Ya existe una tarjeta de credito con el numero" + entity.getNumero() + "\"");
 //        }
-        // Invoca la persistencia para crear la tarjeta
+        //Invoca la persistencia para crear la tarjeta
         persistence.create(entity);
         LOGGER.info("Termina proceso de creación de TarjetaDeCredito");
         return entity;
@@ -68,12 +68,33 @@ public class TarjetaDeCreditoLogic
         LOGGER.log(Level.INFO, "Termina proceso de consultar tarjeta con id={0}", id);
         return tarjeta;
     }
-     public void deleteTarjetaDeCredito(Long id)
+     
+     public TarjetaDeCreditoEntity getTrajetaDeCreditoNumero(Long id, Long numero) 
      {
-         LOGGER.log(Level.INFO, "Inicia proceso de Eliminar Tarjeta con id={0}", id);
-         persistence.delete(id);
-         LOGGER.log(Level.INFO, "Termina proceso de Eliminar tarjeta con id={0}", id);
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar Tarjeta con numero}", numero);
+        TarjetaDeCreditoEntity tarjeta= persistence.findByNumber(id,numero);
+        if (tarjeta == null) {
+            LOGGER.log(Level.SEVERE, "tarjeta con el id {0} no existe",numero);
+        }
+        LOGGER.log(Level.INFO, "Termina proceso de consultar tarjeta con numero}",numero);
+        return tarjeta;
+    }
+     
+     public void deleteTarjetaDeCredito(Long id,Long numero)
+     {
+        TarjetaDeCreditoEntity tarjeta= persistence.findByNumber(id,numero);
+        if (tarjeta == null) 
+        {
+            LOGGER.log(Level.SEVERE, "tarjeta con el id {0} no existe",numero);
+        }
+        else
+        {
+         LOGGER.log(Level.INFO, "Inicia proceso de Eliminar Tarjeta con numero", numero);
+         persistence.delete(tarjeta.getId());
+         LOGGER.log(Level.INFO, "Termina proceso de Eliminar tarjeta con numero", numero);
+        }   
      };
+     
      public TarjetaDeCreditoEntity updateTarjetaDeCredito(Long id, TarjetaDeCreditoEntity entity) throws BusinessLogicException 
      {
          if(Long.toString(entity.getCDV()).length() != 3)
@@ -85,6 +106,7 @@ public class TarjetaDeCreditoLogic
         {
              throw new BusinessLogicException("la tarjeta de credito tiene un numero mayor o menor a 16 digitos" + entity.getNumero() + "\"");
         }
+        entity.setId(id);
         TarjetaDeCreditoEntity newEntity = persistence.update(entity);
         return newEntity;
      }

@@ -7,6 +7,9 @@ package co.edu.uniandes.csw.turismo.resources;
 
 import co.edu.uniandes.csw.turismo.dtos.FacturaDetailDTO;
 import co.edu.uniandes.csw.turismo.ejb.FacturaLogic;
+import co.edu.uniandes.csw.turismo.ejb.PaqueteTuristicoLogic;
+import co.edu.uniandes.csw.turismo.ejb.TarjetaDeCreditoLogic;
+import co.edu.uniandes.csw.turismo.entities.FacturaEntity;
 import co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.turismo.mappers.BusinessLogicExceptionMapper;
 import java.util.ArrayList;
@@ -46,6 +49,10 @@ public class FacturaResource
 {
     @Inject
     private FacturaLogic facturalogic;
+    @Inject
+    private TarjetaDeCreditoLogic tarjetaLogic;
+    @Inject
+    private PaqueteTuristicoLogic paqueteTurLogic;
       /**
      * <h1>POST /api/facturas : Crear una factura.</h1>
      * 
@@ -68,8 +75,28 @@ public class FacturaResource
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe la factura.
      */
    @POST
-    public FacturaDetailDTO createFactura(FacturaDetailDTO factura) throws BusinessLogicException {
-        return new FacturaDetailDTO(facturalogic.createFactura(factura.toEntity()));
+   @Path("{id: \\d+}/{id2: \\d+}")
+    public FacturaDetailDTO createFactura(FacturaDetailDTO factura,@PathParam("id") Long id, @PathParam("id2") Long id2) throws BusinessLogicException 
+    {
+        FacturaEntity facturEnt = factura.toEntity();
+        if(tarjetaLogic.getTrajetaDeCredito(id2) != null)
+        {
+            facturEnt.setTarjetadecredito(tarjetaLogic.getTrajetaDeCredito(id2));
+        }
+        else
+        {
+            throw new BusinessLogicException(" La tarjeta no existe");
+        }
+        if(paqueteTurLogic.getPaquete(id) != null)
+        {
+            facturEnt.setPaqueteturistico(paqueteTurLogic.getPaquete(id));
+        }
+        else
+        {
+            throw new BusinessLogicException(" EL paquete no ha sido creado todavia");
+        }
+        
+        return new FacturaDetailDTO(facturalogic.createFactura(facturEnt));
     }  
     
     /**
@@ -84,8 +111,16 @@ public class FacturaResource
      * @return JSONArray {@link FacturaDetailDTO} - Las facturas encontradas en la aplicación. Si no hay ninguna retorna una lista vacía.
      */
     @GET
-    public List<FacturaDetailDTO> getFactura() {
-        return new ArrayList<>();
+    public List<FacturaDetailDTO> getFactura() 
+    {
+        ArrayList<FacturaDetailDTO> facturas = new ArrayList<FacturaDetailDTO>();
+        List<FacturaEntity> facturaEntity = facturalogic.getFacturas();
+        for (FacturaEntity facturaEnt : facturaEntity) 
+        {
+            facturas.add(new FacturaDetailDTO(facturaEnt));
+            
+        }
+        return facturas;
     }
     
        /**
@@ -107,8 +142,9 @@ public class FacturaResource
  
     @GET
     @Path("{id: \\d+}")
-    public FacturaDetailDTO getFactura(@PathParam("id") Long id) {
-        return null;
+    public FacturaDetailDTO getFactura(@PathParam("id") Long id) 
+    {
+        return new FacturaDetailDTO(facturalogic.getFactura(id));
     }
     /**
      * <h1>PUT /api/facturas/{id} : Actualizar factura con el id dado.</h1>
@@ -131,8 +167,9 @@ public class FacturaResource
     
      @PUT
     @Path("{id: \\d+}")
-    public FacturaDetailDTO updateFactura(@PathParam("id") Long id, FacturaDetailDTO Factura) throws BusinessLogicException {
-        return Factura;
+    public FacturaDetailDTO updateFactura(@PathParam("id") Long id, FacturaDetailDTO Factura) throws BusinessLogicException 
+    {
+        return new FacturaDetailDTO(facturalogic.updateFactura(id, Factura.toEntity()));
     }
      /**
      * <h1>DELETE /api/facturas/{id} : Borrar factura por id.</h1>
@@ -151,7 +188,9 @@ public class FacturaResource
     
     @DELETE
     @Path("{id: \\d+}")
-     public void deleteFactura(@PathParam("id") Long id) {
+     public void deleteFactura(@PathParam("id") Long id) 
+    {
+        facturalogic.deleteFactura(id);
         // Void
     }
     
