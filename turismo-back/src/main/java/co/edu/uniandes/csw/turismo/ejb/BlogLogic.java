@@ -10,14 +10,14 @@ import co.edu.uniandes.csw.turismo.entities.ComentarioEntity;
 import co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.turismo.persistence.BlogPersistence;
 import co.edu.uniandes.csw.turismo.persistence.ComentarioPersistence;
-import static java.util.Collections.list;
+
 import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import static org.springframework.retry.interceptor.RetryInterceptorBuilder.stateless;
+
 
 /**
  *
