@@ -62,26 +62,6 @@ public class PlanDTO
     private String descripcion;
 
     /**
-     * Atriburo que modela el pais del plan
-     */
-    private String pais;
-
-    /**
-     * atributo que modela la ciudad del plan
-     */
-    private String ciudad;
-
-    /**
-     * Atributo que modela la longitud del plan
-     */
-    private Double longitud;
-
-    /**
-     * Atriburo que modela la latitud
-     */
-    private Double latitud;
-
-    /**
      * atributo que modela la duracion del plan
      */
     private Integer duracion;
@@ -142,68 +122,6 @@ public class PlanDTO
     public void setDescripcion(String descripcion) 
     {
         this.descripcion = descripcion;
-    }
-
-    /**
-     * @return el pais
-     */
-    public String getPais()
-    {
-        return pais;
-    }
-
-    /**
-     * @param pais el pais to set
-     */
-    public void setPais(String pais)
-    {
-        this.pais = pais;
-    }
-
-    /**
-     * @return la ciudad
-     */
-    public String getCiudad() 
-    {
-        return ciudad;
-    }
-
-    /**
-     * @param ciudad la ciudad to set
-     */
-    public void setCiudad(String ciudad)
-    {
-        this.ciudad = ciudad;
-    }
-
-    /**
-     * @return la longitud
-     */
-    public Double getLongitud() 
-    {
-        return longitud;
-    }
-
-    /**
-     * @param longitud la longitud to set
-     */
-    public void setLongitud(Double longitud) {
-        this.longitud = longitud;
-    }
-
-    /**
-     * @return la latitud
-     */
-    public Double getLatitud() {
-        return latitud;
-    }
-
-    /**
-     * @param latitud la latitud to set
-     */
-    public void setLatitud(Double latitud)
-    {
-        this.latitud = latitud;
     }
 
     /**
@@ -321,12 +239,8 @@ public class PlanDTO
             this.name = planE.getName();
             this.archivo = planE.getArchivo();
             this.cantidadPersonas = planE.getCantidadPersonas();
-            this.ciudad = planE.getCiudad();
             this.descripcion = planE.getDescripcion();
             this.duracion = planE.getDuracion();
-            this.latitud = planE.getLatitud();
-            this.longitud = planE.getLongitud();
-            this.pais = planE.getPais();
             this.precio = planE.getPrecio();
             this.restricciones = planE.getRestricciones();   
         }
@@ -343,12 +257,8 @@ public class PlanDTO
         planE.setName(this.name);
         planE.setArchivo(this.archivo);
         planE.setCantidadPersonas(this.cantidadPersonas);
-        planE.setCiudad(this.ciudad);
         planE.setDescripcion(this.descripcion);
         planE.setDuracion(this.duracion);
-        planE.setLatitud(this.latitud);
-        planE.setLongitud(this.longitud);
-        planE.setPais(this.pais);
         planE.setRestricciones(this.restricciones);
                  
         return planE;

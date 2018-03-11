@@ -18,6 +18,7 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import podam.StringSinNumerosStrategy;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
@@ -29,6 +30,8 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 public class PreferenciasLogicTest 
 {
 
+    private StringSinNumerosStrategy stringSinNumerosStrategy = new StringSinNumerosStrategy();
+    
     private PodamFactory factory = new PodamFactoryImpl();
 
     @Inject
@@ -189,13 +192,18 @@ public class PreferenciasLogicTest
         Assert.assertEquals(pojoEntity.getTipoPlan(), resp.getTipoPlan());
     }
     
+    /**
+     * Prueba que confirma la regla de negocio de crear categorias (preferencias) que ya existen
+     * @throws BusinessLogicException 
+     */
     @Test
     public void testReglaNegocioNoRepeticiones() throws BusinessLogicException 
     {
         PreferenciasEntity enti1 = new PreferenciasEntity();
         PreferenciasEntity enti2 = new PreferenciasEntity();
-        enti1.setTipoPlan("prueba");
-        enti2.setTipoPlan("prueba");
+        String unStringRandom = stringSinNumerosStrategy.getValue();
+        enti1.setTipoPlan(unStringRandom);
+        enti2.setTipoPlan(unStringRandom);
         PreferenciasLogic.createPreferencias(enti1);
         boolean seAgrego = true;
         try 

@@ -126,26 +126,6 @@ public class PlanEntity extends BaseEntity
     private String descripcion;
 
     /**
-     * Atriburo que modela el pais del plan
-     */
-    private String pais;
-
-    /**
-     * atributo que modela la ciudad del plan
-     */
-    private String ciudad;
-
-    /**
-     * Atributo que modela la longitud del plan
-     */
-    private Double longitud;
-
-    /**
-     * Atriburo que modela la latitud
-     */
-    private Double latitud;
-
-    /**
      * atributo que modela la duracion del plan
      */
     private Integer duracion;
@@ -187,74 +167,6 @@ public class PlanEntity extends BaseEntity
     public void setDescripcion(String descripcion)
     {
         this.descripcion = descripcion;
-    }
-
-    /**
-     * @return el pais 
-     */
-    public String getPais()
-    {
-        return pais;
-    }
-
-    /**
-     * Cambia el pais por la dada por parametro
-     * @param pais 
-     */
-    public void setPais(String pais) 
-    {
-        this.pais = pais;
-    }
-
-    /**
-     * @return la ciudad 
-     */
-    public String getCiudad()
-    {
-        return ciudad;
-    }
-
-    /**
-     * Cambia la ciudad del plan por la dada por parametro
-     * @param ciudad 
-     */
-    public void setCiudad(String ciudad)
-    {
-        this.ciudad = ciudad;
-    }
-
-    /**
-     * @return la longitud 
-     */
-    public Double getLongitud()
-    {
-        return longitud;
-    }
-
-    /**
-     * Cambia la longitud por la dada por parametro
-     * @param longitud 
-     */
-    public void setLongitud(Double longitud) 
-    {
-        this.longitud = longitud;
-    }
-
-    /**
-     * @return la latitud del plan 
-     */
-    public Double getLatitud()
-    {
-        return latitud;
-    }
-
-    /**
-     * Cambia la latitud por la dada por parametro
-     * @param latitud 
-     */
-    public void setLatitud(Double latitud)
-    {
-        this.latitud = latitud;
     }
 
     /**

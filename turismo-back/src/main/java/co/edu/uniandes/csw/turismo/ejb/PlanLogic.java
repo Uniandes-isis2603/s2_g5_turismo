@@ -3,6 +3,7 @@ package co.edu.uniandes.csw.turismo.ejb;
 import co.edu.uniandes.csw.turismo.entities.GuiaEntity;
 import co.edu.uniandes.csw.turismo.entities.PlanEntity;
 import co.edu.uniandes.csw.turismo.entities.PreferenciasEntity;
+import co.edu.uniandes.csw.turismo.entities.UbicacionEntity;
 import co.edu.uniandes.csw.turismo.entities.ValoracionesEntity;
 import co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.turismo.persistence.PlanPersistence;
@@ -31,6 +32,8 @@ public class PlanLogic
     private ValoracionesLogic valoracionLogic;
     @Inject
     private PreferenciasLogic preferenciasLogic;
+    @Inject
+    private UbicacionLogic ubicacionLogic;
 
     /**
      * Se crea un plan en persistencias si cumple con las reglas de negocio
@@ -41,7 +44,7 @@ public class PlanLogic
     public PlanEntity createPlan(PlanEntity entity) throws BusinessLogicException
     {
         LOGGER.info("Inicia proceso de creación de Plan");
-        if(entity.getName() == null)
+        if(entity.getName() == null || entity.getName().length() == 0)
         {
             throw new BusinessLogicException("El plan debe tener un nombre");
         }
@@ -56,9 +59,8 @@ public class PlanLogic
             throw new BusinessLogicException("Ya existe un Plan con el nombre \"" + entity.getName() + "\"");
         }
 
-        if(entity.getLatitud() == null || entity.getLongitud() == null || entity.getCiudad() == null || entity.getPais() == null)
+        if(entity.getUbicacion() == null || entity.getUbicacion().getLatitud() == null || entity.getUbicacion().getLongitud() == null || entity.getUbicacion().getCiudad() == null || entity.getUbicacion().getPais() == null)
         {
-            //falta cambiar esto entity.getUbicacion().getLatitud...
             throw new BusinessLogicException("El plan debe tener datos de ubicación (latitud, longitud, ciudad y pais)");
         }
         List<PreferenciasEntity> prefs = new ArrayList();
@@ -96,10 +98,9 @@ public class PlanLogic
     public List<PlanEntity> getPlans() 
     {
         LOGGER.info("Inicia proceso de consultar todos los planes");
-        // Note que, por medio de la inyección de dependencias se llama al método "findAll()" que se encuentra en la persistencia.
-        List<PlanEntity> editorials = persistence.findAll();
+        List<PlanEntity> plans = persistence.findAll();
         LOGGER.info("Termina proceso de consultar todos los planes");
-        return editorials;
+        return plans;
     }
 
     /**
@@ -120,10 +121,19 @@ public class PlanLogic
      */
     public PlanEntity updatePlan(PlanEntity entity) throws BusinessLogicException 
     {
+        if(entity.getName() == null)
+        {
+            throw new BusinessLogicException("El plan debe tener un nombre");
+        }
+        if(entity.getUbicacion() == null || entity.getUbicacion().getLatitud() == null || entity.getUbicacion().getLongitud() == null || entity.getUbicacion().getCiudad() == null || entity.getUbicacion().getPais() == null)
+        {
+            throw new BusinessLogicException("El plan debe tener datos de ubicación (latitud, longitud, ciudad y pais)");
+        }
         if (persistence.findByName(entity.getName()) != null) 
         {
             throw new BusinessLogicException("Ya existe un Plan con el nombre \"" + entity.getName() + "\"");
         }
+        
         if (entity.getPreferenciasPlan() == null || entity.getPreferenciasPlan().isEmpty()) 
         {
            throw new BusinessLogicException("El plan debe estar asociado al menos a un tipo o categoria de plan ");
@@ -372,8 +382,37 @@ public class PlanLogic
 
     }
     
+    /**
+     * Retorna el plan que tiene el nombre dado por parametro
+     * @param name del plan
+     * @return plan dado el nombre
+     */
     public PlanEntity getByName(String name)
     {
         return persistence.findByName(name);
     }
+    
+    /**
+     * Retorna la ubicacion dado el id del plan
+     * @param idPlan 
+     * @return Ubicacion del plan con id dado
+     */
+    public UbicacionEntity getUbicacionDePlan(Long idPlan)
+    {
+        return persistence.find(idPlan).getUbicacion();
+    }
+    
+    /**
+     * Cambia la ubicación de un plan por otro dado por id
+     * @param idPlan id del plan a cambiar la ubicacion
+     * @param idUbicacion id de la ubicacion nueva del plan
+     * @return  ubicacion que se updateo al plan
+     */
+    public UbicacionEntity replaceUbicacion(Long idPlan, Long idUbicacion)
+    {
+        PlanEntity entity = persistence.find(idPlan);
+        UbicacionEntity ubic = ubicacionLogic.getUbicacion(idUbicacion);
+        entity.setUbicacion(ubic);
+        return ubic;  
+    }        
 }
