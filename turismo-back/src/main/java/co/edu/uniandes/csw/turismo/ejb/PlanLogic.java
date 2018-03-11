@@ -367,6 +367,7 @@ public class PlanLogic
         if (index >= 0) {
             return prefs.get(index);
         }
+        
         throw new BusinessLogicException("Las preferencias no están asociadas a el Plan");
 
     }

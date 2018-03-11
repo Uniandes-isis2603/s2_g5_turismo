@@ -1,6 +1,7 @@
 delete from PlanEntity_PreferenciasEntity;
 delete from PlanEntity_GuiaEntity;
 delete from PlanEntity;
+delete from UBICACIONENTITY;
 delete from PreferenciasEntity;
 delete from GuiaEntity;
 delete from FACTURAENTITY;
@@ -29,9 +30,9 @@ insert into PreferenciasEntity (id, tipoPlan) values (10000,'Familiar');
 insert into PreferenciasEntity (id, tipoPlan) values (10001,'Compras');
 insert into PreferenciasEntity (id, tipoPlan) values (10002,'Museo');
 
-insert into PlanEntity (id, archivo, cantidadpersonas, ciudad, descripcion, duracion, latitud, longitud, name, pais, precio, restricciones) values (10000, 'linkDeUnaImagen', 1, 'Bogota','Subir a monserrate', 180, 41235, 423423, 'Monserrate', 'Colombia', 20000,'restriccion shida');
-insert into PlanEntity (id, archivo, cantidadpersonas, ciudad, descripcion, duracion, latitud, longitud, name, pais, precio, restricciones) values (10001, 'linkDeUnaImagen', 2, 'Barcelona','Recorrido por sagrada familia', 180, 5473, 52352, 'Sagrada familia', 'Espania', 60000,'restriccion shida');
-insert into PlanEntity (id, archivo, cantidadpersonas, ciudad, descripcion, duracion, latitud, longitud, name, pais, precio, restricciones) values (10002, 'linkDeUnaImagen', 4, 'Berlin','Recorrer muro de berlin', 180, 41235, 423423, 'Muro de berlin', 'Alemania', 20000,'restriccion shida');
+insert into PlanEntity (id, archivo, cantidadpersonas, ciudad, descripcion, duracion, latitud, longitud, name, pais, precio, restricciones, ubicacion_id) values (10000, 'linkDeUnaImagen', 1, 'Bogota','Subir a monserrate', 180, 41235, 423423, 'Monserrate', 'Colombia', 20000,'restriccion shida',10000);
+insert into PlanEntity (id, archivo, cantidadpersonas, ciudad, descripcion, duracion, latitud, longitud, name, pais, precio, restricciones, ubicacion_id) values (10001, 'linkDeUnaImagen', 2, 'Barcelona','Recorrido por sagrada familia', 180, 5473, 52352, 'Sagrada familia', 'Espania', 60000,'restriccion shida',10000);
+insert into PlanEntity (id, archivo, cantidadpersonas, ciudad, descripcion, duracion, latitud, longitud, name, pais, precio, restricciones, ubicacion_id) values (10002, 'linkDeUnaImagen', 4, 'Berlin','Recorrer muro de berlin', 180, 41235, 423423, 'Muro de berlin', 'Alemania', 20000,'restriccion shida',10002);
 
 insert into GuiaEntity (id, idiomaguia, name) values (10000,'espaniol','w');
 insert into GuiaEntity (id, idiomaguia, name) values (10001,'espaniol','t');
@@ -58,3 +59,8 @@ insert into FACTURAENTITY (id,costo,name,TARJETADECREDITO_ID,PAQUETETURISTICO_ID
 insert into PAGOENTITY (id,costo, name) values (10000,80.33,'monserrate');
 insert into PAGOENTITY (id,costo, name) values (10003,80.33,'monserrate');
 insert into PAGOENTITY (id,costo, name) values (10005,80.33,'monserrate');
+
+/*Parte Ubicacion*/
+insert into UBICACIONENTITY (id,pais,ciudad,latitud,longitud) values (10000,'Colombia','Bogota',10,-10);
+insert into UBICACIONENTITY (id,pais,ciudad,latitud,longitud) values (10001,'Francia','Paris',10,-10);
+insert into UBICACIONENTITY (id,pais,ciudad,latitud,longitud) values (10002,'España','Madrid',10,-10);
