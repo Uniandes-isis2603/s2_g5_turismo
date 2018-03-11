@@ -35,7 +35,7 @@ public class PaqueteTuristicoPersistence {
 
     public List<PaqueteTuristicoEntity> findAll() {
         LOGGER.info("Consultando todos los paquete turisticos");
-        Query q = em.createQuery("select u from PaqueteTuristicoEntity u");
+        TypedQuery q = em.createQuery("select u from PaqueteTuristicoEntity u",PaqueteTuristicoEntity.class);
         return q.getResultList();
     }
 
