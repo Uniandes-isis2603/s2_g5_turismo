@@ -249,7 +249,7 @@ public class UsuarioLogic
     public ComentarioEntity getComentario(Long usuId, Long comId) throws BusinessLogicException
     {
         List<ComentarioEntity> lista = getUsuario(usuId).getListaComentarios();
-        ComentarioEntity comentario = comentarioLogic.getComentario(comId);
+        ComentarioEntity comentario = comentarioLogic.getComentarioId(comId);
         int index = lista.indexOf(comentario);
         if (index >= 0) {
             return lista.get(index);
@@ -257,10 +257,10 @@ public class UsuarioLogic
         throw new BusinessLogicException("El comentario no está asociado a el usuario");
     }
     
-    public ComentarioEntity createComentario(Long usuId, Long comId)
+    public ComentarioEntity createComentario(Long usuId, Long comId) throws BusinessLogicException
     {
         UsuarioEntity usuario = getUsuario(usuId);
-        ComentarioEntity lista = comentarioLogic.getComentario(comId);
+        ComentarioEntity lista = comentarioLogic.getComentarioId(comId);
         usuario.getListaComentarios().add(lista);
         
         return lista;
@@ -274,10 +274,10 @@ public class UsuarioLogic
         return comentarios;
     }
     
-    public void deleteComentario(Long usuId, Long comId)
+    public void deleteComentario(Long usuId, Long comId) throws BusinessLogicException
     {
         UsuarioEntity usuario = getUsuario(usuId);
-        ComentarioEntity comentario = comentarioLogic.getComentario(comId);
+        ComentarioEntity comentario = comentarioLogic.getComentarioId(comId);
         usuario.getListaComentarios().remove(comentario);
     }
     
@@ -331,7 +331,7 @@ public class UsuarioLogic
     public FacturaEntity getFactura(Long usuId, Long factId) throws BusinessLogicException
     {
         List<FacturaEntity> lista = getUsuario(usuId).getListaFacturas();
-        FacturaEntity factura = facturaLogic.getTrajetaDeCredito(factId);
+        FacturaEntity factura = facturaLogic.getFactura(factId);
         int index = lista.indexOf(factura);
         if (index >= 0) {
             return lista.get(index);
@@ -342,7 +342,7 @@ public class UsuarioLogic
     public FacturaEntity createFactura(Long usuId, Long factId)
     {
         UsuarioEntity usuario = getUsuario(usuId);
-        FacturaEntity lista = facturaLogic.getTrajetaDeCredito(factId);
+        FacturaEntity lista = facturaLogic.getFactura(factId);
         usuario.getListaFacturas().add(lista);
         
         return lista;
@@ -359,7 +359,7 @@ public class UsuarioLogic
     public void deleteFactura(Long usuId, Long factId)
     {
         UsuarioEntity usuario = getUsuario(usuId);
-        FacturaEntity factura = facturaLogic.getTrajetaDeCredito(factId);
+        FacturaEntity factura = facturaLogic.getFactura(factId);
         usuario.getListaFacturas().remove(factura);
     }
     

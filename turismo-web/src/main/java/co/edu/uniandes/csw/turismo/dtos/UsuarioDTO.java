@@ -16,7 +16,7 @@ import co.edu.uniandes.csw.turismo.entities.UsuarioEntity;
  * <pre>
  *   {
  *      "id": number,
- *      "nombre": string,
+ *      "name": string,
  *      "apellido": string,
  *      "contrasenia": string,
  *      "correo": string,
@@ -31,13 +31,13 @@ import co.edu.uniandes.csw.turismo.entities.UsuarioEntity;
  * 
  *   {
  *      "id": 534682,
- *      "nombre": Juan,
- *      "apellido": Perez,
- *      "contrasenia": rplc6519,
- *      "correo": jperez@gmail.com,
+ *      "name": "Juan",
+ *      "apellido": "Perez",
+ *      "contrasenia": "rplc6519",
+ *      "correo": "jperez@gmail.com",
  *      "telefono": 3103334455,
- *      "idioma": Ingles,
- *      "esAdministrador": false
+ *      "idioma": "Ingles",
+ *      "esAdministrador": FALSE
  *   }
  *
  * </pre>

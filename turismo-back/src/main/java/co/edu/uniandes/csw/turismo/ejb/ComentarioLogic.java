@@ -66,6 +66,22 @@ public class ComentarioLogic {
         return com;
     }
       
+      public ComentarioEntity getComentarioId(long id) throws BusinessLogicException {
+        LOGGER.info("Inicia proceso de consultar todos los Comentarios");
+      ComentarioEntity comen = persistence.find(id);
+      if (comen != null)
+      {
+           LOGGER.info("Termina proceso de consultar todos los Comentarios");
+          return comen;
+      }
+      else {
+          throw new BusinessLogicException("el comentario no existe");
+        }
+      }
+      
+        
+    
+      
         public ComentarioEntity getComentarios(Long id, long blogId) throws BusinessLogicException 
     {   BlogEntity blog = blogLogic.getBlogs(blogId);
         List<ComentarioEntity> com = blog.getComentarios();
