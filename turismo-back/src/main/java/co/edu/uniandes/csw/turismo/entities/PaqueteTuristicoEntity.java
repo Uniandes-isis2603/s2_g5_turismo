@@ -22,11 +22,11 @@ public class PaqueteTuristicoEntity extends BaseEntity implements Serializable {
    
     @PodamExclude
     @OneToMany
-    private List<PagoEntity> pagos = new ArrayList<PagoEntity>();
+    private List<PagoEntity> pagos ;
     
     @PodamExclude
     @OneToMany (cascade = CascadeType.ALL, orphanRemoval = true) 
-    private List<PlanAgendadoEntity> planes = new ArrayList<PlanAgendadoEntity>();
+    private List<PlanAgendadoEntity> planes;
 
 
     public List<PagoEntity> getPagos() {

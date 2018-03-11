@@ -40,15 +40,17 @@ import javax.ws.rs.WebApplicationException;
  * @author dl.avendano 
  * @version 1.0
  */
-@Path("paquete")
+@Path("paquetes")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
 public class PaqueteTuristicoResource {
+    
     @Inject
     private PaqueteTuristicoLogic paqueteLogic;
     
     private List<PaqueteTuristicoDetailDTO> listEntityToDTO(List<PaqueteTuristicoEntity> entityList) {
+       
         List<PaqueteTuristicoDetailDTO> list = new ArrayList<>();
         for(PaqueteTuristicoEntity entity : entityList) {
             list.add(new PaqueteTuristicoDetailDTO(entity));
@@ -97,6 +99,7 @@ public class PaqueteTuristicoResource {
     @GET
     public List<PaqueteTuristicoDetailDTO> getPaqueteTuristicos() {
         return listEntityToDTO(paqueteLogic.getPaquetes());
+        
     }
 
     /**

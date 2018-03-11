@@ -45,13 +45,13 @@ public class PaqueteTuristicoLogic {
         {
         if (pagos.size()!=planes.size())
             throw new BusinessLogicException("El numero de pagos no coincide con el numero de planes en el paquete \"");
-        if (planes.get(i).getFecha().before(fechaActual))
-            throw new BusinessLogicException("Un plan no tiene una fecha valida \"");
-            for(int j=0;j<pagos.size();j++)
-            {
-                 if (i != j && planes.get(i).getFecha().equals(planes.get(j).getFecha()))
-                     throw new BusinessLogicException("Hay dos planes con la misma fecha en el paquete \"");
-            }
+        //if (planes.get(i).getFecha().before(fechaActual))
+        //    throw new BusinessLogicException("Un plan no tiene una fecha valida \"");
+          //  for(int j=0;j<pagos.size();j++)
+            //{
+              //   if (i != j && planes.get(i).getFecha().equals(planes.get(j).getFecha()))
+                //     throw new BusinessLogicException("Hay dos planes con la misma fecha en el paquete \"");
+            //}
         }
         return persistence.create(entity);
     }
