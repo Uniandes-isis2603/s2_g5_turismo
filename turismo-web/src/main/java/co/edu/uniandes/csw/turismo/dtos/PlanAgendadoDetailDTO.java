@@ -19,6 +19,10 @@ public class PlanAgendadoDetailDTO extends PlanAgendadoDTO {
     private GuiaDTO guia;
     private PlanDTO plan;
 
+    public PlanAgendadoDetailDTO()
+    {
+        super();
+    }
     public PlanAgendadoDetailDTO(PlanAgendadoEntity entity) {
         super(entity);
         if (entity != null) {

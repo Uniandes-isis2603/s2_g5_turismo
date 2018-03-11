@@ -17,7 +17,7 @@
  * 
  *   {
  *      "id": 91852,
- *      "idPlan": 503,
+ *      "nombrePlan": "monserrate",
  *      "costo": "53.23"
  *   }
  *
