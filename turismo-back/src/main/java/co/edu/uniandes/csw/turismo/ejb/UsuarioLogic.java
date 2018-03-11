@@ -15,10 +15,11 @@ import co.edu.uniandes.csw.turismo.entities.UsuarioEntity;
 import co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.turismo.persistence.UsuarioPersistence;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
 /**
  *
  * @author jf.gutierrez13
@@ -58,13 +59,16 @@ public class UsuarioLogic
         {
             throw new BusinessLogicException("El apellido no es valido");
         }
-        String correo = entity.getCorreo();
-        String[] arroba = correo.split("@");
-        String[] punto = arroba[1].split(".");
-        if(arroba[0] == null || arroba[1] == null || punto[0] == null || punto[1] == null)
+       
+        try 
         {
-            throw new BusinessLogicException("El correo no es válido");
+            isValidEmailAddress(entity.getCorreo());               
         }
+        catch (Exception e) 
+        {
+            throw new BusinessLogicException("El correo no es valido");
+        }
+        
         if(entity.getContrasenia() == null || entity.getContrasenia().length() < 8)
         {
             throw new BusinessLogicException("La contraseña no es valida");
@@ -94,6 +98,18 @@ public class UsuarioLogic
         LOGGER.info("Termina proceso de creación de usuario");
         return entity;
     }
+    
+    public  boolean isValidEmailAddress(String email) 
+    {
+    boolean result = true;
+    try {
+      InternetAddress emailAddr = new InternetAddress(email);
+      emailAddr.validate();
+   } catch (AddressException ex) {
+      result = false;
+   }
+   return result;
+}
     
     public List<UsuarioEntity> getUsuarios()
     {

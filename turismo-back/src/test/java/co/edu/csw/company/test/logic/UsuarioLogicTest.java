@@ -53,10 +53,11 @@ public class UsuarioLogicTest
     private List<UsuarioEntity> listaUsuarios = new ArrayList<>();
     
     private List<FacturaEntity> listaFacturas = new ArrayList<>();
+    private List<FacturaEntity> listaFacturas2 = new ArrayList<>();
     
     private List<TarjetaDeCreditoEntity> listaTarjetas = new ArrayList<>();
     
-    private PaqueteTuristicoEntity paquete;
+    private PaqueteTuristicoEntity paquete = new PaqueteTuristicoEntity();
     
     private List<BlogEntity> listaBlogs = new ArrayList<>();
     
@@ -123,8 +124,13 @@ public class UsuarioLogicTest
             em.persist(tarjetas);
             listaTarjetas.add(tarjetas);
         }
-        PaqueteTuristicoEntity paq = factory.manufacturePojo(PaqueteTuristicoEntity.class);
-        em.persist(paq);
+        for (int i = 0; i < 3; i++) {
+            FacturaEntity facturas2 = factory.manufacturePojo(FacturaEntity.class);
+            em.persist(facturas2);
+            listaFacturas2.add(facturas2);
+        }
+        paquete = factory.manufacturePojo(PaqueteTuristicoEntity.class);
+        em.persist(paquete);
         
         for (int i = 0; i < 3; i++) {
             UsuarioEntity entity = factory.manufacturePojo(UsuarioEntity.class);
@@ -151,6 +157,7 @@ public class UsuarioLogicTest
         nuevo.setListaPreferencias(listaPreferencias);
         nuevo.setListaTarjetas(listaTarjetas);
         nuevo.setPaquete(paquete);
+        nuevo.setCorreo("usuario@gmail.com");
         UsuarioEntity result = usuarioLogic.createUsuario(nuevo);
         Assert.assertNotNull(result);
         
@@ -189,12 +196,7 @@ public class UsuarioLogicTest
         UsuarioEntity nuevo = usuarioLogic.getUsuario(entity.getId());
         Assert.assertNotNull(entity);
         
-        Assert.assertEquals(nuevo.getPaquete(), entity.getPaquete());
-        Assert.assertEquals(nuevo.getListaTarjetas(), entity.getListaTarjetas());
-        Assert.assertEquals(nuevo.getListaFacturas(), entity.getListaFacturas());
-        Assert.assertEquals(nuevo.getListaPreferencias(), entity.getListaPreferencias());
-        Assert.assertEquals(nuevo.getListaBlogs(), entity.getListaBlogs());
-        Assert.assertEquals(nuevo.getListaComentarios(), entity.getListaComentarios());
+        Assert.assertEquals(entity, nuevo);
     }
     
     @Test
@@ -323,7 +325,7 @@ public class UsuarioLogicTest
     {
         usuarioLogic.deleteBlog(listaUsuarios.get(0).getId(), listaBlogs.get(0).getId());
         
-        Assert.assertNull(listaBlogs.get(0));
+        Assert.assertNotNull(em.find(BlogEntity.class, listaBlogs.get(0).getId()));
     }
     
     @Test
@@ -372,7 +374,7 @@ public class UsuarioLogicTest
     {
         usuarioLogic.deleteComentario(listaUsuarios.get(0).getId(), listaComentarios.get(0).getId());
         
-        Assert.assertNull(listaComentarios.get(0));
+        Assert.assertNotNull(em.find(ComentarioEntity.class, listaComentarios.get(0).getId()));
     }
     
     @Test
@@ -421,7 +423,7 @@ public class UsuarioLogicTest
     {
         usuarioLogic.deletePreferencia(listaUsuarios.get(0).getId(), listaPreferencias.get(0).getId());
         
-        Assert.assertNull(listaPreferencias.get(0));
+        Assert.assertNotNull(em.find(PreferenciasEntity.class, listaPreferencias.get(0).getId()));
     }
     
     @Test
@@ -435,7 +437,7 @@ public class UsuarioLogicTest
     public void getFacturaTest() throws BusinessLogicException
     {
         UsuarioEntity entity = listaUsuarios.get(0);
-        FacturaEntity fa = listaFacturas.get(0);
+        FacturaEntity fa = listaFacturas2.get(0);
         FacturaEntity response = usuarioLogic.getFactura(entity.getId(), fa.getId());
         
         Assert.assertEquals(response, fa);
@@ -445,7 +447,7 @@ public class UsuarioLogicTest
     public void createFacturaTest()
     {
         UsuarioEntity entity = listaUsuarios.get(0);
-        FacturaEntity fa = listaFacturas.get(0);
+        FacturaEntity fa = listaFacturas2.get(0);
         FacturaEntity response = usuarioLogic.createFactura(entity.getId(), fa.getId());
         
         Assert.assertNotNull(response);
@@ -519,6 +521,6 @@ public class UsuarioLogicTest
     {
         usuarioLogic.deleteTarjeta(listaUsuarios.get(0).getId(), listaTarjetas.get(0).getId());
         
-        Assert.assertNull(listaTarjetas.get(0));
+        Assert.assertNull(em.find(TarjetaDeCreditoEntity.class, listaTarjetas.get(0).getId()));
     }
 }
