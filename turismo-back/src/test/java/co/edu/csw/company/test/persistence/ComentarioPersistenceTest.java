@@ -165,7 +165,7 @@ public class ComentarioPersistenceTest {
     * Prueba para elimminar un Comentario    
     */
   @Test
-    public void deleteFacturaTest() {
+    public void ComentatioFacturaTest() {
         ComentarioEntity entity = data.get(0);
         ComentarioPersistence.delete(entity.getId());
         ComentarioEntity deleted = em.find(ComentarioEntity.class, entity.getId());

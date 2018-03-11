@@ -169,7 +169,7 @@ public class ComentarioLogicTest
     }
     
      @Test
-    public void updateBlogTest() throws BusinessLogicException
+    public void updateComentarioTest() throws BusinessLogicException
     {
          ComentarioEntity entity = ComentariosData.get(0);
          ComentarioEntity pojoEntity = factory.manufacturePojo( ComentarioEntity.class);
