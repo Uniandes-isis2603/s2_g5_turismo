@@ -115,7 +115,7 @@ public class BlogLogicTest
     @Test
     public void createBlogTest() throws BusinessLogicException 
     {
-       BlogEntity newEntity = factory.manufacturePojo(BlogEntity.class);       
+        BlogEntity newEntity = factory.manufacturePojo(BlogEntity.class);       
         BlogEntity result = BlogLogic.createBlog(newEntity);
         
       
@@ -126,7 +126,13 @@ public class BlogLogicTest
         Assert.assertEquals(newEntity.getDescripcion(), entity.getDescripcion());
         Assert.assertNotNull(entity.getDescripcion());
         Assert.assertNotNull(entity.getTema());
+        Assert.assertTrue(!entity.getDescripcion().isEmpty());
+        Assert.assertTrue(!entity.getTema().isEmpty());
+        
     }
+    
+    
+    
     
     @Test
     public void getBlogTest() throws BusinessLogicException 
@@ -169,5 +175,9 @@ public class BlogLogicTest
 
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
         Assert.assertEquals(pojoEntity.getTema(), resp.getTema());
+        Assert.assertTrue(!entity.getDescripcion().isEmpty());
+        Assert.assertTrue(!entity.getTema().isEmpty());
+        Assert.assertNotNull(entity.getDescripcion());
+        Assert.assertNotNull(entity.getTema());
     }
 }

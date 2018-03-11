@@ -46,35 +46,32 @@ public class BlogLogic {
      public BlogEntity createBlog(BlogEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de creación de Blog");
         
-        if(entity.getDescripcion() != null && entity.getTema() != null && !entity.getTema().isEmpty()  && !entity.getDescripcion().isEmpty() ){
-  
-        if (persistence.find(entity.getId()) != null) 
-        {
-            throw new BusinessLogicException("Ya existe este blog");
+        if(((entity.getDescripcion() == null || entity.getTema() == null) || entity.getTema().isEmpty())  || entity.getDescripcion().isEmpty() ){
+            throw new BusinessLogicException("tema y descripcion no pueden ser nulos");
         }
-        // Invoca la persistencia para crear el Blog
-        if(entity.getPlanes() !=null){ 
-            List<PlanEntity> plan = entity.getPlanes();
-      
-            Iterator e2 = plan.iterator();
-             while(e2.hasNext())
-            {
-                 PlanEntity buscado = (PlanEntity) e2.next();
-                 PlanEntity real = planLogic.getPlan(buscado.getId());
-                if(real == null)
-                 {
-                throw new BusinessLogicException("No existe el plan");
-                }
-               
-      }}
-      persistence.create(entity);
-     
-       LOGGER.info("Termina proceso de creación blogs");
-        return entity;
-    }
         else 
         {
-        throw new BusinessLogicException("tema y descripcion no pueden ser nulos");
+
+            if (persistence.find(entity.getId()) != null)
+            {
+                throw new BusinessLogicException("Ya existe este blog");
+            }
+            // Invoca la persistencia para crear el Blog
+            if(entity.getPlanes() !=null){
+                List<PlanEntity> plan = entity.getPlanes();
+                
+                for (PlanEntity buscado : plan) {
+                    PlanEntity real = planLogic.getPlan(buscado.getId());
+                    if(real == null)
+                    {
+                        throw new BusinessLogicException("No existe el plan");
+                    }
+                }
+}
+            persistence.create(entity);
+            
+            LOGGER.info("Termina proceso de creación blogs");
+            return entity;
         }
         
      }
@@ -98,27 +95,22 @@ public class BlogLogic {
     }
         
         public BlogEntity updateBlog(BlogEntity entity) throws BusinessLogicException  {
-            if(persistence.find(entity.getId()) != null){
-            if(entity.getDescripcion() != null && entity.getTema() != null && !entity.getTema().isEmpty()  && !entity.getDescripcion().isEmpty()){
-        
-                if(persistence.find(entity.getId()).getComentarios() != null){
+            if(persistence.find(entity.getId()) == null){ throw new BusinessLogicException("No existe el blog");}
+            else if(entity.getDescripcion() == null || entity.getTema() == null || entity.getTema().isEmpty()  || entity.getDescripcion().isEmpty()){ throw new BusinessLogicException("tema y descripcion no pueden ser nulos");}
+            if(persistence.find(entity.getId()).getComentarios() != null){
                List<ComentarioEntity> temp = persistence.find(entity.getId()).getComentarios();
                entity.setComentarios(temp);}
                
                if(entity.getPlanes() !=null){ 
-            List<PlanEntity> plan = entity.getPlanes();
+                 List<PlanEntity> plan = entity.getPlanes();
       
-            Iterator e2 = plan.iterator();
-             while(e2.hasNext())
-            {
-                 PlanEntity buscado = (PlanEntity) e2.next();
-                 PlanEntity real = planLogic.getPlan(buscado.getId());
-                if(real == null)
-                 {
-                throw new BusinessLogicException("No existe el plan");
-                }
-                
-      }}
+                    for (PlanEntity buscado : plan) {
+                        PlanEntity real = planLogic.getPlan(buscado.getId());
+                        if(real == null)
+                        {
+                            throw new BusinessLogicException("No existe el plan");
+                        }   }
+}
                
                
                
@@ -126,13 +118,13 @@ public class BlogLogic {
                 
                 
             
-            }
-            else 
-        {
-        throw new BusinessLogicException("tema y descripcion no pueden ser nulos");
-        }
-            }
-            throw new BusinessLogicException("No existe el blog");
+            
+         
+        
+       
+        
+            
+           
         
     }
         
