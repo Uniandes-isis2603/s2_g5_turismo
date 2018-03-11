@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -31,9 +33,9 @@ public class PlanEntity extends BaseEntity
     /**
      * Modela la ubicacion del plan
      */
-    //@PodamExclude
-    //@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.PERSIST) 
-    //private UbicacionEntity ubicacion;
+    @PodamExclude
+    @ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.PERSIST) 
+    private UbicacionEntity ubicacion;
     
     /**
      * Modela las categorias o tipos de plan asociado al plan
@@ -49,22 +51,22 @@ public class PlanEntity extends BaseEntity
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true) 
     private List<ValoracionesEntity> valoracionesPlan;
 
-    ///**
-     //* @return ubicacion asociada al plan 
-     //*/
-    //public UbicacionEntity getUbicacion() 
-    //{
-    //    return ubicacion;
-    //}
+    /**
+     * @return ubicacion asociada al plan 
+     */
+    public UbicacionEntity getUbicacion() 
+    {
+        return ubicacion;
+    }
 
-    ///**
-     //* Cambia la ubicacion del plan por la dada por parametro
-     //* @param ubicacion 
-     //*/
-    //public void setUbicacion(UbicacionEntity ubicacion)
-    //{
-      //  this.ubicacion = ubicacion;
-    //}
+    /**
+     * Cambia la ubicacion del plan por la dada por parametro
+     * @param ubicacion 
+     */
+    public void setUbicacion(UbicacionEntity ubicacion)
+    {
+        this.ubicacion = ubicacion;
+    }
     
     /**
      * @return valoraciones asociadas al plan 
