@@ -5,49 +5,18 @@
  */
 package co.edu.uniandes.csw.turismo.entities;
 
-import java.io.Serializable;
-//import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-//import javax.persistence.FetchType;
-//import javax.persistence.ManyToOne;
-//import uk.co.jemos.podam.common.PodamExclude;
-
+import podam.StringSinNumerosStrategy;
+import uk.co.jemos.podam.common.PodamStrategyValue;
 /**
  *
  * @author jc.montoyar
  */
 @Entity
-public class GuiaEntity extends BaseEntity implements Serializable 
+public class GuiaEntity extends BaseEntity 
 {
     //ATRIBUTOS
-    
-    // /**
-    // * Modela los guias del plan
-    // */
-    //@PodamExclude
-    //@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.PERSIST) 
-    //private PlanEntity planGuia; 
-
-    ///**
-     //* @return plan asociado al guia 
-     //*/
-    //public PlanEntity getPlanGuia()
-    //{
-      //  return planGuia;
-    //}
-
-    ///**
-     //* Cambia el plan asociado al guia por el dado por parametro
-     //* @param planGuia 
-     //*/
-    //public void setPlanGuia(PlanEntity planGuia) 
-    //{
-     //   this.planGuia = planGuia;
-    //}
-    
-    /**
-     * Modela el idioma del guia
-     */
+    @PodamStrategyValue(StringSinNumerosStrategy.class)
     private String idiomaGuia;
 
     //GETTERS Y SETTERS

@@ -19,4 +19,8 @@ public class PagoDetailDTO extends PagoDTO{
     public PagoDetailDTO(PagoEntity entity) {
         super();
     }
+    public PagoDetailDTO()
+    {
+        
+    }
 }

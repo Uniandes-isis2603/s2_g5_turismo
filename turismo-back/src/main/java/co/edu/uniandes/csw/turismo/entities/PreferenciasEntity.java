@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.csw.turismo.entities;
 
-import java.io.Serializable;
 import javax.persistence.Entity;
 
 /**
@@ -13,7 +12,7 @@ import javax.persistence.Entity;
  * @author jc.montoyar
  */
 @Entity
-public class PreferenciasEntity extends BaseEntity implements Serializable
+public class PreferenciasEntity extends BaseEntity
 {
     //ATRIBUTOS 
     

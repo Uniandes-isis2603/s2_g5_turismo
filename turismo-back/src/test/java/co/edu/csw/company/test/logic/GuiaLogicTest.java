@@ -18,6 +18,8 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import podam.StringConNumerosStrategy;
+import podam.StringSinNumerosStrategy;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
@@ -29,6 +31,9 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 public class GuiaLogicTest 
 {
 
+    private StringSinNumerosStrategy stringSinNumerosStrategy = new StringSinNumerosStrategy();
+    private StringConNumerosStrategy stringConNumerosStrategy = new StringConNumerosStrategy();
+    
     private PodamFactory factory = new PodamFactoryImpl();
 
     @Inject
@@ -111,8 +116,8 @@ public class GuiaLogicTest
     public void createGuiaTest() throws BusinessLogicException 
     {
         GuiaEntity newEntity = factory.manufacturePojo(GuiaEntity.class);
-        //factory.manufacturePojo: esto crea nombres de guia que van en contra de reglas de negocio
-        newEntity.setName("nombre");
+        //factory.manufacturePojo: esto crea nombre e idioma de guia que van en contra de reglas de negocio, creamos un nombre random con la clase StringSinNumerosStrategy
+        newEntity.setName(stringSinNumerosStrategy.getValue());
         GuiaEntity result = GuiaLogic.createGuia(newEntity);
         Assert.assertNotNull(result);
         GuiaEntity entity = em.find(GuiaEntity.class, result.getId());
@@ -186,8 +191,9 @@ public class GuiaLogicTest
 
         pojoEntity.setId(entity.getId());
         
-        //factory.manufacturePojo: esto crea nombres de guia que van en contra de reglas de negocio
-        pojoEntity.setName("nombre");
+        //factory.manufacturePojo: esto crea nombre e idioma de guia que van en contra de reglas de negocio,
+        //creamos un nombre random con la clase StringSinNumerosStrategy y se define idiomaGuia en GuiaEntity con la estategia de string sin numeros
+        pojoEntity.setName(stringSinNumerosStrategy.getValue());
         GuiaLogic.updateGuia(pojoEntity);
 
         GuiaEntity resp = em.find(GuiaEntity.class, entity.getId());
@@ -205,7 +211,7 @@ public class GuiaLogicTest
         //nombre sin caracteres
         Boolean seAgrego = true;
         GuiaEntity enti = new GuiaEntity();
-        enti.setIdiomaGuia("Espaniol");
+        enti.setIdiomaGuia(stringSinNumerosStrategy.getValue());
         enti.setName("");
         try 
         {
@@ -221,7 +227,7 @@ public class GuiaLogicTest
         seAgrego = true;
         GuiaEntity enti2 = new GuiaEntity();
         enti2.setName(null);
-        enti2.setIdiomaGuia("Espaniol");
+        enti2.setIdiomaGuia(stringSinNumerosStrategy.getValue());
         try 
         {
             GuiaLogic.createGuia(enti2);
@@ -235,8 +241,8 @@ public class GuiaLogicTest
         //nombre con numeros
         seAgrego = true;
         GuiaEntity enti3 = new GuiaEntity();
-        enti3.setName("43242");
-        enti3.setIdiomaGuia("Espaniol");
+        enti3.setName(stringConNumerosStrategy.getValue());
+        enti3.setIdiomaGuia(stringSinNumerosStrategy.getValue());
         try 
         {
             GuiaLogic.createGuia(enti3);
@@ -249,8 +255,7 @@ public class GuiaLogicTest
         
         //idioma sin caracteres
         seAgrego = true;
-        GuiaEntity enti4 = new GuiaEntity();
-        enti4.setName("oli");
+        GuiaEntity enti4 = factory.manufacturePojo(GuiaEntity.class);
         enti4.setIdiomaGuia("");
         try 
         {
@@ -265,11 +270,26 @@ public class GuiaLogicTest
         //idioma null
         seAgrego = true;
         GuiaEntity enti5 = new GuiaEntity();
-        enti5.setName("oli");
+        enti5.setName(stringSinNumerosStrategy.getValue());
         enti5.setIdiomaGuia(null);
         try 
         {
             GuiaLogic.createGuia(enti5);
+        }
+        catch (BusinessLogicException e) 
+        {
+            seAgrego = false;
+        }
+        Assert.assertFalse(seAgrego);
+        
+        //idioma con numeros
+        seAgrego = true;
+        GuiaEntity enti6 = new GuiaEntity();
+        enti6.setName(stringSinNumerosStrategy.getValue());
+        enti6.setIdiomaGuia(stringConNumerosStrategy.getValue());
+        try 
+        {
+            GuiaLogic.createGuia(enti6);
         }
         catch (BusinessLogicException e) 
         {

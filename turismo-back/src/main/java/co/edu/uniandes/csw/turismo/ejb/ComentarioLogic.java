@@ -11,6 +11,7 @@ import co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.turismo.persistence.ComentarioPersistence;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
@@ -37,12 +38,13 @@ public class ComentarioLogic {
        if (entity.getComentario() != null && !entity.getComentario().isEmpty()){
            BlogEntity blog = blogLogic.getBlogs(blogId);
        if (blog != null){
+           entity = persistence.create(entity);
             List<ComentarioEntity> com = blog.getComentarios();
             com.add(entity);
             blog.setComentarios(com);
             blogLogic.updateBlog(blog);
         // Invoca la persistencia para crear el Comentario
-        persistence.create(entity);
+        
         LOGGER.info("Termina proceso de creación Comentarios");
         return entity;
         }
@@ -66,7 +68,8 @@ public class ComentarioLogic {
         return com;
     }
       
-      public ComentarioEntity getComentarioId(long id) throws BusinessLogicException {
+
+        public ComentarioEntity getComentarioId(long id) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de consultar todos los Comentarios");
       ComentarioEntity comen = persistence.find(id);
       if (comen != null)
@@ -77,12 +80,12 @@ public class ComentarioLogic {
       else {
           throw new BusinessLogicException("el comentario no existe");
         }
-      }
+     
       
         
-    
+    }
       
-        public ComentarioEntity getComentarios(Long id, long blogId) throws BusinessLogicException 
+        public ComentarioEntity getComentario(Long id, long blogId) throws BusinessLogicException 
     {   BlogEntity blog = blogLogic.getBlogs(blogId);
         List<ComentarioEntity> com = blog.getComentarios();
         ComentarioEntity encontrado = null;
@@ -90,8 +93,8 @@ public class ComentarioLogic {
         boolean finalizar = false;
         while(e.hasNext() && !finalizar)
         {
-            ComentarioEntity a = (ComentarioEntity) e.next();
-        if(a.getId() == id)
+        ComentarioEntity a = (ComentarioEntity) e.next();
+        if(Objects.equals(a.getId(), id))
         {
             encontrado = a;
             finalizar = true;
@@ -111,8 +114,10 @@ public class ComentarioLogic {
         
     }
         
-        public ComentarioEntity updateComentario(ComentarioEntity entity) throws BusinessLogicException  {
+        public ComentarioEntity updateComentario(ComentarioEntity entity,long blogId) throws BusinessLogicException  {
          if (entity.getComentario() != null && !entity.getComentario().isEmpty()){
+             if(blogLogic.getBlogs(blogId) == null){throw new BusinessLogicException(" no existe este blog");}
+             if(getComentario(entity.getId(), blogId) == null){throw new BusinessLogicException(" no existe este comentario");}
         return persistence.update(entity);}
          
          else 

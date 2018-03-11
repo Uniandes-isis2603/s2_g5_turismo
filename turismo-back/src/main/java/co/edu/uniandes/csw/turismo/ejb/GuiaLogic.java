@@ -44,6 +44,10 @@ public class GuiaLogic
         {
             throw new BusinessLogicException("El guia debe tener un idioma no null"); 
         }
+        else if(entity.getIdiomaGuia().matches(".*\\d+.*"))
+        {
+            throw new BusinessLogicException("El idioma del del guia no debe contener numeros");
+        }
         // Invoca la persistencia para crear la Guia
         persistence.create(entity);
         LOGGER.info("Termina proceso de creación de Guia");
@@ -105,7 +109,7 @@ public class GuiaLogic
      */
     public void deleteGuia(Long id) throws BusinessLogicException 
     {
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar Guia con id={0}", id);    
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar Guia con id={0}", id); 
         persistence.delete(id);
         LOGGER.log(Level.INFO, "Termina proceso de borrar libro con id={0}", id);
     }

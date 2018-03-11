@@ -1,0 +1,496 @@
+{
+	"info": {
+		"name": "Pruebas comentarios",
+		"_postman_id": "d47c4be1-fecd-c456-12e9-c6f3a8b0a311",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get todos los comentarios de un blog",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ee80ecd8-a3a0-414d-a12a-eef6440727d6",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/blogs/20000/comentarios/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"blogs",
+						"20000",
+						"comentarios",
+						""
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "get un comentarios de un blog",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "aa62df94-8339-4d3a-9f1a-f058f738c589",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/blogs/20000/comentarios/20000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"blogs",
+						"20000",
+						"comentarios",
+						"20000"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "crear un comentario",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n \"comentario\": \"Hola!, soy nuevo\"         \r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/blogs/20000/comentarios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"blogs",
+						"20000",
+						"comentarios"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "cambiar un comentario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "999600ec-e69c-4730-8825-f7d16a8f5285",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n \"comentario\": \"me gusta mucho CAMBIAR mis comentarios\", \r\n \"id\":20000\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/blogs/20000/comentarios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"blogs",
+						"20000",
+						"comentarios"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "get un comentarios que no existen de un blog",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ca768f14-5b88-4ec7-b21d-ae80f32573a9",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/blogs/20000/comentarios/20001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"blogs",
+						"20000",
+						"comentarios",
+						"20001"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "crear un comentario vacio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "47252926-8f54-43d8-8c26-c9d2b8db879b",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n \"comentario\": \"\"         \r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/blogs/20001/comentarios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"blogs",
+						"20001",
+						"comentarios"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "crear un comentario en un blog que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "47252926-8f54-43d8-8c26-c9d2b8db879b",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n \"comentario\": \"estoy destinado a fallar\"         \r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/blogs/20001/comentarios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"blogs",
+						"20001",
+						"comentarios"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "cambiar un comentario en un blog que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "34876762-efb3-4e3d-8fb5-076ea7afe246",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 200\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n \"comentario\": \"me gusta mucho CAMBIAR mis comentarios\", \r\n \"id\":20000\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/blogs/22000/comentarios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"blogs",
+						"22000",
+						"comentarios"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "cambiar un comentario que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2ea4abc7-dce3-4af8-bb03-e47d2ece97f9",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n \"comentario\": \"me gusta mucho CAMBIAR mis comentarios\", \r\n \"id\":20500\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/blogs/20000/comentarios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"blogs",
+						"20000",
+						"comentarios"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Delete un comentarios de un blog",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "28d9642a-01c4-43ca-8237-0019ead0dae6",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 204\"] = responseCode.code === 204;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/blogs/20000/comentarios/20000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"blogs",
+						"20000",
+						"comentarios",
+						"20000"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Delete un comentarios de un blog que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8af1ed66-8687-471f-b575-da645cf17e5a",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/blogs/20000/comentarios/20001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"blogs",
+						"20000",
+						"comentarios",
+						"20001"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Delete un comentario que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8af1ed66-8687-471f-b575-da645cf17e5a",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/blogs/21000/comentarios/20000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"blogs",
+						"21000",
+						"comentarios",
+						"20000"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

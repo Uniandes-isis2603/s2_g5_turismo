@@ -1,0 +1,500 @@
+{
+	"info": {
+		"name": "pruebas Blog",
+		"_postman_id": "187e2427-8005-ec21-ddca-fe38203e31ec",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "actualizar un blog",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6fb9aeee-93d9-4d7e-a4f8-c9a0205fda8a",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n \"tema\": \"czmbio de tema\",\r\n \"descripcion\": \"esto es un cambio\",\r\n \"likes\":0,\r\n \"id\":30000          \r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/blogs/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"blogs",
+						""
+					],
+					"query": [
+						{
+							"key": "fields",
+							"value": "devices",
+							"equals": true,
+							"disabled": true
+						}
+					]
+				},
+				"description": "{\r\n \"tema\": \"prueba2cambio\",\r\n \"descripcion\": \"esto es una prueba2 cambio\",\r\n \"likes\":100,\r\n \"comentarios\":  {},\r\n \r\n\"planes\":{}            \r\n}"
+			},
+			"response": []
+		},
+		{
+			"name": "borrar blog",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3a726353-cbbe-465f-877f-b878e024206d",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 204\"] = responseCode.code === 204;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/blogs/30000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"blogs",
+						"30000"
+					],
+					"query": [
+						{
+							"key": "fields",
+							"value": "devices",
+							"equals": true,
+							"disabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "crearr un blog",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "667e5788-bb8e-428e-b649-dc7c296022ff",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n \"tema\": \"prueba\",\r\n \"descripcion\": \"esto es una prueba\",\r\n \"likes\":0,\r\n \"id\":1,\r\n \"comentarios\": []\r\n \r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/blogs/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"blogs",
+						""
+					],
+					"query": [
+						{
+							"key": "fields",
+							"value": "devices",
+							"equals": true,
+							"disabled": true
+						}
+					]
+				},
+				"description": "{\r\n \"tema\": \"prueba\",\r\n \"descripcion\": \"esto es una prueba\",\r\n \"likes\":0,\r\n \"id\":1,\r\n \"comentarios\":  {},\r\n \r\n\"planes\":{}            \r\n}"
+			},
+			"response": []
+		},
+		{
+			"name": "consultar todos los blog",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "83aa377c-5f87-4640-8394-c440736f7eef",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n \"tema\": \"prueba\",\r\n \"descripcion\": \"esto es una prueba\",\r\n \"likes\":0,\r\n \"id\":1,\r\n \"comentarios\":  {},\r\n \r\n\"planes\":{}            \r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/blogs/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"blogs",
+						""
+					],
+					"query": [
+						{
+							"key": "fields",
+							"value": "devices",
+							"equals": true,
+							"disabled": true
+						}
+					]
+				},
+				"description": "{\r\n \"tema\": \"prueba\",\r\n \"descripcion\": \"esto es una prueba\",\r\n \"likes\":0,\r\n \"id\":1,\r\n \"comentarios\":  {},\r\n \r\n\"planes\":{}            \r\n}"
+			},
+			"response": []
+		},
+		{
+			"name": "consultar un blog",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f019303e-872a-4654-8275-7cfa629dbd3b",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n \"tema\": \"prueba\",\r\n \"descripcion\": \"esto es una prueba\",\r\n \"likes\":0,\r\n \"id\":1,\r\n \"comentarios\":  {},\r\n \r\n\"planes\":{}            \r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/blogs/10000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"blogs",
+						"10000"
+					],
+					"query": [
+						{
+							"key": "fields",
+							"value": "devices",
+							"equals": true,
+							"disabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "crearr un blog con error por blog ya existente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "52346237-b582-4b1b-bf60-7ec054a4cf5c",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n \"tema\": \"Its alive\",\r\n \"descripcion\": \"esto es un Blog creado\",\r\n \"likes\":0,\r\n \"id\":20000,\r\n \"planes\": []\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/blogs/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"blogs",
+						""
+					],
+					"query": [
+						{
+							"key": "fields",
+							"value": "devices",
+							"equals": true,
+							"disabled": true
+						}
+					]
+				},
+				"description": "{\r\n \"tema\": \"prueba\",\r\n \"descripcion\": \"esto es una prueba\",\r\n \"likes\":0,\r\n \"id\":1,\r\n \"comentarios\":  {},\r\n \r\n\"planes\":{}            \r\n}"
+			},
+			"response": []
+		},
+		{
+			"name": "consultar un blog que no existe (fallo)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c5eae288-6347-48f0-9114-84114aacfeb7",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n \"tema\": \"prueba\",\r\n \"descripcion\": \"esto es una prueba\",\r\n \"likes\":0,\r\n \"id\":1,\r\n \"comentarios\":  {},\r\n \r\n\"planes\":{}            \r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/blogs/50000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"blogs",
+						"50000"
+					],
+					"query": [
+						{
+							"key": "fields",
+							"value": "devices",
+							"equals": true,
+							"disabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "borrar blog que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "64c5291a-9616-4209-9be6-0448904b9200",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/blogs/30000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"blogs",
+						"30000"
+					],
+					"query": [
+						{
+							"key": "fields",
+							"value": "devices",
+							"equals": true,
+							"disabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "actualizar un blog que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "83568f4e-fa11-49c4-9ff9-5a1e6e3728d8",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n \"tema\": \"czmbio de tema\",\r\n \"descripcion\": \"esto es un cambio\",\r\n \"likes\":0,\r\n \"id\":90000          \r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/blogs/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"blogs",
+						""
+					],
+					"query": [
+						{
+							"key": "fields",
+							"value": "devices",
+							"equals": true,
+							"disabled": true
+						}
+					]
+				},
+				"description": "{\r\n \"tema\": \"prueba2cambio\",\r\n \"descripcion\": \"esto es una prueba2 cambio\",\r\n \"likes\":100,\r\n \"comentarios\":  {},\r\n \r\n\"planes\":{}            \r\n}"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "5924db96-222f-46a9-b3fb-3cf20f6dec96",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "f0d427a5-bec4-4d22-aad9-b05a37b0e65a",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

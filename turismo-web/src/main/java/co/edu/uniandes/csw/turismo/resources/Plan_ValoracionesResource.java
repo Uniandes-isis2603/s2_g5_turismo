@@ -37,7 +37,7 @@ import javax.ws.rs.WebApplicationException;
  * </pre>
  * @plan jc.montoyar
  */
-@Path("plans/{plansId: \\d+}/Valoraciones")
+@Path("plans/{plansId: \\d+}/valoraciones")
 public class Plan_ValoracionesResource 
 {
     @Inject private PlanLogic planLogic;
@@ -103,7 +103,7 @@ public class Plan_ValoracionesResource
     }
 
     /**
-     * <h1>GET /api/plans/{plansId}/valoraciones/{ValoracionesId} : Obtener un Valoraciones de un plan.</h1>
+     * <h1>GET /api/plans/{plansId}/valoraciones/{valoracionesID} : Obtener un Valoraciones de un plan.</h1>
      *
      * <pre>Busca y devuelve la Valoracion con el ID recibido en la URL, relativo a un
      * plan.
@@ -116,24 +116,24 @@ public class Plan_ValoracionesResource
      * 404 Not Found. No existe un plan con el id dado.
      * </code>
      * @param plansId El ID del plan del cual se busca el Valoraciones
-     * @param ValoracionesId El ID del Valoraciones que se busca
+     * @param valoracionesID El ID del Valoraciones que se busca
      * @return {@link BookDetailDTO} - El Valoraciones encontrado en el plan.
      * @throws co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException
      */
     @GET
-    @Path("{ValoracionesId: \\d+}")
-    public ValoracionesDTO getValoraciones(@PathParam("plansId") Long plansId, @PathParam("ValoracionesId") Long ValoracionesId) throws BusinessLogicException 
+    @Path("{valoracionesID: \\d+}")
+    public ValoracionesDTO getValoraciones(@PathParam("plansId") Long plansId, @PathParam("valoracionesID") Long valoracionesID) throws BusinessLogicException 
     {
         PlanEntity entity = planLogic.getPlan(plansId);
         if (entity == null) 
         {
             throw new WebApplicationException("El recurso /plans/" + plansId + " no existe.", 404);
         }
-      return new ValoracionesDTO(planLogic.getVal(plansId, ValoracionesId));
+      return new ValoracionesDTO(planLogic.getVal(plansId, valoracionesID));
     }
 
     /**
-     * <h1>POST /api/plans/{plansId}/Valoraciones/{ValoracionesId} : Aociar un Valoraciones a un plan.</h1>
+     * <h1>POST /api/plans/{plansId}/Valoraciones/{valoracionesID} : Aociar un Valoraciones a un plan.</h1>
      *
      * <pre> Asocia un Valoraciones existente con un plan existente
      * 
@@ -146,19 +146,19 @@ public class Plan_ValoracionesResource
      * </code>
      * </pre>
      * @param plansId El ID del plan al cual se le va a asociar el Valoraciones
-     * @param ValoracionesId El ID del Valoraciones que se asocia
+     * @param valoracionesID El ID del Valoraciones que se asocia
      * @return JSON {@link BookDetailDTO}  - El Valoraciones asociado.
      */
     @POST
-    @Path("{ValoracionesId: \\d+}")
-    public ValoracionesDTO addValoraciones(@PathParam("plansId") Long plansId, @PathParam("ValoracionesId") Long ValoracionesId) 
+    @Path("{valoracionesID: \\d+}")
+    public ValoracionesDTO addValoraciones(@PathParam("plansId") Long plansId, @PathParam("valoracionesID") Long valoracionesID) 
     {
         PlanEntity entity = planLogic.getPlan(plansId);
         if (entity == null) 
         {
             throw new WebApplicationException("El recurso /plans/" + plansId + " no existe.", 404);
         }
-      return new ValoracionesDTO(planLogic.addValoracion(ValoracionesId, plansId));
+      return new ValoracionesDTO(planLogic.addValoracion(valoracionesID, plansId));
     }
 
     /**
@@ -178,18 +178,18 @@ public class Plan_ValoracionesResource
      * </code>
      * </pre>
      * @param plansId El ID del plan al cual se le va a asociar el Valoraciones
-     * @param Valoraciones JSONArray {@link BookDetailDTO} - La lista de Valoracioness que se desea guardar.
+     * @param valoraciones JSONArray {@link BookDetailDTO} - La lista de Valoracioness que se desea guardar.
      * @return JSONArray {@link BookDetailDTO}  - La lista actualizada.
      */
     @PUT
-    public List<ValoracionesDTO> replaceValoraciones(@PathParam("plansId") Long plansId, List<ValoracionesDetailDTO> Valoraciones)
+    public List<ValoracionesDTO> replaceValoraciones(@PathParam("plansId") Long plansId, List<ValoracionesDetailDTO> valoraciones)
     {
         PlanEntity entity = planLogic.getPlan(plansId);
         if (entity == null) 
         {
             throw new WebApplicationException("El recurso /plans/" + plansId + " no existe.", 404);
         }
-       return ValoracionesListEntity2DTO(planLogic.replaceValoraciones(plansId, ValoracionesListDTO2Entity(Valoraciones)));
+       return ValoracionesListEntity2DTO(planLogic.replaceValoraciones(plansId, ValoracionesListDTO2Entity(valoraciones)));
     }
 
     /**
@@ -205,18 +205,18 @@ public class Plan_ValoracionesResource
      * </code>
      * </pre>
      * @param plansId El ID del plan al cual se le va a desasocia la Valoracion
-     * @param ValoracionesId El ID de la Valoracion que se desasocia
+     * @param valoracionesID El ID de la Valoracion que se desasocia
      */
     @DELETE 
-    @Path("{ValoracionesId: \\d+}")
-    public void removeValoraciones(@PathParam("plansId") Long plansId, @PathParam("ValoracionesId") Long ValoracionesId)
+    @Path("{valoracionesID: \\d+}")
+    public void removeValoraciones(@PathParam("plansId") Long plansId, @PathParam("valoracionesID") Long valoracionesID)
     {
         PlanEntity entity = planLogic.getPlan(plansId);
         if (entity == null) 
         {
             throw new WebApplicationException("El recurso /plans/" + plansId + " no existe.", 404);
         }
-        planLogic.removeValoracion(ValoracionesId, plansId);
+        planLogic.removeValoracion(valoracionesID, plansId);
     }
 
 }

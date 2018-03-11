@@ -32,7 +32,7 @@
  *                  "longitud":number                
  *                  }
  *   }
- * Por ejemplo una plan detallado se representa asi:<br>
+ * Por ejemplo un plan detallado se representa asi:<br>
  * 
  * <pre>
  * 
@@ -102,7 +102,7 @@ public class PlanDetailDTO extends PlanDTO {
     /**
      * Atributo que modela la ubicacion del plan
      */
-    //private UbicacionDTO ubicacion;
+    private UbicacionDTO ubicacion;
 
     //CONSTRUCTOR
     /**
@@ -120,14 +120,14 @@ public class PlanDetailDTO extends PlanDTO {
     public PlanDetailDTO(PlanEntity entity)
     {
         super(entity);
-        //if (entity.getUbicacion() != null)
-        //{
-          //  this.ubicacion = new UbicacionDTO(entity.getUbicacion());
-        //} 
-        //else 
-        //{
-          //  entity.setUbicacion(null);
-        //}
+        if (entity.getUbicacion() != null)
+        {
+            this.ubicacion = new UbicacionDTO(entity.getUbicacion());
+        }
+        else
+        {
+            entity.setUbicacion(null);
+        }
         if (entity.getPreferenciasPlan() != null) 
         {
             categoriasPlan = new ArrayList<>();
@@ -149,7 +149,7 @@ public class PlanDetailDTO extends PlanDTO {
             valoraciones = new ArrayList<>();
             for (ValoracionesEntity entityValoraciones : entity.getValoracionesPlan()) 
             {
-                valoraciones.add(new ValoracionesDTO(entityValoraciones)); //falta el constructor en valoraciones
+                valoraciones.add(new ValoracionesDTO(entityValoraciones));
             }
         }
     }
@@ -162,10 +162,10 @@ public class PlanDetailDTO extends PlanDTO {
     public PlanEntity toEntity() 
     {
         PlanEntity planE = super.toEntity();
-        //if (this.getUbicacion() != null) 
-        //{
-          //  planE.setUbicacion(this.getUbicacion().toEntity());
-        //}
+        if (this.getUbicacion() != null)
+        {
+            planE.setUbicacion(this.getUbicacion().toEntity());
+        }
         if (getValoraciones() != null) 
         {
             List<ValoracionesEntity> valoracionesEntity = new ArrayList<>();
@@ -197,22 +197,22 @@ public class PlanDetailDTO extends PlanDTO {
 
     //METODOS
     
-    //**
-     //* @return la ubicacion asociada del plan
-     //*/
-    //public UbicacionDTO getUbicacion()
-    //{
-      //  return this.guiasPlan;
-    //}
+    /**
+    * @return la ubicacion asociada del plan
+    */
+    public UbicacionDTO getUbicacion()
+    {
+        return this.ubicacion;
+    }
 
-    ///**
-     //* Cambia la ubicacion del plan por la dada por parametro
-     //* @param ubicacion 2 set
-     //*/ 
-    //public void setUbicacion(Ubicacion ubicacion) 
-    //{
-      //  this.ubicacion = ubicacion;
-    //}
+    /**
+    * Cambia la ubicacion del plan por la dada por parametro
+    * @param ubicacion 2 set
+    */ 
+    public void setUbicacion(UbicacionDTO ubicacion) 
+    {
+        this.ubicacion = ubicacion;
+    }
     
     /**
      * @return los guias asociados del plan

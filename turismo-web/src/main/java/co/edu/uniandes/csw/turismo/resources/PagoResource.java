@@ -56,6 +56,7 @@ public class PagoResource {
         }
         return list;
     }
+    
     /**
      * <h1>POST /api/pagos : Crear un nuevo pago.</h1>
      * 
@@ -121,7 +122,7 @@ public class PagoResource {
     public PagoDetailDTO getPago(@PathParam("id") Long id) {
         PagoEntity pago = pagoLogic.getPago(id);
         if (pago == null) 
-            throw new WebApplicationException("El pago no existe");
+            throw new WebApplicationException("El pago no existe",404);
         return new PagoDetailDTO(pago); 
     }
     

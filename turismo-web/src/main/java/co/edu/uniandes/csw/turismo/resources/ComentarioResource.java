@@ -89,7 +89,7 @@ public class ComentarioResource {
     @Path("{id2: \\d+}") 
     public ComentarioDTO getComentario (@PathParam("id2") long id,@PathParam("blogId") long blogId ) throws BusinessLogicException
 {
-       return new ComentarioDTO(comentarioLogic.getComentarios(id, blogId));
+       return new ComentarioDTO(comentarioLogic.getComentario(id, blogId));
     
 }
     
@@ -141,9 +141,9 @@ public class ComentarioResource {
      */
     
     @PUT
-    public ComentarioDTO actualizarComentario (ComentarioDTO comentario ) throws BusinessLogicException
+    public ComentarioDTO actualizarComentario (ComentarioDTO comentario, @PathParam("blogId") long blogId ) throws BusinessLogicException
     {
-        comentarioLogic.updateComentario(comentario.toEntity());
+        comentarioLogic.updateComentario(comentario.toEntity(), blogId);
         return comentario;
     }
     
@@ -169,7 +169,7 @@ public class ComentarioResource {
     @Path("{id2: \\d+}") 
     public void  borrarComentario (@PathParam("id2") long id, @PathParam("blogId") long blogId) throws BusinessLogicException
     {
-        ComentarioEntity borrar = comentarioLogic.getComentarios(id, blogId);
+        ComentarioEntity borrar = comentarioLogic.getComentario(id, blogId);
         comentarioLogic.deleteComentario(borrar, blogId);
         
     }

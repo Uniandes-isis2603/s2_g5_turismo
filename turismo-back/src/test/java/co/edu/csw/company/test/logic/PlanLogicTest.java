@@ -5,6 +5,7 @@ import co.edu.uniandes.csw.turismo.ejb.PlanLogic;
 import co.edu.uniandes.csw.turismo.entities.GuiaEntity;
 import co.edu.uniandes.csw.turismo.entities.PlanEntity;
 import co.edu.uniandes.csw.turismo.entities.PreferenciasEntity;
+import co.edu.uniandes.csw.turismo.entities.UbicacionEntity;
 import co.edu.uniandes.csw.turismo.entities.ValoracionesEntity;
 import co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.turismo.persistence.PlanPersistence;
@@ -52,6 +53,7 @@ public class PlanLogicTest
     private List<PreferenciasEntity> preferenciasData = new ArrayList();
     private List<PreferenciasEntity> preferenciasData2 = new ArrayList();
     private List<ValoracionesEntity> valoracionesData = new ArrayList();
+    private List<UbicacionEntity> ubicacionesData = new ArrayList();
 
     @Deployment
     public static JavaArchive createDeployment() {
@@ -94,6 +96,7 @@ public class PlanLogicTest
         em.createQuery("delete from GuiaEntity").executeUpdate();
         em.createQuery("delete from PreferenciasEntity").executeUpdate();
         em.createQuery("delete from ValoracionesEntity").executeUpdate();
+        em.createQuery("delete from UbicacionEntity").executeUpdate();
     }
 
     /**
@@ -101,19 +104,29 @@ public class PlanLogicTest
      * pruebas.
      *
      */
-    private void insertData() {
-        for (int i = 0; i < 3; i++) {
+    private void insertData() 
+    {
+        for (int i = 0; i < 3; i++) 
+        {
+            UbicacionEntity ubics = factory.manufacturePojo(UbicacionEntity.class);
+            em.persist(ubics);
+            ubicacionesData.add(ubics);
+        }
+        for (int i = 0; i < 3; i++) 
+        {
             GuiaEntity Guias = factory.manufacturePojo(GuiaEntity.class);
             em.persist(Guias);
             GuiasData.add(Guias);
         }
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 3; i++) 
+        {
             ValoracionesEntity vals = factory.manufacturePojo(ValoracionesEntity.class);
             vals.setCalificacion(4.0);
             em.persist(vals);
             valoracionesData.add(vals);
         }
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 3; i++) 
+        {
             PreferenciasEntity prefs = factory.manufacturePojo(PreferenciasEntity.class);
             em.persist(prefs);
             preferenciasData.add(prefs);
@@ -121,28 +134,21 @@ public class PlanLogicTest
             em.persist(pref2);
             preferenciasData2.add(pref2);
         }
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 3; i++)
+        {
             PlanEntity entity = factory.manufacturePojo(PlanEntity.class);
             if(i == 0)
             {
-                entity.setValoracionesPlan(valoracionesData);
+               entity.setValoracionesPlan(valoracionesData);
                entity.setGuias(GuiasData);
             }
+            entity.setUbicacion(ubicacionesData.get(i));
             entity.setPreferenciasPlan(preferenciasData);
             em.persist(entity);
             data.add(entity);
         }
     }
 
-    private void adicionarCat (PlanEntity pe)
-    {
-        List<PreferenciasEntity> p = new ArrayList();
-        PreferenciasEntity pref = new PreferenciasEntity();
-        pref.setTipoPlan("xd");
-        p.add(pref);
-        pe.setPreferenciasPlan(p);
-    }
-    
     /**
      * Prueba para crear un Plan
      *
@@ -152,6 +158,7 @@ public class PlanLogicTest
     public void createPlanTest() throws BusinessLogicException {
         PlanEntity newEntity = factory.manufacturePojo(PlanEntity.class);
         newEntity.setPreferenciasPlan(preferenciasData);
+        newEntity.setUbicacion(ubicacionesData.get(0));
         PlanEntity result = PlanLogic.createPlan(newEntity);
         Assert.assertNotNull(result);
         PlanEntity entity = em.find(PlanEntity.class, result.getId());
@@ -200,17 +207,23 @@ public class PlanLogicTest
      * @throws co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException
      */
     @Test
-    public void deletePlanTest() throws BusinessLogicException {
+    public void deletePlanTest() throws BusinessLogicException
+    
+    {
+        //Obtengo la entity del plan a borrar, junto con ids de sus asociaciones, la unica asociacion que debería borrarse es la de valoracion
         PlanEntity entity = data.get(0);
         Long idPref = data.get(0).getPreferenciasPlan().get(0).getId();
         Long idGuia = data.get(0).getGuias().get(0).getId();
         Long idVal = data.get(0).getValoracionesPlan().get(0).getId();
+        Long idUbi = data.get(0).getUbicacion().getId();
         PlanLogic.removeGuia(GuiasData.get(0).getId(), entity.getId());
         PlanLogic.deletePlan(entity.getId());
         PlanEntity deleted = em.find(PlanEntity.class, entity.getId());
         PreferenciasEntity deletedPref = em.find(PreferenciasEntity.class, idPref);
         GuiaEntity deletedGuia = em.find(GuiaEntity.class, idGuia);
         ValoracionesEntity deletedVal = em.find(ValoracionesEntity.class, idVal);
+        UbicacionEntity deletedUbicacion = em.find(UbicacionEntity.class, idUbi);
+        Assert.assertNotNull(deletedUbicacion);
         Assert.assertNotNull(deletedPref);
         Assert.assertNotNull(deletedGuia);
         Assert.assertNull(deletedVal);
@@ -228,6 +241,7 @@ public class PlanLogicTest
         PlanEntity entity = data.get(0);
         PlanEntity pojoEntity = factory.manufacturePojo(PlanEntity.class);
         pojoEntity.setPreferenciasPlan(preferenciasData);
+        pojoEntity.setUbicacion(ubicacionesData.get(0));
         pojoEntity.setId(entity.getId());
 
         PlanLogic.updatePlan(pojoEntity);
@@ -487,5 +501,167 @@ public class PlanLogicTest
         }
         Assert.assertTrue(estaBien);
 
+    }
+    
+    /**
+     * Prueba si el metodo findByName esta Bien
+     *
+     * 
+     * @throws co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException
+     */
+    @Test
+    public void findByNameTest() throws BusinessLogicException {
+        String name = data.get(0).getName();
+        PlanEntity e = PlanLogic.getByName(name);
+        Assert.assertEquals(data.get(0), e);
+        
+        String name1 = "notAChanceDeQueEsteNombreExistalulnomamesfwef";
+        PlanEntity en = PlanLogic.getByName(name1);
+        Assert.assertNull(en);
+
+    }
+    
+    /**
+     * Prueba si el metodo getUbicacionDePlan de plan logic funciona correctamente
+     */
+    @Test
+    public void getUbicacionTest()
+    {
+        UbicacionEntity ent = data.get(2).getUbicacion();
+        Long idPlan = data.get(2).getId();
+        UbicacionEntity ubicacion = PlanLogic.getUbicacionDePlan(idPlan);
+        Assert.assertEquals(ent, ubicacion);
+    }
+    
+    /**
+     * Prueba si el metodo getUbicacionDePlan de plan logic funciona correctamente
+     */
+    @Test
+    public void cambiarUbicacionTest()
+    {
+        UbicacionEntity ent = data.get(1).getUbicacion();
+        Long idPlan = data.get(2).getId();
+        Long idUbi = data.get(1).getUbicacion().getId();
+        UbicacionEntity ubicacion = PlanLogic.replaceUbicacion(idPlan, idUbi);
+        Assert.assertEquals(ent, ubicacion);
+    }
+    
+    /**
+     * Prueba reglas de negocio referente al nombre del plan y la ubicacion
+     */
+    @Test
+    public void nombreNoNullYUbicacionNoNull()
+    {
+        boolean esCorrecto = false;
+        PlanEntity prueba = factory.manufacturePojo(PlanEntity.class);
+        prueba.setPreferenciasPlan(preferenciasData2);
+        prueba.setUbicacion(ubicacionesData.get(0));
+        //Prueba 1, plan con nombre null
+        prueba.setName(null);
+        try 
+        {
+            PlanLogic.createPlan(prueba);
+        }
+        catch (BusinessLogicException e) 
+        {
+            esCorrecto = true;
+        }
+        Assert.assertTrue(esCorrecto);
+        
+        //Caso 2, ubicacion null
+        esCorrecto = false;
+        prueba = factory.manufacturePojo(PlanEntity.class);
+        prueba.setPreferenciasPlan(preferenciasData2);
+        prueba.setUbicacion(ubicacionesData.get(0));
+        prueba.setUbicacion(null);
+        try 
+        {
+            PlanLogic.createPlan(prueba);
+        }
+        catch (BusinessLogicException e) 
+        {
+            esCorrecto = true;
+        }
+        Assert.assertTrue(esCorrecto);
+        
+        //Caso 3, ubicacion no null, pero ciudad null
+        esCorrecto = false;
+        prueba = factory.manufacturePojo(PlanEntity.class);
+        prueba.setPreferenciasPlan(preferenciasData2);
+        prueba.setUbicacion(ubicacionesData.get(0));
+        prueba.getUbicacion().setCiudad(null);
+        try 
+        {
+            PlanLogic.createPlan(prueba);
+        }
+        catch (BusinessLogicException e) 
+        {
+            esCorrecto = true;
+        }
+        Assert.assertTrue(esCorrecto);
+        
+        //Caso 4, ubicacion no null, pero pais null
+        esCorrecto = false;
+        prueba = factory.manufacturePojo(PlanEntity.class);
+        prueba.setPreferenciasPlan(preferenciasData2);
+        prueba.setUbicacion(ubicacionesData.get(0));
+        prueba.getUbicacion().setPais(null);
+        try 
+        {
+            PlanLogic.createPlan(prueba);
+        }
+        catch (BusinessLogicException e) 
+        {
+            esCorrecto = true;
+        }
+        Assert.assertTrue(esCorrecto);
+        
+        //Caso 5, ubicacion no null, pero latitud null
+        esCorrecto = false;
+        prueba = factory.manufacturePojo(PlanEntity.class);
+        prueba.setPreferenciasPlan(preferenciasData2);
+        prueba.setUbicacion(ubicacionesData.get(0));
+        prueba.getUbicacion().setLatitud(null);
+        try 
+        {
+            PlanLogic.createPlan(prueba);
+        }
+        catch (BusinessLogicException e) 
+        {
+            esCorrecto = true;
+        }
+        Assert.assertTrue(esCorrecto);
+        
+        //Caso 6, ubicacion no null, pero longitud null
+        esCorrecto = false;
+        prueba = factory.manufacturePojo(PlanEntity.class);
+        prueba.setPreferenciasPlan(preferenciasData2);
+        prueba.setUbicacion(ubicacionesData.get(0));
+        prueba.getUbicacion().setLongitud(null);
+        try 
+        {
+            PlanLogic.createPlan(prueba);
+        }
+        catch (BusinessLogicException e) 
+        {
+            esCorrecto = true;
+        }
+        Assert.assertTrue(esCorrecto);
+        
+        //Caso 7 nombre con length = 0
+        esCorrecto = false;
+        prueba = factory.manufacturePojo(PlanEntity.class);
+        prueba.setPreferenciasPlan(preferenciasData2);
+        prueba.setUbicacion(ubicacionesData.get(0));
+        prueba.setName("");
+        try 
+        {
+            PlanLogic.createPlan(prueba);
+        }
+        catch (BusinessLogicException e) 
+        {
+            esCorrecto = true;
+        }
+        Assert.assertTrue(esCorrecto);  
     }
 }

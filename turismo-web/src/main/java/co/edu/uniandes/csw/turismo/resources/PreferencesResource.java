@@ -64,14 +64,14 @@ public class PreferencesResource
      * 412 Precodition Failed: Ya existe la preferencia.
      * </code>
      * </pre>
-     * @param Preferencias {@link PreferenciasDetailDTO} - La preferencia que se desea guardar.
+     * @param preferencias {@link PreferenciasDetailDTO} - La preferencia que se desea guardar.
      * @return JSON {@link PreferenciasDetailDTO}  
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe la preferencia.
      */
     @POST
-    public PreferenciasDetailDTO createPreferencias(PreferenciasDetailDTO Preferencias) throws BusinessLogicException
+    public PreferenciasDetailDTO createPreferencias(PreferenciasDetailDTO preferencias) throws BusinessLogicException
     {
-        return new PreferenciasDetailDTO(preferenciasLogic.createPreferencias(Preferencias.toEntity()));
+        return new PreferenciasDetailDTO(preferenciasLogic.createPreferencias(preferencias.toEntity()));
     }
 
     /**
@@ -105,21 +105,21 @@ public class PreferencesResource
      * </code> 
      * </pre>
      * @param id 
-     * @param Preferencias {@link PreferenciasDetailDTO} La preferencia que se desea guardar.
+     * @param preferencias {@link PreferenciasDetailDTO} La preferencia que se desea guardar.
      * @return JSON {@link PreferenciasDetailDTO} - La preferencia guardada.
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera al no poder actualizar la preferencia porque ya existe una con ese nombre.
      */
     @PUT
     @Path("{id: \\d+}")
-    public PreferenciasDetailDTO updatePreferencias(@PathParam("id") Long id, PreferenciasDetailDTO Preferencias) throws BusinessLogicException
+    public PreferenciasDetailDTO updatePreferencias(@PathParam("id") Long id, PreferenciasDetailDTO preferencias) throws BusinessLogicException
     {
-        Preferencias.setId(id);
+        preferencias.setId(id);
         PreferenciasEntity entity = preferenciasLogic.getPreferencias(id);
         if (entity == null) 
         {
             throw new WebApplicationException("El recurso /preferences/" + id + " no existe.", 404);
         }
-        return new PreferenciasDetailDTO(preferenciasLogic.updatePreferencias(Preferencias.toEntity()));
+        return new PreferenciasDetailDTO(preferenciasLogic.updatePreferencias(preferencias.toEntity()));
     }
     
     /**

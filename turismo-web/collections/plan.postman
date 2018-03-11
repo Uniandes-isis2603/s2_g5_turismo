@@ -161,7 +161,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n       \"nombrePlan\": \"Museo del oro\",\r\n       \"descripcion\": \"Conocer balblabla en el museo del oro\",\r\n       \"pais\": \"Colombia\", \r\n       \"ciudad\": \"Bogota\", \r\n       \"longitud\": -74.057615, \r\n       \"latitud\": 4.606492, \r\n       \"duracion\":180,\r\n       \"restricciones\": \"Menores deben ir a compañados\",\r\n       \"archivo\": \"soyUnLink\",\r\n       \"precio\": 20.000,\r\n       \"cantidadPersonas\": 9999,\r\n       \"categoriasPlan\":[{\"tipoPlan\":\"Cultura\"}]\r\n}"
+					"raw": "{\r\n       \"name\": \"Museo del oro\",\r\n       \"descripcion\": \"Conocer balblabla en el museo del oro\",\r\n       \"duracion\":180,\r\n       \"restricciones\": \"Menores deben ir a compañados\",\r\n       \"archivo\": \"soyUnLink\",\r\n       \"precio\": 20.000,\r\n       \"cantidadPersonas\": 9999,\r\n       \"categoriasPlan\":[{\"tipoPlan\":\"Cultura\"}],\r\n       \"ubicacion\":\r\n                  {\r\n       \t            \"pais\": \"Colombia\", \r\n                    \"ciudad\": \"Bogota\", \r\n                    \"longitud\": -74.057615, \r\n                    \"latitud\": 4.606492\r\n                  }\r\n       \r\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/turismo-web/api/plans",
@@ -204,7 +204,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n       \"nombrePlan\": \"Museo del oro\",\r\n       \"descripcion\": \"Conocer balblabla en el museo del oro\",\r\n       \"pais\": \"Colombia\", \r\n       \"ciudad\": \"Bogota\", \r\n       \"longitud\": -74.057615, \r\n       \"latitud\": 4.606492, \r\n       \"duracion\":180,\r\n       \"restricciones\": \"Menores deben ir a compañados\",\r\n       \"archivo\": \"soyUnLink\",\r\n       \"precio\": 20.000,\r\n       \"cantidadPersonas\": 9999,\r\n       \"categoriasPlan\":[{\"tipoPlan\":\"categoriaxd\"}]\r\n}"
+					"raw": "{\r\n       \"name\": \"Muro de berlin\",\r\n       \"descripcion\": \"Conocer cosas shidas en el muro de berlin\",\r\n       \"duracion\":180,\r\n       \"restricciones\": \"Menores deben ir a compañados\",\r\n       \"archivo\": \"soyUnLink\",\r\n       \"precio\": 20.000,\r\n       \"cantidadPersonas\": 9999,\r\n       \"categoriasPlan\":[{\"tipoPlan\":\"categoriaxdxxs\"}],\r\n       \"ubicacion\":\r\n                  {\r\n       \t            \"pais\": \"Alemania\", \r\n                    \"ciudad\": \"Berlin\", \r\n                    \"longitud\": -74.057615, \r\n                    \"latitud\": 4.606492\r\n                  }\r\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/turismo-web/api/plans",
@@ -247,7 +247,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n       \"nombrePlan\": \"prebita\",\r\n       \"descripcion\": \"Conocer balblabla en el museo del oro\",\r\n       \"pais\": \"Colombia\", \r\n       \"ciudad\": \"Bogota\", \r\n       \"longitud\": -74.057615, \r\n       \"latitud\": 4.606492, \r\n       \"duracion\":180,\r\n       \"restricciones\": \"Menores deben ir a compañados\",\r\n       \"archivo\": \"soyUnLink\",\r\n       \"precio\": 20.000,\r\n       \"cantidadPersonas\": 9999\r\n}"
+					"raw": "{\r\n       \"name\": \"prebita\",\r\n       \"descripcion\": \"Conocer balblabla en el museo del oro\",\r\n       \"pais\": \"Colombia\", \r\n       \"ciudad\": \"Bogota\", \r\n       \"longitud\": -74.057615, \r\n       \"latitud\": 4.606492, \r\n       \"duracion\":180,\r\n       \"restricciones\": \"Menores deben ir a compañados\",\r\n       \"archivo\": \"soyUnLink\",\r\n       \"precio\": 20.000,\r\n       \"cantidadPersonas\": 9999\r\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/turismo-web/api/plans",
@@ -378,7 +378,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n       \"nombrePlan\": \"prebita2\",\r\n       \"descripcion\": \"Conocer balblabla en el museo del oro\",\r\n       \"pais\": \"Colombia\", \r\n       \"ciudad\": \"Bogota\", \r\n       \"longitud\": -74.057615, \r\n       \"latitud\": 4.606492, \r\n       \"duracion\":180,\r\n       \"restricciones\": \"Menores deben ir a compañados\",\r\n       \"archivo\": \"soyUnLink\",\r\n       \"precio\": 20.000,\r\n       \"cantidadPersonas\": 9999,\r\n       \"categoriasPlan\":[{\"tipoPlan\":\"categoriaxd\"}]\r\n}"
+					"raw": "{\r\n       \"name\": \"prebita2\",\r\n       \"descripcion\": \"Conocer balblabla en el museo del oro\",\r\n       \"duracion\":180,\r\n       \"restricciones\": \"Menores deben ir a compañados\",\r\n       \"archivo\": \"soyUnLink\",\r\n       \"precio\": 20.000,\r\n       \"cantidadPersonas\": 9999,\r\n       \"categoriasPlan\":[{\"tipoPlan\":\"categoriaxd\"}],\r\n       \"ubicacion\":\r\n                  {\r\n       \t            \"pais\": \"Colombia\", \r\n                    \"ciudad\": \"Bogota\", \r\n                    \"longitud\": -74.057615, \r\n                    \"latitud\": 4.606492\r\n                  }\r\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/turismo-web/api/plans/100000",
@@ -422,7 +422,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n       \"nombrePlan\": \"prebita2\",\r\n       \"descripcion\": \"Conocer balblabla en el museo del oro\",\r\n       \"pais\": \"Colombia\", \r\n       \"ciudad\": \"Bogota\", \r\n       \"longitud\": -74.057615, \r\n       \"latitud\": 4.606492, \r\n       \"duracion\":180,\r\n       \"restricciones\": \"Menores deben ir a compañados\",\r\n       \"archivo\": \"soyUnLink\",\r\n       \"precio\": 20.000,\r\n       \"cantidadPersonas\": 9999,\r\n       \"categoriasPlan\":[{\"tipoPlan\":\"categoriaxd\"}]\r\n}"
+					"raw": "{\r\n       \"name\": \"prebita2\",\r\n       \"descripcion\": \"Conocer balblabla en el museo del oro\",\r\n       \"duracion\":180,\r\n       \"restricciones\": \"Menores deben ir a compañados\",\r\n       \"archivo\": \"soyUnLink\",\r\n       \"precio\": 20.000,\r\n       \"cantidadPersonas\": 9999,\r\n       \"categoriasPlan\":[{\"tipoPlan\":\"categoriaxdd\"}],\r\n       \"ubicacion\":\r\n                  {\r\n       \t            \"pais\": \"Colombia\", \r\n                    \"ciudad\": \"Bogota\", \r\n                    \"longitud\": -74.057615, \r\n                    \"latitud\": 4.606492\r\n                  }\r\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/turismo-web/api/plans/10001",
@@ -466,7 +466,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n       \"nombrePlan\": \"prebita3\",\r\n       \"descripcion\": \"Conocer balblabla en el museo del oro\",\r\n       \"pais\": \"Colombia\", \r\n       \"ciudad\": \"Bogota\", \r\n       \"longitud\": -74.057615, \r\n       \"latitud\": 4.606492, \r\n       \"duracion\":180,\r\n       \"restricciones\": \"Menores deben ir a compañados\",\r\n       \"archivo\": \"soyUnLink\",\r\n       \"precio\": 20.000,\r\n       \"cantidadPersonas\": 9999\r\n}"
+					"raw": "{\r\n       \"name\": \"prebita3\",\r\n       \"descripcion\": \"Conocer balblabla en el museo del oro\",\r\n       \"duracion\":180,\r\n       \"restricciones\": \"Menores deben ir a compañados\",\r\n       \"archivo\": \"soyUnLink\",\r\n       \"precio\": 20.000,\r\n       \"cantidadPersonas\": 9999\r\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/turismo-web/api/plans/10001",

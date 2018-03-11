@@ -186,30 +186,6 @@ public class GuiaResource
         guiaLogic.deleteGuia(id);
     }
        
-    /**
-     * <h1>GET /api/guides/{id}/plans : Obtener planes asociados al guia).</h1>
-     *
-     * <pre>Retorna los planes asociados de el Guia con el id asociado recibido en la URL.
-     *
-     * Códigos de respuesta:<br>
-     * <code style="color: mediumseagreen; background-color: #eaffe0;">
-     * 200 OK Se obtienen los planes de el Guia correspondiente al id dado.</code>
-     * <code style="color: #c7254e; background-color: #f9f2f4;">
-     * 404 Not Found. No existe un Guia con el id dado.
-     * </code>
-     * </pre>
-     *
-     * @param idGuia Identificador de el Guia del cual se desean obtener los planes. Este debe ser una
-     * cadena de dígitos.
-     * @return List PlanDetailDTO , esta contiene los planes asociados del Guia
-     */
-     @GET
-     @Path("{id: \\d+}/plans")
-     public PlanDetailDTO getPlanGuia(@PathParam("id") Long idGuia)
-     {
-         return null;
-     }
-     
      /**
      * Recibe una lista de plan entities y la convierte a dtos
      * @param entityList

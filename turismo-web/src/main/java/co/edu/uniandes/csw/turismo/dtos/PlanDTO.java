@@ -4,13 +4,9 @@
  * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
  * <pre>
  *   {
- *      "idPlan": number,
- *      "nombrePlan: string,
+ *      "id": number,
+ *      "name: string,
  *      "descripcion": string,
- *      "pais": string,
- *      "ciudad": string,
- *      "longitud": number,
- *      "latitud": number,
  *      "duracion":number,
  *      "restricciones": string,
  *      "archivo": string,
@@ -22,13 +18,9 @@
  * <pre>
  * 
  *   {
-       "idPlan": 1,
-       "nombrePlan": "Visita a Monserrate",
+       "id": 1,
+       "name": "Visita a Monserrate",
        "descripcion": "Ir a monserrate subiendo por teleferico",
-       "pais": "Colombia", //esto ahora va el la clase ubicacion
-       "ciudad": "Bogota", //*2
-       "longitud": -74.057615, //*3
-       "latitud": 4.606492, //*4
        "duracion":180,
        "restricciones": "Menores deben ir a compañados",
        "archivo": "imagenLink",
@@ -62,26 +54,6 @@ public class PlanDTO
     private String descripcion;
 
     /**
-     * Atriburo que modela el pais del plan
-     */
-    private String pais;
-
-    /**
-     * atributo que modela la ciudad del plan
-     */
-    private String ciudad;
-
-    /**
-     * Atributo que modela la longitud del plan
-     */
-    private Double longitud;
-
-    /**
-     * Atriburo que modela la latitud
-     */
-    private Double latitud;
-
-    /**
      * atributo que modela la duracion del plan
      */
     private Integer duracion;
@@ -109,7 +81,36 @@ public class PlanDTO
     /**
      * Atriburo que modela el nombre del plan
      */
-    private String nombrePlan;
+    private String name;
+    
+    //CONSTRUCTORES
+    
+    /**
+     * Constructor por defecto
+     */
+    public PlanDTO()
+    {
+        //constructor vacio
+    }
+    
+    /**
+     * Constructor a partir de la entidad
+     * @param planE  La entidad del plan
+     */
+    public PlanDTO(PlanEntity planE)
+    {
+        if (planE != null) 
+        {
+            this.idPlan = planE.getId();
+            this.name = planE.getName();
+            this.archivo = planE.getArchivo();
+            this.cantidadPersonas = planE.getCantidadPersonas();
+            this.descripcion = planE.getDescripcion();
+            this.duracion = planE.getDuracion();
+            this.precio = planE.getPrecio();
+            this.restricciones = planE.getRestricciones();   
+        }
+    }
 
     //GETTERS Y SETTERS
     /**
@@ -142,68 +143,6 @@ public class PlanDTO
     public void setDescripcion(String descripcion) 
     {
         this.descripcion = descripcion;
-    }
-
-    /**
-     * @return el pais
-     */
-    public String getPais()
-    {
-        return pais;
-    }
-
-    /**
-     * @param pais el pais to set
-     */
-    public void setPais(String pais)
-    {
-        this.pais = pais;
-    }
-
-    /**
-     * @return la ciudad
-     */
-    public String getCiudad() 
-    {
-        return ciudad;
-    }
-
-    /**
-     * @param ciudad la ciudad to set
-     */
-    public void setCiudad(String ciudad)
-    {
-        this.ciudad = ciudad;
-    }
-
-    /**
-     * @return la longitud
-     */
-    public Double getLongitud() 
-    {
-        return longitud;
-    }
-
-    /**
-     * @param longitud la longitud to set
-     */
-    public void setLongitud(Double longitud) {
-        this.longitud = longitud;
-    }
-
-    /**
-     * @return la latitud
-     */
-    public Double getLatitud() {
-        return latitud;
-    }
-
-    /**
-     * @param latitud la latitud to set
-     */
-    public void setLatitud(Double latitud)
-    {
-        this.latitud = latitud;
     }
 
     /**
@@ -286,48 +225,20 @@ public class PlanDTO
     }
 
     /**
-     * @return the nombrePlan
+     * @return the name
      */
-    public String getNombrePlan() 
+    public String getName() 
     {
-        return nombrePlan;
+        return name;
     }
 
     /**
-     * @param nombrePlan the nombrePlan to set
+     * @param name the name to set
      */
-    public void setNombrePlan(String nombrePlan) 
+    public void setName(String name) 
     {
-        this.nombrePlan = nombrePlan;
-    }
-    
-    public PlanDTO()
-    {
-        
-    }
-    
-    /**
-     * Constructor a partir de la entidad
-     * @param planE  La entidad del plan
-     */
-    public PlanDTO(PlanEntity planE)
-    {
-        if (planE != null) 
-        {
-            this.idPlan = planE.getId();
-            this.nombrePlan = planE.getName();
-            this.archivo = planE.getArchivo();
-            this.cantidadPersonas = planE.getCantidadPersonas();
-            this.ciudad = planE.getCiudad();
-            this.descripcion = planE.getDescripcion();
-            this.duracion = planE.getDuracion();
-            this.latitud = planE.getLatitud();
-            this.longitud = planE.getLongitud();
-            this.pais = planE.getPais();
-            this.precio = planE.getPrecio();
-            this.restricciones = planE.getRestricciones();   
-        }
-    }
+        this.name = name;
+    }  
         
     /**
      * Método para transformar el DTO a una entidad.
@@ -335,20 +246,15 @@ public class PlanDTO
      */
     public PlanEntity toEntity() 
     {
-        PlanEntity PlanE = new PlanEntity();
-        PlanE.setId(this.idPlan);
-        PlanE.setName(this.nombrePlan);
-        PlanE.setArchivo(this.archivo);
-        PlanE.setCantidadPersonas(this.cantidadPersonas);
-        PlanE.setCiudad(this.ciudad);
-        PlanE.setDescripcion(this.descripcion);
-        PlanE.setDuracion(this.duracion);
-        PlanE.setLatitud(this.latitud);
-        PlanE.setLongitud(this.longitud);
-        PlanE.setPais(this.pais);
-        PlanE.setRestricciones(this.restricciones);
+        PlanEntity planE = new PlanEntity();
+        planE.setId(this.idPlan);
+        planE.setName(this.name);
+        planE.setArchivo(this.archivo);
+        planE.setCantidadPersonas(this.cantidadPersonas);
+        planE.setDescripcion(this.descripcion);
+        planE.setDuracion(this.duracion);
+        planE.setRestricciones(this.restricciones);
                  
-        return PlanE;
+        return planE;
     }
-
 }
