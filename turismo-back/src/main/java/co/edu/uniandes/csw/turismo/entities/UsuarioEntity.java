@@ -49,7 +49,7 @@ public class UsuarioEntity extends BaseEntity implements Serializable
     private List<ComentarioEntity> listaComentarios;
     
     @PodamExclude
-    @OneToMany(cascade = CascadeType.PERSIST, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.PERSIST)
     private List<PreferenciasEntity> listaPreferencias;
 
     /**
