@@ -16,6 +16,11 @@ public class PlanAgendadoDTO {
     Date fecha;
     
     Long id;
+    
+    public PlanAgendadoDTO()
+    {
+        
+    }
 
     public Long getId() {
         return id;
@@ -47,4 +52,6 @@ public class PlanAgendadoDTO {
         entity.setFecha(fecha);
         return entity;
     } 
+     
+     
 }

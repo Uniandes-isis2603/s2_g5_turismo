@@ -98,7 +98,7 @@ public class PreferenciasLogic
      */
     public void deletePreferencias(Long id) throws BusinessLogicException 
     {
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar Preferencias con id={0}", id);    
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar Preferencias con id={0}", id); 
         persistence.delete(id);
         LOGGER.log(Level.INFO, "Termina proceso de borrar libro con id={0}", id);
     }

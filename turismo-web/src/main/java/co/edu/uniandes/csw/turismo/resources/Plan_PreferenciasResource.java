@@ -115,20 +115,20 @@ public class Plan_PreferenciasResource
      * 404 Not Found. No existe un plan con el id dado.
      * </code>
      * @param plansId El ID del plan del cual se busca el Preferencias
-     * @param PreferencesId El ID del Preferencias que se busca
+     * @param preferencesId El ID del Preferencias que se busca
      * @return {@link BookDetailDTO} - El Preferencias encontrado en el plan.
      * @throws co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException
      */
     @GET
-    @Path("{PreferencesId: \\d+}")
-    public PreferenciasDetailDTO getPreferences(@PathParam("plansId") Long plansId, @PathParam("PreferencesId") Long PreferencesId) throws BusinessLogicException 
+    @Path("{preferencesId: \\d+}")
+    public PreferenciasDetailDTO getPreferences(@PathParam("plansId") Long plansId, @PathParam("preferencesId") Long preferencesId) throws BusinessLogicException 
     {
         PlanEntity entity = planLogic.getPlan(plansId);
         if (entity == null) 
         {
             throw new WebApplicationException("El recurso /plans/" + plansId + " no existe.", 404);
         }
-        return new PreferenciasDetailDTO(planLogic.getPreferencias(plansId, PreferencesId));
+        return new PreferenciasDetailDTO(planLogic.getPreferencias(plansId, preferencesId));
     }
 
     /**
@@ -145,19 +145,19 @@ public class Plan_PreferenciasResource
      * </code>
      * </pre>
      * @param plansId El ID del plan al cual se le va a asociar el Preferencias
-     * @param PreferencesId El ID del Preferencias que se asocia
+     * @param preferencesId El ID del Preferencias que se asocia
      * @return JSON {@link BookDetailDTO}  - El Preferencias asociado.
      */
     @POST
-    @Path("{PreferencesId: \\d+}")
-    public PreferenciasDetailDTO addPreferences(@PathParam("plansId") Long plansId, @PathParam("PreferencesId") Long PreferencesId) 
+    @Path("{preferencesId: \\d+}")
+    public PreferenciasDetailDTO addPreferences(@PathParam("plansId") Long plansId, @PathParam("preferencesId") Long preferencesId) 
     {
         PlanEntity entity = planLogic.getPlan(plansId);
         if (entity == null) 
         {
             throw new WebApplicationException("El recurso /plans/" + plansId + " no existe.", 404);
         }
-        return new PreferenciasDetailDTO(planLogic.addPreferencia(PreferencesId, plansId));
+        return new PreferenciasDetailDTO(planLogic.addPreferencia(preferencesId, plansId));
     }
 
     /**
@@ -177,18 +177,18 @@ public class Plan_PreferenciasResource
      * </code>
      * </pre>
      * @param plansId El ID del plan al cual se le va a asociar el Preferencias
-     * @param Preferences JSONArray {@link BookDetailDTO} - La lista de Preferenciass que se desea guardar.
+     * @param preferences JSONArray {@link BookDetailDTO} - La lista de Preferenciass que se desea guardar.
      * @return JSONArray {@link BookDetailDTO}  - La lista actualizada.
      */
     @PUT
-    public List<PreferenciasDetailDTO> replacePreferences(@PathParam("plansId") Long plansId, List<PreferenciasDetailDTO> Preferences)
+    public List<PreferenciasDetailDTO> replacePreferences(@PathParam("plansId") Long plansId, List<PreferenciasDetailDTO> preferences)
     {
         PlanEntity entity = planLogic.getPlan(plansId);
         if (entity == null) 
         {
             throw new WebApplicationException("El recurso /plans/" + plansId + " no existe.", 404);
         }
-        return PreferencesListEntity2DTO(planLogic.replacePreferencias(plansId, PreferencesListDTO2Entity(Preferences)));
+        return PreferencesListEntity2DTO(planLogic.replacePreferencias(plansId, PreferencesListDTO2Entity(preferences)));
     }
 
     /**
@@ -204,18 +204,18 @@ public class Plan_PreferenciasResource
      * </code>
      * </pre>
      * @param plansId El ID del plan al cual se le va a desasociar el Preferencias
-     * @param PreferencesId El ID del Preferencias que se desasocia
+     * @param preferencesId El ID del Preferencias que se desasocia
      */
     @DELETE 
-    @Path("{PreferencesId: \\d+}")
-    public void removePreferences(@PathParam("plansId") Long plansId, @PathParam("PreferencesId") Long PreferencesId)
+    @Path("{preferencesId: \\d+}")
+    public void removePreferences(@PathParam("plansId") Long plansId, @PathParam("preferencesId") Long preferencesId)
     {
         PlanEntity entity = planLogic.getPlan(plansId);
         if (entity == null) 
         {
             throw new WebApplicationException("El recurso /plans/" + plansId + " no existe.", 404);
         }
-        planLogic.removePreferencia(PreferencesId, plansId);
+        planLogic.removePreferencia(preferencesId, plansId);
     }
 
 }

@@ -50,100 +50,11 @@ public class PlanEntity extends BaseEntity
     @PodamExclude
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true) 
     private List<ValoracionesEntity> valoracionesPlan;
-
-    /**
-     * @return ubicacion asociada al plan 
-     */
-    public UbicacionEntity getUbicacion() 
-    {
-        return ubicacion;
-    }
-
-    /**
-     * Cambia la ubicacion del plan por la dada por parametro
-     * @param ubicacion 
-     */
-    public void setUbicacion(UbicacionEntity ubicacion)
-    {
-        this.ubicacion = ubicacion;
-    }
-    
-    /**
-     * @return valoraciones asociadas al plan 
-     */
-    public List<ValoracionesEntity> getValoracionesPlan() 
-    {
-        return valoracionesPlan;
-    }
-
-    /**
-     * Cambia las valoraciones del plan por las dadas por parametro
-     * @param valoracionesPlan 
-     */
-    public void setValoracionesPlan(List<ValoracionesEntity> valoracionesPlan) {
-        this.valoracionesPlan = valoracionesPlan;
-    }
-
-    
-    /**
-     * @return preferencias/ categorias del plan
-     */
-    public List<PreferenciasEntity> getPreferenciasPlan() 
-    {
-        return preferenciasPlan;
-    }
-
-    /**
-     * Cambia las preferencias del plan por las dadas por parametro
-     * @param preferenciasPlan 
-     */
-    public void setPreferenciasPlan(List<PreferenciasEntity> preferenciasPlan) 
-    {
-        this.preferenciasPlan = preferenciasPlan;
-    }
-
-    
-    /**
-     * @return guias del plan
-     */
-    public List<GuiaEntity> getGuias() 
-    {
-        return guias;
-    }
-
-    /**
-     * Cambia los guias por los dados por parametro
-     * @param guias 
-     */
-    public void setGuias(List<GuiaEntity> guias) 
-    {
-        this.guias = guias;
-    }
     
     /**
      * Atributo que modela la descripcion del plan
      */
     private String descripcion;
-
-    /**
-     * Atriburo que modela el pais del plan
-     */
-    private String pais;
-
-    /**
-     * atributo que modela la ciudad del plan
-     */
-    private String ciudad;
-
-    /**
-     * Atributo que modela la longitud del plan
-     */
-    private Double longitud;
-
-    /**
-     * Atriburo que modela la latitud
-     */
-    private Double latitud;
 
     /**
      * atributo que modela la duracion del plan
@@ -187,74 +98,6 @@ public class PlanEntity extends BaseEntity
     public void setDescripcion(String descripcion)
     {
         this.descripcion = descripcion;
-    }
-
-    /**
-     * @return el pais 
-     */
-    public String getPais()
-    {
-        return pais;
-    }
-
-    /**
-     * Cambia el pais por la dada por parametro
-     * @param pais 
-     */
-    public void setPais(String pais) 
-    {
-        this.pais = pais;
-    }
-
-    /**
-     * @return la ciudad 
-     */
-    public String getCiudad()
-    {
-        return ciudad;
-    }
-
-    /**
-     * Cambia la ciudad del plan por la dada por parametro
-     * @param ciudad 
-     */
-    public void setCiudad(String ciudad)
-    {
-        this.ciudad = ciudad;
-    }
-
-    /**
-     * @return la longitud 
-     */
-    public Double getLongitud()
-    {
-        return longitud;
-    }
-
-    /**
-     * Cambia la longitud por la dada por parametro
-     * @param longitud 
-     */
-    public void setLongitud(Double longitud) 
-    {
-        this.longitud = longitud;
-    }
-
-    /**
-     * @return la latitud del plan 
-     */
-    public Double getLatitud()
-    {
-        return latitud;
-    }
-
-    /**
-     * Cambia la latitud por la dada por parametro
-     * @param latitud 
-     */
-    public void setLatitud(Double latitud)
-    {
-        this.latitud = latitud;
     }
 
     /**
@@ -341,8 +184,72 @@ public class PlanEntity extends BaseEntity
     {
         this.cantidadPersonas = cantidadPersonas;
     }
-
     
+    /**
+     * @return ubicacion asociada al plan 
+     */
+    public UbicacionEntity getUbicacion() 
+    {
+        return ubicacion;
+    }
 
+    /**
+     * Cambia la ubicacion del plan por la dada por parametro
+     * @param ubicacion 
+     */
+    public void setUbicacion(UbicacionEntity ubicacion)
+    {
+        this.ubicacion = ubicacion;
+    }
     
+    /**
+     * @return valoraciones asociadas al plan 
+     */
+    public List<ValoracionesEntity> getValoracionesPlan() 
+    {
+        return valoracionesPlan;
+    }
+
+    /**
+     * Cambia las valoraciones del plan por las dadas por parametro
+     * @param valoracionesPlan 
+     */
+    public void setValoracionesPlan(List<ValoracionesEntity> valoracionesPlan)
+    {
+        this.valoracionesPlan = valoracionesPlan;
+    }
+    
+    /**
+     * @return preferencias/ categorias del plan
+     */
+    public List<PreferenciasEntity> getPreferenciasPlan() 
+    {
+        return preferenciasPlan;
+    }
+
+    /**
+     * Cambia las preferencias del plan por las dadas por parametro
+     * @param preferenciasPlan 
+     */
+    public void setPreferenciasPlan(List<PreferenciasEntity> preferenciasPlan) 
+    {
+        this.preferenciasPlan = preferenciasPlan;
+    }
+    
+    /**
+     * @return guias del plan
+     */
+    public List<GuiaEntity> getGuias() 
+    {
+        return guias;
+    }
+
+    /**
+     * Cambia los guias por los dados por parametro
+     * @param guias 
+     */
+    public void setGuias(List<GuiaEntity> guias) 
+    {
+        this.guias = guias;
+    }
 }

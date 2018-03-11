@@ -115,20 +115,20 @@ public class Plan_GuiaResource
      * 404 Not Found. No existe un plan con el id dado.
      * </code>
      * @param plansId El ID del plan del cual se busca el guia
-     * @param GuidesId El ID del guia que se busca
+     * @param guidesId El ID del guia que se busca
      * @return {@link BookDetailDTO} - El guia encontrado en el plan.
      * @throws co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException
      */
     @GET
     @Path("{GuidesId: \\d+}")
-    public GuiaDetailDTO getGuides(@PathParam("plansId") Long plansId, @PathParam("GuidesId") Long GuidesId) throws BusinessLogicException 
+    public GuiaDetailDTO getGuides(@PathParam("plansId") Long plansId, @PathParam("guidesId") Long guidesId) throws BusinessLogicException 
     {
         PlanEntity entity = planLogic.getPlan(plansId);
         if (entity == null) 
         {
             throw new WebApplicationException("El recurso /plans/" + plansId + " no existe.", 404);
         }
-        return new GuiaDetailDTO(planLogic.getGuia(plansId, GuidesId));
+        return new GuiaDetailDTO(planLogic.getGuia(plansId, guidesId));
     }
 
     /**
@@ -145,19 +145,19 @@ public class Plan_GuiaResource
      * </code>
      * </pre>
      * @param plansId El ID del plan al cual se le va a asociar el guia
-     * @param GuidesId El ID del guia que se asocia
+     * @param guidesId El ID del guia que se asocia
      * @return JSON {@link BookDetailDTO}  - El guia asociado.
      */
     @POST
     @Path("{GuidesId: \\d+}")
-    public GuiaDetailDTO addGuides(@PathParam("plansId") Long plansId, @PathParam("GuidesId") Long GuidesId) 
+    public GuiaDetailDTO addGuides(@PathParam("plansId") Long plansId, @PathParam("guidesId") Long guidesId) 
     {
         PlanEntity entity = planLogic.getPlan(plansId);
         if (entity == null) 
         {
             throw new WebApplicationException("El recurso /plans/" + plansId + " no existe.", 404);
         }
-        return new GuiaDetailDTO(planLogic.addGuia(GuidesId, plansId));
+        return new GuiaDetailDTO(planLogic.addGuia(guidesId, plansId));
     }
 
     /**
@@ -204,18 +204,18 @@ public class Plan_GuiaResource
      * </code>
      * </pre>
      * @param plansId El ID del plan al cual se le va a desasociar el guia
-     * @param GuidesId El ID del guia que se desasocia
+     * @param guidesId El ID del guia que se desasocia
      */
     @DELETE 
     @Path("{guidesId: \\d+}")
-    public void removeGuides(@PathParam("plansId") Long plansId, @PathParam("guidesId") Long GuidesId)
+    public void removeGuides(@PathParam("plansId") Long plansId, @PathParam("guidesId") Long guidesId)
     {
         PlanEntity entity = planLogic.getPlan(plansId);
         if (entity == null) 
         {
             throw new WebApplicationException("El recurso /plans/" + plansId + " no existe.", 404);
         }
-        planLogic.removeGuia(GuidesId, plansId);
+        planLogic.removeGuia(guidesId, plansId);
     }
 
 }

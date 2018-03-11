@@ -34,6 +34,10 @@ public class PreferenciasDetailDTO extends PreferenciasDTO
         super();
     }
     
+    /**
+     * Crea una preferencia detail a partir de la entity
+     * @param prefE 
+     */
     public PreferenciasDetailDTO(PreferenciasEntity prefE)
     {
         super(prefE);
@@ -42,7 +46,6 @@ public class PreferenciasDetailDTO extends PreferenciasDTO
     @Override
     public PreferenciasEntity toEntity()
     {
-        PreferenciasEntity prefE = super.toEntity();
-        return prefE;
+        return super.toEntity();
     }
 }

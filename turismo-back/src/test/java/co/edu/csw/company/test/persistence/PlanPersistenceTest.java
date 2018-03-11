@@ -134,13 +134,9 @@ public class PlanPersistenceTest {
         Assert.assertEquals(newEntity.getName(), entity.getName());
         Assert.assertEquals(newEntity.getArchivo(), entity.getArchivo());
         Assert.assertEquals(newEntity.getCantidadPersonas(), entity.getCantidadPersonas());
-        Assert.assertEquals(newEntity.getCiudad(), entity.getCiudad());
         Assert.assertEquals(newEntity.getDescripcion(), entity.getDescripcion());
         Assert.assertEquals(newEntity.getDuracion(), entity.getDuracion());
         Assert.assertEquals(newEntity.getId(), entity.getId());
-        Assert.assertEquals(newEntity.getLatitud(), entity.getLatitud());
-        Assert.assertEquals(newEntity.getLongitud(), entity.getLongitud());
-        Assert.assertEquals(newEntity.getPais(), entity.getPais());
         Assert.assertEquals(newEntity.getPrecio(), entity.getPrecio());
         Assert.assertEquals(newEntity.getRestricciones(), entity.getRestricciones());
     }
@@ -178,13 +174,9 @@ public class PlanPersistenceTest {
         Assert.assertEquals(newEntity.getName(), entity.getName());
         Assert.assertEquals(newEntity.getArchivo(), entity.getArchivo());
         Assert.assertEquals(newEntity.getCantidadPersonas(), entity.getCantidadPersonas());
-        Assert.assertEquals(newEntity.getCiudad(), entity.getCiudad());
         Assert.assertEquals(newEntity.getDescripcion(), entity.getDescripcion());
         Assert.assertEquals(newEntity.getDuracion(), entity.getDuracion());
         Assert.assertEquals(newEntity.getId(), entity.getId());
-        Assert.assertEquals(newEntity.getLatitud(), entity.getLatitud());
-        Assert.assertEquals(newEntity.getLongitud(), entity.getLongitud());
-        Assert.assertEquals(newEntity.getPais(), entity.getPais());
         Assert.assertEquals(newEntity.getPrecio(), entity.getPrecio());
         Assert.assertEquals(newEntity.getRestricciones(), entity.getRestricciones());
     }
@@ -218,17 +210,12 @@ public class PlanPersistenceTest {
         PlanPersistence.update(newEntity);
 
         PlanEntity resp = em.find(PlanEntity.class, entity.getId());
-
         Assert.assertEquals(newEntity.getName(), resp.getName());
         Assert.assertEquals(newEntity.getArchivo(), resp.getArchivo());
         Assert.assertEquals(newEntity.getCantidadPersonas(), resp.getCantidadPersonas());
-        Assert.assertEquals(newEntity.getCiudad(), resp.getCiudad());
         Assert.assertEquals(newEntity.getDescripcion(), resp.getDescripcion());
         Assert.assertEquals(newEntity.getDuracion(), resp.getDuracion());
         Assert.assertEquals(newEntity.getId(), resp.getId());
-        Assert.assertEquals(newEntity.getLatitud(), resp.getLatitud());
-        Assert.assertEquals(newEntity.getLongitud(), resp.getLongitud());
-        Assert.assertEquals(newEntity.getPais(), resp.getPais());
         Assert.assertEquals(newEntity.getPrecio(), resp.getPrecio());
         Assert.assertEquals(newEntity.getRestricciones(), resp.getRestricciones());
     }

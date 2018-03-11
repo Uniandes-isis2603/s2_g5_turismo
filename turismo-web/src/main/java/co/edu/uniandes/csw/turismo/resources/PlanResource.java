@@ -58,7 +58,7 @@ public class PlanResource
     }
 
     /**
-     * <h1>POST /api/Planes : Crear un Plan.</h1>
+     * <h1>POST /api/plans : Crear un Plan.</h1>
      *
      * <pre>Cuerpo de petición: JSON {@link PlanDetailDTO}.
      *
@@ -75,16 +75,16 @@ public class PlanResource
      * </code>
      * </pre>
      *
-     * @param Plan {@link PlanDetailDTO} - el Plan que se desea guardar.
+     * @param plan {@link PlanDetailDTO} - el Plan que se desea guardar.
      * @return JSON {@link PlanDetailDTO} - el Plan guardado con el atributo id
      * autogenerado.
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} -
      * Error de lógica que se genera cuando ya existe el Plan.
      */
     @POST
-    public PlanDetailDTO createPlan(PlanDetailDTO Plan) throws BusinessLogicException
+    public PlanDetailDTO createPlan(PlanDetailDTO plan) throws BusinessLogicException
     {
-        return new PlanDetailDTO(planLogic.createPlan(Plan.toEntity()));
+        return new PlanDetailDTO(planLogic.createPlan(plan.toEntity()));
     }
 
     /**
@@ -137,31 +137,6 @@ public class PlanResource
     }
 
     /**
-     * <h1>GET /api/plans/{tiposPlan} : Obtener Planes segun tipos de plan.</h1>
-     *
-     * <pre>Busca planes con los tipos de plan asociados recibido en la URL y lo devuelve.
-     *
-     * Codigos de respuesta:
-     * <code style="color: mediumseagreen; background-color: #eaffe0;">
-     * 200 OK Devuelve los Planes correspondiente al los tipos de plan ingresados.
-     * </code>
-     * <code style="color: #c7254e; background-color: #f9f2f4;">
-     * 404 Not Found No existen planes con los tipos dados.
-     * </code>
-     * </pre>
-     *
-     * @param tiposPlan, tipos de plan de interes. Este debe ser una cadena de
-     * caracteres.
-     * @return JSON {@link PlanDetailDTO} - el Plan buscado
-     */
-    @GET
-    @Path("{tiposPlan: [a-zA-Z][a-zA-Z]*}")
-    public List<PlanDetailDTO> getPlanType(@PathParam("tiposPlan")String tiposPlan)
-    {
-        return new ArrayList<>();
-    }
-
-    /**
      * <h1>PUT /api/plans/{id} : Actualizar Plan con el id dado.</h1>
      * <pre>Cuerpo de petición: JSON {@link PlanDetailDTO}.
      *
@@ -177,7 +152,7 @@ public class PlanResource
      *
      * @param id Identificador de el Plan que se desea actualizar.Este debe ser
      * una cadena de dígitos.
-     * @param Plan {@link PlanDetailDTO} el Plan que se desea guardar.
+     * @param plan {@link PlanDetailDTO} el Plan que se desea guardar.
      * @return JSON {@link PlanDetailDTO} - el Plan guardada.
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} -
      * Error de lógica que se genera al no poder actualizar el Plan porque ya
@@ -185,15 +160,15 @@ public class PlanResource
      */
     @PUT
     @Path("{id: \\d+}")
-    public PlanDetailDTO updatePlan(@PathParam("id")Long id, PlanDetailDTO Plan) throws BusinessLogicException 
+    public PlanDetailDTO updatePlan(@PathParam("id")Long id, PlanDetailDTO plan) throws BusinessLogicException 
     {
-        Plan.setIdPlan(id);
+        plan.setIdPlan(id);
         PlanEntity entity = planLogic.getPlan(id);
         if (entity == null) 
         {
             throw new WebApplicationException("El recurso /plans/" + id + " no existe.", 404);
         }
-        return new PlanDetailDTO(planLogic.updatePlan(Plan.toEntity()));
+        return new PlanDetailDTO(planLogic.updatePlan(plan.toEntity()));
     }
 
     /**
