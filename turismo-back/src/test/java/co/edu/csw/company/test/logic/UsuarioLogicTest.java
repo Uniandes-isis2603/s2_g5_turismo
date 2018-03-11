@@ -15,6 +15,7 @@ import co.edu.uniandes.csw.turismo.entities.TarjetaDeCreditoEntity;
 import co.edu.uniandes.csw.turismo.entities.UsuarioEntity;
 import co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.turismo.persistence.UsuarioPersistence;
+import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -49,19 +50,19 @@ public class UsuarioLogicTest
     @Inject
     private UserTransaction utx;
     
-    private List<UsuarioEntity> listaUsuarios;
+    private List<UsuarioEntity> listaUsuarios = new ArrayList<>();
     
-    private List<FacturaEntity> listaFacturas;
+    private List<FacturaEntity> listaFacturas = new ArrayList<>();
     
-    private List<TarjetaDeCreditoEntity> listaTarjetas;
+    private List<TarjetaDeCreditoEntity> listaTarjetas = new ArrayList<>();
     
     private PaqueteTuristicoEntity paquete;
     
-    private List<BlogEntity> listaBlogs;
+    private List<BlogEntity> listaBlogs = new ArrayList<>();
     
-    private List<ComentarioEntity> listaComentarios;
+    private List<ComentarioEntity> listaComentarios = new ArrayList<>();
     
-    private List<PreferenciasEntity> listaPreferencias;
+    private List<PreferenciasEntity> listaPreferencias  = new ArrayList<>();
     
     @Deployment
     public static JavaArchive createDeployment() {

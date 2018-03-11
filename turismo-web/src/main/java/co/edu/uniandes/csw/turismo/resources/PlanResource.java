@@ -134,7 +134,7 @@ public class PlanResource
         PlanEntity entity = planLogic.getPlan(id);
         if (entity == null) 
         {
-            throw new WebApplicationException("El recurso /plans/" + id + " no existe.", 404);
+            throw new WebApplicationException("El recurso no existe.", 404);
         }
         return new PlanDetailDTO(entity);
     }

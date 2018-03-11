@@ -9,6 +9,7 @@ import co.edu.uniandes.csw.turismo.ejb.ValoracionesLogic;
 import co.edu.uniandes.csw.turismo.entities.ValoracionesEntity;
 import co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.turismo.persistence.ValoracionesPersistence;
+import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -43,7 +44,7 @@ public class ValoracionesLogicTest
     @Inject
     private UserTransaction utx;
     
-    private List<ValoracionesEntity> listaValoraciones;
+    private List<ValoracionesEntity> listaValoraciones = new ArrayList<>();
     
     @Deployment
     public static JavaArchive createDeployment() {

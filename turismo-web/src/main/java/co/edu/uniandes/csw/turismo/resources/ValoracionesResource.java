@@ -47,7 +47,7 @@ import javax.ws.rs.WebApplicationException;
 public class ValoracionesResource 
 {
     @Inject
-    private ValoracionesLogic logic;
+    ValoracionesLogic logic;
     
     private List<ValoracionesDTO> listEntityToDTO(List<ValoracionesEntity> entityList) {
         List<ValoracionesDTO> list = new ArrayList<>();
@@ -145,13 +145,12 @@ public class ValoracionesResource
      */
     @PUT
     @Path("{id: \\d+}")
-    public ValoracionesDTO updateCity(@PathParam("id") Long id, ValoracionesDTO valoracion) throws BusinessLogicException {
-        ValoracionesEntity entity = valoracion.toEntity();
-        entity.setId(id);
+    public ValoracionesDTO updateValoracion(@PathParam("id") Long id, ValoracionesDTO valoracion) throws BusinessLogicException {
+        valoracion.setId(id);
         ValoracionesEntity vieja = logic.getValoracion(id);
         if(vieja == null)
             throw new WebApplicationException("La valoracion no existe", 404);
-        return new ValoracionesDTO(logic.updateValoracion(entity));
+        return new ValoracionesDTO(logic.updateValoracion(valoracion.toEntity()));
     }
     
     /**
