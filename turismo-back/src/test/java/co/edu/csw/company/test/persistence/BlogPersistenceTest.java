@@ -130,7 +130,7 @@ public class BlogPersistenceTest {
      * Prueba para consultar la lista de BLogs.
      */
     @Test
-    public void getTBlogsTest() {
+    public void getBlogsTest() {
         List<BlogEntity> list = BlogPersistence.findAll();
         Assert.assertEquals(data.size(), list.size());
         for (BlogEntity ent : list) {
