@@ -4,13 +4,9 @@
  * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
  * <pre>
  *   {
- *      "idPlan": number,
+ *      "id": number,
  *      "name: string,
  *      "descripcion": string,
- *      "pais": string,
- *      "ciudad": string,
- *      "longitud": number,
- *      "latitud": number,
  *      "duracion":number,
  *      "restricciones": string,
  *      "archivo": string,
@@ -22,13 +18,9 @@
  * <pre>
  * 
  *   {
-       "idPlan": 1,
+       "id": 1,
        "name": "Visita a Monserrate",
        "descripcion": "Ir a monserrate subiendo por teleferico",
-       "pais": "Colombia", //esto ahora va el la clase ubicacion
-       "ciudad": "Bogota", //*2
-       "longitud": -74.057615, //*3
-       "latitud": 4.606492, //*4
        "duracion":180,
        "restricciones": "Menores deben ir a compañados",
        "archivo": "imagenLink",
@@ -90,6 +82,35 @@ public class PlanDTO
      * Atriburo que modela el nombre del plan
      */
     private String name;
+    
+    //CONSTRUCTORES
+    
+    /**
+     * Constructor por defecto
+     */
+    public PlanDTO()
+    {
+        //constructor vacio
+    }
+    
+    /**
+     * Constructor a partir de la entidad
+     * @param planE  La entidad del plan
+     */
+    public PlanDTO(PlanEntity planE)
+    {
+        if (planE != null) 
+        {
+            this.idPlan = planE.getId();
+            this.name = planE.getName();
+            this.archivo = planE.getArchivo();
+            this.cantidadPersonas = planE.getCantidadPersonas();
+            this.descripcion = planE.getDescripcion();
+            this.duracion = planE.getDuracion();
+            this.precio = planE.getPrecio();
+            this.restricciones = planE.getRestricciones();   
+        }
+    }
 
     //GETTERS Y SETTERS
     /**
@@ -217,34 +238,7 @@ public class PlanDTO
     public void setName(String name) 
     {
         this.name = name;
-    }
-    
-    /**
-     * Constructor por defecto
-     */
-    public PlanDTO()
-    {
-        //constructor vacio
-    }
-    
-    /**
-     * Constructor a partir de la entidad
-     * @param planE  La entidad del plan
-     */
-    public PlanDTO(PlanEntity planE)
-    {
-        if (planE != null) 
-        {
-            this.idPlan = planE.getId();
-            this.name = planE.getName();
-            this.archivo = planE.getArchivo();
-            this.cantidadPersonas = planE.getCantidadPersonas();
-            this.descripcion = planE.getDescripcion();
-            this.duracion = planE.getDuracion();
-            this.precio = planE.getPrecio();
-            this.restricciones = planE.getRestricciones();   
-        }
-    }
+    }  
         
     /**
      * Método para transformar el DTO a una entidad.
@@ -263,5 +257,4 @@ public class PlanDTO
                  
         return planE;
     }
-
 }

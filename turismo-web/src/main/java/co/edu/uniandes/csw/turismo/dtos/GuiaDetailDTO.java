@@ -29,15 +29,6 @@ import co.edu.uniandes.csw.turismo.entities.GuiaEntity;
  */
 public class GuiaDetailDTO extends GuiaDTO
 {
-    
-    //ATRIBUTOS
-
-    ///**
-     //* Modela el plan asociado al guia
-     //*/
-    //private PlanDTO planGuia;
-
-    //Constructor 
     /**
      * Constructor por defecto
      */
@@ -64,7 +55,6 @@ public class GuiaDetailDTO extends GuiaDTO
     @Override
     public GuiaEntity toEntity() 
     {
-        GuiaEntity guiaE = super.toEntity();
-        return guiaE;
+        return super.toEntity();
     }
 }

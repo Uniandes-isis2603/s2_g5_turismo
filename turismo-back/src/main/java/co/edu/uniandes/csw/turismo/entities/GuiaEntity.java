@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.csw.turismo.entities;
 
-import java.io.Serializable;
 import javax.persistence.Entity;
 import podam.StringSinNumerosStrategy;
 import uk.co.jemos.podam.common.PodamStrategyValue;
@@ -14,7 +13,7 @@ import uk.co.jemos.podam.common.PodamStrategyValue;
  * @author jc.montoyar
  */
 @Entity
-public class GuiaEntity extends BaseEntity implements Serializable 
+public class GuiaEntity extends BaseEntity 
 {
     //ATRIBUTOS
     @PodamStrategyValue(StringSinNumerosStrategy.class)
