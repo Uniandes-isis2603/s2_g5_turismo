@@ -29,22 +29,29 @@ public class PaqueteTuristicoDetailDTO  extends PaqueteTuristicoDTO{
 
     }
     public PaqueteTuristicoDetailDTO(PaqueteTuristicoEntity entity) {
+        
         super(entity);
-        if (entity != null) {
+        
+        if(entity.getPagos()!=null)
+        {
             pagos = new ArrayList<>();
-            planes = new ArrayList<>();
             for (PagoEntity entityPagos : entity.getPagos()) {
                 pagos.add(new PagoDTO(entityPagos));
             }
+        }
+        if( entity.getPlanes()!=null)
+        {
+            planes = new ArrayList<>();
+            
             for (PlanAgendadoEntity entityPlanes : entity.getPlanes()) {
                 planes.add(new PlanAgendadoDTO(entityPlanes));
             }
         }
-
     }
 
      @Override
     public PaqueteTuristicoEntity toEntity() {
+        
         PaqueteTuristicoEntity entity = super.toEntity();
         if (planes != null) {
             List<PlanAgendadoEntity> planesEntity = new ArrayList<>();

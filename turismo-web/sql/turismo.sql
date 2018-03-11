@@ -55,6 +55,8 @@ insert into TarjetaDeCreditoEntity (id,cdv,cedula,name,numero,Usuario_id) values
 /* Parte Facturas*/
 
 insert into PAQUETETURISTICOENTITY(id,Name) values (10000,'a');
+insert into PAQUETETURISTICOENTITY(id,Name) values (10001,'b');
+insert into PAQUETETURISTICOENTITY(id,Name) values (10002,'c');
 
 insert into FACTURAENTITY (id,costo,name,TARJETADECREDITO_ID,PAQUETETURISTICO_ID) values (10000,800000,'a',10001,10000);
 insert into FACTURAENTITY (id,costo,name,TARJETADECREDITO_ID,PAQUETETURISTICO_ID) values (10001,900000,'b',10001,10000);

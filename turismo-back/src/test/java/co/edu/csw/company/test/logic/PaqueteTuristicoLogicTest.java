@@ -8,6 +8,7 @@ package co.edu.csw.company.test.logic;
 import co.edu.uniandes.csw.turismo.ejb.PaqueteTuristicoLogic;
 import co.edu.uniandes.csw.turismo.entities.PagoEntity;
 import co.edu.uniandes.csw.turismo.entities.PaqueteTuristicoEntity;
+import co.edu.uniandes.csw.turismo.entities.PlanEntity;
 import co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.turismo.persistence.PaqueteTuristicoPersistence;
 import java.util.ArrayList;
@@ -50,10 +51,11 @@ public class PaqueteTuristicoLogicTest {
     @Inject
     private UserTransaction utx;
 
-    private List<PaqueteTuristicoEntity> data = new ArrayList<PaqueteTuristicoEntity>();
+    private List<PaqueteTuristicoEntity> data = new ArrayList<>();
     
     private List<PagoEntity> pagosData = new ArrayList();
 
+    private List<PlanEntity> planesData = new ArrayList();
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
@@ -94,6 +96,7 @@ public class PaqueteTuristicoLogicTest {
     private void clearData() {
         em.createQuery("delete from PaqueteTuristicoEntity").executeUpdate();
         em.createQuery("delete from PagoEntity").executeUpdate();
+        em.createQuery("delete from PlanEntity").executeUpdate();
     }
 
     /**
@@ -110,12 +113,18 @@ public class PaqueteTuristicoLogicTest {
             pagosData.add(pagos);
         }
         for (int i = 0; i < 3; i++) {
+            PlanEntity planes = factory.manufacturePojo(PlanEntity.class);
+            em.persist(planes);
+            planesData.add(planes);
+        }
+        for (int i = 0; i < 3; i++) {
             PaqueteTuristicoEntity entity = factory.manufacturePojo(PaqueteTuristicoEntity.class);
             entity.setPagos(pagosData);
+            //entity.setPlanes(planesData);
             em.persist(entity);
             data.add(entity);
-         
         }
+        
 
     }
 
