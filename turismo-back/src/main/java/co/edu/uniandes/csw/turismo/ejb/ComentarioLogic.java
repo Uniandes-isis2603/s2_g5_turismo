@@ -68,6 +68,7 @@ public class ComentarioLogic {
         return com;
     }
       
+
         public ComentarioEntity getComentarioId(long id) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de consultar todos los Comentarios");
       ComentarioEntity comen = persistence.find(id);

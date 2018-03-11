@@ -10,7 +10,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;import uk.co.jemos.podam.common.PodamExclude;
+import javax.persistence.OneToOne;import org.eclipse.persistence.jpa.config.Cascade;
+import uk.co.jemos.podam.common.PodamExclude;
 
 
 /**
@@ -20,7 +21,6 @@ import javax.persistence.OneToOne;import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class UsuarioEntity extends BaseEntity implements Serializable
 {
-    private String nombre;
     private String apellido;
     private String contrasenia;
     private String correo;
@@ -37,7 +37,7 @@ public class UsuarioEntity extends BaseEntity implements Serializable
     private List<TarjetaDeCreditoEntity> listaTarjetas;
     
     @PodamExclude
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     private PaqueteTuristicoEntity paquete;
     
     @PodamExclude
@@ -49,22 +49,8 @@ public class UsuarioEntity extends BaseEntity implements Serializable
     private List<ComentarioEntity> listaComentarios;
     
     @PodamExclude
-    @OneToMany
+    @OneToMany(cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<PreferenciasEntity> listaPreferencias;
-
-    /**
-     * @return Retorna el nombre del usuario
-     */
-    public String getNombre() {
-        return nombre;
-    }
-
-    /**
-     * @param nombre El nuevo nombre del usuario
-     */
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
 
     /**
      * @return El apellido del usuario

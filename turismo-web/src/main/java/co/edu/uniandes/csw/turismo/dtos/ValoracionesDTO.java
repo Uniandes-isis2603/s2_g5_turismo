@@ -23,7 +23,7 @@ import co.edu.uniandes.csw.turismo.entities.ValoracionesEntity;
  *   {
  *      "id": 534682,
  *      "calificacion": 5,
- *      "comentario": Muy buena
+ *      "comentario": "Muy buena"
  *   }
  *
  * </pre>
@@ -49,6 +49,7 @@ public class ValoracionesDTO
     {
         if(entity != null)
         {
+            this.id = entity.getId();
             this.calificacion = entity.getCalificacion();
             this.comentario = entity.getComentario();
         }
@@ -57,6 +58,7 @@ public class ValoracionesDTO
     public ValoracionesEntity toEntity()
     {
         ValoracionesEntity entity = new ValoracionesEntity();
+        entity.setId(this.id);
         entity.setCalificacion(this.calificacion);
         entity.setComentario(this.comentario);
         return entity;

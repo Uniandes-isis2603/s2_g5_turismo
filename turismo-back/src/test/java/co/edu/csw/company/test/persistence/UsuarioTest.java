@@ -114,7 +114,7 @@ public class UsuarioTest {
         Assert.assertNotNull(resultado);
         
         UsuarioEntity entity = em.find(UsuarioEntity.class, resultado.getId());
-        Assert.assertEquals(nuevo.getNombre(), entity.getNombre());
+        Assert.assertEquals(nuevo.getName(), entity.getName());
         Assert.assertEquals(nuevo.getApellido(), entity.getApellido());
         Assert.assertEquals(nuevo.getContrasenia(), entity.getContrasenia());
         Assert.assertEquals(nuevo.getCorreo(), entity.getCorreo());
@@ -147,7 +147,7 @@ public class UsuarioTest {
         UsuarioEntity entity = data.get(0);
         UsuarioEntity nuevo = usuarioPersistence.find(entity.getId());
         Assert.assertNotNull(entity);
-        Assert.assertEquals(nuevo.getNombre(), entity.getNombre());
+        Assert.assertEquals(nuevo.getName(), entity.getName());
         Assert.assertEquals(nuevo.getApellido(), entity.getApellido());
         Assert.assertEquals(nuevo.getContrasenia(), entity.getContrasenia());
         Assert.assertEquals(nuevo.getCorreo(), entity.getCorreo());
@@ -168,7 +168,7 @@ public class UsuarioTest {
         
         UsuarioEntity resp = em.find(UsuarioEntity.class, entity.getId());
         
-        Assert.assertEquals(nuevo.getNombre(), resp.getNombre());
+        Assert.assertEquals(nuevo.getName(), resp.getName());
         Assert.assertEquals(nuevo.getApellido(), resp.getApellido());
         Assert.assertEquals(nuevo.getContrasenia(), resp.getContrasenia());
         Assert.assertEquals(nuevo.getCorreo(), resp.getCorreo());

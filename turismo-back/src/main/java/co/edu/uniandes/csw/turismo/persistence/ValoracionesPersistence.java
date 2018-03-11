@@ -12,7 +12,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
-import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 
 /**
@@ -36,7 +36,7 @@ public class ValoracionesPersistence
     public List<ValoracionesEntity> findAll()
     {
         LOGGER.info("Consultando todas las valoraciones");
-        Query q = em.createQuery("select u from ValoracionesEntity u");
+        TypedQuery q = em.createQuery("select u from ValoracionesEntity u", ValoracionesEntity.class);
         return q.getResultList();
     }
     
