@@ -12,6 +12,8 @@ delete from COMENTARIOENTITY;
 delete from BLOGENTITY;
 delete from USUARIOENTITY;
 delete from PAGOENTITY;
+delete from PLANAGENDADOENTITY;
+delete from VALORACIONESENTITY;
 
 /*Parte Ubicacion*/
 insert into UBICACIONENTITY (id,pais,ciudad,latitud,longitud) values (10000,'Colombia','Bogota',10,-10);
