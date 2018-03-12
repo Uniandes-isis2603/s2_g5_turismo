@@ -1,3 +1,4 @@
+
 delete from PlanEntity_PreferenciasEntity;
 delete from PlanEntity_GuiaEntity;
 delete from PlanEntity;
@@ -19,6 +20,7 @@ delete from VALORACIONESENTITY;
 insert into UBICACIONENTITY (id,pais,ciudad,latitud,longitud) values (10000,'Colombia','Bogota',10,-10);
 insert into UBICACIONENTITY (id,pais,ciudad,latitud,longitud) values (10001,'Francia','Paris',10,-10);
 insert into UBICACIONENTITY (id,pais,ciudad,latitud,longitud) values (10002,'España','Madrid',10,-10);
+insert into UBICACIONENTITY (id,pais,ciudad,latitud,longitud) values (10003,'Holanda','Amsterdam',10,-10);
 
 insert into BlogEntity (id, descripcion, likes, tema) values (10000,'primer blog',0,'este es mi primer blog');
 insert into BlogEntity (id, descripcion, likes, tema) values (20000,'segundo blog',20,'este es mi segundo blog');
