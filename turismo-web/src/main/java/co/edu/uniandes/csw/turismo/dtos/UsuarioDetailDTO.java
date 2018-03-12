@@ -64,40 +64,39 @@ import javax.persistence.OneToOne;
  * <pre>
  * 
  *   {
- *      "id": 534682,
- *      "nombre": Juan,
- *      "apellido": Perez,
- *      "contrasenia": rplc6519,
- *      "correo": jperez@gmail.com,
- *      "telefono": 3103334455,
- *      "idioma": Ingles,
- *      "esAdministrador": false,
- *      "listaFacturas": [{
- *      "id":23456,
- *      "costo": 10000
- *      }],
- *      "tarjetaDeCredito": [{
- *      "name": Juan,
- *      "numero": 3456789,
- *      "CDV":123
- *      }],
- *      "paqueteTuristico": [{
- *      "id": 654,
- *      }],
- *      "blogs":[{
- *      "tema": Viaje 1,
- *      "descripcion: Paseo por Sudamerica,
- *      "likes": 43
- *      "comentarios": list
- *      }],
- *      "comentarios": [{
- *      "comentario: Muy buen paquete
- *      }],
- *      "preferencias": [{ 
- *      "tiposPlan":[religioso,deportivo,familia]                     
- *      }]
- *      }
- *   }
+       "id": 534682,
+       "name": "Juan",
+       "apellido": "Perez",
+       "contrasenia": "rplc6519",
+       "correo": "jperez@gmail.com",
+       "telefono": 3103334455,
+       "idioma": "Ingles",
+       "esAdministrador": "FALSE",
+       "listaFacturas": [{
+       "id":23456,
+       "costo": 10000
+       }],
+       "tarjetaDeCredito": [{
+       "name": "Juan",
+       "numero": 3456789,
+       "CDV":123
+       }],
+       "paqueteTuristico": [{
+       "id": 654
+       }],
+       "blogs":[{
+       "tema": "Viaje 1",
+       "descripcion": "Paseo por Sudamerica",
+       "likes": 43,
+       "comentarios": "list"
+       }],
+       "comentarios": [{
+       "comentario": "Muy buen paquete"
+       }],
+       "preferencias": [{ 
+       "tiposPlan":"mirador"                     
+       }]
+       }
  *  </pre>
  * @author jf.gutierrez13
  */

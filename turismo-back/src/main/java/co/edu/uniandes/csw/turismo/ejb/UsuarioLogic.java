@@ -127,10 +127,6 @@ public class UsuarioLogic
     public UsuarioEntity updateUsuario(UsuarioEntity entity) throws BusinessLogicException
     {
         LOGGER.info("Inicia proceso de actualizar un usuario");
-        if(persistence.find(entity.getId()) != null)
-        {
-            throw new BusinessLogicException("El usuario con id "+entity.getId()+" ya existe");
-        }
         if(entity.getName() == null || entity.getName().equals(""))
         {
             throw new BusinessLogicException("El nombre no es valido");
@@ -387,13 +383,14 @@ public class UsuarioLogic
     
     public TarjetaDeCreditoEntity getTarjeta(Long usuId, Long tarId) throws BusinessLogicException
     {
-        List<TarjetaDeCreditoEntity> lista = getUsuario(usuId).getListaTarjetas();
+        UsuarioEntity entity = getUsuario(usuId);
+        List<TarjetaDeCreditoEntity> lista = entity.getListaTarjetas();
         TarjetaDeCreditoEntity tarjeta = tarjetaLogic.getTrajetaDeCredito(tarId);
         int index = lista.indexOf(tarjeta);
         if (index >= 0) {
             return lista.get(index);
         }
-        throw new BusinessLogicException("La factura no está asociada a el usuario");
+        throw new BusinessLogicException("La tarjeta no está asociada a el usuario");
     }
     
     public TarjetaDeCreditoEntity createTarjeta(Long usuId, Long tarId)
