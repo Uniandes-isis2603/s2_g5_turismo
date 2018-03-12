@@ -1,0 +1,295 @@
+{
+	"info": {
+		"name": "Pruebas Valoraciones",
+		"_postman_id": "5317e676-ac01-2585-8a8d-3b1d5c41c388",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get all",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/valoraciones",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"valoraciones"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "post bien",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"calificacion\": 2,\n        \"comentario\": \"No del todo mal\",\n        \"id\": 1\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/valoraciones",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"valoraciones"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "post mal",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"calificacion\": 7,\n        \"comentario\": \"No del todo mal\",\n        \"id\": 1\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/valoraciones",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"valoraciones"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "put bien",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"calificacion\": 2,\n        \"comentario\": \"No del todo mal\",\n        \"id\": 10001\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/valoraciones/10001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"valoraciones",
+						"10001"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "put mal",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"calificacion\": 7,\n        \"comentario\": \"No del todo mal\",\n        \"id\": 10001\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/valoraciones/10001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"valoraciones",
+						"10001"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "get bien",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"calificacion\": 7,\n        \"comentario\": \"No del todo mal\",\n        \"id\": 10001\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/valoraciones/10001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"valoraciones",
+						"10001"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "get mal",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"calificacion\": 7,\n        \"comentario\": \"No del todo mal\",\n        \"id\": 10001\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/valoraciones/10005",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"valoraciones",
+						"10005"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "delete bien",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/valoraciones/10002",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"valoraciones",
+						"10002"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "delete mal",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/valoraciones/10002",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"valoraciones",
+						"10002"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
