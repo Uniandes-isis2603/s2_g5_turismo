@@ -33,7 +33,7 @@ public class PlanAgendadoPersistence {
 
     public List<PlanAgendadoEntity> findAll() {
         LOGGER.info("Consultando todos los plan agendado");
-        Query q = em.createQuery("select u from PlanAgendadoEntity u");
+        TypedQuery q = em.createQuery("select u from PlanAgendadoEntity u",PlanAgendadoEntity.class);
         return q.getResultList();
     }
 

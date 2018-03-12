@@ -5,12 +5,14 @@
  */
 package co.edu.csw.company.test.logic;
 
-import co.edu.uniandes.csw.turismo.ejb.PaqueteTuristicoLogic;
-import co.edu.uniandes.csw.turismo.entities.PagoEntity;
-import co.edu.uniandes.csw.turismo.entities.PaqueteTuristicoEntity;
+import co.edu.uniandes.csw.turismo.ejb.PlanAgendadoLogic;
+import co.edu.uniandes.csw.turismo.ejb.PlanAgendadoLogic;
+import co.edu.uniandes.csw.turismo.entities.GuiaEntity;
 import co.edu.uniandes.csw.turismo.entities.PlanAgendadoEntity;
+import co.edu.uniandes.csw.turismo.entities.PlanAgendadoEntity;
+import co.edu.uniandes.csw.turismo.entities.PlanEntity;
 import co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException;
-import co.edu.uniandes.csw.turismo.persistence.PaqueteTuristicoPersistence;
+import co.edu.uniandes.csw.turismo.persistence.PlanAgendadoPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -37,13 +39,12 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  * @author dl.avendano
  */
 @RunWith(Arquillian.class)
-public class PaqueteTuristicoLogicTest {
-    
-
+public class PlanAgendadoLogicTest {
+   
     private PodamFactory factory = new PodamFactoryImpl();
 
     @Inject
-    private PaqueteTuristicoLogic paqueteTuristicoLogic;
+    private PlanAgendadoLogic planLogic;
 
     @PersistenceContext
     private EntityManager em;
@@ -51,17 +52,18 @@ public class PaqueteTuristicoLogicTest {
     @Inject
     private UserTransaction utx;
 
-    private List<PaqueteTuristicoEntity> data = new ArrayList<>();
+    private List<PlanAgendadoEntity> data = new ArrayList<>();
     
-    private List<PagoEntity> pagosData = new ArrayList();
+    private List<GuiaEntity> guiasData = new ArrayList<>();
+    
+    private List<PlanEntity> planesData = new ArrayList<>();
 
-    private List<PlanAgendadoEntity> planesData = new ArrayList();
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(PaqueteTuristicoEntity.class.getPackage())
-                .addPackage(PaqueteTuristicoLogic.class.getPackage())
-                .addPackage(PaqueteTuristicoPersistence.class.getPackage())
+                .addPackage(PlanAgendadoEntity.class.getPackage())
+                .addPackage(PlanAgendadoLogic.class.getPackage())
+                .addPackage(PlanAgendadoPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
@@ -94,9 +96,9 @@ public class PaqueteTuristicoLogicTest {
      *
      */
     private void clearData() {
-        em.createQuery("delete from PaqueteTuristicoEntity").executeUpdate();
-        em.createQuery("delete from PagoEntity").executeUpdate();
         em.createQuery("delete from PlanAgendadoEntity").executeUpdate();
+        em.createQuery("delete from PlanEntity").executeUpdate();
+        em.createQuery("delete from GuiaEntity").executeUpdate();
     }
 
     /**
@@ -108,56 +110,49 @@ public class PaqueteTuristicoLogicTest {
     private void insertData() {
 
         for (int i = 0; i < 3; i++) {
-            PagoEntity pagos = factory.manufacturePojo(PagoEntity.class);
-            em.persist(pagos);
-            pagosData.add(pagos);
+            GuiaEntity guia = factory.manufacturePojo(GuiaEntity.class);
+            em.persist(guia);
+            guiasData.add(guia);
         }
         for (int i = 0; i < 3; i++) {
-            PlanAgendadoEntity planes = factory.manufacturePojo(PlanAgendadoEntity.class);
+            PlanEntity planes = factory.manufacturePojo(PlanEntity.class);
             em.persist(planes);
             planesData.add(planes);
         }
         for (int i = 0; i < 3; i++) {
-            PaqueteTuristicoEntity entity = factory.manufacturePojo(PaqueteTuristicoEntity.class);
-            entity.setPagos(pagosData);
-            entity.setPlanes(planesData);
+            PlanAgendadoEntity entity = factory.manufacturePojo(PlanAgendadoEntity.class);
+            entity.setGuia(guiasData.get(i));
+            entity.setPlan(planesData.get(i));
             em.persist(entity);
             data.add(entity);
+         
         }
-        
 
     }
 
     /**
-     * Prueba para crear un PaqueteTuristico
-     *
-     *
+     * Prueba para crear un PlanAgendado
      */
     @Test
-    public void createPaqueteTuristicoTest() throws BusinessLogicException {
-        PaqueteTuristicoEntity newEntity = factory.manufacturePojo(PaqueteTuristicoEntity.class);
-        newEntity.setPagos(pagosData);
-        newEntity.setPlanes(planesData);
-        PaqueteTuristicoEntity result = paqueteTuristicoLogic.createPaqueteTuristico(newEntity);
+    public void createPlanAgendadoTest() throws BusinessLogicException {
+        PlanAgendadoEntity newEntity = factory.manufacturePojo(PlanAgendadoEntity.class);
+        newEntity.setGuia(guiasData.get(0));
+        newEntity.setPlan(planesData.get(0));
+        PlanAgendadoEntity result = planLogic.createPlanAgendado(newEntity);
         Assert.assertNotNull(result);
-        PaqueteTuristicoEntity entity = em.find(PaqueteTuristicoEntity.class, result.getId());
+        PlanAgendadoEntity entity = em.find(PlanAgendadoEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getName(), entity.getName());
-       
+        
     }
-
-    /**
-     * Prueba para consultar la lista de PaqueteTuristicos
-     *
-     *
-     */
-    @Test
-    public void getPaquetesTuristicosTest() {
-        List<PaqueteTuristicoEntity> list = paqueteTuristicoLogic.getPaquetes();
+    
+   @Test
+    public void getPlanesTest() {
+        List<PlanAgendadoEntity> list = planLogic.getPlanesAgendados();
         Assert.assertEquals(data.size(), list.size());
-        for (PaqueteTuristicoEntity entity : list) {
+        for (PlanAgendadoEntity entity : list) {
             boolean found = false;
-            for (PaqueteTuristicoEntity storedEntity : data) {
+            for (PlanAgendadoEntity storedEntity : data) {
                 if (entity.getId().equals(storedEntity.getId())) {
                     found = true;
                 }
@@ -165,54 +160,35 @@ public class PaqueteTuristicoLogicTest {
             Assert.assertTrue(found);
         }
     }
-
-    /**
-     * Prueba para consultar un PaqueteTuristico
-     *
-     *
-     */
+    
     @Test
-    public void getPaqueteTuristicoTest() {
-        PaqueteTuristicoEntity entity = data.get(0);
-        PaqueteTuristicoEntity resultEntity = paqueteTuristicoLogic.getPaquete(entity.getId());
+    public void getPlanTest() {
+        PlanAgendadoEntity entity = data.get(0);
+        PlanAgendadoEntity resultEntity = planLogic.getPlanAgendado(entity.getId());
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getId(), resultEntity.getId());
         Assert.assertEquals(entity.getName(), resultEntity.getName());
     }
-
-    /**
-     * Prueba para eliminar un PaqueteTuristico
-     *
-     *
-     */
+    
     @Test
-    public void deletePaqueteTuristicoTest() {
-        PaqueteTuristicoEntity entity = data.get(0);
-        paqueteTuristicoLogic.deletePaqueteTuristico(entity.getId());
-        PaqueteTuristicoEntity deleted = em.find(PaqueteTuristicoEntity.class, entity.getId());
+    public void deletePlanTest() {
+        PlanAgendadoEntity entity = data.get(0);
+        planLogic.deletePlanAgendado(entity.getId());
+        PlanAgendadoEntity deleted = em.find(PlanAgendadoEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
-
-    /**
-     * Prueba para actualizar un PaqueteTuristico
-     *
-     *
-     */
     @Test
-    public void updatePaqueteTuristicoTest() {
-        PaqueteTuristicoEntity entity = data.get(0);
-        PaqueteTuristicoEntity pojoEntity = factory.manufacturePojo(PaqueteTuristicoEntity.class);
+    public void updatePlanTest() {
+        PlanAgendadoEntity entity = data.get(0);
+        PlanAgendadoEntity pojoEntity = factory.manufacturePojo(PlanAgendadoEntity.class);
 
         pojoEntity.setId(entity.getId());
 
-        paqueteTuristicoLogic.updatePaquete(pojoEntity);
+        planLogic.updatePlanAgendado(pojoEntity);
 
-        PaqueteTuristicoEntity resp = em.find(PaqueteTuristicoEntity.class, entity.getId());
+        PlanAgendadoEntity resp = em.find(PlanAgendadoEntity.class, entity.getId());
 
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
         Assert.assertEquals(pojoEntity.getName(), resp.getName());
     }
-    
-
 }
-
