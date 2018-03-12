@@ -5,12 +5,13 @@
  */
 package co.edu.uniandes.csw.turismo.ejb;
 
-import co.edu.uniandes.csw.turismo.entities.PagoEntity;
-import co.edu.uniandes.csw.turismo.entities.PaqueteTuristicoEntity;
+import co.edu.uniandes.csw.turismo.entities.GuiaEntity;
+import co.edu.uniandes.csw.turismo.entities.PlanAgendadoEntity;
 import co.edu.uniandes.csw.turismo.entities.PlanEntity;
 import co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException;
-import co.edu.uniandes.csw.turismo.persistence.PagoPersistence;
-import co.edu.uniandes.csw.turismo.persistence.PaqueteTuristicoPersistence;
+import co.edu.uniandes.csw.turismo.persistence.GuiaPersistence;
+import co.edu.uniandes.csw.turismo.persistence.PlanAgendadoPersistence;
+import co.edu.uniandes.csw.turismo.persistence.PlanPersistence;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -26,48 +27,43 @@ import javax.inject.Inject;
 public class PlanAgendadoLogic {
     private static final Logger LOGGER = Logger.getLogger(PlanAgendadoLogic.class.getName());
 
-     Date fechaActual = new Date();
-    @Inject
-    private PagoPersistence persistencePago;
+    
+    Date fechaActual = new Date();
     
     @Inject
-    private PaqueteTuristicoPersistence persistence;
+    private PlanAgendadoPersistence persistence;
     
-    public PaqueteTuristicoEntity getPaquete(Long id) {
+    @Inject
+    private PlanPersistence persistencePlan;
+    
+    @Inject
+    private GuiaPersistence persistenceGuia;
+    
+    public PlanAgendadoEntity getPlanAgendado(Long id) {
         return persistence.find(id);
     }
-    
- //   public PaqueteTuristicoEntity createPaqueteTuristico(PaqueteTuristicoEntity entity) throws BusinessLogicException{
- //       
- //       List <PagoEntity> pagos = entity.getPagos();
- //       List <PlanEntity> planes = entity.getPlanes();
- //       for(int i=0; i<pagos.size();i++)
- //       {
- //       if (pagos.size()!=planes.size())
- //           throw new BusinessLogicException("El numero de pagos no coincide con el numero de planes en el paquete \"");
- //       if (pagos.get(i).getFechaPlan().before(fechaActual))
- //           throw new BusinessLogicException("Un plan no tiene una fecha valida \"");
- //           for(int j=0;j<pagos.size();j++)
- //           {
- //                if (i != j && pagos.get(i).getFechaPlan().equals(pagos.get(j).getFechaPlan()))
- //                    throw new BusinessLogicException("Hay dos planes con la misma fecha en el paquete \"");
- //           }
- //       }
- //       return persistence.create(entity);
- //   }
- //   public List<PaqueteTuristicoEntity> getPaquetes() {
- //       LOGGER.log(Level.INFO, "Inicia proceso de consultar todos los paquetes");
- //       return persistence.findAll();
- //   }
-    
-   
-    
-    public PaqueteTuristicoEntity updatePaquete(PaqueteTuristicoEntity entity) {
-        LOGGER.log(Level.INFO, "Inicia proceso de actualizar un paquete ");
+     public PlanAgendadoEntity createPlanAgendado(PlanAgendadoEntity entity) throws BusinessLogicException{
+        
+        GuiaEntity guia = entity.getGuia();
+       
+        PlanEntity plan = entity.getPlan();
+        
+        if (entity.getFecha().after(fechaActual))
+            throw new BusinessLogicException("la fecha es invalida \"");
+        
+        return persistence.create(entity);
+    }
+     public List<PlanAgendadoEntity> getPlanesAgendados() {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar todos los planes");
+        return persistence.findAll();
+    }
+     
+    public PlanAgendadoEntity updatePlanAgendado(PlanAgendadoEntity entity) {
+        LOGGER.log(Level.INFO, "Inicia proceso de actualizar un plan ");
         return persistence.update(entity);
     }
-    public void deletePaqueteTuristico(Long id) {
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar un paquete ");
+    public void deletePlanAgendado(Long id) {
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar un plan ");
         persistence.delete(id);
     }
 }

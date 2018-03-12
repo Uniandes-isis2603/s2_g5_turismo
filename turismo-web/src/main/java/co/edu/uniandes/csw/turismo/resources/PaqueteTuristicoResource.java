@@ -98,8 +98,7 @@ public class PaqueteTuristicoResource {
      */
     @GET
     public List<PaqueteTuristicoDetailDTO> getPaqueteTuristicos() {
-        return listEntityToDTO(paqueteLogic.getPaquetes());
-        
+        return listEntityToDTO(paqueteLogic.getPaquetes()); 
     }
 
     /**
