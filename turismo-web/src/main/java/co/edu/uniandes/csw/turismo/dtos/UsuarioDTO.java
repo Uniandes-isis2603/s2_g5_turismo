@@ -61,29 +61,6 @@ public class UsuarioDTO
     {
         
     }
-    
-    /**
-     * Crea un nuevo UsuarioDTO con los valores recibidos por parametro.
-     * @param id id del usuario
-     * @param nombre nombre del usuario
-     * @param apellido apellido del usuario
-     * @param contrasenia contrasenia del usuario
-     * @param correo correo del usuario
-     * @param telefono telefono del usuario
-     * @param idioma idioma del usuario
-     * @param esAdministrador indica si el usuario es o no administrador
-     */
-    public UsuarioDTO(Long id, String nombre, String apellido, String contrasenia, String correo, int telefono, String idioma, boolean esAdministrador)
-    {
-        this.id = id;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.contrasenia = contrasenia;
-        this.correo = correo;
-        this.telefono = telefono;
-        this.idioma = idioma;
-        this.esAdministrador =esAdministrador;
-    }
 
     /**
      * @return El id del usuario

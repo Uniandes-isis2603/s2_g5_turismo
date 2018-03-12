@@ -12,7 +12,6 @@ delete from COMENTARIOENTITY;
 delete from BLOGENTITY;
 delete from USUARIOENTITY;
 delete from PAGOENTITY;
-delete from PLANAGENDADOENTITY;
 
 /*Parte Ubicacion*/
 insert into UBICACIONENTITY (id,pais,ciudad,latitud,longitud) values (10000,'Colombia','Bogota',10,-10);
@@ -45,8 +44,14 @@ insert into GuiaEntity (id, idiomaguia, name) values (10002,'espaniol','f');
 
 
 /* Parte que se nececita para tajetas*/
-insert into UsuarioEntity (id,apellido,contrasenia,correo,esAdministrador,idioma,name,nombre,telefono) values (10001,'benitez','1234','benitez@gmail.com',0,'español','a','sebastian',4276067);
+insert into UsuarioEntity (id,apellido,contrasenia,correo,esAdministrador,idioma,name,telefono) values (10001,'benitez','1234','benitez@gmail.com',0,'español','sebastian',4276067);
+insert into UsuarioEntity (id,apellido,contrasenia,correo,esAdministrador,idioma,name,telefono) values (10002,'ramirez','5678','ramirez@gmail.com',0,'español','juan',1234567);
+insert into UsuarioEntity (id,apellido,contrasenia,correo,esAdministrador,idioma,name,telefono) values (10003,'gutierrez','9012','gutierrez@gmail.com',0,'español','francisco',8901223);
 
+
+insert into ValoracionesEntity (id, calificacion, comentario) values (10001, 5, 'Buena');
+insert into ValoracionesEntity (id, calificacion, comentario) values (10002, 3, 'Regular');
+insert into ValoracionesEntity (id, calificacion, comentario) values (10003, 1, 'Mala');
 
 insert into TarjetaDeCreditoEntity (id,cdv,cedula,name,numero,Usuario_id) values (10000,123,1016078997,'sebastian',1234123412341234,10001);
 insert into TarjetaDeCreditoEntity (id,cdv,cedula,name,numero,Usuario_id) values (10001,123,1016078997,'sebastian',1234123412341235,10001);
