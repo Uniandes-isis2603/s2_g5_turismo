@@ -180,6 +180,7 @@ public class UsuarioDTO
     public UsuarioEntity toEntity()
     {
         UsuarioEntity entity = new UsuarioEntity();
+        entity.setId(this.id);
         entity.setApellido(this.apellido);
         entity.setName(this.nombre);
         entity.setContrasenia(this.contrasenia);
