@@ -135,12 +135,13 @@ public class UsuarioLogic
         {
             throw new BusinessLogicException("El apellido no es valido");
         }
-        String correo = entity.getCorreo();
-        String[] arroba = correo.split("@");
-        String[] punto = arroba[1].split(".");
-        if(arroba[0] == null || arroba[1] == null || punto[0] == null || punto[1] == null)
+        try 
         {
-            throw new BusinessLogicException("El correo no es válido");
+            isValidEmailAddress(entity.getCorreo());               
+        }
+        catch (Exception e) 
+        {
+            throw new BusinessLogicException("El correo no es valido");
         }
         if(entity.getContrasenia() == null || entity.getContrasenia().length() < 8)
         {
