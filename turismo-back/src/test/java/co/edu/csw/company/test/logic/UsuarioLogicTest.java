@@ -141,6 +141,7 @@ public class UsuarioLogicTest
             entity.setListaPreferencias(listaPreferencias);
             entity.setListaTarjetas(listaTarjetas);
             entity.setPaquete(paquete);
+            entity.setEsAdministrador(false);
             
             em.persist(entity);
             listaUsuarios.add(entity);
