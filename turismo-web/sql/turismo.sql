@@ -71,3 +71,7 @@ insert into FACTURAENTITY (id,costo,name,TARJETADECREDITO_ID,PAQUETETURISTICO_ID
 insert into PAGOENTITY (id,costo, name) values (10000,80.33,'monserrate');
 insert into PAGOENTITY (id,costo, name) values (10003,80.33,'monserrate');
 insert into PAGOENTITY (id,costo, name) values (10005,80.33,'monserrate');
+
+insert into PLANAGENDADOENTITY (id,fecha,name) values (10000,'4/7/1998','fd');
+insert into PLANAGENDADOENTITY (id,fecha,name) values (10020,'4/7/2000','a');
+insert into PLANAGENDADOENTITY (id,fecha,name) values (10010,'4/7/2004','s');
