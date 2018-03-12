@@ -1,0 +1,295 @@
+{
+	"info": {
+		"name": "Pruebas Usuario",
+		"_postman_id": "8a5df9bb-3246-5c74-9af5-d92c9c02a5f3",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get all",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/usuario",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"usuario"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "get bien",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/usuario/10001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"usuario",
+						"10001"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "get mal",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/usuario/10005",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"usuario",
+						"10005"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "put mal",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"apellido\": \"benitez\",\n        \"contrasenia\": \"1234\",\n        \"correo\": \"benitez@gmail.com\",\n        \"esAdministrador\": false,\n        \"id\": 10001,\n        \"idioma\": \"ingles\",\n        \"nombre\": \"juan\",\n        \"telefono\": 4276067,\n        \"listaBlogs\": [],\n        \"listaComentarios\": [],\n        \"listaFacturas\": [],\n        \"listaPreferencias\": [],\n        \"listaTarjetas\": []\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/usuario/10001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"usuario",
+						"10001"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "put bien",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"apellido\": \"benitez\",\n        \"contrasenia\": \"12345678\",\n        \"correo\": \"benitez@gmail.com\",\n        \"esAdministrador\": false,\n        \"id\": 10001,\n        \"idioma\": \"ingles\",\n        \"nombre\": \"juan\",\n        \"telefono\": 4276067,\n        \"listaBlogs\": [],\n        \"listaComentarios\": [],\n        \"listaFacturas\": [],\n        \"listaPreferencias\": [{ \n    \t\t \"tiposPlan\":\"mirador\"                     \n        }],\n        \"listaTarjetas\": [{\n    \t\t\"name\": \"Juan\",\n    \t\t\"numero\": 3456789,\n    \t\t\"CDV\":123\n    \t}]\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/usuario/10001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"usuario",
+						"10001"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "delete bien",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/usuario/10001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"usuario",
+						"10001"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "delete mal",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/usuario/10001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"usuario",
+						"10001"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "post bien",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"apellido\": \"benitez\",\n        \"contrasenia\": \"12345678\",\n        \"correo\": \"benitez@gmail.com\",\n        \"esAdministrador\": false,\n        \"id\": 10001,\n        \"idioma\": \"ingles\",\n        \"nombre\": \"juan\",\n        \"telefono\": 4276067,\n        \"listaBlogs\": [],\n        \"listaComentarios\": [],\n        \"listaFacturas\": [],\n        \"listaPreferencias\": [{ \n    \t\t \"tiposPlan\":\"mirador\"                     \n        }],\n        \"listaTarjetas\": [{\n    \t\t\"name\": \"Juan\",\n    \t\t\"numero\": 3456789,\n    \t\t\"CDV\":123\n    \t}]\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/usuario",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"usuario"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "post mal",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"apellido\": \"benitez\",\n        \"contrasenia\": \"12345678\",\n        \"correo\": \"benitez@gmail.com\",\n        \"esAdministrador\": false,\n        \"id\": 10001,\n        \"idioma\": \"ingles\",\n        \"nombre\": \"juan\",\n        \"telefono\": 4276067,\n        \"listaBlogs\": [],\n        \"listaComentarios\": [],\n        \"listaFacturas\": [],\n        \"listaPreferencias\": [],\n        \"listaTarjetas\": [{\n    \t\t\"name\": \"Juan\",\n    \t\t\"numero\": 3456789,\n    \t\t\"CDV\":123\n    \t}]\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/usuario",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"usuario"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
