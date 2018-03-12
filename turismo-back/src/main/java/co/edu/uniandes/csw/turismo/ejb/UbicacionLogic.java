@@ -59,6 +59,10 @@ public class UbicacionLogic
      
      public void deleteUbicacion(Long id)
      {
+         UbicacionEntity ubic= persistence.find(id);
+        if (ubic == null) {
+            LOGGER.log(Level.SEVERE, "ubicacion con el id {0} no existe", id);
+        }
   
          LOGGER.log(Level.INFO, "Inicia proceso de Eliminar ubicacion con id", id);
          persistence.delete(id);
