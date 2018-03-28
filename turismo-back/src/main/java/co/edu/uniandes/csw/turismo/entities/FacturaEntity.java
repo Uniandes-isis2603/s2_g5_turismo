@@ -26,7 +26,7 @@ public class FacturaEntity extends  BaseEntity implements Serializable
     @ManyToOne
     private TarjetaDeCreditoEntity tarjetadecredito;
     
-    @OneToOne( cascade=CascadeType.PERSIST, orphanRemoval = true)
+    @OneToOne( cascade=CascadeType.PERSIST)
     private PaqueteTuristicoEntity paqueteturistico;
     
 

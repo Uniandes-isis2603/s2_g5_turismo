@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.turismo.ejb;
 import co.edu.uniandes.csw.turismo.entities.FacturaEntity;
 import co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.turismo.persistence.FacturaPersistence;
+import co.edu.uniandes.csw.turismo.persistence.TarjetaDeCreditoPersistence;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,9 +27,7 @@ public class FacturaLogic
     @Inject
     private FacturaPersistence persistence;
    
-    @Inject
-    private TarjetaDeCreditoLogic TarjetaLogic;
-    
+  
      public FacturaEntity createFactura(FacturaEntity entity) throws BusinessLogicException 
     {
        
@@ -68,15 +67,30 @@ public class FacturaLogic
         LOGGER.log(Level.INFO, "Termina proceso de consultar factura con id={0}", id);
         return factura;
     }
+    
+    public List<FacturaEntity> getFacturaTarjeta(Long numeroTarjeta) 
+    {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar Factura con tarjeta ={0}", numeroTarjeta);
+        List<FacturaEntity> factura= persistence.findByTarjeta(numeroTarjeta);
+        if (factura == null) {
+            LOGGER.log(Level.SEVERE, " no hay facturas con la tarjeta {0} no existe", numeroTarjeta);
+        }
+        LOGGER.log(Level.INFO, "Termina proceso de consultar factura con tarjeta={0}", numeroTarjeta);
+        return factura;
+    }
+    
      public void deleteFactura(Long id)
      {
+         FacturaEntity factura = getFactura(id);
+         factura.setTarjetadecredito(null);
          LOGGER.log(Level.INFO, "Inicia proceso de Eliminar Factura con id={0}", id);
          persistence.delete(id);
          LOGGER.log(Level.INFO, "Termina proceso de Eliminar factura con id={0}", id);
-     };
+     }
+     
      public FacturaEntity updateFactura(Long id, FacturaEntity entity) throws BusinessLogicException 
      {
-      
+    
         // verifica que la factura no tenga un costo negativo
         if(entity.getCosto() < 0)
         {
