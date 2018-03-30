@@ -279,10 +279,10 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "a802f09b-f6da-4f8f-9888-a2357b3de256",
+						"id": "4082309c-ef15-4675-ac13-3a84cf5c0bf4",
 						"type": "text/javascript",
 						"exec": [
-							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+							"tests[\"Status code is 204\"] = responseCode.code === 204;"
 						]
 					}
 				}
@@ -292,7 +292,7 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost:8080/turismo-web/api/facturas/10000",
+					"raw": "http://localhost:8080/turismo-web/api/facturas/10001",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -302,7 +302,7 @@
 						"turismo-web",
 						"api",
 						"facturas",
-						"10000"
+						"10001"
 					]
 				},
 				"description": "Prueba que se pueda eliminar la tarjeta"

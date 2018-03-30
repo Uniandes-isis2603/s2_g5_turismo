@@ -43,9 +43,9 @@ public class TarjetaDeCreditoPersistence
         LOGGER.log(Level.INFO, "Consultando tarjeta de credito por numero ", numero);
       
        
-      //  TypedQuery query = em.createQuery("SELECT * FROM TarjetaDeCreditoEntity e WHERE e.numero = "+ numero +" and e.usuario.id = " + id, TarjetaDeCreditoEntity.class);
-          TypedQuery query = em.createQuery("Select e From TarjetaDeCreditoEntity e where e.numero = :numero and e.usuario.id = :usuario", TarjetaDeCreditoEntity.class);
-        // Se remplaza el placeholder ":name" con el valor del argumento 
+      
+        TypedQuery query = em.createQuery("Select e From TarjetaDeCreditoEntity e where e.numero = :numero and e.usuario.id = :usuario", TarjetaDeCreditoEntity.class);
+       
         query = query.setParameter("numero", numero);
         query= query.setParameter("usuario", id);
 

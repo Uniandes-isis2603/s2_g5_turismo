@@ -13,6 +13,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -30,6 +31,15 @@ public class FacturaPersistence
     public FacturaEntity find(Long id) {
         LOGGER.log(Level.INFO, "Consultando Factura con id={0}", id);
         return em.find(FacturaEntity.class, id);
+    }
+    
+     public List<FacturaEntity> findByTarjeta(Long numeroTarjeta) 
+     {
+        LOGGER.log(Level.INFO, "Consultando Facturas con numero de tarjeta={0}",numeroTarjeta);
+        TypedQuery query = em.createQuery("Select e From FacturaEntity e where e.tarjetadecredito.id = :numero", FacturaEntity.class);
+        query = query.setParameter("numero", numeroTarjeta);
+        List<FacturaEntity> facturas = query.getResultList();
+        return facturas;
     }
     
       public List<FacturaEntity> findAll() {
