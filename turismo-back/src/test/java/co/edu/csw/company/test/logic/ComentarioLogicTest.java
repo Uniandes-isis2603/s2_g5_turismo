@@ -153,11 +153,17 @@ public class ComentarioLogicTest
             {
                 if (entity.getId().equals(storedEntity.getId())) {
                     found = true;
+                    Assert.assertEquals(entity.getComentario(), storedEntity.getComentario());
                 }
             }
             Assert.assertTrue(found);
+            
         }
     }
+    
+  
+    
+    
     
     @Test
     public void deleteComentarioTest() throws BusinessLogicException

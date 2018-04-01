@@ -146,6 +146,11 @@ public class BlogLogicTest
             {
                 if (entity.getId().equals(storedEntity.getId())) {
                     found = true;
+                     Assert.assertEquals(entity.getDescripcion(), storedEntity.getDescripcion());
+                     Assert.assertEquals(entity.getLikes(), storedEntity.getLikes());
+                     Assert.assertEquals(entity.getTema(), storedEntity.getTema());
+                     Assert.assertEquals(entity.getPlanes(), storedEntity.getPlanes());
+                     Assert.assertEquals(entity.getComentarios(), storedEntity.getComentarios());
                 }
             }
             Assert.assertTrue(found);
