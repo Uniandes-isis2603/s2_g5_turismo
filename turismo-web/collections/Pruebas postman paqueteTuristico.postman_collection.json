@@ -1,14 +1,67 @@
 {
-	"info": {
-		"name": "Pruebas postman paqueteTuristico",
-		"_postman_id": "8c876fe7-0831-8627-b970-b2a2a22e98af",
-		"description": "",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-	},
-	"item": [
+	"id": "7b8bfd7d-cfcd-0d39-cd77-4dd2e105d825",
+	"name": "Pruebas postman paqueteTuristico",
+	"order": [
+		"0a0f955f-098a-e678-dc32-09bc8616a552",
+		"19604eb0-099f-68e8-0361-f9f63dc268c3",
+		"18c94f03-9de1-0c45-9f7b-ca241e386c81",
+		"05bcdf03-b46e-f7cf-35d2-f315a490a242",
+		"36463ef4-cef3-e9cc-cb0d-9c9fdafda1cd",
+		"142ff1a6-545e-95da-54be-c6678c3b7c5f",
+		"2afdedf0-7463-a04a-fe48-e0f191427bbd",
+		"0e0c690e-1363-563a-9111-8171bf67a087",
+		"c36c04cb-6265-5dad-7d90-5d08b38e812e"
+	],
+	"folders_order": [],
+	"folders": [],
+	"owner": 0,
+	"hasRequests": true,
+	"requests": [
 		{
+			"id": "05bcdf03-b46e-f7cf-35d2-f315a490a242",
+			"name": "http://localhost:8080/turismo-web/api/paquetes/10000",
+			"collectionId": "7b8bfd7d-cfcd-0d39-cd77-4dd2e105d825",
+			"method": "GET",
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "36db7810-3f28-4903-8100-0f4665f71a65",
+						"type": "text/javascript",
+						"exec": [
+							"tests [\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"headers": "Content-Type: application/json",
+			"dataMode": "raw",
+			"data": [],
+			"rawModeData": "{\n\t\"id\":1023,\n\t\"pagos\":[{\"id\":10000,\n\t\t\"costo\":60.00,\n\t\t\"nombrePlan\":\"monserrate\"\n\t}],\n\t\"planes\":[]\n}",
+			"pathVariables": {},
+			"url": "http://localhost:8080/turismo-web/api/paquetes/10000",
+			"responses": [],
+			"pathVariableData": [],
+			"queryParams": [],
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"auth": null,
+			"collection_id": "7b8bfd7d-cfcd-0d39-cd77-4dd2e105d825",
+			"preRequestScript": null,
+			"tests": "tests [\"Status code is 200\"] = responseCode.code === 200;",
+			"currentHelper": null,
+			"helperAttributes": null
+		},
+		{
+			"id": "0a0f955f-098a-e678-dc32-09bc8616a552",
 			"name": "http://localhost:8080/turismo-web/api/paquetes",
-			"event": [
+			"collectionId": "7b8bfd7d-cfcd-0d39-cd77-4dd2e105d825",
+			"method": "POST",
+			"events": [
 				{
 					"listen": "test",
 					"script": {
@@ -20,300 +73,34 @@
 					}
 				}
 			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"id\":1023,\n\t\"pagos\":[],\n\t\"planes\":[]\n}"
-				},
-				"url": {
-					"raw": "http://localhost:8080/turismo-web/api/paquetes",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"turismo-web",
-						"api",
-						"paquetes"
-					]
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost:8080/turismo-web/api/paquetes",
-			"event": [
+			"headers": "Content-Type: application/json",
+			"dataMode": "raw",
+			"data": [],
+			"rawModeData": "{\n\t\"id\":1023,\n\t\"pagos\":[],\n\t\"planes\":[]\n}",
+			"pathVariables": {},
+			"url": "http://localhost:8080/turismo-web/api/paquetes",
+			"responses": [],
+			"pathVariableData": [],
+			"queryParams": [],
+			"headerData": [
 				{
-					"listen": "test",
-					"script": {
-						"id": "b4770a10-5d6c-41d3-bcc2-df60c5ded747",
-						"type": "text/javascript",
-						"exec": [
-							"tests [\"Status code is 412\"] = responseCode.code === 412;"
-						]
-					}
+					"key": "Content-Type",
+					"value": "application/json"
 				}
 			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"id\":1023,\n\t\"pagos\":[{\"id\":10000,\n\t\t\"costo\":60.00,\n\t\t\"nombrePlan\":\"monserrate\"\n\t}],\n\t\"planes\":[]\n}"
-				},
-				"url": {
-					"raw": "http://localhost:8080/turismo-web/api/paquetes",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"turismo-web",
-						"api",
-						"paquetes"
-					]
-				},
-				"description": ""
-			},
-			"response": []
+			"auth": null,
+			"collection_id": "7b8bfd7d-cfcd-0d39-cd77-4dd2e105d825",
+			"preRequestScript": null,
+			"tests": "tests [\"Status code is 200\"] = responseCode.code === 200;",
+			"currentHelper": null,
+			"helperAttributes": null
 		},
 		{
-			"name": "http://localhost:8080/turismo-web/api/paquetes",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "36db7810-3f28-4903-8100-0f4665f71a65",
-						"type": "text/javascript",
-						"exec": [
-							"tests [\"Status code is 200\"] = responseCode.code === 200;"
-						]
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"id\":1023,\n\t\"pagos\":[{\"id\":10000,\n\t\t\"costo\":60.00,\n\t\t\"nombrePlan\":\"monserrate\"\n\t}],\n\t\"planes\":[]\n}"
-				},
-				"url": {
-					"raw": "http://localhost:8080/turismo-web/api/paquetes",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"turismo-web",
-						"api",
-						"paquetes"
-					]
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost:8080/turismo-web/api/paquetes/10000",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "36db7810-3f28-4903-8100-0f4665f71a65",
-						"type": "text/javascript",
-						"exec": [
-							"tests [\"Status code is 200\"] = responseCode.code === 200;"
-						]
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"id\":1023,\n\t\"pagos\":[{\"id\":10000,\n\t\t\"costo\":60.00,\n\t\t\"nombrePlan\":\"monserrate\"\n\t}],\n\t\"planes\":[]\n}"
-				},
-				"url": {
-					"raw": "http://localhost:8080/turismo-web/api/paquetes/10000",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"turismo-web",
-						"api",
-						"paquetes",
-						"10000"
-					]
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost:8080/turismo-web/api/paquetes/103",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "35087ca7-47ab-4282-9236-d274425ce546",
-						"type": "text/javascript",
-						"exec": [
-							"tests [\"Status code is 404\"] = responseCode.code === 404;"
-						]
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"id\":1023,\n\t\"pagos\":[{\"id\":10000,\n\t\t\"costo\":60.00,\n\t\t\"nombrePlan\":\"monserrate\"\n\t}],\n\t\"planes\":[]\n}"
-				},
-				"url": {
-					"raw": "http://localhost:8080/turismo-web/api/paquetes/103",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"turismo-web",
-						"api",
-						"paquetes",
-						"103"
-					]
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost:8080/turismo-web/api/paquetes/10000",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "33e3244b-f96d-4982-959d-542427881035",
-						"type": "text/javascript",
-						"exec": [
-							"tests [\"Status code is 200\"] = responseCode.code === 200;"
-						]
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"id\":10000,\n\t\"pagos\":[{\"id\":10000,\n\t\t\"costo\":60.00,\n\t\t\"nombrePlan\":\"monserrate\"\n\t}],\n\t\"planes\":[]\n}"
-				},
-				"url": {
-					"raw": "http://localhost:8080/turismo-web/api/paquetes/10000",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"turismo-web",
-						"api",
-						"paquetes",
-						"10000"
-					]
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost:8080/turismo-web/api/paquetes/1006",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "e96bb226-381e-4111-bf07-8c5f264266cd",
-						"type": "text/javascript",
-						"exec": [
-							"tests [\"Status code is 404\"] = responseCode.code === 404;"
-						]
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"id\":10006,\n\t\"pagos\":[{\"id\":10000,\n\t\t\"costo\":60.00,\n\t\t\"nombrePlan\":\"monserrate\"\n\t}],\n\t\"planes\":[]\n}"
-				},
-				"url": {
-					"raw": "http://localhost:8080/turismo-web/api/paquetes/1006",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"turismo-web",
-						"api",
-						"paquetes",
-						"1006"
-					]
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
+			"id": "0e0c690e-1363-563a-9111-8171bf67a087",
 			"name": "http://localhost:8080/turismo-web/api/paquetes/10001",
-			"event": [
+			"collectionId": "7b8bfd7d-cfcd-0d39-cd77-4dd2e105d825",
+			"method": "DELETE",
+			"events": [
 				{
 					"listen": "test",
 					"script": {
@@ -325,39 +112,229 @@
 					}
 				}
 			],
-			"request": {
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "http://localhost:8080/turismo-web/api/paquetes/10001",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"turismo-web",
-						"api",
-						"paquetes",
-						"10001"
-					]
-				},
-				"description": ""
-			},
-			"response": []
+			"headers": "Content-Type: application/json",
+			"dataMode": "raw",
+			"data": [],
+			"rawModeData": "",
+			"pathVariables": {},
+			"url": "http://localhost:8080/turismo-web/api/paquetes/10001",
+			"responses": [],
+			"pathVariableData": [],
+			"queryParams": [],
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"auth": null,
+			"collection_id": "7b8bfd7d-cfcd-0d39-cd77-4dd2e105d825",
+			"preRequestScript": null,
+			"tests": "tests [\"Status code is 204\"] = responseCode.code === 204;",
+			"currentHelper": null,
+			"helperAttributes": null
 		},
 		{
+			"id": "142ff1a6-545e-95da-54be-c6678c3b7c5f",
+			"name": "http://localhost:8080/turismo-web/api/paquetes/10000",
+			"collectionId": "7b8bfd7d-cfcd-0d39-cd77-4dd2e105d825",
+			"method": "PUT",
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "33e3244b-f96d-4982-959d-542427881035",
+						"type": "text/javascript",
+						"exec": [
+							"tests [\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"headers": "Content-Type: application/json",
+			"dataMode": "raw",
+			"data": [],
+			"rawModeData": "{\n\t\"id\":10000,\n\t\"pagos\":[{\"id\":10000,\n\t\t\"costo\":60.00,\n\t\t\"nombrePlan\":\"monserrate\"\n\t}],\n\t\"planes\":[]\n}",
+			"pathVariables": {},
+			"url": "http://localhost:8080/turismo-web/api/paquetes/10000",
+			"responses": [],
+			"pathVariableData": [],
+			"queryParams": [],
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"auth": null,
+			"collection_id": "7b8bfd7d-cfcd-0d39-cd77-4dd2e105d825",
+			"preRequestScript": null,
+			"tests": "tests [\"Status code is 200\"] = responseCode.code === 200;",
+			"currentHelper": null,
+			"helperAttributes": null
+		},
+		{
+			"id": "18c94f03-9de1-0c45-9f7b-ca241e386c81",
+			"name": "http://localhost:8080/turismo-web/api/paquetes",
+			"collectionId": "7b8bfd7d-cfcd-0d39-cd77-4dd2e105d825",
+			"method": "GET",
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "36db7810-3f28-4903-8100-0f4665f71a65",
+						"type": "text/javascript",
+						"exec": [
+							"tests [\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"headers": "Content-Type: application/json",
+			"dataMode": "raw",
+			"data": [],
+			"rawModeData": "{\n\t\"id\":1023,\n\t\"pagos\":[{\"id\":10000,\n\t\t\"costo\":60.00,\n\t\t\"nombrePlan\":\"monserrate\"\n\t}],\n\t\"planes\":[]\n}",
+			"pathVariables": {},
+			"url": "http://localhost:8080/turismo-web/api/paquetes",
+			"responses": [],
+			"pathVariableData": [],
+			"queryParams": [],
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"auth": null,
+			"collection_id": "7b8bfd7d-cfcd-0d39-cd77-4dd2e105d825",
+			"preRequestScript": null,
+			"tests": "tests [\"Status code is 200\"] = responseCode.code === 200;",
+			"currentHelper": null,
+			"helperAttributes": null
+		},
+		{
+			"id": "19604eb0-099f-68e8-0361-f9f63dc268c3",
+			"name": "http://localhost:8080/turismo-web/api/paquetes",
+			"collectionId": "7b8bfd7d-cfcd-0d39-cd77-4dd2e105d825",
+			"method": "POST",
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b4770a10-5d6c-41d3-bcc2-df60c5ded747",
+						"type": "text/javascript",
+						"exec": [
+							"tests [\"Status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"headers": "Content-Type: application/json",
+			"dataMode": "raw",
+			"data": [],
+			"rawModeData": "{\n\t\"id\":1023,\n\t\"pagos\":[{\"id\":10000,\n\t\t\"costo\":60.00,\n\t\t\"nombrePlan\":\"monserrate\"\n\t}],\n\t\"planes\":[]\n}",
+			"pathVariables": {},
+			"url": "http://localhost:8080/turismo-web/api/paquetes",
+			"responses": [],
+			"pathVariableData": [],
+			"queryParams": [],
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"auth": null,
+			"collection_id": "7b8bfd7d-cfcd-0d39-cd77-4dd2e105d825",
+			"preRequestScript": null,
+			"tests": "tests [\"Status code is 412\"] = responseCode.code === 412;",
+			"currentHelper": null,
+			"helperAttributes": null
+		},
+		{
+			"id": "2afdedf0-7463-a04a-fe48-e0f191427bbd",
+			"name": "http://localhost:8080/turismo-web/api/paquetes/1006",
+			"collectionId": "7b8bfd7d-cfcd-0d39-cd77-4dd2e105d825",
+			"method": "PUT",
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e96bb226-381e-4111-bf07-8c5f264266cd",
+						"type": "text/javascript",
+						"exec": [
+							"tests [\"Status code is 404\"] = responseCode.code === 404;"
+						]
+					}
+				}
+			],
+			"headers": "Content-Type: application/json",
+			"dataMode": "raw",
+			"data": [],
+			"rawModeData": "{\n\t\"id\":10006,\n\t\"pagos\":[{\"id\":10000,\n\t\t\"costo\":60.00,\n\t\t\"nombrePlan\":\"monserrate\"\n\t}],\n\t\"planes\":[]\n}",
+			"pathVariables": {},
+			"url": "http://localhost:8080/turismo-web/api/paquetes/1006",
+			"responses": [],
+			"pathVariableData": [],
+			"queryParams": [],
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"auth": null,
+			"collection_id": "7b8bfd7d-cfcd-0d39-cd77-4dd2e105d825",
+			"preRequestScript": null,
+			"tests": "tests [\"Status code is 404\"] = responseCode.code === 404;",
+			"currentHelper": null,
+			"helperAttributes": null
+		},
+		{
+			"id": "36463ef4-cef3-e9cc-cb0d-9c9fdafda1cd",
+			"name": "http://localhost:8080/turismo-web/api/paquetes/103",
+			"collectionId": "7b8bfd7d-cfcd-0d39-cd77-4dd2e105d825",
+			"method": "GET",
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "35087ca7-47ab-4282-9236-d274425ce546",
+						"type": "text/javascript",
+						"exec": [
+							"tests [\"Status code is 404\"] = responseCode.code === 404;"
+						]
+					}
+				}
+			],
+			"headers": "Content-Type: application/json",
+			"dataMode": "raw",
+			"data": [],
+			"rawModeData": "{\n\t\"id\":1023,\n\t\"pagos\":[{\"id\":10000,\n\t\t\"costo\":60.00,\n\t\t\"nombrePlan\":\"monserrate\"\n\t}],\n\t\"planes\":[]\n}",
+			"pathVariables": {},
+			"url": "http://localhost:8080/turismo-web/api/paquetes/103",
+			"responses": [],
+			"pathVariableData": [],
+			"queryParams": [],
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"auth": null,
+			"collection_id": "7b8bfd7d-cfcd-0d39-cd77-4dd2e105d825",
+			"preRequestScript": null,
+			"tests": "tests [\"Status code is 404\"] = responseCode.code === 404;",
+			"currentHelper": null,
+			"helperAttributes": null
+		},
+		{
+			"id": "c36c04cb-6265-5dad-7d90-5d08b38e812e",
 			"name": "http://localhost:8080/turismo-web/api/paquetes/10045",
-			"event": [
+			"collectionId": "7b8bfd7d-cfcd-0d39-cd77-4dd2e105d825",
+			"method": "DELETE",
+			"events": [
 				{
 					"listen": "test",
 					"script": {
@@ -369,35 +346,27 @@
 					}
 				}
 			],
-			"request": {
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "http://localhost:8080/turismo-web/api/paquetes/10045",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"turismo-web",
-						"api",
-						"paquetes",
-						"10045"
-					]
-				},
-				"description": ""
-			},
-			"response": []
+			"headers": "Content-Type: application/json",
+			"dataMode": "raw",
+			"data": [],
+			"rawModeData": "",
+			"pathVariables": {},
+			"url": "http://localhost:8080/turismo-web/api/paquetes/10045",
+			"responses": [],
+			"pathVariableData": [],
+			"queryParams": [],
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"auth": null,
+			"collection_id": "7b8bfd7d-cfcd-0d39-cd77-4dd2e105d825",
+			"preRequestScript": null,
+			"tests": "tests [\"Status code is 404\"] = responseCode.code === 404;",
+			"currentHelper": null,
+			"helperAttributes": null
 		}
 	]
 }

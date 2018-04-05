@@ -23,7 +23,17 @@ var mod = ng.module("citiesModule", []);
                         templateUrl: basePath + 'cities.create.html'
                     }
                 }
-
+                        
+               .state('esta2', {
+                url: '/cities/esta2',
+                views: {
+                    'mainView': {
+                        controller: 'esta2Ctrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'cities.esta2.html'
+                    }
+                }         
+                     
             }).state('cityEdit', {
                 url: '/cities/:cityId',
                 param: {

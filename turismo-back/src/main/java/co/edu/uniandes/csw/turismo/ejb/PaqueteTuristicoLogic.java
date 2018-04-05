@@ -39,8 +39,13 @@ public class PaqueteTuristicoLogic {
     }
     
     public PaqueteTuristicoEntity createPaqueteTuristico(PaqueteTuristicoEntity entity) throws BusinessLogicException{
-        
-        
+        List <PagoEntity> pagos = entity.getPagos();
+        List <PlanAgendadoEntity> planes = entity.getPlanes();
+        for(int i=0; i<pagos.size();i++)
+        {
+        if (pagos.size()!=planes.size())
+             throw new BusinessLogicException("El numero de pagos no coincide con el numero de planes en el paquete \"");
+        }
         return persistence.create(entity);
     }
     public List<PaqueteTuristicoEntity> getPaquetes() {
