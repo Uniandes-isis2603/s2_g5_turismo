@@ -12,7 +12,7 @@
  * <pre>
  *   {
  *       "id": 1,
- *       "tiposPlan": "mirador"      
+ *       "tipoPlan": "mirador"      
  *   }
  * </pre>
  */
