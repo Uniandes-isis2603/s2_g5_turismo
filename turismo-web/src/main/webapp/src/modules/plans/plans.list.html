@@ -1,0 +1,18 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2" ng-repeat="plan in plansRecords">
+            <div class="thumbnail">
+                <a ui-sref="planDetail({planId: plan.idPlan})">                    
+                    <img class="img-responsive" ng-src='{{plan.archivo}}' alt="{{plan.name}}" />                  
+                </a>
+                <div class="caption text-center">
+                    <p>{{plan.name}}</p>
+                    <p ng-repeat="guide in plan.guiasPlan">
+                        <a ui-sref="authorDetail({guideId: guide.id})" class="thumb">{{guide.name}}</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,49 @@
+<div class="panel panel-default"> 
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="thumb">
+                    <img class="img-responsive" ng-src="{{currentPlan.archivo}}"/>
+                </div>
+
+            </div>
+            <div class="col-md-3">
+                <dl>     
+                    <dt class="bold">{{currentPlan.nombrePlan}}</dt>
+                    <ul ng-repeat="guide in currentPlan.guiasPlan">
+                        <dd> {{guide.nombreGuia}}</dd>
+                        <dd> {{guide.idiomaGuia}}</dd>
+                    </ul>
+                    <dt> Duración</dt>
+                    <dd>{{currentPlan.duracion}}</dd>
+                    <hr>
+                    <dt>Restricciones</dt>
+                    <dd>{{currentPlan.restricciones}}</dd>
+                    <hr>
+                    <dt class="bold">Ubicacion</dt>
+                    <dt>País</dt>
+                    <dd>{{currentPlan.ubicacion.pais}}</dd>
+                    <dt>Ciudad</dt>
+                    <dd>{{currentPlan.ubicacion.ciudad}}</dd>
+                    <dt>Latitud</dt>
+                    <dd>{{currentPlan.ubicacion.latitud}}</dd>
+                    <dt>Longitud</dt>
+                    <dd>{{currentPlan.ubicacion.longitud}}</dd>
+                    <hr>
+                    <dt class="bold">Descripcion</dt>
+                    <dd>{{currentPlan.descripcion}}</dd>
+                    <ul ng-repeat="valoracion in currentPlan.valoraciones">
+                        <dd> {{valoracion.calificacion}}</dd>
+                        <dd> {{valoracion.comentario}}</dd>
+                    </ul>
+                    <ul ng-repeat="cat in currentPlan.cagoriasPlan">
+                        <dd> {{cat.calificacion}}</dd>
+                        <dd> {{cat.comentario}}</dd>
+                    </ul>
+
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>
+

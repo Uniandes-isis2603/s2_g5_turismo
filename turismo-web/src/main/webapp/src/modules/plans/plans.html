@@ -1,0 +1,20 @@
+<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-3 col-lg-2">
+      <nav class="navbar navbar-default navbar-fixed-side">
+        <div ui-view="sideView"></div>
+      </nav>
+    </div>
+    <div class="col-sm-9 col-lg-10">
+      <div class="row">
+         <div ui-view="detailView"></div>
+      </div>
+      <div class="row">
+         <div ui-view="listView"></div>
+      </div>
+    </div>
+  </div>
+</div>    
+    
+
