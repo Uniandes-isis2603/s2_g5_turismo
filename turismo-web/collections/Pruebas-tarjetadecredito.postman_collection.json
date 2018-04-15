@@ -33,7 +33,7 @@
 					"raw": " {\r\n       \"name\": \"sebastian\",\r\n       \"numero\":1234567891011326,\r\n       \"CVD\":213,\r\n       \"cedula\":1016078997\r\n   \r\n   }"
 				},
 				"url": {
-					"raw": "http://localhost:8080/turismo-web/api/facturas",
+					"raw": "http://localhost:8080/turismo-web/api/usuarios/10001/tarjetas",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -42,7 +42,9 @@
 					"path": [
 						"turismo-web",
 						"api",
-						"facturas"
+						"usuarios",
+						"10001",
+						"tarjetas"
 					]
 				},
 				"description": "Consulata todas las tarjetas de un usuario"

@@ -61,7 +61,7 @@ public class UbicacionResource
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe la ubicacion.
      */
    @POST
-    public UbicacionDTO createUbicacion(UbicacionDTO ubicacion,@PathParam("Plansid") Long id) throws BusinessLogicException 
+    public UbicacionDTO createUbicacion(UbicacionDTO ubicacion,@PathParam("plansId") Long id) throws BusinessLogicException 
     {
         UbicacionEntity UbicEnt = ubicacion.toEntity();
         if(planLogic.getPlan(id) != null)

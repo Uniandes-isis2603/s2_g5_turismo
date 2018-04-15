@@ -55,7 +55,6 @@ public class PaqueteTuristicoLogicTest {
     
     private List<PagoEntity> pagosData = new ArrayList();
 
-    private List<PlanAgendadoEntity> planesData = new ArrayList();
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
@@ -96,7 +95,6 @@ public class PaqueteTuristicoLogicTest {
     private void clearData() {
         em.createQuery("delete from PaqueteTuristicoEntity").executeUpdate();
         em.createQuery("delete from PagoEntity").executeUpdate();
-        em.createQuery("delete from PlanAgendadoEntity").executeUpdate();
     }
 
     /**
@@ -113,14 +111,8 @@ public class PaqueteTuristicoLogicTest {
             pagosData.add(pagos);
         }
         for (int i = 0; i < 3; i++) {
-            PlanAgendadoEntity planes = factory.manufacturePojo(PlanAgendadoEntity.class);
-            em.persist(planes);
-            planesData.add(planes);
-        }
-        for (int i = 0; i < 3; i++) {
             PaqueteTuristicoEntity entity = factory.manufacturePojo(PaqueteTuristicoEntity.class);
             entity.setPagos(pagosData);
-            entity.setPlanes(planesData);
             em.persist(entity);
             data.add(entity);
         }
@@ -136,8 +128,6 @@ public class PaqueteTuristicoLogicTest {
     @Test
     public void createPaqueteTuristicoTest() throws BusinessLogicException {
         PaqueteTuristicoEntity newEntity = factory.manufacturePojo(PaqueteTuristicoEntity.class);
-        newEntity.setPagos(pagosData);
-        newEntity.setPlanes(planesData);
         PaqueteTuristicoEntity result = paqueteTuristicoLogic.createPaqueteTuristico(newEntity);
         Assert.assertNotNull(result);
         PaqueteTuristicoEntity entity = em.find(PaqueteTuristicoEntity.class, result.getId());

@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.turismo.ejb;
 
+import co.edu.uniandes.csw.turismo.entities.FacturaEntity;
 import co.edu.uniandes.csw.turismo.entities.TarjetaDeCreditoEntity;
 import co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.turismo.persistence.TarjetaDeCreditoPersistence;
@@ -26,6 +27,9 @@ public class TarjetaDeCreditoLogic
     @Inject
     private TarjetaDeCreditoPersistence persistence;
     
+    @Inject
+    private FacturaLogic facturaLogica;
+    
     public TarjetaDeCreditoEntity createTarjetaDeCredito(TarjetaDeCreditoEntity entity) throws BusinessLogicException 
     {
         LOGGER.info("Inicia proceso de creación de TarjetaDeCredito");
@@ -40,12 +44,6 @@ public class TarjetaDeCreditoLogic
         {
              throw new BusinessLogicException("la tarjeta de credito tiene un numero mayor o menor a 16 digitos " + entity.getNumero() + "\"");
         }
-        // Verifica la regla de negocio que dice que no puede haber dos tarjetas de credito con el mismo numero
-//        if (persistence.findByNumber(entity.getNumero()) != null) 
-//        {
-//            throw new BusinessLogicException("Ya existe una tarjeta de credito con el numero" + entity.getNumero() + "\"");
-//        }
-        //Invoca la persistencia para crear la tarjeta
         persistence.create(entity);
         LOGGER.info("Termina proceso de creación de TarjetaDeCredito");
         return entity;
@@ -90,9 +88,23 @@ public class TarjetaDeCreditoLogic
         else
         {
          LOGGER.log(Level.INFO, "Inicia proceso de Eliminar Tarjeta con numero", numero);
+         List<FacturaEntity> factura =facturaLogica.getFacturaTarjeta(tarjeta.getId());
+         if (factura.size() != 0)
+         {
+             for (FacturaEntity facturaEntity : factura) 
+             {
+                 facturaEntity.setTarjetadecredito(null);
+             }
+             
+             persistence.delete(tarjeta.getId());
+            LOGGER.log(Level.INFO, "Termina proceso de Eliminar tarjeta con numero", numero);
+         }
+         else
+         {    
          persistence.delete(tarjeta.getId());
          LOGGER.log(Level.INFO, "Termina proceso de Eliminar tarjeta con numero", numero);
         }   
+        }
      };
      
      public TarjetaDeCreditoEntity updateTarjetaDeCredito(Long id, TarjetaDeCreditoEntity entity) throws BusinessLogicException 

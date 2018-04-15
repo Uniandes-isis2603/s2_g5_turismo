@@ -1,0 +1,215 @@
+{
+	"info": {
+		"name": "Pruebas Ubicacion",
+		"_postman_id": "d16fe959-9fea-5c95-d5f1-ffb64d647dc7",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/turismo-web/api/Plans/10000/ubicaciones/",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4e7ea97c-148a-4e94-907f-46e3817939eb",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/Plans/10000/ubicaciones/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"Plans",
+						"10000",
+						"ubicaciones",
+						""
+					]
+				},
+				"description": "Devuelve todas las ubicaciones"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/turismo-web/api/Plans/10000/ubicaciones/10000",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a81afeec-720d-460f-9326-bb888631884a",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/Plans/10000/ubicaciones/10000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"Plans",
+						"10000",
+						"ubicaciones",
+						"10000"
+					]
+				},
+				"description": "Obtiene la ubicacion de un id especifico\n"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/turismo-web/api/Plans/10000/ubicaciones",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b2669041-07cd-4097-b82c-038344e50535",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ciudad\": \"Cali\",\n    \"latitud\": 10,\n    \"longitud\": -10,\n    \"pais\": \"Colombia\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/Plans/10000/ubicaciones",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"Plans",
+						"10000",
+						"ubicaciones"
+					]
+				},
+				"description": "Prueba la creacion de un ID"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/turismo-web/api/Plans/10000/ubicaciones/1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "45dff6e2-de54-4aba-a026-8b369040f809",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 204\"] = responseCode.code === 204;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/Plans/10000/ubicaciones/10003",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"Plans",
+						"10000",
+						"ubicaciones",
+						"10003"
+					]
+				},
+				"description": "Elimina una ubicacion que no tiene un dueño"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/turismo-web/api/Plans/10000/ubicaciones/10000",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "04025d1e-0d6d-4476-96ff-207289df3692",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"ciudad\": \"Mexico DF\",\n        \"latitud\": 10,\n        \"longitud\": -10,\n        \"pais\": \"Mexico\"\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/turismo-web/api/Plans/10000/ubicaciones/10000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"turismo-web",
+						"api",
+						"Plans",
+						"10000",
+						"ubicaciones",
+						"10000"
+					]
+				},
+				"description": "Actualiza una ubicacion que existe en la base de datos"
+			},
+			"response": []
+		}
+	]
+}
