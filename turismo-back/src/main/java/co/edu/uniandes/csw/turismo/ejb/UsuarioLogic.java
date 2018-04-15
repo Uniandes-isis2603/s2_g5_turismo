@@ -109,7 +109,7 @@ public class UsuarioLogic
       result = false;
    }
    return result;
-}
+    }
     
     public List<UsuarioEntity> getUsuarios()
     {
@@ -126,7 +126,7 @@ public class UsuarioLogic
     
     public UsuarioEntity updateUsuario(UsuarioEntity entity) throws BusinessLogicException
     {
-        LOGGER.info("Inicia proceso de actualizar un usuario");
+        LOGGER.info("Inicia proceso de creación del usuario");
         if(entity.getName() == null || entity.getName().equals(""))
         {
             throw new BusinessLogicException("El nombre no es valido");
@@ -135,6 +135,7 @@ public class UsuarioLogic
         {
             throw new BusinessLogicException("El apellido no es valido");
         }
+       
         try 
         {
             isValidEmailAddress(entity.getCorreo());               
@@ -143,6 +144,7 @@ public class UsuarioLogic
         {
             throw new BusinessLogicException("El correo no es valido");
         }
+        
         if(entity.getContrasenia() == null || entity.getContrasenia().length() < 8)
         {
             throw new BusinessLogicException("La contraseña no es valida");
