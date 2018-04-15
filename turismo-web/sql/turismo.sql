@@ -38,9 +38,9 @@ insert into PreferenciasEntity (id, tipoPlan) values (10000,'Familiar');
 insert into PreferenciasEntity (id, tipoPlan) values (10001,'Compras');
 insert into PreferenciasEntity (id, tipoPlan) values (10002,'Museo');
 
-insert into PlanEntity (id, archivo, cantidadpersonas, descripcion, duracion, name, precio, restricciones, ubicacion_id) values (10000, 'linkDeUnaImagen', 1,'Subir a monserrate', 180, 'Monserrate', 20000,'restriccion shida',10000);
-insert into PlanEntity (id, archivo, cantidadpersonas, descripcion, duracion, name, precio, restricciones, ubicacion_id) values (10001, 'linkDeUnaImagen', 2,'Recorrido por sagrada familia', 180, 'Sagrada familia', 60000,'restriccion shida',10000);
-insert into PlanEntity (id, archivo, cantidadpersonas, descripcion, duracion, name, precio, restricciones, ubicacion_id) values (10002, 'linkDeUnaImagen', 4,'Recorrer muro de berlin', 180, 'Muro de berlin', 20000,'restriccion shida',10002);
+insert into PlanEntity (id, archivo, cantidadpersonas, descripcion, duracion, name, precio, restricciones, ubicacion_id) values (10000, 'https://cdn2.gbot.me/photos/dt/Db/1515289189/-_Iglesia_de_Monserrate_in-20000000016204685-500x375.jpg', 1,'Subir a monserrate', 180, 'Monserrate', 20000,'restriccion shida',10000);
+insert into PlanEntity (id, archivo, cantidadpersonas, descripcion, duracion, name, precio, restricciones, ubicacion_id) values (10001, 'https://upload.wikimedia.org/wikipedia/commons/2/26/%CE%A3%CE%B1%CE%B3%CF%81%CE%AC%CE%B4%CE%B1_%CE%A6%CE%B1%CE%BC%CE%AF%CE%BB%CE%B9%CE%B1_2941.jpg', 2,'Recorrido por sagrada familia', 180, 'Sagrada familia', 60000,'restriccion shida',10000);
+insert into PlanEntity (id, archivo, cantidadpersonas, descripcion, duracion, name, precio, restricciones, ubicacion_id) values (10002, 'http://elmerey.com/wp-content/uploads/2017/08/14/Muro-de-Berlin.jpg', 4,'Recorrer muro de berlin', 180, 'Muro de berlin', 20000,'restriccion shida',10002);
 
 insert into GuiaEntity (id, idiomaguia, name) values (10000,'espaniol','w');
 insert into GuiaEntity (id, idiomaguia, name) values (10001,'espaniol','t');
