@@ -1,0 +1,18 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2" ng-repeat="plan in plansRecords">
+            <div class="thumbnail">
+                <a ui-sref="blogsDetail({blogsId: blogs.idPlan})">                    
+                    <img class="img-responsive" ng-src='{{blogs.archivo}}' alt="{{blogs.tema}}" />                  
+                </a>
+                <div class="caption text-center">
+                    <p>{{blogs.tema}}</p>
+                    <p ng-repeat=" in blogs.comentarios">
+                        <a ui-sref="authorDetail({comentarioId: comentario.id})" class="thumb">{{comentario.comentario}}</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

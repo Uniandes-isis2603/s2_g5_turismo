@@ -1,0 +1,30 @@
+<div class="panel panel-default"> 
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="thumb">
+                    <img class="img-responsive" ng-src="{{currentblog.archivo}}"/>
+                </div>
+
+            </div>
+            <div class="col-md-3">
+                <dl>     
+                    <dt class="bold">{{currentblog.tema}}</dt>
+                    
+                    <dt> Descripcion</dt>
+                    <dd>{{currentblog.descripcion}}</dd>
+                    <hr>
+                    <dt>Restricciones</dt>
+                    <dd>{{currentblog.likes}}</dd>
+                    
+                    <ul ng-repeat="comentario in currentblog.comentarios">
+                        <dd> {{comentario.comentario}}</dd>
+                        <dd> {{comentario.likes}}</dd>
+                    </ul>
+
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>
+
