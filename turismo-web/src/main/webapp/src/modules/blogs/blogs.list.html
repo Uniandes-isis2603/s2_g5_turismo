@@ -1,18 +1,16 @@
 <div class="container-fluid">
+    
+    <h3>Blogs disponibles</h3> 
     <div class="row">
-        <div class="col-md-2" ng-repeat="plan in plansRecords">
+        <div class="col-md-2" ng-repeat="blog in blogsRecords">
             <div class="thumbnail">
-                <a ui-sref="blogsDetail({blogsId: blogs.idPlan})">                    
-                    <img class="img-responsive" ng-src='{{blogs.archivo}}' alt="{{blogs.tema}}" />                  
+                <h3>tema</h3>
+                <a ui-sref="blogsDetail({blogId: blog.id})">                    
+                    <img class="img-responsive" ng-src='{{blog.archivo}}' alt="{{blog.descripcion}}" />                  
                 </a>
-                <div class="caption text-center">
-                    <p>{{blogs.tema}}</p>
-                    <p ng-repeat=" in blogs.comentarios">
-                        <a ui-sref="authorDetail({comentarioId: comentario.id})" class="thumb">{{comentario.comentario}}</a>
-                    </p>
+
                 </div>
             </div>
         </div>
     </div>
 </div>
-

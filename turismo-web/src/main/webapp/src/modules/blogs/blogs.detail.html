@@ -11,11 +11,14 @@
                 <dl>     
                     <dt class="bold">{{currentblog.tema}}</dt>
                     
-                    <dt> Descripcion</dt>
+                    <dt> tema</dt>
                     <dd>{{currentblog.descripcion}}</dd>
                     <hr>
-                    <dt>Restricciones</dt>
+                    <dt>contenido</dt>
                     <dd>{{currentblog.likes}}</dd>
+                     <hr>
+                    <dt>comentarios</dt>
+                   
                     
                     <ul ng-repeat="comentario in currentblog.comentarios">
                         <dd> {{comentario.comentario}}</dd>
