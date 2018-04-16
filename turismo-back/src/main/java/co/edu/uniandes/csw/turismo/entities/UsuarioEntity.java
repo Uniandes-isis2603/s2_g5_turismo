@@ -37,7 +37,7 @@ public class UsuarioEntity extends BaseEntity implements Serializable
     private List<TarjetaDeCreditoEntity> listaTarjetas;
     
     @PodamExclude
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne
     private PaqueteTuristicoEntity paquete;
     
     @PodamExclude

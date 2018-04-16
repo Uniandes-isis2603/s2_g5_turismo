@@ -1,0 +1,18 @@
+<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
+<div id="alertPanel" style="text-align: center"></div>
+<div class="container-fluid">
+    <div class="col-md-4">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nombre</th>    
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="preferencia in preferenciasRecords">
+                    <td id="{{$index}}-name">{{preferencia.tipoPlan}}</td>                
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

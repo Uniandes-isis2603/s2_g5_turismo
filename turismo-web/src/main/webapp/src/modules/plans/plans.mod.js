@@ -81,6 +81,7 @@
                     'sideView': {
                         templateUrl: basePath + 'plans.side.html'
                     }
+                    
 
                 }
 
