@@ -20,7 +20,7 @@
          * estado actual de la navegación definida en el módulo.
          */
         function ($scope, $http, blogsContext, $state) {           
-            if (($state.params.blogId !== undefined)&& ($state.params.blogsId !== null)) {
+            if (($state.params.blogId !== undefined)&& ($state.params.blogId !== null)) {
              /**
              * @ngdoc function
              * @name getblogsID
@@ -31,7 +31,7 @@
              * @param {String} URL Dirección donde se encuentra el recurso
              * del blog o API donde se puede consultar.
              */
-                $http.get(blogsContext + '/' + $state.params.blogs).then(function (response) {
+                $http.get(blogsContext + '/' + $state.params.blogId).then(function (response) {
                     $scope.currentblog = response.data;
                 });
             }

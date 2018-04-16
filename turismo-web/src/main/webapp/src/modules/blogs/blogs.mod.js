@@ -79,7 +79,7 @@
                         controllerAs: 'ctrl'
                     },
                     'sideView': {
-                        templateUrl: basePath + 'plans.side.html'
+                        templateUrl: basePath + 'blogs.side.html'
                     }
                     
 
