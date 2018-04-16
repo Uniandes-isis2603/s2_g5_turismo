@@ -5,9 +5,13 @@
         'ui.bootstrap',
         // Internal modules dependencies       
         'planModule',
+<<<<<<< HEAD
+        'moduloTarjetas'
+=======
         'preferenciaModule',
         'guiaModule'
         
+>>>>>>> master
 
     ]);
     // Resuelve problemas de las promesas
