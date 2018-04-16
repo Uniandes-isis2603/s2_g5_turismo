@@ -5,14 +5,9 @@
         'ui.bootstrap',
         // Internal modules dependencies       
         'planModule',
-<<<<<<< HEAD
-        'moduloTarjetas'
-=======
+        'moduloTarjetas',
         'preferenciaModule',
         'guiaModule'
-        
->>>>>>> master
-
     ]);
     // Resuelve problemas de las promesas
     app.config(['$qProvider', function ($qProvider) {
