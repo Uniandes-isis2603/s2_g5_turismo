@@ -2,22 +2,21 @@
     <div class="panel-body">
         <div class="row">
             <div class="col-md-3">
-                <div class="thumb">
-                    <img class="img-responsive" ng-src="{{currentblog.archivo}}"/>
-                </div>
+               
 
             </div>
             <div class="col-md-3">
-                <dl>     
-                    <dt class="bold">{{currentblog.tema}}</dt>
-                    
+                <dl>   
                     <dt> tema</dt>
-                    <dd>{{currentblog.descripcion}}</dd>
-                    <hr>
-                    <dt>contenido</dt>
-                    <dd>{{currentblog.likes}}</dd>
+                    <dt class="bold">{{currentblog.tema}}</dt>
                      <hr>
-                    <dt>comentarios</dt>
+                      <dt>contenido</dt>
+                    <dd>{{currentblog.descripcion}}</dd>
+                     <hr>
+                   <dt>comentarios</dt>
+                    <dd>{{currentblog.likes}}</dd>
+                   
+                   
                    
                     
                     <ul ng-repeat="comentario in currentblog.comentarios">

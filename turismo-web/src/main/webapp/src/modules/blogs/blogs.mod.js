@@ -70,16 +70,16 @@
                 views: {
                     'listView': {
                         templateUrl: basePath + 'blogs.list.html',
-                  
+                        controller: 'blogsDetailCtrl',
+                        controllerAs: 'ctrl'
                     },
-                    
-                     'detailView': {
+                    'detailView': {
                         templateUrl: basePath + 'blogs.detail.html',
-
+                        controller: 'blogsDetailCtrl',
+                        controllerAs: 'ctrl'
                     },
-                   
                     'sideView': {
-                        templateUrl: basePath + 'blogs.side.html'
+                        templateUrl: basePath + 'plans.side.html'
                     }
                     
 
