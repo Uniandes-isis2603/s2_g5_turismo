@@ -9,7 +9,8 @@
         'moduloTarjetas',
         'guiaModule',
         'blogsModule',
-        'moduloFacturas'
+        'moduloFacturas',
+        'moduloUbicacion'
         
 
 
