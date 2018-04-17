@@ -26,7 +26,28 @@
                        templateUrl: basePath +'facturas.side.html'
                    }
                }
-           });
+           }).state("facturaDetail",{
+               url:'/{facturaId:int}/detail',
+               parent: 'factura',
+               'params':{
+                   facturaId: null
+               },
+               views:{
+                  'listView':{
+                       templateUrl: basePath + 'facturas.list.html'
+                   },
+                   'sideView':{
+                       templateUrl: basePath + 'facturas.side.html'
+                   },
+                   'detailView':{
+                       templateUrl: basePath +'facturas.detail.html'
+                   }
+                   
+               }
+              
+               
+           }
+                   );
            
     }]);
 })(window.angular);

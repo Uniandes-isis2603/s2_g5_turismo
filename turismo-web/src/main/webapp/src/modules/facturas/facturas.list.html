@@ -1,7 +1,8 @@
 <div>
     <div ng-repeat="facturas in records">
-        <div>
-            <h2>{{facturas.costo}}</h2>
+        <div><a ui-sref="facturaDetail({facturaId: facturas.id})">
+            <h2>factura</h2>
+            </a>
         </div>
     </div>
 </div>

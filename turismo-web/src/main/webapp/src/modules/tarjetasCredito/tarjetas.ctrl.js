@@ -12,7 +12,7 @@
             
 //              el controlador recibió un tarjetaId ??
 //             revisa los parámetros (ver el :tarjetaId en la definición de la ruta)
-            if (true) {
+            if ($state.params.tarjetaId !== null || $state.params.tarjetaId !== undefined) {
 
                 // toma el id del parámetro
                 id = $state.params.tarjetaId;
