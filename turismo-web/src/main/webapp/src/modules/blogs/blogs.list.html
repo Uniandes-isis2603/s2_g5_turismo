@@ -1,0 +1,14 @@
+<div class="container-fluid">
+    
+    <h3>Blogs disponibles</h3> 
+    <div class="row">
+        <div class="col-md-2" ng-repeat="blog in blogsRecords">
+            <div class="thumbnail">
+                <h3>tema</h3>
+                <a ui-sref="blogsDetail({blogId: blog.id})">                    
+                    <img class="img-responsive" ng-src='{{blog.archivo}}' alt="{{blog.descripcion}}" />                  
+                </a>
+                </div>
+            </div>
+        </div>
+    </div>
