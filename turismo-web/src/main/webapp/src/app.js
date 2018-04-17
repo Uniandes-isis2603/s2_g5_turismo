@@ -8,7 +8,8 @@
         'preferenciaModule',
         'moduloTarjetas',
         'guiaModule',
-        'blogsModule'
+        'blogsModule',
+        'moduloFacturas'
         
 
 
