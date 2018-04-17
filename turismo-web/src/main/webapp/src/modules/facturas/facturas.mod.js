@@ -1,26 +1,26 @@
 (function(ng){
-    var mod = ng.module("moduloTarjetas",["ui.router"]);
-    mod.constant("tarjetaContext","api/usuarios/10001/tarjetas");
+    var mod = ng.module("moduloFacturas",["ui.router"]);
+    mod.constant("facturaContext","api/facturas");
     mod.config(["$stateProvider","$urlRouterProvider",function($stateProvider,$urlRouterProvider){
-           var basePath="src/modules/tarjetasCredito/";
-           $urlRouterProvider.otherwise("/tarjetaList");
+           var basePath="src/modules/facturas/";
+           $urlRouterProvider.otherwise("/facturaList");
            
-           $stateProvider.state('tarjeta', {
-                url: '/tarjetas',
+           $stateProvider.state('factura', {
+                url: '/facturas',
                 abstract: true,
                 views: {
                     'mainView': {
-                        templateUrl: basePath + 'tarjetas.html',
-                        controller: 'tarjetaCtrl',
+                        templateUrl: basePath + 'facturas.html',
+                        controller: 'facturaCtrl',
                         controllerAs: 'ctrl'
                     }
                 }
-            }).state("tarjetasList",{
+            }).state("facturasList",{
                url:'/list',
-               parent:'tarjeta',
+               parent:'factura',
                views:{
                    'listView':{
-                       templateUrl: basePath + 'tarjeta.list.html'
+                       templateUrl: basePath + 'facturas.list.html'
                    }
                }
            });

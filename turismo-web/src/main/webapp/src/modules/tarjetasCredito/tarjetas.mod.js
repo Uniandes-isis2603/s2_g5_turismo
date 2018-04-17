@@ -21,6 +21,9 @@
                views:{
                    'listView':{
                        templateUrl: basePath + 'tarjeta.list.html'
+                   },
+                   'sideView':{
+                       templateUrl: basePath + 'tarjetas.side.html'
                    }
                }
            });
