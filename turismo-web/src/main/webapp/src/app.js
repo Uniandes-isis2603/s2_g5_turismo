@@ -6,6 +6,7 @@
         // Internal modules dependencies       
         'planModule',
         'preferenciaModule',
+        'moduloTarjetas',
         'guiaModule',
         'blogsModule'
         
