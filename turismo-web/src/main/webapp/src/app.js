@@ -5,9 +5,12 @@
         'ui.bootstrap',
         // Internal modules dependencies       
         'planModule',
-        'moduloTarjetas',
         'preferenciaModule',
-        'guiaModule'
+        'moduloTarjetas',
+        'guiaModule',
+        'blogsModule'
+        
+
     ]);
     // Resuelve problemas de las promesas
     app.config(['$qProvider', function ($qProvider) {

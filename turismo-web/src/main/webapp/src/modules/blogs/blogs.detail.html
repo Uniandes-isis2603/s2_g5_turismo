@@ -1,0 +1,28 @@
+<div class="panel panel-default"> 
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-3">
+               
+
+            </div>
+            <div class="col-md-3">
+                <dl>   
+                    
+                    <dt>{{currentblog.tema}}</dt>
+                     <hr>
+                      <dt>contenido</dt>
+                    <dd>{{currentblog.descripcion}}</dd>
+                     <hr>
+                     <dt>likes</dt>
+                     <dd>{{currentblog.likes}}</dd>
+                   <dt>comentarios</dt>
+                    <ul ng-repeat="comentario in currentblog.comentarios">
+                        <dd> {{comentario.comentario}}</dd>
+                    </ul>
+
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>
+
