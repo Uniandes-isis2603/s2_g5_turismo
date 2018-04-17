@@ -7,21 +7,17 @@
             </div>
             <div class="col-md-3">
                 <dl>   
-                    <dt> tema</dt>
-                    <dt class="bold">{{currentblog.tema}}</dt>
+                    
+                    <dt>{{currentblog.tema}}</dt>
                      <hr>
                       <dt>contenido</dt>
                     <dd>{{currentblog.descripcion}}</dd>
                      <hr>
+                     <dt>likes</dt>
+                     <dd>{{currentblog.likes}}</dd>
                    <dt>comentarios</dt>
-                    <dd>{{currentblog.likes}}</dd>
-                   
-                   
-                   
-                    
                     <ul ng-repeat="comentario in currentblog.comentarios">
                         <dd> {{comentario.comentario}}</dd>
-                        <dd> {{comentario.likes}}</dd>
                     </ul>
 
                 </dl>
