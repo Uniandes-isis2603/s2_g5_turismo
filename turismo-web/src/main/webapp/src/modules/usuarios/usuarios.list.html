@@ -1,0 +1,46 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2" ng-repeat="usuarios in usuariosRecords">
+            <table style="width:100%">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th> 
+                    <th>Contraseña</th>
+                    <th>Correo</th>
+                    <th>Teléfono</th>
+                    <th>Idioma</th>
+                    <th>Es Administrador</th>
+                </tr>
+                <tr>
+                    <th>{{usuarios.name}}</th>
+                    <th>{{usuarios.apellido}}</th> 
+                    <th>{{usuarios.contrasenia}}</th>
+                    <th>{{usuarios.correo}}</th>
+                    <th>{{usuarios.telefono}}</th>
+                    <th>{{usuarios.idioma}}</th>
+                    <th>{{usuarios.esAdministrador}}</th>
+                </tr>
+            <div class="col-md-2">
+                <div class="caption text-center">
+                    <p>{{usuarios.name}}</p>
+                    <p ng-repeat="factura in {{usuarios.listaFacturas}}">
+                        <a ui-sref="authorDetail({facturaId: factura.id})" class="thumb">{{factura.id}}</a>
+                    </p>
+                    <p ng-repeat="tarjeta in {{usuarios.listaTarjetas}}">
+                        <a ui-sref="authorDetail({tarjetaId: tarjeta.id})" class="thumb">{{tarjeta.numero}}</a>
+                    </p>
+                    <p ng-repeat="blog in {{usuarios.listaBlogs}}">
+                        <a ui-sref="authorDetail({blogId: blog.id})" class="thumb">{{blog.tema}}</a>
+                    </p>
+                    <p ng-repeat="comentario in {{usuarios.listaComentarios}}">
+                        <a ui-sref="authorDetail({comentarioId: comentario.id})" class="thumb">{{comentario.comentario}}</a>
+                    </p>
+                    <p ng-repeat="preferencia in {{usuarios.listaPreferencias}}">
+                        <a ui-sref="authorDetail({preferenciaId: preferencia.id})" class="thumb">{{preferencia.tiposPlan}}</a>
+                    </p>
+                </div>
+            </div>
+            </table>
+        </div>
+    </div>
+</div>

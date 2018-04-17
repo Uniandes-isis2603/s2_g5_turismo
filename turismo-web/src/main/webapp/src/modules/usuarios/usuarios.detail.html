@@ -1,0 +1,26 @@
+<<div class="panel panel-default"> 
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-3">
+                <dl>     
+                    <dt class="bold">Facturas</dt>
+                    <ul ng-repeat="factura in currentUsuario.listaFacturas">
+                        <dd> {{factura.id}}</dd>
+                        <dd> {{factura.costo}}</dd>
+                    </ul>
+                    <dt class="bold">Tarjetas de Crédito</dt>
+                    <dd>{{currentUsuario.descripcion}}</dd>
+                    <ul ng-repeat="valoracion in currentUsuario.valoraciones">
+                        <dd> {{valoracion.calificacion}}</dd>
+                        <dd> {{valoracion.comentario}}</dd>
+                    </ul>
+                    <ul ng-repeat="cat in currentUsuario.cagoriasUsuario">
+                        <dd> {{cat.calificacion}}</dd>
+                        <dd> {{cat.comentario}}</dd>
+                    </ul>
+
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>

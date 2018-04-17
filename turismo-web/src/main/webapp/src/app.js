@@ -6,7 +6,8 @@
         // Internal modules dependencies       
         'planModule',
         'preferenciaModule',
-        'guiaModule'
+        'guiaModule',
+        'usuariosModule'
         
 
     ]);
