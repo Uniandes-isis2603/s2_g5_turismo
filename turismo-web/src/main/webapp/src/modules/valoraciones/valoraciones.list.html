@@ -1,0 +1,20 @@
+<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
+<div id="alertPanel" style="text-align: center"></div>
+<div class="container-fluid">
+    <div class="col-md-4">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Calificacion</th>    
+                    <th>Comentario</th> 
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="val in valoracionesRecords">
+                    <td id="{{$index}}-name">{{val.calificacion}}</td>  
+                    <td id="{{$index}}-name">{{val.comentario}}</td> 
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

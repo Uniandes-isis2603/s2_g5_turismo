@@ -7,7 +7,8 @@
         'planModule',
         'preferenciaModule',
         'guiaModule',
-        'usuariosModule'
+        'usuariosModule',
+        'valoracionesModule'
         
 
     ]);
