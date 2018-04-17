@@ -6,7 +6,9 @@
         // Internal modules dependencies       
         'planModule',
         'preferenciaModule',
+        'moduloTarjetas',
         'guiaModule',
+        'blogsModule',
         'usuariosModule',
         'valoracionesModule'
         
@@ -17,4 +19,3 @@
             $qProvider.errorOnUnhandledRejections(false);
         }]);
 })(window.angular);
-
