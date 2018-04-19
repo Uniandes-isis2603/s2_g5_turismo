@@ -1,6 +1,6 @@
 (function (ng) {
     var mod = ng.module("usuariosModule");
-    mod.constant("usuariosContext", "api/usuarios");
+    mod.constant("usuariosContext", "api/usuario");
     mod.controller('usuariosDetailCtrl', ['$scope', '$http', 'usuariosContext', '$state',
         function ($scope, $http, usuariosContext, $state) {           
             if (($state.params.usuariosId !== undefined)&& ($state.params.usuariosId !== null)) {

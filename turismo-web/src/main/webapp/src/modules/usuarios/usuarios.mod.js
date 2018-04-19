@@ -1,12 +1,12 @@
 (function (ng) {
     var mod = ng.module("usuariosModule", ['ui.router']);
-    mod.constant("usuariosContext", "api/usuarios");
+    mod.constant("usuariosContext", "api/usuario");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
-            var basePath = 'src/modules/usuarios/';
+            var basePath = 'src/modules/usuario/';
             $urlRouterProvider.otherwise("/usuariosList");
 
             $stateProvider.state('usuarios', {
-                url: '/usuarios',
+                url: '/usuario',
                 abstract: true,
                 views: {
                     'mainView': {
