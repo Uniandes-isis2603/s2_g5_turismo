@@ -3,7 +3,8 @@
         // External dependencies
         'ui.router',
         'ui.bootstrap',
-        // Internal modules dependencies       
+        // Internal modules dependencies  
+        'pagoModule',
         'planModule',
         'preferenciaModule',
         'moduloTarjetas',
