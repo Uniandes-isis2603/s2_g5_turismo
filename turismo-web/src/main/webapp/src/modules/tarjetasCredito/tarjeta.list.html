@@ -1,9 +1,7 @@
 <div>
     <div ng-repeat="tarjetas in records">
         <div>
-            <h2>{{tarjetas.name}}</h2>
-            <h1>{{tarjetas.cedula}}</h1>
-            <h1>{{tarjetas.numero}}</h1>
+            <img><a ui-sref="tarjetaDetail({tarjetaId: tarjetas.numero})">{{tarjetas.name}}</a>   
         </div>
     </div>
 </div>
