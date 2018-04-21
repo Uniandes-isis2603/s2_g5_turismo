@@ -9,8 +9,11 @@
         'preferenciaModule',
         'moduloTarjetas',
         'guiaModule',
-        'blogsModule'
+        'blogsModule',
+        'moduloFacturas',
+        'moduloUbicacion'
         
+
 
     ]);
     // Resuelve problemas de las promesas

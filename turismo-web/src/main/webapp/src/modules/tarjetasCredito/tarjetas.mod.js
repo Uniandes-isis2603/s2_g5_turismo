@@ -21,9 +21,33 @@
                views:{
                    'listView':{
                        templateUrl: basePath + 'tarjeta.list.html'
+                   },
+                   'sideView':{
+                       templateUrl: basePath + 'tarjetas.side.html'
                    }
                }
-           });
+           }).state("tarjetaDetail",{
+               url:'/{tarjetaId:int}/detail',
+               parent: 'tarjeta',
+               'params':{
+                   tarjetaId: null
+               },
+               views:{
+                  'listView':{
+                       templateUrl: basePath + 'tarjeta.list.html'
+                   },
+                   'sideView':{
+                       templateUrl: basePath + 'tarjetas.side.html'
+                   },
+                   'detailView':{
+                       templateUrl: basePath +'tarjeta.detail.html'
+                   }
+                   
+               }
+              
+               
+           }
+                   );
            
     }]);
 })(window.angular);
