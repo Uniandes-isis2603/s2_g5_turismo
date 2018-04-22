@@ -47,7 +47,19 @@
               
                
            }
-                   );
+                   ).state("ubicacionCreate",{
+                       url:"/create",
+                       parent:"ubicacion",
+                       views:{
+                           'detailView':{
+                               templateUrl:basePath +"ubicacion.create.html",
+                               controller:"ubicacionNewCtrl"
+                           },
+                   'sideView':{
+                       templateUrl: basePath + 'ubicacion.side.html'
+                   }
+                       }
+                   });;
            
     }]);
 })(window.angular);

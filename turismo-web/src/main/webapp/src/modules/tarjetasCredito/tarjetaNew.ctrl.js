@@ -1,4 +1,5 @@
 (function(ng){
+    
     var mod = ng.module("moduloTarjetas");
     mod.constant("contextoTarjeta","api/usuarios/10001/tarjetas");
    mod.controller('tarjetaNewCtrl', ['$scope', '$http', 'contextoTarjeta', '$state', '$rootScope',
@@ -9,8 +10,9 @@
 
             
             
-            
+            alert("Entro a consola1");
             $scope.createTarjeta = function () {
+                alert("Entro a consola2");
                 $http.post(contextoTarjeta, { 
                     name: $scope.tarjetaName,
                     numero:$scope.tarjetaNumero,
