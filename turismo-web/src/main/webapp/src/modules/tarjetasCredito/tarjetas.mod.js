@@ -47,7 +47,19 @@
               
                
            }
-                   );
+                   ).state("tarjetaCreate",{
+                       url:"/create",
+                       parent:"tarjeta",
+                       views:{
+                           'detailView':{
+                               templateUrl:basePath +"tarjetas.create.html",
+                               controller:"tarjetaNewCtrl"
+                           },
+                   'sideView':{
+                       templateUrl: basePath + 'tarjetas.side.html'
+                   }
+                       }
+                   });
            
     }]);
 })(window.angular);
