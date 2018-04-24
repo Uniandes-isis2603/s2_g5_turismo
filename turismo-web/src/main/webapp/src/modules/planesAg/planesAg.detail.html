@@ -1,0 +1,45 @@
+<div class="panel panel-default"> 
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="thumb">
+                    <img class="img-responsive" ng-src='{{currentMiPlan.plan.archivo}}' alt="{{currentMiPlan.plan.name}}"/>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <dl>     
+                    <dt class="bold">{{currentMiPlan.plan.nombrePlan}}</dt>
+                    <ul ng-repeat="guide in currentMiPlan.plan.guiasPlan">
+                        <dd> {{guide.nombreGuia}}</dd>
+                        <dd> {{guide.idiomaGuia}}</dd>
+                    </ul>
+                    <dt> Duración</dt>
+                    <dd>{{currentMiPlan.plan.duracion}}</dd>
+                    <hr>
+                    <dt>Restricciones</dt>
+                    <dd>{{currentMiPlan.plan.restricciones}}</dd>
+                    <hr>
+                    <dt class="bold">Numero de personas</dt>
+                    <dd>{{currentMiPlan.plan.cantidadPersonas}}</dd>
+                    <hr>
+                    <dt>Restricciones</dt>
+                    <dd>{{currentMiPlan.plan.restricciones}}</dd>
+                    <hr>
+                    <dt class="bold">Descripcion</dt>
+                    <dd>{{currentMiPlan.plan.descripcion}}</dd>
+                    <ul ng-repeat="valoracion in currentMiPlan.plan.valoraciones">
+                        <dd> {{valoracion.calificacion}}</dd>
+                        <dd> {{valoracion.comentario}}</dd>
+                    </ul>
+                    <ul ng-repeat="cat in currentMiPlan.plan.cagoriasPlan">
+                        <dd> {{cat.calificacion}}</dd>
+                        <dd> {{cat.comentario}}</dd>
+                    </ul>
+
+                </dl>
+            </div>
+            </div>
+        </div>
+    </div>
+
+

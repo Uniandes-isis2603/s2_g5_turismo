@@ -3,14 +3,17 @@
         // External dependencies
         'ui.router',
         'ui.bootstrap',
-        // Internal modules dependencies       
+        // Internal modules dependencies  
+        'miPlanModule',
+        'pagoModule',
         'planModule',
         'preferenciaModule',
         'moduloTarjetas',
         'guiaModule',
         'blogsModule',
         'moduloFacturas',
-        'moduloUbicacion'
+        'moduloUbicacion',
+        'paqueteModule'
         
 
 
