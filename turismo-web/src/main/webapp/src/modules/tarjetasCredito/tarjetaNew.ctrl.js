@@ -9,10 +9,10 @@
             $rootScope.edit = false;
 
             
-            
-            alert("Entro a consola1");
+            alert("Create")
+           
             $scope.createTarjeta = function () {
-                alert("Entro a consola2");
+                
                 $http.post(contextoTarjeta, { 
                     name: $scope.tarjetaName,
                     numero:$scope.tarjetaNumero,

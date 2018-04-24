@@ -47,7 +47,19 @@
               
                
            }
-                   );
+                   ).state("facturaCreate",{
+                       url:"/create",
+                       parent:"factura",
+                       views:{
+                           'detailView':{
+                               templateUrl:basePath +"facturas.create.html",
+                               controller:"facturaNewCtrl"
+                           },
+                   'sideView':{
+                       templateUrl: basePath + 'facturas.side.html'
+                   }
+                       }
+                   });
            
     }]);
 })(window.angular);
