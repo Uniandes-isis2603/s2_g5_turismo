@@ -1,0 +1,29 @@
+<div class="panel panel-default"> 
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="thumb">
+                    <img class="img-responsive" src="https://www.paraloscuriosos.com/wp-content/uploads/2015/10/21/121.jpg"/>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <dl>   
+                    <dt> Id Paquete</dt>
+                    <dt>{{currentPaquete.id}}</dt>
+                    <hr>
+                    <dt>Completado</dt>
+                    <dd>{{currentPaquete.completado}}</dd>
+                    <hr>
+                   <dt>Planes</dt>
+                    <ul ng-repeat="pagos in currentPaquete.pagos">
+                        <dd> {{pagos.costo}}</dd>
+                        <dd> {{pagos.nombrePlan}}</dd>
+                    </ul>
+
+                </dl>
+            </div>
+            </div>
+        </div>
+    </div>
+
+

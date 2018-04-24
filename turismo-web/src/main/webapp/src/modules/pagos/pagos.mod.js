@@ -9,6 +9,9 @@
                 url: '/pago',
                 abstract: true,
                 views: {
+                    'sideView': {
+                        templateUrl: basePath + 'pagos.side.html'
+                    },
                     'mainView': {
                         templateUrl: basePath + 'pagos.html',
                         controller: 'pagoCtrl',
@@ -22,6 +25,9 @@
                    'listView':{
                        templateUrl: basePath + 'pagos.list.html'
                    }
+                   ,'sideView': {
+                        templateUrl: basePath + 'pagos.side.html'
+                    }
                }
            });
            

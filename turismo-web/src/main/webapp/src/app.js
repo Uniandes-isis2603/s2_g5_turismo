@@ -11,7 +11,8 @@
         'guiaModule',
         'blogsModule',
         'moduloFacturas',
-        'moduloUbicacion'
+        'moduloUbicacion',
+        'paqueteModule'
         
 
 
