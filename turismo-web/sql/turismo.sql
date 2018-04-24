@@ -1,4 +1,6 @@
 
+delete from PAQUETETURISTICOENTITY_PLANAGENDADOENTITY;
+delete from PLANAGENDADOENTITY;
 delete from PlanEntity_PreferenciasEntity;
 delete from PlanEntity_GuiaEntity;
 delete from PAQUETETURISTICOENTITY_PAGOENTITY;
@@ -14,7 +16,6 @@ delete from COMENTARIOENTITY;
 delete from BLOGENTITY;
 delete from USUARIOENTITY;
 delete from PAGOENTITY;
-delete from PLANAGENDADOENTITY;
 delete from VALORACIONESENTITY;
 
 /*Parte Ubicacion*/
@@ -77,9 +78,11 @@ insert into PAGOENTITY (id,costo, name) values (10000,80.33,'monserrate');
 insert into PAGOENTITY (id,costo, name) values (10003,80.33,'monserrate');
 insert into PAGOENTITY (id,costo, name) values (10005,80.33,'monserrate');
 
-insert into PLANAGENDADOENTITY (id,fecha,name) values (10000,'4/7/1998','fd');
-insert into PLANAGENDADOENTITY (id,fecha,name) values (10020,'4/7/2000','a');
-insert into PLANAGENDADOENTITY (id,fecha,name) values (10010,'4/7/2004','s');
+insert into PLANAGENDADOENTITY (id,fecha,name,plan_id) values (10000,'4/7/1998','fd',10000);
+insert into PLANAGENDADOENTITY (id,fecha,name,plan_id) values (10020,'4/7/2000','a',10001);
+insert into PLANAGENDADOENTITY (id,fecha,name,plan_id) values (10030,'4/7/2004','s',10002);
 
 insert into PAQUETETURISTICOENTITY_PAGOENTITY (paqueteturisticoentity_id, pagos_id) values (10000,10000);
 insert into PAQUETETURISTICOENTITY_PAGOENTITY (paqueteturisticoentity_id, pagos_id) values (10000,10003);
+insert into PAQUETETURISTICOENTITY_PLANAGENDADOENTITY (paqueteturisticoentity_id, planes_id) values (10000,10000);
+insert into PAQUETETURISTICOENTITY_PLANAGENDADOENTITY (paqueteturisticoentity_id, planes_id) values (10000,10020);

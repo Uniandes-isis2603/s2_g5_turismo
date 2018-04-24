@@ -15,10 +15,13 @@
                     <dd>{{currentPaquete.completado}}</dd>
                     <hr>
                    <dt>Planes</dt>
-                    <ul ng-repeat="pagos in currentPaquete.pagos">
-                        <dd> {{pagos.costo}}</dd>
+                   <ul ng-repeat="pagos in currentPaquete.pagos" >
+                       <dd>  Plan {{pagos.id}}</dd>
+                       <dd> {{pagos.costo}}</dd>
                         <dd> {{pagos.nombrePlan}}</dd>
+                        <dd >Fecha {{currentPaquete.planes[0].fecha}}</dd>
                     </ul>
+                   
 
                 </dl>
             </div>

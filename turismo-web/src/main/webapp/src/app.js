@@ -4,6 +4,7 @@
         'ui.router',
         'ui.bootstrap',
         // Internal modules dependencies  
+        'miPlanModule',
         'pagoModule',
         'planModule',
         'preferenciaModule',
