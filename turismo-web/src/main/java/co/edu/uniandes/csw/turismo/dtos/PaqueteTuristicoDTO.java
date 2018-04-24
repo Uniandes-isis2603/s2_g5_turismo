@@ -33,6 +33,7 @@ public class PaqueteTuristicoDTO {
      * Atriburo que modela el id del paquete turistico
      */
     private Long id;
+    private Boolean completado;
     
     /**
      * Constructor por defecto
@@ -45,12 +46,14 @@ public class PaqueteTuristicoDTO {
         if(entity != null)
         {
         this.id = entity.getId();
+        this.completado = entity.getCompletado();
         }
         
     }
      public PaqueteTuristicoEntity toEntity() {
         PaqueteTuristicoEntity entity = new PaqueteTuristicoEntity();
         entity.setId(this.getId());
+        entity.setCompletado(this.isCompletado());
         return entity;
     }
     /**
@@ -63,8 +66,16 @@ public class PaqueteTuristicoDTO {
     /**
      * @param id Identificador del paquete
      */
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
+    }
+
+    public Boolean isCompletado() {
+        return completado;
+    }
+
+    public void setCompletado(Boolean completado) {
+        this.completado = completado;
     }
     
 }

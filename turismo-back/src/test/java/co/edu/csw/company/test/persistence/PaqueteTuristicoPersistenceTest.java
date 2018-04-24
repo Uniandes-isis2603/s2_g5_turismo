@@ -140,7 +140,6 @@ public class PaqueteTuristicoPersistenceTest {
 
         PaqueteTuristicoEntity entity = em.find(PaqueteTuristicoEntity.class, result.getId());
 
-        Assert.assertEquals(newEntity.getName(), entity.getName());
         Assert.assertEquals(newEntity.getId(), entity.getId());
     }
 
@@ -174,7 +173,6 @@ public class PaqueteTuristicoPersistenceTest {
         PaqueteTuristicoEntity entity = data.get(0);
         PaqueteTuristicoEntity newEntity = paqueteTuristicoPersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
-        Assert.assertEquals(newEntity.getName(), entity.getName());
         Assert.assertEquals(newEntity.getId(), entity.getId());
     }
 
@@ -208,7 +206,6 @@ public class PaqueteTuristicoPersistenceTest {
 
         PaqueteTuristicoEntity resp = em.find(PaqueteTuristicoEntity.class, entity.getId());
 
-        Assert.assertEquals(newEntity.getName(), resp.getName());
         Assert.assertEquals(newEntity.getId(), resp.getId());
     }
 }
