@@ -1,7 +1,10 @@
 <div>
     <div ng-repeat="ubicacion in records">
         <div>
-            <h2>{{ubicacion.pais}}</h2>
+            <h2><a ui-sref="ubicacionDetail({ubicacionId: ubicacion.ID})">{{ubicacion.pais}}</a></h2>
         </div>
     </div>
+      <div class="btn-group mr-2" role="group" aria-label="First group">
+        <a class="btn btn-info" ui-sref="ubicacionCreate"><span class="glyphicon glyphicon-plus-sign"></span> Agregar ubicación</a>
+     </div>
 </div>

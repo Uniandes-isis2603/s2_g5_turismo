@@ -29,7 +29,7 @@
            }).state("tarjetaDetail",{
                url:'/{tarjetaId:int}/detail',
                parent: 'tarjeta',
-               'params':{
+               param:{
                    tarjetaId: null
                },
                views:{
@@ -47,7 +47,34 @@
               
                
            }
-                   );
+                   ).state("tarjetaCreate",{
+                       url:"/create",
+                       parent:"tarjeta",
+                       views:{
+                           'detailView':{
+                               templateUrl:basePath +"tarjetas.create.html",
+                               controller:"tarjetaNewCtrl"
+                           },
+                           'sideView':{
+                               templateUrl: basePath + 'tarjetas.side.html'
+                           }
+                       }
+                   }).state('tarjetaUpdate', {
+                url: '/update/{tarjetaId:int}',
+                parent: 'tarjeta',
+                param: {
+                    tarjetaId: null
+                },
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + "tarjetas.create.html",
+                        controller: 'tarjetasUpdateCtrl'
+                    },
+                   'sideView':{
+                       templateUrl: basePath + 'tarjetas.side.html'
+                   }
+                }
+            });
            
     }]);
 })(window.angular);

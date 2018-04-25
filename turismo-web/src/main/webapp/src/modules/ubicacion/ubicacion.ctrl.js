@@ -9,22 +9,22 @@
                 $scope.records = response.data;
             });
             
-             // el controlador recibió un cityId ??
-            // revisa los parámetros (ver el :cityId en la definición de la ruta)
-//            if ($stateParams.ubicacionId !== null && $stateParams.ubicacionId !== undefined) {
-//
-//                // toma el id del parámetro
-//                id = $stateParams.tarjetId;
-//                // obtiene el dato del recurso REST
-//                $http.get(context + "/" + id)
-//                        .then(function (response) {
-//                            // $http.get es una promesa
-//                            // cuando llegue el dato, actualice currentRecord
-//                            $scope.currentRecord = response.data;
-//                        });
-//
-//                // el controlador no recibió un cityId
-//            }
+              //el controlador recibió un ubicacionId ??
+             //revisa los parámetros (ver el :ubicacionId en la definición de la ruta)
+            if ($state.params.ubicacionId !== null && $state.params.ubicacionId !== undefined) {
+
+                // toma el id del parámetro
+                id = $state.params.ubicacionId;
+                // obtiene el dato del recurso REST
+                $http.get(context + "/" + id)
+                        .then(function (response) {
+                            // $http.get es una promesa
+                            // cuando llegue el dato, actualice currentRecord
+                            $scope.currentRecord = response.data;
+                        });
+
+                // el controlador no recibió un ubicacionId
+            }
         }
     ]);
     }

@@ -26,7 +26,40 @@
                        templateUrl: basePath + 'ubicacion.side.html'
                    }
                }
-           });
+           }).state("ubicacionDetail",{
+               url:'/{ubicacionId:int}/detail',
+               parent: 'ubicacion',
+               'params':{
+                   ubicacionId: null
+               },
+               views:{
+                  'listView':{
+                       templateUrl: basePath + 'ubicacion.list.html'
+                   },
+                   'sideView':{
+                       templateUrl: basePath + 'ubicacion.side.html'
+                   },
+                   'detailView':{
+                       templateUrl: basePath +'ubicacion.detail.html'
+                   }
+                   
+               }
+              
+               
+           }
+                   ).state("ubicacionCreate",{
+                       url:"/create",
+                       parent:"ubicacion",
+                       views:{
+                           'detailView':{
+                               templateUrl:basePath +"ubicacion.create.html",
+                               controller:"ubicacionNewCtrl"
+                           },
+                   'sideView':{
+                       templateUrl: basePath + 'ubicacion.side.html'
+                   }
+                       }
+                   });;
            
     }]);
 })(window.angular);
