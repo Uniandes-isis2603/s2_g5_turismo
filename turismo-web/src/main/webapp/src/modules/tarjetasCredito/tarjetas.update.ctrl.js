@@ -8,10 +8,10 @@
     
     function ($scope, $rootScope, $http, tarjetaContext, $state, $filter) {
             $rootScope.edit = true;
-            alert("entro aqui y la tarjeta ID");
-            console.log($state);
+           
+           
             id = $state.params.tarjetaId;
-            alert("entro aqui y la tarjeta ID" +id);
+          
            if ($state.params.tarjetaId !== null && $state.params.tarjetaId !== undefined) 
            {  
             $http.get(tarjetaContext+"/"+id).then(function(response){
