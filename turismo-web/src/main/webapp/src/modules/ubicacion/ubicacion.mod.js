@@ -59,7 +59,22 @@
                        templateUrl: basePath + 'ubicacion.side.html'
                    }
                        }
-                   });;
+                   }).state('ubicacionUpdate', {
+                url: '/update/{ubicacionId:int}',
+                parent: 'ubicacion',
+                param: {
+                    ubicacionId: null
+                },
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + "ubicacion.create.html",
+                        controller: 'ubicacionUpdateCtrl'
+                    },
+                   'sideView':{
+                       templateUrl: basePath + 'ubicacion.side.html'
+                   }
+                }
+            });
            
     }]);
 })(window.angular);
