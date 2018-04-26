@@ -40,7 +40,8 @@
                        templateUrl: basePath + 'facturas.side.html'
                    },
                    'detailView':{
-                       templateUrl: basePath +'facturas.detail.html'
+                       templateUrl: basePath +'facturas.detail.html',
+                       controller:"facturaDetailCtrl"
                    }
                    
                }
