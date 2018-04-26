@@ -11,7 +11,7 @@
                 $scope.records = response.data;
                  
             });
-             alert("ID: " );
+            
 //              el controlador recibió un tarjetaId ??
 //             revisa los parámetros (ver el :tarjetaId en la definición de la ruta)
 console.log($state)
