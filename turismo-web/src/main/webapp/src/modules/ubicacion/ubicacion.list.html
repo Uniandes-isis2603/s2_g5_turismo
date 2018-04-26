@@ -2,7 +2,7 @@
     <div ng-repeat="ubicacion in records">
         <div>
             <div class="col-md-11">
-            <h1><a ui-sref="ubicacionDetail({ubicacionId: ubicacion.ID})">{{ubicacion.pais}}</a></h1>
+            <h1><a ui-sref="ubicacionDetail({ubicacionId: ubicacion.id})">{{ubicacion.pais}}</a></h1>
            </div>
             <div class="col-md-1" >
             <a class="btn btn-default btn-sm" ui-sref="ubicacionUpdate({ubicacionId: ubicacion.id})"><span class="glyphicon glyphicon-edit"></span></a>
