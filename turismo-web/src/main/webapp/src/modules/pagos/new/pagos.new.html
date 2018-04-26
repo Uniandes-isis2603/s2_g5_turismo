@@ -1,0 +1,20 @@
+<form  name="pago">
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="pagoName" class="col-sm-2">Nombre del plan:</label>
+                            <input id="pagoName" required ng-model="pagoName" class="col-sm-6"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="pagoCosto" class="col-sm-2">Costo plan:</label>
+                            <input type="int" id="pagoCosto" required ng-model="pagoCosto" class="col-sm-6"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group col-sm-12">
+                            <input type="submit" ng-click="createPago()" value="Save" class="btn btn-success"/>
+                            <a class="btn btn-info" ui-sref="pagosList">Cancel</a>
+                        </div>
+                    </div>
+</form>

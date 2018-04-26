@@ -29,7 +29,33 @@
                         templateUrl: basePath + 'pagos.side.html'
                     }
                }
-           });
+           }).state("pagoCreate",{
+               url:'/create',
+               parent:'pago',
+               views:{
+                   'listView':{
+                       templateUrl: basePath + '/new/pagos.new.html',
+                       controller: 'pagoNewCtrl'
+                   }
+                   ,'sideView': {
+                        templateUrl: basePath + 'pagos.side.html'
+                    }
+               }
+           }).state("pagoUpdate",{
+                url:'/update/{pagoId:int}',
+                parent:'pago',
+                param:{
+                    pagoId: null
+                },
+            views:{'listView':{
+                       templateUrl: basePath + '/new/pagos.new.html',
+                       controller: 'pagoUpdateCtrl'
+                   }
+                   ,'sideView': {
+                        templateUrl: basePath + 'pagos.side.html'
+                    }
+                }
+            });
            
     }]);
 })(window.angular);
