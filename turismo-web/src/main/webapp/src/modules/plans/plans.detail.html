@@ -9,27 +9,15 @@
             </div>
             <div class="col-md-3">
                 <dl>     
-                    <dt class="bold">{{currentPlan.nombrePlan}}</dt>
-                    <ul ng-repeat="guide in currentPlan.guiasPlan">
-                        <dd> {{guide.nombreGuia}}</dd>
-                        <dd> {{guide.idiomaGuia}}</dd>
-                    </ul>
+                    <dt class="bold">{{currentPlan.name}}</dt>
                     <dt> Duración</dt>
                     <dd>{{currentPlan.duracion}}</dd>
-                    <hr>
                     <dt>Restricciones</dt>
                     <dd>{{currentPlan.restricciones}}</dd>
-                    <hr>
-                    <dt class="bold">Ubicacion</dt>
-                    <dt>País</dt>
-                    <dd>{{currentPlan.ubicacion.pais}}</dd>
-                    <dt>Ciudad</dt>
-                    <dd>{{currentPlan.ubicacion.ciudad}}</dd>
-                    <dt>Latitud</dt>
-                    <dd>{{currentPlan.ubicacion.latitud}}</dd>
-                    <dt>Longitud</dt>
-                    <dd>{{currentPlan.ubicacion.longitud}}</dd>
-                    <hr>
+                    <dt>Cantidad de personas recomendada</dt>
+                    <dd>{{currentPlan.cantidadPersonas}}</dd>
+                    <dt>Precio</dt>
+                    <dd>{{currentPlan.precio}}'$'</dd>                    
                     <dt class="bold">Descripcion</dt>
                     <dd>{{currentPlan.descripcion}}</dd>
                     <ul ng-repeat="valoracion in currentPlan.valoraciones">
@@ -40,10 +28,13 @@
                         <dd> {{cat.calificacion}}</dd>
                         <dd> {{cat.comentario}}</dd>
                     </ul>
-
                 </dl>
+                <ul class="nav nav-tabs">
+                    <li> <a ui-sref="planDetailGuides({planId: currentPlan.idPlan})">Reviews</a></li>
+                </ul>
             </div>
         </div>
     </div>
 </div>
+
 
