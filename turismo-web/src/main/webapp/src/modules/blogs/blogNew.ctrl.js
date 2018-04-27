@@ -9,7 +9,7 @@
             $rootScope.edit = false;
 
             
-            alert("Create")
+
            
             $scope.createBlog = function () {
                 

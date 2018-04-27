@@ -37,7 +37,7 @@
             
          
                     
-            $http.get('api/blogs/'+ $state.param.blogId + comentariosContext ).then(function (response) {
+            $http.get('api/blogs/'+ $state.params.blogId + comentariosContext ).then(function (response) {
                 $scope.comentariosRecords = response.data;
             });
         }

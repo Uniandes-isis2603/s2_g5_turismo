@@ -50,6 +50,21 @@
                     
                 }
                 
+            }).state('blogUpdate', {
+                url: '/update/{blogId:int}',
+                parent: 'blogs',
+                param: {
+                    blogId: null
+                },
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + "blog.create.html",
+                        controller: 'blogsUpdateCtrl'
+                    },
+                   'sideView':{
+                       templateUrl: basePath + 'blogs.side.html'
+                   }
+                }
             }).state('blogsList', {
                 url: '/list',
                 parent: 'blogs',

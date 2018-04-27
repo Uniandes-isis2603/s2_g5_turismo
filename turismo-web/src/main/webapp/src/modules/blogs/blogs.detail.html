@@ -1,9 +1,13 @@
 <div class="panel panel-default"> 
     <div class="panel-body">
         <div class="row">
-            <div class="col-md-3">
-               
+                           
 
+            <div class="col-md-3">
+ <div>
+                     <a class="btn btn-default btn-sm" ui-sref="blogUpdate({blogId: currentblog.id})"><span class="glyphicon glyphicon-edit"></span></a>
+                         <hr>
+                     </div>
             </div>
             <div class="col-md-3">
                 <dl>   
@@ -18,14 +22,11 @@
                      
                       <div class="thumbnail">
               
-                <a ui-sref="comentariosList({blogId: blog.id})">
+                <a ui-sref="comentariosList({blogId: currentblog.id})">
                 <h4>presionar aqui para ver comentarios</h4>                    
                                     
                 </a>
                 </div>
-                     
-                   
-                    
 
                 </dl>
             </div>
