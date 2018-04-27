@@ -40,7 +40,8 @@
                        templateUrl: basePath + 'facturas.side.html'
                    },
                    'detailView':{
-                       templateUrl: basePath +'facturas.detail.html'
+                       templateUrl: basePath +'facturas.detail.html',
+                       controller:"facturaDetailCtrl"
                    }
                    
                }
@@ -59,7 +60,22 @@
                        templateUrl: basePath + 'facturas.side.html'
                    }
                        }
-                   });
+                   }).state('facturaUpdate', {
+                url: '/update/{facturaId:int}',
+                parent: 'factura',
+                param: {
+                    tarjetaId: null
+                },
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + "facturas.create.html",
+                        controller: 'facturasUpdateCtrl'
+                    },
+                   'sideView':{
+                       templateUrl: basePath + 'facturas.side.html'
+                   }
+                }
+            });
            
     }]);
 })(window.angular);

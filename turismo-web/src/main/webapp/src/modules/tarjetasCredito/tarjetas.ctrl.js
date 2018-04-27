@@ -12,31 +12,11 @@
                  
             });
             
-//              el controlador recibió un tarjetaId ??
-//             revisa los parámetros (ver el :tarjetaId en la definición de la ruta)
-console.log($state)
-                
-            if ($state.params.tarjetaId !== null && $state.params.tarjetaId !== undefined) {
 
-                    alert("ID: " + $state.params.tarjetaId);
-                // toma el id del parámetro
-                id = $state.params.tarjetaId;
-                
-                
-                
-                // obtiene el dato del recurso REST
-                $http.get(context +"/"+id).then(function (response) {
-                            // $http.get es una promesa
-                            // cuando llegue el dato, actualice currentRecord
-                             $scope.currentRecord = response.data;
-                          
-                        });
+          }
 
-                // el controlador no recibió un tarjetaId
-            }
-        }
-    ]);
-    }
+     ]);
+ }
  )(window.angular);
 
 
