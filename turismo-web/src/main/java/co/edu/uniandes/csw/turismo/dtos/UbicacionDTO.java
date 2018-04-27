@@ -36,6 +36,7 @@ import co.edu.uniandes.csw.turismo.entities.UbicacionEntity;
  */
 public class UbicacionDTO 
 {
+    private Long id;
     private String pais;
     private String ciudad;
     private Double latitud;
@@ -49,6 +50,7 @@ public class UbicacionDTO
     {
          if(entity != null)
          {
+             this.id = entity.getId();
              this.pais = entity.getPais();
              this.ciudad= entity.getCiudad();
              this.latitud=entity.getLatitud();
@@ -59,11 +61,20 @@ public class UbicacionDTO
     public UbicacionEntity toEntity()
     {
         UbicacionEntity entity = new UbicacionEntity();
+        entity.setId(this.id);
         entity.setPais(this.pais);
         entity.setCiudad(this.getCiudad());
         entity.setLatitud(this.getLatitud());
         entity.setLongitud(this.getLongitud());
         return entity;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getPais() {
