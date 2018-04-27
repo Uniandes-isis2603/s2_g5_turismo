@@ -82,6 +82,15 @@
                         templateUrl: basePath + 'plans.side.html'
                     }
                 }
+            }).state('plansCreate', {
+                url: '/create/plan',
+                parent: 'plans',
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + '/new/plans.new.html',
+                        controller: 'planNewCtrl'
+                    }
+                }
             }).state('planDetailGuides',{
                 url: '/{planId:int}/detail/guides',
                 parent: 'planDetail',
