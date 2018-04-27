@@ -15,7 +15,16 @@
                      <hr>
                      <dt>likes</dt>
                      <dd>{{currentblog.likes}}</dd>
-                     <dt ui-sref="comentariosList"> presionar aqui para ver comentarios</dt>
+                     
+                      <div class="thumbnail">
+              
+                <a ui-sref="comentariosList({blogId: blog.id})">
+                <h4>presionar aqui para ver comentarios</h4>                    
+                                    
+                </a>
+                </div>
+                     
+                   
                     
 
                 </dl>

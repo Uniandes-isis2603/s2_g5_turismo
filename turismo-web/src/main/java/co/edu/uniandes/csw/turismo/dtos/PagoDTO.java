@@ -7,7 +7,7 @@
  * <pre>
  *   {
  *      "id": number,
- *      "idPlan: number,
+ *      "nombrePlan: number,
  *      "costo": number
  *   }
  * </pre>

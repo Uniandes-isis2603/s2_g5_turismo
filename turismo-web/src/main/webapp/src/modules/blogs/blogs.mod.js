@@ -61,7 +61,19 @@
                         templateUrl: basePath + 'blogs.side.html'
                     }
                 }
-            }).state('blogsDetail', {
+            }).state("blogCreate",{
+                       url:"/create",
+                       parent:"blogs",
+                       views:{
+                           'detailView':{
+                               templateUrl:basePath +"blog.create.html",
+                               controller:"blogNewctrl"
+                           },
+                           'sideView':{
+                               templateUrl: basePath + 'blogs.side.html'
+                           }
+                       }
+                   }).state('blogsDetail', {
                 url: '/{blogId:int}/detail',
                 parent: 'blogs',
                 param: {

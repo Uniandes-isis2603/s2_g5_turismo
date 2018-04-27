@@ -25,6 +25,9 @@
             $stateProvider.state('comentariosList', {
                 // Url que aparecerá en el browser
                 url: '/comentarios/list',
+                params: {
+                    blogId: null
+                },
                 views: {
                     'mainView': {
                         templateUrl: basePath + 'comentarios.list.html',

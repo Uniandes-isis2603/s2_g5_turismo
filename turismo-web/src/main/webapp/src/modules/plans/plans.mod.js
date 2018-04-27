@@ -38,18 +38,15 @@
                 url: '/plans',
                 abstract: true,
                 views: {
-                    'sideView': {
+                    'sideViewPlan': {
                         templateUrl: basePath + 'plans.side.html'
                     },
                     'mainView': {
                         templateUrl: basePath + 'plans.html',
                         controller: 'planCtrl',
                         controllerAs: 'ctrl'
-                    }
-                    
-                    
-                }
-                
+                    }   
+                }           
             }).state('plansList', {
                 url: '/list',
                 parent: 'plans',
@@ -57,7 +54,7 @@
                     'listView': {
                         templateUrl: basePath + 'plans.list.html'
                     },
-                    'sideView': {
+                    'sideViewPlan': {
                         templateUrl: basePath + 'plans.side.html'
                     }
                 }
@@ -78,13 +75,10 @@
                         controller: 'planDetailCtrl',
                         controllerAs: 'ctrl'
                     },
-                    'sideView': {
+                    'sideViewPlan': {
                         templateUrl: basePath + 'plans.side.html'
                     }
-                    
-
                 }
-
             });
         }]);
 })(window.angular);

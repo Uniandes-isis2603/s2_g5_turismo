@@ -1,6 +1,6 @@
 (function (ng) {
     var mod = ng.module("comentariosModule");
-    mod.constant("comentariosContext", "api/comentarios");
+    mod.constant("comentariosContext", "/comentarios");
     mod.controller('comentariosCtrl', ['$scope', '$http', 'comentariosContext', '$state',
         /**
          * @ngdoc controller
@@ -34,7 +34,10 @@
              * @param {String} URL Dirección donde se encuentra el recurso
              * de los comentarios o API donde se puede consultar.
              */
-            $http.get(comentariosContext).then(function (response) {
+            
+         
+                    
+            $http.get('api/blogs/'+ $state.param.blogId + comentariosContext ).then(function (response) {
                 $scope.comentariosRecords = response.data;
             });
         }

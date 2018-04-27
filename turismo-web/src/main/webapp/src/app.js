@@ -3,14 +3,21 @@
         // External dependencies
         'ui.router',
         'ui.bootstrap',
-        // Internal modules dependencies       
+        // Internal modules dependencies  
+        'miPlanModule',
+        'pagoModule',
         'planModule',
         'preferenciaModule',
         'moduloTarjetas',
         'guiaModule',
+        'blogsModule',
+        'moduloFacturas',
+        'moduloUbicacion',
+        'paqueteModule',
         'comentariosModule',
-        'blogsModule'
+       
         
+
 
     ]);
     // Resuelve problemas de las promesas
