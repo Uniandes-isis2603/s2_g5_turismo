@@ -30,8 +30,14 @@
                     </ul>
                 </dl>
                 <ul class="nav nav-tabs">
-                    <li> <a ui-sref="planDetailGuides({planId: currentPlan.idPlan})">Reviews</a></li>
+                    <li> <a ui-sref="planDetailGuides({planId: currentPlan.idPlan})">Guías</a></li>
                 </ul>
+            </div>
+        </div>
+         <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-9">
+                <div ui-view="planGuidesView"></div>
             </div>
         </div>
     </div>

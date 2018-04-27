@@ -1,6 +1,6 @@
 (function (ng) {
     var mod = ng.module("planModule");
-    mod.constant("plansContext", "api/plans/");
+    mod.constant("plansContext", "api/plans");
     mod.controller('planDetailGuidesCtrl', ['$scope', '$http', 'plansContext', '$state',
         /**
          * @ngdoc controller
@@ -31,7 +31,7 @@
              * @param {String} URL Dirección donde se encuentra el recurso
              * del plan o API donde se puede consultar.
              */
-                $http.get(plansContext + $state.params.planId+ '/guides').then(function (response) {
+                $http.get(plansContext + '/' + $state.params.planId+ '/guides').then(function (response) {
                     $scope.currentGuideFromPlan = response.data;
                 });
             }

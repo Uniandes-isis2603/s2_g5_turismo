@@ -82,9 +82,9 @@
                         templateUrl: basePath + 'plans.side.html'
                     }
                 }
-            }).state('planDetailGuides'),{
+            }).state('planDetailGuides',{
                 url: '/{planId:int}/detail/guides',
-                parent: 'plans',
+                parent: 'planDetail',
                 param:{
                     planId:null
                 },
@@ -108,6 +108,6 @@
                         controllerAs: 'ctrl'
                     }
                 }
-            };
+            });
         }]);
 })(window.angular);
