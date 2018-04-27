@@ -4,11 +4,17 @@
     <div class="row">
         <div class="col-md-2" ng-repeat="blog in blogsRecords">
             <div class="thumbnail">
-                <h3>tema</h3>
+                <h4>{{blog.tema}}</h4>
                 <a ui-sref="blogsDetail({blogId: blog.id})">                    
-                    <img class="img-responsive" ng-src='{{blog.archivo}}' alt="{{blog.descripcion}}" />                  
+                    <img class="img-responsive" ng-src='{{blog.archivo}}' alt="imagen" />                  
                 </a>
                 </div>
+            
+            
+         
             </div>
+           <div class="btn-group mr-2" role="group" aria-label="First group">
+        <a class="btn btn-info" ui-sref="blogCreate"><span class="glyphicon glyphicon-plus-sign"></span> nuevo blog</a>
+     </div>
         </div>
     </div>
