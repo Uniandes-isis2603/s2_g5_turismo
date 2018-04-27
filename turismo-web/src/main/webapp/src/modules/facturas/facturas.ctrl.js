@@ -8,7 +8,7 @@
         {
             //lista vacia
             $scope.records={};
-            alert("entro");
+           
             //carga las facturas de un usuario
             $http.get(context).then(function(response){
                 $scope.records = response.data;
