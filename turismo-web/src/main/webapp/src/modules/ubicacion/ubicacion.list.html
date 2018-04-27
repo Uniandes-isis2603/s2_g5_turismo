@@ -1,0 +1,15 @@
+<div>
+    <div ng-repeat="ubicacion in records">
+        <div>
+            <div class="col-md-11">
+            <h1><a ui-sref="ubicacionDetail({ubicacionId: ubicacion.id})">{{ubicacion.pais}}</a></h1>
+           </div>
+            <div class="col-md-1" >
+            <a class="btn btn-default btn-sm" ui-sref="ubicacionUpdate({ubicacionId: ubicacion.id})"><span class="glyphicon glyphicon-edit"></span></a>
+        </div>
+        </div>
+    </div>
+      <div class="btn-group mr-2" role="group" aria-label="First group">
+        <a class="btn btn-info" ui-sref="ubicacionCreate"><span class="glyphicon glyphicon-plus-sign"></span> Agregar ubicación</a>
+     </div>
+</div>

@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -18,8 +21,22 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author dl.avendano
  */
 @Entity
-public class PaqueteTuristicoEntity extends BaseEntity implements Serializable {
+public class PaqueteTuristicoEntity  {
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
    
+    private Boolean completado;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
     @PodamExclude
     @OneToMany
     private List<PagoEntity> pagos ;
@@ -43,6 +60,14 @@ public class PaqueteTuristicoEntity extends BaseEntity implements Serializable {
 
     public void setPlanes(List<PlanAgendadoEntity> planes) {
         this.planes = planes;
+    }
+
+    public void setCompletado(Boolean completado) {
+        this.completado=completado;
+    }
+    
+    public Boolean getCompletado() {
+        return completado;
     }
     
     
