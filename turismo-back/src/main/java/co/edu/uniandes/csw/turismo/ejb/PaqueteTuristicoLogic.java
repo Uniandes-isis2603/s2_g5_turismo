@@ -46,6 +46,7 @@ public class PaqueteTuristicoLogic {
         if (pagos.size()!=planes.size())
              throw new BusinessLogicException("El numero de pagos no coincide con el numero de planes en el paquete \"");
         }
+        
         return persistence.create(entity);
     }
     public List<PaqueteTuristicoEntity> getPaquetes() {
