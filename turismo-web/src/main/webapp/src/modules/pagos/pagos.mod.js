@@ -55,6 +55,18 @@
                         templateUrl: basePath + 'pagos.side.html'
                     }
                 }
+            }).state('pagoDelete', {
+                url: '/delete/{pagoId:int}',
+                parent: 'pago',
+                param: {
+                    pagoId: null
+                },
+                views: {
+                    'listView': {
+                        templateUrl: basePath + '/delete/pagos.delete.html',
+                        controller: 'pagoDeleteCtrl'
+                    }
+                }
             });
            
     }]);

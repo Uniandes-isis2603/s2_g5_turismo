@@ -76,6 +76,18 @@
                         templateUrl: basePath + 'pagos.side.html'
                     }
                 }
+            }).state('paqueteDelete', {
+                url: '/delete/{paqueteId:int}',
+                parent: 'paquete',
+                param: {
+                    paqueteId: null
+                },
+                views: {
+                    'listView': {
+                        templateUrl: basePath + '/delete/paquete.delete.html',
+                        controller: 'paqueteDeleteCtrl'
+                    }
+                }
             });
            
     }]);
