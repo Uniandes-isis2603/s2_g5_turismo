@@ -35,7 +35,6 @@
              * de los comentarios o API donde se puede consultar.
              */
             
-         
                     
             $http.get('api/blogs/'+ $state.params.blogId + comentariosContext ).then(function (response) {
                 $scope.comentariosRecords = response.data;

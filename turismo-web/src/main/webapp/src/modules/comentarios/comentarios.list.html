@@ -5,14 +5,28 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>comentario</th>    
+                    <th>comentarios</th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="comentario in comentariosRecords">
-                    <td id="{{$index}}-name">{{comentario.comentario}}</td>  
+                    
+                    <td id="{{$index}}-name">{{comentario.comentario}}
+                     <a class="btn btn-default btn-sm" ui-sref="comentarioUpdate({comentarioId: comentario.id})"><span class="glyphicon glyphicon-edit"></span></a>
+                     <h6>borrar</h6>
+                     <a class="btn btn-default btn-sm" ui-sref="ComentarioDelete({Id: comentario.id})"><span class="glyphicon glyphicon-trash"></span></a>
+                    </td> 
                 </tr>
+                <tr> <div class="row">
+                <div ui-view="detailView"></div>
+            </div></tr>
+                
             </tbody>
         </table>
     </div>
+     <div class="btn-group mr-2" role="group" aria-label="First group">
+        <a class="btn btn-info" ui-sref="comentarioCreate"><span class="glyphicon glyphicon-plus-sign"></span> nuevo comentario</a>
+     </div>
+    
+     
 </div>

@@ -50,7 +50,46 @@
                         templateUrl: basePath + 'planesAg.side.html'
                     }
                }
-           });
+           }).state("miPlanCreate",{
+               url:'/create',
+               parent:'miPlan',
+               views:{
+                   'listView':{
+                       templateUrl: basePath + '/new/planesAg.new.html',
+                       controller: 'miPlanNewCtrl'
+                   }
+                   ,'sideView': {
+                        templateUrl: basePath + 'planesAg.side.html'
+                    }
+               }
+           }).state("miPlanUpdate",{
+               url:'/update/{miPlanId:int}',
+               parent:'miPlan',
+               param:{
+                    miPlanId: null
+                },
+               views:{
+                   'listView':{
+                       templateUrl: basePath + '/new/planesAg.new.html',
+                       controller: 'miPlanUpdateCtrl'
+                   }
+                   ,'sideView': {
+                        templateUrl: basePath + 'planesAg.side.html'
+                    }
+               }
+           }).state('miPlanDelete', {
+                url: '/delete/{miPlanId:int}',
+                parent: 'miPlan',
+                param: {
+                    miPlanId: null
+                },
+                views: {
+                    'listView': {
+                        templateUrl: basePath + '/delete/planesAg.delete.html',
+                        controller: 'miPlanDeleteCtrl'
+                    }
+                }
+            });
            
     }]);
 })(window.angular);
