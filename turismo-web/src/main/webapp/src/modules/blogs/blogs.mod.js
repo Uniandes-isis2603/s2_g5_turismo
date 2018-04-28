@@ -112,6 +112,18 @@
 
                 }
 
-            });
+            }).state('deleteBlog', {
+                url: '/delete/{blogId:int}',
+                parent: 'blogs',
+                param: {
+                    blogId: null
+                },
+                views: {
+                    'listView': {
+                        templateUrl: basePath + 'blog.delete.html',
+                        controller: 'blogDeleteCtrl'
+                    }
+                }
+        });
         }]);
 })(window.angular);
