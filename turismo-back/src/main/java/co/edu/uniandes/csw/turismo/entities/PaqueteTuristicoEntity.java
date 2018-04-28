@@ -42,7 +42,7 @@ public class PaqueteTuristicoEntity  {
     private List<PagoEntity> pagos ;
     
     @PodamExclude
-    @OneToMany (cascade = CascadeType.PERSIST, orphanRemoval = true) 
+    @OneToMany  
     private List<PlanAgendadoEntity> planes;
 
 

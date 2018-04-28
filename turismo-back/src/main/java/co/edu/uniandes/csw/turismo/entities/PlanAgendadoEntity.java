@@ -7,7 +7,10 @@ package co.edu.uniandes.csw.turismo.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -18,15 +21,15 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author dl.avendano
  */
 @Entity
-public class PlanAgendadoEntity extends BaseEntity implements Serializable
+public class PlanAgendadoEntity extends BaseEntity 
 {
     @PodamExclude
-    @OneToOne
-    private GuiaEntity guia = new GuiaEntity();
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    private GuiaEntity guia ;
     
     @PodamExclude
-    @OneToOne
-    private PlanEntity plan = new PlanEntity();
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    private PlanEntity plan ;
 
     @Temporal(TemporalType.DATE)
     Date fecha = new Date();

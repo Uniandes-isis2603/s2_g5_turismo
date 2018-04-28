@@ -50,6 +50,18 @@
                         templateUrl: basePath + 'planesAg.side.html'
                     }
                }
+           }).state("miPlanCreate",{
+               url:'/create',
+               parent:'miPlan',
+               views:{
+                   'listView':{
+                       templateUrl: basePath + '/new/planesAg.new.html',
+                       controller: 'miPlanNewCtrl'
+                   }
+                   ,'sideView': {
+                        templateUrl: basePath + 'planesAg.side.html'
+                    }
+               }
            });
            
     }]);
