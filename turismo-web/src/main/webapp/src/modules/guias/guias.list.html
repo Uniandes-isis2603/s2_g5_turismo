@@ -1,18 +1,28 @@
 <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
 <div id="alertPanel" style="text-align: center"></div>
 <div class="container-fluid">
+    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+            <div class="btn-group mr-2" role="group" aria-label="First group">
+                <a class="btn btn-info" ui-sref="guiasCreate"><span class="glyphicon glyphicon-plus-sign"></span> Añadir un guía</a>
+            </div>
+        </div>
     <div class="col-md-4">
         <table class="table table-striped">
             <thead>
                 <tr>
                     <th>Nombre</th>    
                     <th>Idioma</th> 
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="guia in guiasRecords">
                     <td id="{{$index}}-name">{{guia.nombreGuia}}</td>  
                     <td id="{{$index}}-name">{{guia.idiomaGuia}}</td> 
+                    <td id="{{$index}}-actions">
+                                <a class="btn btn-default btn-sm" ui-sref="guiaUpdate({guiaId: guia.idGuia})"><span class="glyphicon glyphicon-edit"></span></a>
+                                <a class="btn btn-danger btn-sm" ui-sref="guiaDelete({guiaId: guia.idGuia})"><span class="glyphicon glyphicon-trash"></span></a>
+                    </td>
                 </tr>
             </tbody>
         </table>

@@ -22,17 +22,63 @@
             // Mostrar la lista de guias será el estado por defecto del módulo
             $urlRouterProvider.otherwise("/guiasList");
             // Definición del estado 'guiasList' donde se listan los guias
-            $stateProvider.state('guiasList', {
+            $stateProvider.state('guias', {
                 // Url que aparecerá en el browser
-                url: '/guias/list',
+                url: '/guias',
                 views: {
+                    'sideViewGuias': {
+                       templateUrl: basePath + 'guias.side.html'
+                    },
                     'mainView': {
-                        templateUrl: basePath + 'guias.list.html',
+                        templateUrl: basePath + 'guias.html',
                         controller: 'guiaCtrl',
                         controllerAs: 'ctrl'
                     }
                 }
-            });
-        }
-    ]);
+                }).state('guiasList', {
+                url: '/list',
+                parent: 'guias',
+                views: {
+                    'listView': {
+                        templateUrl: basePath + 'guias.list.html'
+                    },
+                    'sideViewGuias': {
+                        templateUrl: basePath + 'guias.side.html'
+                    }
+                }
+                }).state('guiasCreate', {
+                url: '/create/guias',
+                parent: 'guias',
+                views: {
+                    'listView': {
+                        templateUrl: basePath + '/new/guias.new.html',
+                        controller: 'guiaNewCtrl'
+                    }
+                }
+                }).state('guiaUpdate', {
+                url: '/update/{guiaId:int}',
+                parent: 'guias',
+                param: {
+                    guiaId: null
+                },
+                views: {
+                    'listView': {
+                        templateUrl: basePath + '/new/guias.new.html',
+                        controller: 'guiaUpdateCtrl'
+                    }
+                }
+                }).state('guiaDelete', {
+                url: '/delete/{guiaId:int}',
+                parent: 'guias',
+                param: {
+                    guiaId: null
+                },
+                views: {
+                    'listView': {
+                        templateUrl: basePath + '/delete/guias.delete.html',
+                        controller: 'guiaDeleteCtrl'
+                    }
+                }
+        });
+    }]);
 })(window.angular);
