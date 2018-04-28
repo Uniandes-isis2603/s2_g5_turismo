@@ -2,13 +2,13 @@
     <div class="panel-group">
         <div class="panel panel-primary">
             <div class="panel-heading"><label ng-if="!edit" id="createPlan">Crear nuevo Plan</label>
-                <label ng-if="edit" id="editPlan">Edit Plan</label></div>
+                <label ng-if="edit" id="editPlan">Editar Plan</label></div>
             <div class="panel-body">
                 <form name="plan">
                     <div class="form-group row">
                         <div class="form-group col-md-6">
                             <label for="planName" class="col-sm-2">Nombre:</label>
-                            <input id="planName" required ng-model="data.nombrePlan" class="col-sm-6"/>
+                            <input id="planName" required ng-model="data.name" class="col-sm-6"/>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -19,31 +19,62 @@
                     </div>
                     <div class="form-group row">
                         <div class="form-group col-md-6">
-                            <label for="planName" class="col-sm-2">Name:</label>
-                            <input id="planName" required ng-model="data.nombrePlan" class="col-sm-6"/>
+                            <label for="planArchivo" class="col-sm-2">Imagen:</label>
+                            <input id="planArchivo" required ng-model="data.archivo" class="col-sm-6"/>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="form-group col-md-6">
-                            <label for="planBirthDate" class="col-sm-2">Birth Date:</label>
-                            <input type="date" id="planBirthDate" placeholder="DD/MM/YYYY" required ng-model="data.birthDate" class="col-sm-6"/>
+                            <label for="planCantidadPersonas" class="col-sm-2">Cantidad personas:</label>
+                            <input id="planCantidadPersonas" required ng-model="data.cantidadPersonas" class="col-sm-6"/>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="form-group col-md-6">
-                            <label for="planDescription" class="col-sm-2">Biography:</label>
-                            <textarea id="planDescription" required ng-model="data.description" class="col-sm-6"></textarea>
+                            <label for="planDescription" class="col-sm-2">Descripcion:</label>
+                            <textarea id="planDescription" required ng-model="data.descripcion" class="col-sm-6"></textarea>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="form-group col-md-6">
-                            <label for="planImage" class="col-sm-2">Image:</label>
-                            <input id="planImage" required ng-model="data.image" class="col-sm-6"/>
+                            <label for="planPrecio" class="col-sm-2">Precio:</label>
+                            <input id="planPrecio" required ng-model="data.precio" class="col-sm-6"/>
                         </div>
                     </div>
-
-                    <move-lists ng-if="edit" selected="selectedItems" available="availableItems"></move-lists>
-
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="planDuracion" class="col-sm-2">Duracion:</label>
+                            <input id="planDuracion" required ng-model="data.duracion" class="col-sm-6"/>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="planPais" class="col-sm-2">Pais:</label>
+                            <input id="planPais" required ng-model="data.ubicacion.pais" class="col-sm-6"/>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="planCiudad" class="col-sm-2">Ciudad:</label>
+                            <input id="planCiudad" required ng-model="data.ubicacion.ciudad" class="col-sm-6"/>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="planLatitud" class="col-sm-2">Latitud:</label>
+                            <input id="planLatitud" required ng-model="data.ubicacion.latitud" class="col-sm-6"/>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="planLongitud" class="col-sm-2">Longitud:</label>
+                            <input id="planLongitud" required ng-model="data.ubicacion.longitud" class="col-sm-6"/>
+                        </div>
+                    </div>
                     <div class="form-group row">
                         <div class="form-group col-sm-4" ng-if="!plan.$valid">
 
