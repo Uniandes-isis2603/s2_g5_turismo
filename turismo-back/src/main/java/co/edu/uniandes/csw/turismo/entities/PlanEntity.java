@@ -27,7 +27,7 @@ public class PlanEntity extends BaseEntity
      * Modela los guias del plan
      */
     @PodamExclude
-    @OneToMany(cascade = CascadeType.PERSIST) 
+    @OneToMany
     private List<GuiaEntity> guias;
     
     /**
