@@ -39,6 +39,8 @@ public class PaqueteTuristicoLogic {
     }
     
     public PaqueteTuristicoEntity createPaqueteTuristico(PaqueteTuristicoEntity entity) throws BusinessLogicException{
+        if(entity.getPagos()!=null && entity.getPlanes()!=null)
+        {
         List <PlanAgendadoEntity> planes = entity.getPlanes();
         List <PagoEntity> pagos = entity.getPagos();
         for (int i=0;i< entity.getPlanes().size();i++)
@@ -60,6 +62,7 @@ public class PaqueteTuristicoLogic {
         }
         entity.setPagos(pagos);
         entity.setPlanes(planes);
+        }
         return persistence.create(entity);
     }
     public List<PaqueteTuristicoEntity> getPaquetes() {
