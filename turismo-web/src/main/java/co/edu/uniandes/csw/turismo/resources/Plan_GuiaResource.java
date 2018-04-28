@@ -121,7 +121,7 @@ public class Plan_GuiaResource
      */
     @GET
     @Path("{GuidesId: \\d+}")
-    public GuiaDetailDTO getGuides(@PathParam("plansId") Long plansId, @PathParam("guidesId") Long guidesId) throws BusinessLogicException 
+    public GuiaDetailDTO getGuides(@PathParam("plansId") Long plansId, @PathParam("GuidesId") Long guidesId) throws BusinessLogicException 
     {
         PlanEntity entity = planLogic.getPlan(plansId);
         if (entity == null) 
@@ -150,7 +150,7 @@ public class Plan_GuiaResource
      */
     @POST
     @Path("{GuidesId: \\d+}")
-    public GuiaDetailDTO addGuides(@PathParam("plansId") Long plansId, @PathParam("guidesId") Long guidesId) 
+    public GuiaDetailDTO addGuides(@PathParam("plansId") Long plansId, @PathParam("GuidesId") Long guidesId) 
     {
         PlanEntity entity = planLogic.getPlan(plansId);
         if (entity == null) 

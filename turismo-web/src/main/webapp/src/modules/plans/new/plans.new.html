@@ -1,0 +1,68 @@
+<div class="container-fluid">
+    <div class="panel-group">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><label ng-if="!edit" id="createPlan">Crear nuevo Plan</label>
+                <label ng-if="edit" id="editPlan">Edit Plan</label></div>
+            <div class="panel-body">
+                <form name="plan">
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="planName" class="col-sm-2">Nombre:</label>
+                            <input id="planName" required ng-model="data.nombrePlan" class="col-sm-6"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="planRestricciones" class="col-sm-2">Restricciones:</label>
+                            <input id="planRestricciones" required ng-model="data.restricciones" class="col-sm-6"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="planName" class="col-sm-2">Name:</label>
+                            <input id="planName" required ng-model="data.nombrePlan" class="col-sm-6"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="planBirthDate" class="col-sm-2">Birth Date:</label>
+                            <input type="date" id="planBirthDate" placeholder="DD/MM/YYYY" required ng-model="data.birthDate" class="col-sm-6"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="planDescription" class="col-sm-2">Biography:</label>
+                            <textarea id="planDescription" required ng-model="data.description" class="col-sm-6"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="planImage" class="col-sm-2">Image:</label>
+                            <input id="planImage" required ng-model="data.image" class="col-sm-6"/>
+                        </div>
+                    </div>
+
+                    <move-lists ng-if="edit" selected="selectedItems" available="availableItems"></move-lists>
+
+                    <div class="form-group row">
+                        <div class="form-group col-sm-4" ng-if="!plan.$valid">
+
+                            <div class="alert alert-warning" >
+                                <strong>Warning!</strong><p>All inputs are required*</p>
+                            </div> 
+                        </div> 
+                    </div> 
+                    <div class="form-group row">
+                        <div class="form-group col-sm-12">
+                            <input ng-show="plan.$valid" ng-click="createPlan()" value="Save" class="btn btn-success"/>
+                            <a class="btn btn-info" ui-sref="plansList">Cancel</a>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+

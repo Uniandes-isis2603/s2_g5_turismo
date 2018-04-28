@@ -22,17 +22,63 @@
             // Mostrar la lista de preferencias será el estado por defecto del módulo
             $urlRouterProvider.otherwise("/preferenciasList");
             // Definición del estado 'preferenciasList' donde se listan los preferencias
-            $stateProvider.state('preferenciasList', {
+            $stateProvider.state('preferencias', {
                 // Url que aparecerá en el browser
-                url: '/preferencias/list',
+                url: '/preferencias',
                 views: {
+                    'sideViewPreferencias': {
+                       templateUrl: basePath + 'preferencias.side.html'
+                    },
                     'mainView': {
-                        templateUrl: basePath + 'preferencias.list.html',
+                        templateUrl: basePath + 'preferencias.html',
                         controller: 'preferenciaCtrl',
                         controllerAs: 'ctrl'
                     }
                 }
-            });
-        }
-    ]);
+                }).state('preferenciasList', {
+                url: '/list',
+                parent: 'preferencias',
+                views: {
+                    'listView': {
+                        templateUrl: basePath + 'preferencias.list.html'
+                    },
+                    'sideViewPreferencias': {
+                        templateUrl: basePath + 'preferencias.side.html'
+                    }
+                }
+                }).state('preferenciasCreate', {
+                url: '/create/preferencias',
+                parent: 'preferencias',
+                views: {
+                    'listView': {
+                        templateUrl: basePath + '/new/preferencias.new.html',
+                        controller: 'preferenciaNewCtrl'
+                    }
+                }
+                }).state('preferenciaUpdate', {
+                url: '/update/{preferenciaId:int}',
+                parent: 'preferencias',
+                param: {
+                    preferenciaId: null
+                },
+                views: {
+                    'listView': {
+                        templateUrl: basePath + '/new/preferencias.new.html',
+                        controller: 'preferenciaUpdateCtrl'
+                    }
+                }
+                }).state('preferenciaDelete', {
+                url: '/delete/{preferenciaId:int}',
+                parent: 'preferencias',
+                param: {
+                    preferenciaId: null
+                },
+                views: {
+                    'listView': {
+                        templateUrl: basePath + '/delete/preferencias.delete.html',
+                        controller: 'preferenciaDeleteCtrl'
+                    }
+                }
+        });
+    }]);
 })(window.angular);
