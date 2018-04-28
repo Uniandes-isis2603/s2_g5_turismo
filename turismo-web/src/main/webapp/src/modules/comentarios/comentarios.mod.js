@@ -35,7 +35,16 @@
                         controllerAs: 'ctrl'
                     }
                 }
-            });
+            }).state("comentarioCreate",{
+                       url:"/create",
+                       parent:"comentariosList",
+                       views:{
+                           'detailView':{
+                               templateUrl:basePath +"comentario.create.html",
+                               controller:"comentarioNewctrl"
+                           }
+                       }
+                   });
         }
     ]);
 })(window.angular);

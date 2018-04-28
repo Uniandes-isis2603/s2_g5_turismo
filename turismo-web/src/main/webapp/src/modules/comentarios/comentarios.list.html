@@ -5,14 +5,23 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>comentario</th>    
+                    <th>comentario</th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="comentario in comentariosRecords">
-                    <td id="{{$index}}-name">{{comentario.comentario}}</td>  
+                    <td id="{{$index}}-name">{{comentario.comentario}}</td> 
                 </tr>
+                <tr> <div class="row">
+                <div ui-view="detailView"></div>
+            </div></tr>
+                
             </tbody>
         </table>
     </div>
+     <div class="btn-group mr-2" role="group" aria-label="First group">
+        <a class="btn btn-info" ui-sref="comentarioCreate"><span class="glyphicon glyphicon-plus-sign"></span> nuevo comentario</a>
+     </div>
+    
+     
 </div>
