@@ -26,7 +26,9 @@
                 // Url que aparecerá en el browser
                 url: '/comentarios/list',
                 params: {
-                    blogId: null
+                    blogId: null,
+                    comentarioId: null
+                    
                 },
                 views: {
                     'mainView': {
@@ -34,6 +36,28 @@
                         controller: 'comentariosCtrl',
                         controllerAs: 'ctrl'
                     }
+                }
+            }).state("comentarioCreate",{
+                       url:"/create",
+                       parent:"comentariosList",
+                       views:{
+                           'detailView':{
+                               templateUrl:basePath +"comentario.create.html",
+                               controller:"comentarioNewctrl"
+                           }
+                       }
+                   }).state('comentarioUpdate', {
+                url: '/update/{blogId:int}',
+                parent: 'comentariosList',
+                param: {
+                    comentarioId: null
+                },
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + "comentario.create.html",
+                        controller: 'comentarioUpdateCtrl'
+                    }
+                   
                 }
             });
         }
