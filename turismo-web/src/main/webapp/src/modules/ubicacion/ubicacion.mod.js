@@ -40,7 +40,8 @@
                        templateUrl: basePath + 'ubicacion.side.html'
                    },
                    'detailView':{
-                       templateUrl: basePath +'ubicacion.detail.html'
+                       templateUrl: basePath +'ubicacion.detail.html',
+                       controller:"ubicacionDetailCtrl"
                    }
                    
                }

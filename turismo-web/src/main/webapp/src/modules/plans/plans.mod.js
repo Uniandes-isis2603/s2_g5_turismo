@@ -16,14 +16,17 @@
  * |-----------------|----------------------------|------------------------|
  * | plans           | /plans                     | mainView:              |
  * |                 |                            | plans.html             |
+ * |                 |                            | plans.side.html        |
  * |                 |                            |                        |
  * | plansList       | /list                      | listView:              |
  * |                 |                            | plans.list.html        |
+ * |                 |                            | plans.side.html        |
  * |                 |                            |                        |
  * | planDetail      | /{planId:int}/detail       | listView:              |
  * |                 |                            | plans.list.html        |
  * |                 |                            | detailView:            |
  * |                 |                            | plans.detail.html      |
+ * |                 |                            | plans.side.html        |
  * |-----------------|----------------------------|------------------------|
  *```
  */
@@ -77,6 +80,41 @@
                     },
                     'sideViewPlan': {
                         templateUrl: basePath + 'plans.side.html'
+                    }
+                }
+            }).state('plansCreate', {
+                url: '/create/plan',
+                parent: 'plans',
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + '/new/plans.new.html',
+                        controller: 'planNewCtrl'
+                    }
+                }
+            }).state('planDetailGuides',{
+                url: '/{planId:int}/detail/guides',
+                parent: 'planDetail',
+                param:{
+                    planId:null
+                },
+                views:{
+                   'listView': {
+                        templateUrl: basePath + 'plans.list.html',
+                        controller: 'planDetailCtrl',
+                        controllerAs: 'ctrl'
+                    },
+                    'detailView': {
+                        templateUrl: basePath + 'plans.detail.html',
+                        controller: 'planDetailCtrl',
+                        controllerAs: 'ctrl'
+                    },
+                    'sideViewPlan': {
+                        templateUrl: basePath + 'plans.side.html'
+                    },
+                    'planGuidesView':{
+                        templateUrl: basePath + 'plans.detail.guides.html',
+                        controller: 'planDetailGuidesCtrl',
+                        controllerAs: 'ctrl'
                     }
                 }
             });
