@@ -10,13 +10,20 @@
             
             $scope.data = {};
            
-           var guia = {idGuia:$scope.idGuia};
+           
+           
            
             $scope.createPlanAg = function () {
-                
+                var idG= parseInt($scope.idGuia);
+                var idP= parseInt($scope.idPlan);
+                var guia = {idGuia:idG};
+                var plan = {idPlan:idP };
+           
+           console.log(guia);
                 $http.post(miPlanContext, { 
                     fecha: $scope.fecha,
-                    idGuia:$scope.idGuia
+                    guia:guia,
+                    plan:plan
                     }
                     ).then(function (response) {
                     $state.go('miPlanList', {planId: response.data.id}, {reload: true});

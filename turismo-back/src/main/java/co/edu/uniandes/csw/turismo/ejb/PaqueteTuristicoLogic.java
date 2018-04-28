@@ -39,14 +39,27 @@ public class PaqueteTuristicoLogic {
     }
     
     public PaqueteTuristicoEntity createPaqueteTuristico(PaqueteTuristicoEntity entity) throws BusinessLogicException{
-        List <PagoEntity> pagos = entity.getPagos();
         List <PlanAgendadoEntity> planes = entity.getPlanes();
-        //for(int i=0; i<pagos.size();i++)
-        //{
-        //if (pagos.size()!=planes.size())
-        //     throw new BusinessLogicException("El numero de pagos no coincide con el numero de planes en el paquete \"");
-        //}
+        List <PagoEntity> pagos = entity.getPagos();
+        for (int i=0;i< entity.getPlanes().size();i++)
+        {
+           PlanAgendadoEntity planA = persistencePlan.find(entity.getPlanes().get(i).getId());
+           planes.clear();
+           planes.add(planA);
+        }
+        for (int i=0;i< entity.getPagos().size();i++)
+        {
+           PagoEntity pagoA = persistencePago.find(entity.getPagos().get(i).getId());
+           pagos.clear();
+           pagos.add(pagoA);
+        }
         
+       
+        if (pagos.size()!=planes.size()){
+             throw new BusinessLogicException("El numero de pagos no coincide con el numero de planes en el paquete \"");
+        }
+        entity.setPagos(pagos);
+        entity.setPlanes(planes);
         return persistence.create(entity);
     }
     public List<PaqueteTuristicoEntity> getPaquetes() {

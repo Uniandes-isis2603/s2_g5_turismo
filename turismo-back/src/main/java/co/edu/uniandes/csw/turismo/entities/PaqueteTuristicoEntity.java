@@ -38,7 +38,7 @@ public class PaqueteTuristicoEntity  {
     private Long id;
     
     @PodamExclude
-    @OneToMany
+    @OneToMany (cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<PagoEntity> pagos ;
     
     @PodamExclude
