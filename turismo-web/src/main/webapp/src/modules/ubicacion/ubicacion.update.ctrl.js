@@ -27,7 +27,7 @@
     
            $scope.createUbicacion = function () {
                 alert("Entro a consola2");
-                $http.post(ubicacionContext, { 
+                $http.put(ubicacionContext+"/"+id, { 
                     ciudad: $scope.ubicacionCiudad,
                     latitud:$scope.ubicacionLatitud,
                     longitud:$scope.ubicacionLongitud,

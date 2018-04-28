@@ -40,7 +40,8 @@
                        templateUrl: basePath + 'tarjetas.side.html'
                    },
                    'detailView':{
-                       templateUrl: basePath +'tarjeta.detail.html'
+                       templateUrl: basePath +'tarjeta.detail.html',
+                       controller:"tarjetaDetailCtrl"
                    }
                    
                }

@@ -86,3 +86,6 @@ insert into PAQUETETURISTICOENTITY_PAGOENTITY (paqueteturisticoentity_id, pagos_
 insert into PAQUETETURISTICOENTITY_PAGOENTITY (paqueteturisticoentity_id, pagos_id) values (10000,10003);
 insert into PAQUETETURISTICOENTITY_PLANAGENDADOENTITY (paqueteturisticoentity_id, planes_id) values (10000,10000);
 insert into PAQUETETURISTICOENTITY_PLANAGENDADOENTITY (paqueteturisticoentity_id, planes_id) values (10000,10020);
+
+insert into PLANENTITY_GUIAENTITY (PLANENTITY_ID, GUIAS_ID) values (10000, 10000);
+insert into PLANENTITY_GUIAENTITY (PLANENTITY_ID, GUIAS_ID) values (10000, 10001);

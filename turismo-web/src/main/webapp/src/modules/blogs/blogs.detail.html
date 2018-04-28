@@ -1,9 +1,13 @@
 <div class="panel panel-default"> 
     <div class="panel-body">
         <div class="row">
-            <div class="col-md-3">
-               
+                           
 
+            <div class="col-md-3">
+ <div>
+                     <a class="btn btn-default btn-sm" ui-sref="blogUpdate({blogId: currentblog.id})"><span class="glyphicon glyphicon-edit"></span></a>
+                         <hr>
+                     </div>
             </div>
             <div class="col-md-3">
                 <dl>   
@@ -15,10 +19,14 @@
                      <hr>
                      <dt>likes</dt>
                      <dd>{{currentblog.likes}}</dd>
-                   <dt>comentarios</dt>
-                    <ul ng-repeat="comentario in currentblog.comentarios">
-                        <dd> {{comentario.comentario}}</dd>
-                    </ul>
+                     
+                      <div class="thumbnail">
+              
+                <a ui-sref="comentariosList({blogId: currentblog.id})">
+                <h4>presionar aqui para ver comentarios</h4>                    
+                                    
+                </a>
+                </div>
 
                 </dl>
             </div>

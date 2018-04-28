@@ -13,9 +13,10 @@
         'blogsModule',
         'moduloFacturas',
         'moduloUbicacion',
-        'paqueteModule'
+        'paqueteModule',
+        'comentariosModule',
+       
         
-
 
     ]);
     // Resuelve problemas de las promesas
