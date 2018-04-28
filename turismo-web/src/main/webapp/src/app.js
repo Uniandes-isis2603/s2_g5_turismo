@@ -13,7 +13,9 @@
         'blogsModule',
         'moduloFacturas',
         'moduloUbicacion',
-        'paqueteModule'
+        'paqueteModule',
+        'comentariosModule',
+       
         
 
 
