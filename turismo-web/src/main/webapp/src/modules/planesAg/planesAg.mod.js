@@ -62,6 +62,21 @@
                         templateUrl: basePath + 'planesAg.side.html'
                     }
                }
+           }).state("miPlanUpdate",{
+               url:'/update/{miPlanId:int}',
+               parent:'miPlan',
+               param:{
+                    miPlanId: null
+                },
+               views:{
+                   'listView':{
+                       templateUrl: basePath + '/new/planesAg.new.html',
+                       controller: 'miPlanUpdateCtrl'
+                   }
+                   ,'sideView': {
+                        templateUrl: basePath + 'planesAg.side.html'
+                    }
+               }
            });
            
     }]);

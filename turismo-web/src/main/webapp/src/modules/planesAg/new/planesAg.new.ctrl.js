@@ -19,7 +19,6 @@
                 var guia = {idGuia:idG};
                 var plan = {idPlan:idP };
            
-           console.log(guia);
                 $http.post(miPlanContext, { 
                     fecha: $scope.fecha,
                     guia:guia,
