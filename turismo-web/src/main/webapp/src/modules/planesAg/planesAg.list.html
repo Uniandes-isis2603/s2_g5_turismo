@@ -1,18 +1,24 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-2" ng-repeat="miPlan in miPlanRecords">
+        <div class="col-md-3" ng-repeat="miPlan in miPlanRecords">
             <div class="thumbnail">      
                 <a ui-sref="miPlanDetail({miPlanId: miPlan.id})">
-                    <img class="img-responsive" ng-src='{{miPlan.plan.archivo}}' alt="{{miPlan.plan.name}}" />        
+                    <img class="img" ng-src='{{miPlan.plan.archivo}}' alt="{{miPlan.plan.name}}" />        
                 </a>
                 <div class="caption text-center">
                     <p><b>Nombre</b></p>
                     <p>{{miPlan.plan.name}}</p>
                     <p><b>Fecha</b></p>
                     <p>{{miPlan.fecha}}</p>
+                    <td ><a class="btn btn-default btn-sm" ui-sref="miPlanUpdate({miPlanId: miPlan.id})"><span class="glyphicon glyphicon-edit"></span></a></td>
+                    <td><a class="btn btn-danger btn-sm" ui-sref="miPlanDelete({miPlanId: miPlan.id})"><span class="glyphicon glyphicon-trash"></span></a></td>
+                </div>
                  </div>
+            
             </div>
+            
         </div>
+        
     </div>
 </div>
 </div>

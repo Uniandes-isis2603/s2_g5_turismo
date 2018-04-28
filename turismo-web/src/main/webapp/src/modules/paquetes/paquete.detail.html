@@ -14,12 +14,14 @@
                     <dt>Completado</dt>
                     <dd>{{currentPaquete.completado}}</dd>
                     <hr>
-                   <dt>Planes</dt>
+                    <dt> <br>Planes</br></dt>
                    <ul ng-repeat="pagos in currentPaquete.pagos" >
                        <dd>  Plan {{pagos.id}}</dd>
                        <dd> {{pagos.costo}}</dd>
                         <dd> {{pagos.nombrePlan}}</dd>
                         <dd >Fecha {{currentPaquete.planes[0].fecha}}</dd>
+                        
+                        <td ><a class="btn btn-default btn-sm" ui-sref="paqueteUpdate({paqueteId: paquete.id})">Agregar plan</a></td>
                     </ul>
                    
 

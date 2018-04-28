@@ -3,16 +3,13 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="thumb">
-                    <img class="img-responsive" ng-src='{{currentMiPlan.plan.archivo}}' alt="{{currentMiPlan.plan.name}}"/>
+                    <img class="img-responsive" ng-src='{{currentMiPlan.plan.archivo}}' alt="{{currentMiPlan.plan.name}}"/>                    
                 </div>
             </div>
             <div class="col-md-3">
                 <dl>     
                     <dt class="bold">{{currentMiPlan.plan.nombrePlan}}</dt>
-                    <ul ng-repeat="guide in currentMiPlan.plan.guiasPlan">
-                        <dd> {{guide.nombreGuia}}</dd>
-                        <dd> {{guide.idiomaGuia}}</dd>
-                    </ul>
+                    
                     <dt> Duración</dt>
                     <dd>{{currentMiPlan.plan.duracion}}</dd>
                     <hr>

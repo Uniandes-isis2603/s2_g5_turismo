@@ -50,7 +50,45 @@
                         templateUrl: basePath + 'paquete.side.html'
                     }
                }
-           });
+           }).state("paqueteCreate",{
+               url:'/create',
+               parent:'paquete',
+               views:{
+                   'listView':{
+                       templateUrl: basePath + '/new/paquete.new.html',
+                       controller: 'paqueteNewCtrl'
+                   }
+                   ,'sideView': {
+                        templateUrl: basePath + 'paquete.side.html'
+                    }
+               }
+           }).state("paqueteUpdate",{
+                url:'/update/{paqueteId:int}',
+                parent:'paquete',
+                param:{
+                    paqueteId: null
+                },
+            views:{'listView':{
+                       templateUrl: basePath + '/new/paquete.new.html',
+                       controller: 'pagoUpdateCtrl'
+                   }
+                   ,'sideView': {
+                        templateUrl: basePath + 'pagos.side.html'
+                    }
+                }
+            }).state('paqueteDelete', {
+                url: '/delete/{paqueteId:int}',
+                parent: 'paquete',
+                param: {
+                    paqueteId: null
+                },
+                views: {
+                    'listView': {
+                        templateUrl: basePath + '/delete/paquete.delete.html',
+                        controller: 'paqueteDeleteCtrl'
+                    }
+                }
+            });
            
     }]);
 })(window.angular);
