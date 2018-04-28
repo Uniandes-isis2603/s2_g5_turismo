@@ -27,8 +27,7 @@
              * Esta función utiliza el protocolo HTTP para eliminar la comentario.
              * @param {String} id El ID de la comentario a eliminar.
              */
-            alert(idComentario);
-            console.log($state);
+           
             $scope.deleteComentario = function () {
                 $http.delete('api/blogs/'+ $state.params.blogId +comentariosContext + '/' + idComentario, {}).then(function (response) {
                     $state.go('comentariosList', {ComentarioId: response.data.idComentario}, {reload: true});
