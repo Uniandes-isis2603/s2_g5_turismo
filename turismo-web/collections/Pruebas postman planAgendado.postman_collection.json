@@ -1,189 +1,32 @@
 {
-	"info": {
-		"name": "Pruebas postman planAgendado",
-		"_postman_id": "d0cfb162-0123-d37a-91c1-3e8831c12b72",
-		"description": "",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-	},
-	"item": [
+	"id": "dccec55d-b2e0-7ab4-2028-cabc806d2ffd",
+	"name": "Pruebas postman planAgendado",
+	"description": "",
+	"order": [
+		"a5e26822-c37f-9ea6-7345-d28da6a6d6fc",
+		"a65eedca-7f40-7b15-67ab-d27a71dae7a0",
+		"974cdbbd-ffdf-d861-9e86-1bb3c1e6d6ee",
+		"2255082c-944a-f7ca-8235-0b85500c6a7a",
+		"18d73fff-8ca7-3d0f-3ce0-1d7a0ebc12bc",
+		"c496b0fc-ec00-a616-495a-b093be708638",
+		"2697b766-9e4d-1f5a-25e9-c1f43c823c43",
+		"f0465213-fc43-5fa5-bfcf-8b9365275027"
+	],
+	"folders": [],
+	"folders_order": [],
+	"timestamp": 0,
+	"owner": 0,
+	"public": false,
+	"events": [],
+	"variables": [],
+	"auth": null,
+	"requests": [
 		{
-			"name": "http://localhost:8080/turismo-web/api/miPlan",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "6e58c76a-e11e-4cb3-812b-42913b01a30d",
-						"type": "text/javascript",
-						"exec": [
-							"tests [\"Status code is 200\"] = responseCode.code === 200;"
-						]
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n     \"id\": 94472,\r\n     \"fecha\": \"2017-08-20T00:00:00-05:00\",\r\n     \"guia\":{\r\n   },\r\n   \"plan\":{\r\n    }\r\n}"
-				},
-				"url": {
-					"raw": "http://localhost:8080/turismo-web/api/miPlan",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"turismo-web",
-						"api",
-						"miPlan"
-					]
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
+			"id": "18d73fff-8ca7-3d0f-3ce0-1d7a0ebc12bc",
 			"name": "http://localhost:8080/turismo-web/api/miPlan/10000",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "6e58c76a-e11e-4cb3-812b-42913b01a30d",
-						"type": "text/javascript",
-						"exec": [
-							"tests [\"Status code is 200\"] = responseCode.code === 200;"
-						]
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n     \"id\": 94472,\r\n     \"fecha\": \"2017-08-20T00:00:00-05:00\",\r\n     \"guia\":{\r\n   },\r\n   \"plan\":{\r\n    }\r\n}"
-				},
-				"url": {
-					"raw": "http://localhost:8080/turismo-web/api/miPlan/10000",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"turismo-web",
-						"api",
-						"miPlan",
-						"10000"
-					]
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost:8080/turismo-web/api/miPlan/10001",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "04fe9dd9-147c-4500-b172-c954f7fd7fd5",
-						"type": "text/javascript",
-						"exec": [
-							"tests [\"Status code is 404\"] = responseCode.code === 404;"
-						]
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n     \"id\": 94472,\r\n     \"fecha\": \"2017-08-20T00:00:00-05:00\",\r\n     \"guia\":{\r\n   },\r\n   \"plan\":{\r\n    }\r\n}"
-				},
-				"url": {
-					"raw": "http://localhost:8080/turismo-web/api/miPlan/10001",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"turismo-web",
-						"api",
-						"miPlan",
-						"10001"
-					]
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost:8080/turismo-web/api/miPlan/10001",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "e180b20f-f668-4d9a-b410-cc5535711646",
-						"type": "text/javascript",
-						"exec": [
-							"tests [\"Status code is 404\"] = responseCode.code === 404;"
-						]
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n     \"id\": 94472,\r\n     \"fecha\": \"2015-08-20T00:00:00-05:00\",\r\n     \"guia\":{\r\n   },\r\n   \"plan\":{\r\n    }\r\n}"
-				},
-				"url": {
-					"raw": "http://localhost:8080/turismo-web/api/miPlan/10001",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"turismo-web",
-						"api",
-						"miPlan",
-						"10001"
-					]
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost:8080/turismo-web/api/miPlan/10000",
-			"event": [
+			"collectionId": "dccec55d-b2e0-7ab4-2028-cabc806d2ffd",
+			"method": "PUT",
+			"events": [
 				{
 					"listen": "test",
 					"script": {
@@ -195,83 +38,73 @@
 					}
 				}
 			],
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n     \"id\": 10000,\r\n     \"fecha\": \"2014-08-20T00:00:00-05:00\",\r\n     \"guia\":{\r\n   },\r\n   \"plan\":{\r\n    }\r\n}"
-				},
-				"url": {
-					"raw": "http://localhost:8080/turismo-web/api/miPlan/10000",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"turismo-web",
-						"api",
-						"miPlan",
-						"10000"
-					]
-				},
-				"description": ""
-			},
-			"response": []
+			"headers": "Content-Type: application/json",
+			"dataMode": "raw",
+			"data": [],
+			"rawModeData": "{\r\n     \"id\": 10000,\r\n     \"fecha\": \"2014-08-20T00:00:00-05:00\",\r\n     \"guia\":{\r\n   },\r\n   \"plan\":{\r\n    }\r\n}",
+			"pathVariables": {},
+			"url": "http://localhost:8080/turismo-web/api/miPlan/10000",
+			"responses": [],
+			"pathVariableData": [],
+			"queryParams": [],
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"auth": null,
+			"collection_id": "dccec55d-b2e0-7ab4-2028-cabc806d2ffd",
+			"preRequestScript": null,
+			"tests": "tests [\"Status code is 200\"] = responseCode.code === 200;",
+			"currentHelper": null,
+			"helperAttributes": null
 		},
 		{
-			"name": "http://localhost:8080/turismo-web/api/miPlan/10000",
-			"event": [
+			"id": "2255082c-944a-f7ca-8235-0b85500c6a7a",
+			"name": "http://localhost:8080/turismo-web/api/miPlan/10001",
+			"collectionId": "dccec55d-b2e0-7ab4-2028-cabc806d2ffd",
+			"method": "PUT",
+			"events": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "2e98325a-94cc-4e59-a4f7-6643d89ab5c7",
+						"id": "e180b20f-f668-4d9a-b410-cc5535711646",
 						"type": "text/javascript",
 						"exec": [
-							"tests [\"Status code is 204\"] = responseCode.code === 204;"
+							"tests [\"Status code is 404\"] = responseCode.code === 404;"
 						]
 					}
 				}
 			],
-			"request": {
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "http://localhost:8080/turismo-web/api/miPlan/10000",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"turismo-web",
-						"api",
-						"miPlan",
-						"10000"
-					]
-				},
-				"description": ""
-			},
-			"response": []
+			"headers": "Content-Type: application/json",
+			"dataMode": "raw",
+			"data": [],
+			"rawModeData": "{\r\n     \"id\": 94472,\r\n     \"fecha\": \"2015-08-20T00:00:00-05:00\",\r\n     \"guia\":{\r\n   },\r\n   \"plan\":{\r\n    }\r\n}",
+			"pathVariables": {},
+			"url": "http://localhost:8080/turismo-web/api/miPlan/10001",
+			"responses": [],
+			"pathVariableData": [],
+			"queryParams": [],
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"auth": null,
+			"collection_id": "dccec55d-b2e0-7ab4-2028-cabc806d2ffd",
+			"preRequestScript": null,
+			"tests": "tests [\"Status code is 404\"] = responseCode.code === 404;",
+			"currentHelper": null,
+			"helperAttributes": null
 		},
 		{
+			"id": "2697b766-9e4d-1f5a-25e9-c1f43c823c43",
 			"name": "http://localhost:8080/turismo-web/api/miPlan/10001",
-			"event": [
+			"collectionId": "dccec55d-b2e0-7ab4-2028-cabc806d2ffd",
+			"method": "DELETE",
+			"events": [
 				{
 					"listen": "test",
 					"script": {
@@ -283,35 +116,225 @@
 					}
 				}
 			],
-			"request": {
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
+			"headers": "Content-Type: application/json",
+			"dataMode": "raw",
+			"data": [],
+			"rawModeData": "",
+			"pathVariables": {},
+			"url": "http://localhost:8080/turismo-web/api/miPlan/10001",
+			"responses": [],
+			"pathVariableData": [],
+			"queryParams": [],
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"auth": null,
+			"collection_id": "dccec55d-b2e0-7ab4-2028-cabc806d2ffd",
+			"preRequestScript": null,
+			"tests": "tests [\"Status code is 404\"] = responseCode.code === 404;",
+			"currentHelper": null,
+			"helperAttributes": null
+		},
+		{
+			"id": "974cdbbd-ffdf-d861-9e86-1bb3c1e6d6ee",
+			"name": "http://localhost:8080/turismo-web/api/miPlan/10001",
+			"collectionId": "dccec55d-b2e0-7ab4-2028-cabc806d2ffd",
+			"method": "GET",
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "04fe9dd9-147c-4500-b172-c954f7fd7fd5",
+						"type": "text/javascript",
+						"exec": [
+							"tests [\"Status code is 404\"] = responseCode.code === 404;"
+						]
 					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "http://localhost:8080/turismo-web/api/miPlan/10001",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"turismo-web",
-						"api",
-						"miPlan",
-						"10001"
-					]
-				},
-				"description": ""
-			},
-			"response": []
+				}
+			],
+			"headers": "Content-Type: application/json",
+			"dataMode": "raw",
+			"data": [],
+			"rawModeData": "{\r\n     \"id\": 94472,\r\n     \"fecha\": \"2017-08-20T00:00:00-05:00\",\r\n     \"guia\":{\r\n   },\r\n   \"plan\":{\r\n    }\r\n}",
+			"pathVariables": {},
+			"url": "http://localhost:8080/turismo-web/api/miPlan/10001",
+			"responses": [],
+			"pathVariableData": [],
+			"queryParams": [],
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"auth": null,
+			"collection_id": "dccec55d-b2e0-7ab4-2028-cabc806d2ffd",
+			"preRequestScript": null,
+			"tests": "tests [\"Status code is 404\"] = responseCode.code === 404;",
+			"currentHelper": null,
+			"helperAttributes": null
+		},
+		{
+			"id": "a5e26822-c37f-9ea6-7345-d28da6a6d6fc",
+			"name": "http://localhost:8080/turismo-web/api/miPlan",
+			"collectionId": "dccec55d-b2e0-7ab4-2028-cabc806d2ffd",
+			"method": "GET",
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6e58c76a-e11e-4cb3-812b-42913b01a30d",
+						"type": "text/javascript",
+						"exec": [
+							"tests [\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"headers": "Content-Type: application/json",
+			"dataMode": "raw",
+			"data": [],
+			"rawModeData": "{\r\n     \"id\": 94472,\r\n     \"fecha\": \"2017-08-20T00:00:00-05:00\",\r\n     \"guia\":{\r\n   },\r\n   \"plan\":{\r\n    }\r\n}",
+			"pathVariables": {},
+			"url": "http://localhost:8080/turismo-web/api/miPlan",
+			"responses": [],
+			"pathVariableData": [],
+			"queryParams": [],
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"auth": null,
+			"collection_id": "dccec55d-b2e0-7ab4-2028-cabc806d2ffd",
+			"preRequestScript": null,
+			"tests": "tests [\"Status code is 200\"] = responseCode.code === 200;",
+			"currentHelper": null,
+			"helperAttributes": null
+		},
+		{
+			"id": "a65eedca-7f40-7b15-67ab-d27a71dae7a0",
+			"name": "http://localhost:8080/turismo-web/api/miPlan/10000",
+			"collectionId": "dccec55d-b2e0-7ab4-2028-cabc806d2ffd",
+			"method": "GET",
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6e58c76a-e11e-4cb3-812b-42913b01a30d",
+						"type": "text/javascript",
+						"exec": [
+							"tests [\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"headers": "Content-Type: application/json",
+			"dataMode": "raw",
+			"data": [],
+			"rawModeData": "{\r\n     \"id\": 94472,\r\n     \"fecha\": \"2017-08-20T00:00:00-05:00\",\r\n     \"guia\":{\r\n   },\r\n   \"plan\":{\r\n    }\r\n}",
+			"pathVariables": {},
+			"url": "http://localhost:8080/turismo-web/api/miPlan/10000",
+			"responses": [],
+			"pathVariableData": [],
+			"queryParams": [],
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"auth": null,
+			"collection_id": "dccec55d-b2e0-7ab4-2028-cabc806d2ffd",
+			"preRequestScript": null,
+			"tests": "tests [\"Status code is 200\"] = responseCode.code === 200;",
+			"currentHelper": null,
+			"helperAttributes": null
+		},
+		{
+			"id": "c496b0fc-ec00-a616-495a-b093be708638",
+			"name": "http://localhost:8080/turismo-web/api/miPlan/10000",
+			"collectionId": "dccec55d-b2e0-7ab4-2028-cabc806d2ffd",
+			"method": "DELETE",
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2e98325a-94cc-4e59-a4f7-6643d89ab5c7",
+						"type": "text/javascript",
+						"exec": [
+							"tests [\"Status code is 204\"] = responseCode.code === 204;"
+						]
+					}
+				}
+			],
+			"headers": "Content-Type: application/json",
+			"dataMode": "raw",
+			"data": [],
+			"rawModeData": "",
+			"pathVariables": {},
+			"url": "http://localhost:8080/turismo-web/api/miPlan/10000",
+			"responses": [],
+			"pathVariableData": [],
+			"queryParams": [],
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"auth": null,
+			"collection_id": "dccec55d-b2e0-7ab4-2028-cabc806d2ffd",
+			"preRequestScript": null,
+			"tests": "tests [\"Status code is 204\"] = responseCode.code === 204;",
+			"currentHelper": null,
+			"helperAttributes": null
+		},
+		{
+			"id": "f0465213-fc43-5fa5-bfcf-8b9365275027",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/turismo-web/api/miPlan",
+			"queryParams": [],
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "56c79f8f-8107-4eeb-9c51-a40ef73f37d4",
+						"type": "text/javascript",
+						"exec": [
+							"tests [\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"auth": null,
+			"time": 1524957158398,
+			"name": "http://localhost:8080/turismo-web/api/miPlan",
+			"description": "",
+			"collectionId": "dccec55d-b2e0-7ab4-2028-cabc806d2ffd",
+			"responses": [],
+			"preRequestScript": null,
+			"tests": "tests [\"Status code is 200\"] = responseCode.code === 200;",
+			"currentHelper": null,
+			"helperAttributes": null,
+			"rawModeData": "{\r\n\t\r\n    \"fecha\":\"1998-04-07T00:00:00-05:00\",\r\n    \"guia\":{\r\n     \t\"idGuia\":10000}\r\n,\r\n\t\"plan\":{\r\n\t\t\"idPlan\":10000\r\n\t\t\r\n\t}\r\n}"
 		}
 	]
 }
