@@ -15,9 +15,10 @@
         'moduloUbicacion',
         'paqueteModule',
         'comentariosModule',
+        'usuariosModule',
+        'valoracionesModule'
        
         
-
 
     ]);
     // Resuelve problemas de las promesas
@@ -25,4 +26,3 @@
             $qProvider.errorOnUnhandledRejections(false);
         }]);
 })(window.angular);
-

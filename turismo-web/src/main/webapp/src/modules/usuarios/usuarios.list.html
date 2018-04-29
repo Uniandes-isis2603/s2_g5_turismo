@@ -1,0 +1,21 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+            <div class="btn-group mr-2" role="group" aria-label="First group">
+                <a class="btn btn-info" ui-sref="usuarioCreate"><span class="glyphicon glyphicon-plus-sign"></span> Añadir un nuevo usuario</a>
+            </div>
+        </div>
+        
+        <div ng-repeat="usuario in usuariosRecords">
+        <div>
+            <a ui-sref="usuarioDetail({usuarioId: usuario.id})">
+                <h2>{{usuario.nombre}}, {{usuario.apellido}}</h2>
+            </a>
+            <a class="btn btn-default btn-sm" ui-sref="usuarioUpdate({usuarioId: usuario.id})"><span class="glyphicon glyphicon-edit"></span></a>
+        </div>
+        </div>
+        
+    
+      
+    </div>
+</div>
