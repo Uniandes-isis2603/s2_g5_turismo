@@ -1,8 +1,8 @@
 (function(ng){
     
-    var mod = ng.module("usuarioModule");
-    mod.constant('usuarioContext2',"api/usuario/10000/10002");
-   mod.controller('usuarioNewCtrl', ['$scope', '$http', 'usuarioContext2', '$state', '$rootScope',
+    var mod = ng.module("usuariosModule");
+    mod.constant('usuarioCreate',"api/usuario/10000/10002");
+   mod.controller('usuarioNewCtrl', ['$scope', '$http', 'usuarioCreate', '$state', '$rootScope',
        
         function($scope, $http, usuarioContext, $state, $rootScope){
         
@@ -12,7 +12,6 @@
             
            
             $scope.createFactura = function () {
-                alert("Entro a consola2");
                 $http.post(usuarioContext, { 
                     id:$scope.usuarioId,
                    nombre:$scope.usuarioNombre,
@@ -23,7 +22,7 @@
                    idioma:$scope.usuarioIdioma,
                    esAdministrador:$scope.usuarioEsAdministrador
                }).then(function (response) {
-                    $state.go('usuarioList', {usuarioId: response.data.id}, {reload: true});
+                    $state.go('usuariosList', {usuarioId: response.data.id}, {reload: true});
                 });
             };
         }

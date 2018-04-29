@@ -31,13 +31,13 @@
  *```
  */
 (function (ng) {
-    var mod = ng.module("usuarioModule", ['ui.router']);
+    var mod = ng.module("usuariosModule", ['ui.router']);
     mod.constant("usuariosContext", "api/usuario");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/usuario/';
             $urlRouterProvider.otherwise("/usuariosList");
 
-            $stateProvider.state('usuarios', {
+            $stateProvider.state('usuario', {
                 url: '/usuario',
                 abstract: true,
                 views: {
@@ -46,37 +46,67 @@
                         controller: 'usuariosCtrl',
                         controllerAs: 'ctrl'
                     }
-                    
-                    
                 }
-                
-            }).state('usuariosList', {
-                url: '/list',
-                parent: 'usuarios',
-                views: {
-                    'listView': {
-                        templateUrl: basePath + 'usuarios.list.html'
-                    }
-                }
-            }).state('usuariosDetail', {
-                url: '/{usuariosId:int}/detail',
-                parent: 'usuarios',
+            }).state("usuariosList",{
+               url:'/list',
+               parent:'usuarios',
+               views:{
+                   'listView':{
+                       templateUrl: basePath + 'usuarios.list.html'
+                   },
+                   'sideView':{
+                       templateUrl: basePath + 'usuarios.side.html'
+                   }
+               }
+           }).state("usuariosDetail",{
+               url:'/{usuarioId:int}/detail',
+               parent: 'usuario',
+               param:{
+                   usuarioId: null
+               },
+               views:{
+                  'listView':{
+                       templateUrl: basePath + 'usuarios.list.html'
+                   },
+                   'sideView':{
+                       templateUrl: basePath + 'usuarios.side.html'
+                   },
+                   'detailView':{
+                       templateUrl: basePath +'usuarios.detail.html',
+                       controller:"usuarioDetailCtrl"
+                   }
+                   
+               }
+              
+               
+           }
+                   ).state("usuarioCreate",{
+                       url:"/usuario",
+                       parent:"usuario",
+                       views:{
+                           'detailView':{
+                               templateUrl:basePath +"usuarios.create.html",
+                               controller:"usuarioNewCtrl"
+                           },
+                           'sideView':{
+                               templateUrl: basePath + 'usuarios.side.html'
+                           }
+                       }
+                   }).state('usuarioUpdate', {
+                url: '/update/{usuarioId:int}',
+                parent: 'usuario',
                 param: {
-                    usuariosId: null
+                    usuarioId: null
                 },
                 views: {
-                    'listView': {
-                        templateUrl: basePath + 'usuarios.list.html',
-                        controller: 'usuariosDetailCtrl',
-                        controllerAs: 'ctrl'
-                    },
                     'detailView': {
-                        templateUrl: basePath + 'usuarios.detail.html',
-                        controller: 'usuariosDetailCtrl',
-                        controllerAs: 'ctrl'
-                    }
+                        templateUrl: basePath + "usuarios.create.html",
+                        controller: 'usuariosUpdateCtrl'
+                    },
+                   'sideView':{
+                       templateUrl: basePath + 'usuarios.side.html'
+                   }
                 }
-
             });
         }]);
 })(window.angular);

@@ -1,12 +1,12 @@
 (function(ng){
-    var mod = ng.module("usuarioModule");
+    var mod = ng.module("usuariosModule");
     mod.controller("usuariosUpdateCtrl",["$scope","$rootScope","$http","usuariosContext","$state","$filter",
     
     
     
     
     
-    function ($scope, $rootScope, $http, usuarioContext, $state, $filter) {
+    function ($scope, $rootScope, $http, usuariosContext, $state, $filter) {
             $rootScope.edit = true;
             
            
@@ -14,7 +14,7 @@
             
            if ($state.params.usuarioId !== null && $state.params.usuarioId !== undefined) 
            {  
-            $http.get(usuarioContext+"/"+id).then(function(response){
+            $http.get(usuariosContext+"/"+id).then(function(response){
                 var usuario = response.data;
                 $scope.usuarioId = usuario.id;
                 $scope.usuarioNombre =usuario.nombre;
@@ -32,7 +32,7 @@
            
             $scope.createFactura = function () {
                 alert("Entro a consola2");
-                $http.post(usuarioContext, { 
+                $http.post(usuariosContext, { 
                     id:$scope.usuarioId,
                    nombre:$scope.usuarioNombre,
                    apellido:$scope.usuarioApellido,
@@ -42,7 +42,7 @@
                    idioma:$scope.usuarioIdioma,
                    esAdministrador:$scope.usuarioEsAdministrador
                }).then(function (response) {
-                    $state.go('usuarioList', {usuarioId: response.data.id}, {reload: true});
+                    $state.go('usuariosList', {usuarioId: response.data.id}, {reload: true});
                 });
             };
         }    
