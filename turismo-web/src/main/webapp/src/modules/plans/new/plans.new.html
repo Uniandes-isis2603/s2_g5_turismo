@@ -67,7 +67,7 @@
                             <label for="planLatitud" class="col-sm-2">Latitud:</label>
                             <input id="planLatitud" required ng-model="data.ubicacion.latitud" class="col-sm-6"/>
                         </div>
-                    </div>
+                    </div>                    
                     
                     <div class="form-group row">
                         <div class="form-group col-md-6">
@@ -76,27 +76,20 @@
                         </div>
                     </div>
                     
+                    <div ng-if="!edit" class="form-group row">
+                        <div class="form-group col-md-12">
+                            <label for="planCats" class="col-sm-12">Categorías (inserte los nombres de las categorías separados con "-"):</label>
+                            <input id="planCats" required ng-model="data.categorias" class="col-sm-6"/>
+                        </div>
+                    </div>
+                    
                      <div ng-if="!edit" class="panel-group" id="thePreferencias">
                         <div class="panel panel-info">
-                            <div class="panel-heading">El plan tendrá las siguientes categorías:</div>
+                            <div class="panel-heading">Nombres categorías posibles para añadir: (Si introduce otros que no estén en la lista se crea la categoría)</div>
                             <div class="panel-body">
-                                <div id="div2" ondrop="angular.element(document.getElementById('thePreferencias')).scope().dropAdd(event)" ondragover="angular.element(document.getElementById('thePreferencias')).scope().allowDrop(event)">
-                                    <label></label>
-                                    <div ng-show="!edit" ng-repeat="preferencia in allPreferenciasAuthor">
-                                        <p draggable="true" ondragstart="angular.element(document.getElementById('thePreferencias')).scope().drag(event)" id="{{preferencia.id}}">{{preferencia.tipoPlan}}</p>                                 
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="panel panel-success">
-                            <div class="panel-heading">El plan no tendrá las siguientes categorías</div>
-                            <div class="panel-body">
-                                <div id="div1" ondrop="angular.element(document.getElementById('thePreferencias')).scope().dropDelete(event)" ondragover="angular.element(document.getElementById('thePreferencias')).scope().allowDrop(event)">
-                                    <label></label>
-                                    <div ng-repeat="preferencia in allPreferenciasShow">
-                                        <p draggable="true" ondragstart="angular.element(document.getElementById('thePreferencias')).scope().drag(event)" id="{{preferencia.id}}">{{preferencia.tipoPlan}}</p>                
-                                    </div>
-                                </div>
+                                    <div ng-show="!edit" ng-repeat="preferencia in AllPreferencias">
+                                        <p> {{preferencia.tipoPlan}}</p>                                 
+                                    </div>                               
                             </div>
                         </div>
                     </div>
