@@ -1,3 +1,17 @@
+/**
+ * @ngdoc overview
+ * @name ubicacion.module:guiaModule
+ * @description
+ * Definición del módulo de Angular de Autores. El módulo encapsula todos los 
+ * controladores y los templates HTML que estén relacionados con los Autores 
+ * directamente. En la configuración del módulo se injecta la dependencia de 
+ * ui.router que es la que se utiliza para la configuración de las URLs bajo las
+ * cuales se accede al módulo. Por ejemplo, para mostrar los ubicacion en la 
+ * URL: 'localhost:8080/ubicacion/list' es necesario configurar el router por 
+ * medio del stateProvider que informa a AngularJS de la relación entre la URL, 
+ * un estado definido (estado de mostrar ubicacion), el controlador y la vista 
+ * correspondiente.
+ */
 (function(ng){
     var mod = ng.module("moduloUbicacion",["ui.router"]);
     mod.constant("ubicacionContext","api/Plans/10000/ubicaciones");
