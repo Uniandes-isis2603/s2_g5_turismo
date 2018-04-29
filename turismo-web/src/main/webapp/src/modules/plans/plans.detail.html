@@ -4,6 +4,21 @@
             <div class="col-md-3">
                 <div class="thumb">
                     <img class="img-responsive" ng-src="{{currentPlan.archivo}}"/>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Acciones</th>  
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td id="{{$index}}-acciones">
+                                    <a class="btn btn-default btn-sm" ui-sref="planUpdate({planId: currentPlan.idPlan})"><span class="glyphicon glyphicon-edit"></span></a>
+                                    <a class="btn btn-danger btn-sm" ui-sref="planDelete({planId: currentPlan.idPlan})"><span class="glyphicon glyphicon-trash"></span></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
 
             </div>
@@ -20,17 +35,10 @@
                     <dd>{{currentPlan.precio}}'$'</dd>                    
                     <dt class="bold">Descripcion</dt>
                     <dd>{{currentPlan.descripcion}}</dd>
-                    <ul ng-repeat="valoracion in currentPlan.valoraciones">
-                        <dd> {{valoracion.calificacion}}</dd>
-                        <dd> {{valoracion.comentario}}</dd>
-                    </ul>
-                    <ul ng-repeat="cat in currentPlan.cagoriasPlan">
-                        <dd> {{cat.calificacion}}</dd>
-                        <dd> {{cat.comentario}}</dd>
-                    </ul>
                 </dl>
                 <ul class="nav nav-tabs">
                     <li> <a ui-sref="planDetailGuides({planId: currentPlan.idPlan})">Guías</a></li>
+                    <li> <a ui-sref="planDetailPreferencias({planId: currentPlan.idPlan})">Categorías</a></li>
                 </ul>
             </div>
         </div>

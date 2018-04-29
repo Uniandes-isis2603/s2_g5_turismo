@@ -69,11 +69,11 @@
                     paqueteId: null
                 },
             views:{'listView':{
-                       templateUrl: basePath + '/new/paquete.new.html',
-                       controller: 'pagoUpdateCtrl'
+                       templateUrl: basePath + '/update/paquetes.update.html',
+                       controller: 'paqueteUpdateCtrl'
                    }
                    ,'sideView': {
-                        templateUrl: basePath + 'pagos.side.html'
+                        templateUrl: basePath + 'paquete.side.html'
                     }
                 }
             }).state('paqueteDelete', {

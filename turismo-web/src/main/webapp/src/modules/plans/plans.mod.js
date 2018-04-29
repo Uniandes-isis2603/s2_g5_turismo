@@ -27,6 +27,14 @@
  * |                 |                            | detailView:            |
  * |                 |                            | plans.detail.html      |
  * |                 |                            | plans.side.html        |
+ * |                 |                            |                        | 
+ * |plansCreate      |/create                     | detailView:            |
+ * |                 |                            | /plans.new.html        |
+ * |planUpdate       |/{planId:int}/update        | detailView:            |
+ * |                 |                            | /plans.new.html        |
+ * |                 |                            |                        |
+ * |planDelete       | /{planId:int}/delete       |detailView:             |
+ * |                 |                            |/plans.delete.html      |
  * |-----------------|----------------------------|------------------------|
  *```
  */
@@ -91,8 +99,32 @@
                         controller: 'planNewCtrl'
                     }
                 }
+            }).state('planUpdate', {
+                url: '/update/{planId:int}',
+                parent: 'plans',
+                param: {
+                    planId: null
+                },
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + '/new/plans.new.html',
+                        controller: 'planUpdateCtrl'
+                    }
+                }
+            }).state('planDelete', {
+                url: '/delete/{planId:int}',
+                parent: 'plans',
+                param: {
+                    planId: null
+                },
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + '/delete/plans.delete.html',
+                        controller: 'planDeleteCtrl'
+                    }
+                }
             }).state('planDetailGuides',{
-                url: '/{planId:int}/detail/guides',
+                url: '/guides',
                 parent: 'planDetail',
                 param:{
                     planId:null
@@ -114,6 +146,32 @@
                     'planGuidesView':{
                         templateUrl: basePath + 'plans.detail.guides.html',
                         controller: 'planDetailGuidesCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
+                }).state('planDetailPreferencias',{
+                url: '/preferences',
+                parent: 'planDetail',
+                param:{
+                    planId:null
+                },
+                views:{
+                   'listView': {
+                        templateUrl: basePath + 'plans.list.html',
+                        controller: 'planDetailCtrl',
+                        controllerAs: 'ctrl'
+                    },
+                    'detailView': {
+                        templateUrl: basePath + 'plans.detail.html',
+                        controller: 'planDetailCtrl',
+                        controllerAs: 'ctrl'
+                    },
+                    'sideViewPlan': {
+                        templateUrl: basePath + 'plans.side.html'
+                    },
+                    'planGuidesView':{
+                        templateUrl: basePath + 'plans.detail.preferencias.html',
+                        controller: 'planDetailPreferenciasCtrl',
                         controllerAs: 'ctrl'
                     }
                 }

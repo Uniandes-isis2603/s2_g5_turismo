@@ -2,8 +2,8 @@
  * @ngdoc overview
  * @name preferencias.module:preferenciaModule
  * @description
- * Definición del módulo de Angular de Autores. El módulo encapsula todos los 
- * controladores y los templates HTML que estén relacionados con los Autores 
+ * Definición del módulo de Angular de Preferencias. El módulo encapsula todos los 
+ * controladores y los templates HTML que estén relacionados con las preferencias 
  * directamente. En la configuración del módulo se injecta la dependencia de 
  * ui.router que es la que se utiliza para la configuración de las URLs bajo las
  * cuales se accede al módulo. Por ejemplo, para mostrar los preferencias en la 
@@ -11,6 +11,27 @@
  * medio del stateProvider que informa a AngularJS de la relación entre la URL, 
  * un estado definido (estado de mostrar preferencias), el controlador y la vista 
  * correspondiente.
+   | ESTADO            | URL                         | VISTAS                 |
+ * |------------------|----------------------------|-------------------------|
+ * | preferencias     | /preferencias              | mainView:               |
+ * |                  |                            | preferencias.html       |
+ * |                  |                            | preferencias.side.html  |
+ * |                  |                            |                         |
+ * | preferenciasList | /list                      | listView:               |
+ * |                  |                            | preferencias.list.html  |
+ * |                  |                            | preferencias.side.html  |
+ * |                  |                            |                         |
+ * |preferenciasCreate|/create                     | listView:               |
+ * |                  |                            | /preferencias.new.html  |
+ * |preferenciaUpdate | /{guiaId:int}/update       | listView:               |
+ * |                  |                            | /preferencias.new.html  |
+ * |                  |                            |                         |
+ * |preferenciasDelete| /{guiaId:int}/delete       |listView:                |
+ * |                  |                            |/preferencias.delete.html|
+ * |                  |                            |                         |
+ * |                  |                            |                         |
+ * |                  |                            |                         |
+ * |------------------|----------------------------|-------------------------|
  */
 (function (ng) {
     // Definición del módulo

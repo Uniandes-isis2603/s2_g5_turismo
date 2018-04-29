@@ -4,28 +4,29 @@
 
     function ($scope, $rootScope, $http, miPlanContext, $state, $filter) {
             $rootScope.edit = true;
-            console.log($state);
+            $scope.data = {};
             id = $state.params.miPlanId;
-            console.log(id);
            if ($state.params.miPlanId !== null && $state.params.miPlanId !== undefined) 
            {  
             $http.get(miPlanContext+"/"+id).then(function(response){
                 var miPlan = response.data;
-                $scope.idGuia = miPlan.guia.idGuia;
-                $scope.idPlan =miPlan.plan.idPlan;
-                $scope.fecha = miPlan.fecha;
+                $scope.data.guia = miPlan.guia;
+                console.log( $scope.data.guia );
+                $scope.data.plan =miPlan.plan;
+                console.log($scope.data.plan);
+                $scope.data.fecha = miPlan.fecha;
                 
             });
         }
     
     
             $scope.createPlanAg = function () {
-                var idG= parseInt($scope.idGuia);
-                var idP= parseInt($scope.idPlan);
+                var idG= parseInt($scope.data.idGuia);
+                var idP= parseInt($scope.data.idPlan);
                 var guia = {idGuia:idG};
                 var plan = {idPlan:idP };
                 $http.put(miPlanContext+"/"+id, { 
-                    fecha: $scope.fecha,
+                    fecha: $scope.data.fecha,
                     guia:guia,
                     plan:plan}
                     ).then(function (response) {
