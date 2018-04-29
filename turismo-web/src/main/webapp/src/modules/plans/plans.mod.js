@@ -91,6 +91,30 @@
                         controller: 'planNewCtrl'
                     }
                 }
+            }).state('planUpdate', {
+                url: '/update/{planId:int}',
+                parent: 'plans',
+                param: {
+                    planId: null
+                },
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + '/new/plans.new.html',
+                        controller: 'planUpdateCtrl'
+                    }
+                }
+            }).state('planDelete', {
+                url: '/delete/{planId:int}',
+                parent: 'plans',
+                param: {
+                    planId: null
+                },
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + '/delete/plans.delete.html',
+                        controller: 'planDeleteCtrl'
+                    }
+                }
             }).state('planDetailGuides',{
                 url: '/{planId:int}/detail/guides',
                 parent: 'planDetail',
