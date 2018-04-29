@@ -44,15 +44,21 @@ public class PlanAgendadoLogic {
     }
      public PlanAgendadoEntity createPlanAgendado(PlanAgendadoEntity entity) throws BusinessLogicException{
         
+         if(entity.getGuia()!=null ){
         GuiaEntity guia = persistenceGuia.find(entity.getGuia().getId());
        
-        PlanEntity plan = persistencePlan.find(entity.getPlan().getId());
         
         entity.setGuia(guia);
+        
+         }
+         
+         if(entity.getPlan()!=null ){
+        PlanEntity plan = persistencePlan.find(entity.getPlan().getId());
         entity.setPlan(plan);
+         }
         if (entity.getFecha().after(fechaActual))
             throw new BusinessLogicException("la fecha es invalida \"");
-        
+         
         return persistence.create(entity);
     }
      public List<PlanAgendadoEntity> getPlanesAgendados() {
