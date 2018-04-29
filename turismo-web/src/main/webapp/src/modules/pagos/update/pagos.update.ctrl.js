@@ -10,6 +10,7 @@
             $rootScope.edit = true;
             console.log($state);
             id = $state.params.pagoId;
+            console.log(id);
            if ($state.params.pagoId !== null && $state.params.pagoId !== undefined) 
            {  
             $http.get(pagoContext+"/"+id).then(function(response){

@@ -45,8 +45,8 @@ public class PlanAgendadoResource {
         return list;
     }
         @POST
-    public PlanAgendadoDetailDTO createPaquete(PlanAgendadoDetailDTO paquete) throws BusinessLogicException {
-        PlanAgendadoEntity planAgendadoEntity = paquete.toEntity();
+    public PlanAgendadoDetailDTO createPaquete(PlanAgendadoDetailDTO plan) throws BusinessLogicException {
+        PlanAgendadoEntity planAgendadoEntity = plan.toEntity();
         planAgendadoEntity = planLogic.createPlanAgendado(planAgendadoEntity);
         return new PlanAgendadoDetailDTO(planAgendadoEntity);
     }

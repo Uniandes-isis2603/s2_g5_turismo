@@ -41,10 +41,10 @@ public class PlanAgendadoDetailDTO extends PlanAgendadoDTO {
     public PlanAgendadoEntity toEntity() {
         
         PlanAgendadoEntity entity = super.toEntity();
-        if (this.getPlan() != null) {
+        if (plan != null) {
             entity.setPlan(this.getPlan().toEntity());
         }
-        if (this.getGuia()!= null) {
+        if (guia!= null) {
             entity.setGuia(this.getGuia().toEntity());
         }
 

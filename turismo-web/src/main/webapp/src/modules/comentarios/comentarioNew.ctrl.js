@@ -18,7 +18,7 @@
                 $http.post('api/blogs/'+ $state.params.blogId + comentarioscontext, { 
                     comentario: $scope.comentario
                     },
-                     alert('entro'),        
+                           
                     ).then(function (response) {
                     $state.go('comentariosList', {comentarioId: response.data.id}, {reload: true});
                 });

@@ -27,7 +27,8 @@
                 url: '/comentarios/list',
                 params: {
                     blogId: null,
-                    comentarioId: null
+                    comentarioId: null,
+                    Id: null
                     
                 },
                 views: {
@@ -47,10 +48,10 @@
                            }
                        }
                    }).state('comentarioUpdate', {
-                url: '/update/{blogId:int}',
+                url: '/update/{comentarioId:int}',
                 parent: 'comentariosList',
                 param: {
-                    comentarioId: null
+                   
                 },
                 views: {
                     'detailView': {
@@ -59,7 +60,20 @@
                     }
                    
                 }
-            });
+            }).state('ComentarioDelete', {
+                url: '/delete/{ComentarioId:int}',
+                parent: 'comentariosList',
+                param: {
+                    
+                    
+                },
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + 'comentario.delete.html',
+                        controller: 'comentarioDeleteCtrl'
+                    }
+                }
+        });
         }
     ]);
 })(window.angular);
