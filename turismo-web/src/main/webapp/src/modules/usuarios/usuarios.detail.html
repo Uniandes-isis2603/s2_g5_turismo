@@ -2,23 +2,46 @@
     <div class="panel-body">
         <div class="row">
             <div class="col-md-3">
-                <dl>     
+                <dl>  
+                    <dt class="bold">{{currentUsuario.name}}, {{currentUsuario.apellido}}</dt>
+                    <dt> Contrasenia</dt>
+                    <dd>{{currentUsuario.contrasenia}}</dd>
+                    <dt>Correo</dt>
+                    <dd>{{currentUsuario.correo}}</dd>
+                    <dt>Telefono</dt>
+                    <dd>{{currentUsuario.telefono}}</dd>
+                    <dt>Idioma</dt>
+                    <dd>{{currentUsuario.idioma}}</dd>                    
+                    <dt>Es Administrador</dt>
+                    <dd>{{currentUsuario.idioma}}</dd>
+                    <dt class="bold">Descripcion</dt>
+                    <dd>{{currentUsuario.descripcion}}</dd>
                     <dt class="bold">Facturas</dt>
                     <ul ng-repeat="factura in currentUsuario.listaFacturas">
                         <dd> {{factura.id}}</dd>
                         <dd> {{factura.costo}}</dd>
                     </ul>
                     <dt class="bold">Tarjetas de Crédito</dt>
-                    <dd>{{currentUsuario.descripcion}}</dd>
-                    <ul ng-repeat="valoracion in currentUsuario.valoraciones">
+                    <ul ng-repeat="valoracion in currentUsuario.listaTarjetas">
                         <dd> {{valoracion.calificacion}}</dd>
                         <dd> {{valoracion.comentario}}</dd>
                     </ul>
-                    <ul ng-repeat="cat in currentUsuario.cagoriasUsuario">
-                        <dd> {{cat.calificacion}}</dd>
-                        <dd> {{cat.comentario}}</dd>
+                    <dt class="bold">Paquete Turistico</dt>
+                    <ul ng-repeat="paquete in currentUsuario.paqueteTuristico">
+                        <dd> {{paquete.id}}</dd>
                     </ul>
-
+                    <dt class="bold">Blogs</dt>
+                    <ul ng-repeat="blog in currentUsuario.listaBlogs">
+                        <dd> {{blog.tema}}</dd>
+                    </ul>
+                    <dt class="bold">Comentarios</dt>
+                    <ul ng-repeat="comentario in currentUsuario.listaComentarios">
+                        <dd> {{comentario.comentario}}</dd>
+                    </ul>
+                    <dt class="bold">Preferencias</dt>
+                    <ul ng-repeat="pref in currentUsuario.listaPreferencias">
+                        <dd> {{pref.tiposPlan}}</dd>
+                    </ul>
                 </dl>
             </div>
         </div>

@@ -15,6 +15,8 @@
         'moduloUbicacion',
         'paqueteModule',
         'comentariosModule',
+        'usuarioModule',
+        'valoracionesModule'
        
         
 

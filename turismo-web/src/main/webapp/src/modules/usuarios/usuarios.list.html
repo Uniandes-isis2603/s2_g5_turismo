@@ -1,7 +1,23 @@
 <div class="container-fluid">
     <div class="row">
+        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+            <div class="btn-group mr-2" role="group" aria-label="First group">
+                <a class="btn btn-info" ui-sref="usuarioCreate"><span class="glyphicon glyphicon-plus-sign"></span> Añadir un nuevo usuario</a>
+            </div>
+        </div>
+        
+        <div ng-repeat="usuario in usuariosRecords">
+        <div>
+            <a ui-sref="usuarioDetail({usuarioId: usuario.id})">
+                <h2>Usuario</h2>
+            </a>
+            <a class="btn btn-default btn-sm" ui-sref="usuarioUpdate({usuarioId: usuario.id})"><span class="glyphicon glyphicon-edit"></span></a>
+        </div>
+        </div>
+        
         <div class="col-md-2" ng-repeat="usuarios in usuariosRecords">
-            <table style="width:100%">
+            <a ui-sref="usuarioDetail({usuarioId: usuario.idUsuario})">
+               <table style="width:100%">
                 <tr>
                     <th>Nombre</th>
                     <th>Apellido</th> 
@@ -40,7 +56,10 @@
                     </p>
                 </div>
             </div>
-            </table>
+            </table> 
+               
+            </a>
+            
         </div>
     </div>
 </div>
