@@ -1,7 +1,8 @@
 (function (ng) {
     var mod = ng.module("usuariosModule");
     mod.constant("usuariosContext", "api/usuario");
-    mod.controller('usuarioCtrl', ['$scope', '$http', 'usuariosContext', '$state',
+     alert("entro");
+    mod.controller('usuariosCtrl', ['$scope', '$http', 'usuariosContext', '$state',
        /**
          * @ngdoc controller
          * @name usuarios.controller:usuariosCtrl
@@ -20,6 +21,7 @@
          * @param {Object} $state Dependencia injectada en la que se recibe el 
          * estado actual de la navegación definida en el módulo.
          */
+       
         function ($scope, $http, usuariosContext, $state) {
             /**
              * @ngdoc function
@@ -33,8 +35,8 @@
              * navegador.
              * @param {String} URL Dirección donde se encuentra el recurso
              * de los usuarios o API donde se puede consultar.
-             */
-            $http.get(usuariosContext).then(function (response) {
+             */            
+            $http.get(usuariosContext).then(function (response) {                
                 $scope.usuariosRecords = response.data;
             });
         }

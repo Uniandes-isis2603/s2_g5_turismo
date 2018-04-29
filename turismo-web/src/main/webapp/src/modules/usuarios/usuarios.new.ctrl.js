@@ -11,7 +11,7 @@
             
             
            
-            $scope.createFactura = function () {
+            $scope.createUsuario = function () {
                 $http.post(usuarioContext, { 
                     id:$scope.usuarioId,
                    nombre:$scope.usuarioNombre,

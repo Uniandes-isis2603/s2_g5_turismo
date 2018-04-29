@@ -15,8 +15,8 @@
         'moduloUbicacion',
         'paqueteModule',
         'comentariosModule',
-        'usuariosModule'
-        //'valoracionesModule'
+        'usuariosModule',
+        'valoracionesModule'
        
         
 

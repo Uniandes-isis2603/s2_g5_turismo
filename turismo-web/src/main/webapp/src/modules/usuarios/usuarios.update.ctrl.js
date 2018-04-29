@@ -31,7 +31,6 @@
     
            
             $scope.createFactura = function () {
-                alert("Entro a consola2");
                 $http.post(usuariosContext, { 
                     id:$scope.usuarioId,
                    nombre:$scope.usuarioNombre,

@@ -8,17 +8,50 @@
             // Mostrar la lista de guias será el estado por defecto del módulo
             $urlRouterProvider.otherwise("/valoracionesList");
             // Definición del estado 'guiasList' donde se listan los guias
-            $stateProvider.state('valoracionesList', {
-                // Url que aparecerá en el browser
-                url: '/valoraciones/',
+            $stateProvider.state('valoracion', {
+                url: '/valoraciones',
+                abstract: true,
                 views: {
                     'mainView': {
-                        templateUrl: basePath + 'valoraciones.list.html',
+                        templateUrl: basePath + 'valoraciones.html',
                         controller: 'valoracionesCtrl',
                         controllerAs: 'ctrl'
                     }
                 }
-            });
+            }
+                    ).state('valoracionesList', {
+                // Url que aparecerá en el browser
+                url: '/valoraciones/list',
+                parent:'valoracion',
+                views: {
+                    'listView': {
+                        templateUrl: basePath + 'valoraciones.list.html'
+                        //controller: 'valoracionesCtrl',
+                        //controllerAs: 'ctrl'
+                    }
+                }
+            }).state('valoracionesCreate', {
+                url: '/create/valoraciones',
+                parent: 'valoracion',
+                views: {
+                    'listView': {
+                        templateUrl: basePath + 'valoraciones.create.html',
+                        controller: 'valoracionesNewCtrl'
+                    }
+                }
+                }).state('valoracionesUpdate', {
+                url: '/update/{valoracionesId:int}',
+                parent: 'valoracion',
+                param: {
+                    valoracionesId: null
+                },
+                views: {
+                    'listView': {
+                        templateUrl: basePath + 'valoraciones.new.html',
+                        controller: 'valoracionesUpdateCtrl'
+                    }
+                }
+                });
         }
     ]);
 })(window.angular);

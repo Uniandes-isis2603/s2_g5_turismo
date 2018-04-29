@@ -49,7 +49,7 @@
                 }
             }).state("usuariosList",{
                url:'/list',
-               parent:'usuarios',
+               parent:'usuario',
                views:{
                    'listView':{
                        templateUrl: basePath + 'usuarios.list.html'
