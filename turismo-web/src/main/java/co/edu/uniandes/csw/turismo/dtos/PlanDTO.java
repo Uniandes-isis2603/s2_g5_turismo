@@ -254,6 +254,7 @@ public class PlanDTO
         planE.setDescripcion(this.descripcion);
         planE.setDuracion(this.duracion);
         planE.setRestricciones(this.restricciones);
+        planE.setPrecio(this.precio);
                  
         return planE;
     }

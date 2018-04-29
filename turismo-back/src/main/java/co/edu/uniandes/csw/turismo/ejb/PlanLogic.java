@@ -134,10 +134,12 @@ public class PlanLogic
             throw new BusinessLogicException("Ya existe un Plan con el nombre \"" + entity.getName() + "\"");
         }
         
-        if (entity.getPreferenciasPlan() == null || entity.getPreferenciasPlan().isEmpty()) 
-        {
-           throw new BusinessLogicException("El plan debe estar asociado al menos a un tipo o categoria de plan ");
-        }
+        PlanEntity old = getPlan(entity.getId());
+        
+        entity.setUbicacion(old.getUbicacion());
+        entity.setPreferenciasPlan(old.getPreferenciasPlan());
+        entity.setGuias(old.getGuias());
+        entity.setValoracionesPlan(old.getValoracionesPlan());
         return persistence.update(entity);
     }
     
