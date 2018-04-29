@@ -35,17 +35,10 @@
                     <dd>{{currentPlan.precio}}'$'</dd>                    
                     <dt class="bold">Descripcion</dt>
                     <dd>{{currentPlan.descripcion}}</dd>
-                    <ul ng-repeat="valoracion in currentPlan.valoraciones">
-                        <dd> {{valoracion.calificacion}}</dd>
-                        <dd> {{valoracion.comentario}}</dd>
-                    </ul>
-                    <ul ng-repeat="cat in currentPlan.cagoriasPlan">
-                        <dd> {{cat.calificacion}}</dd>
-                        <dd> {{cat.comentario}}</dd>
-                    </ul>
                 </dl>
                 <ul class="nav nav-tabs">
                     <li> <a ui-sref="planDetailGuides({planId: currentPlan.idPlan})">Guías</a></li>
+                    <li> <a ui-sref="planDetailPreferencias({planId: currentPlan.idPlan})">Categorías</a></li>
                 </ul>
             </div>
         </div>

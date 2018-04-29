@@ -2,8 +2,8 @@
  * @ngdoc overview
  * @name guias.module:guiaModule
  * @description
- * Definición del módulo de Angular de Autores. El módulo encapsula todos los 
- * controladores y los templates HTML que estén relacionados con los Autores 
+ * Definición del módulo de Angular de Guias. El módulo encapsula todos los 
+ * controladores y los templates HTML que estén relacionados con los Guias 
  * directamente. En la configuración del módulo se injecta la dependencia de 
  * ui.router que es la que se utiliza para la configuración de las URLs bajo las
  * cuales se accede al módulo. Por ejemplo, para mostrar los guias en la 
@@ -11,6 +11,27 @@
  * medio del stateProvider que informa a AngularJS de la relación entre la URL, 
  * un estado definido (estado de mostrar guias), el controlador y la vista 
  * correspondiente.
+    | ESTADO          | URL                         | VISTAS          |
+ * |------------------|----------------------------|------------------|
+ * | guias            | /guias                     | mainView:        |
+ * |                  |                            | guias.html       |
+ * |                  |                            | guias.side.html  |
+ * |                  |                            |                  |
+ * | guiasList        | /list                      | listView:        |
+ * |                  |                            | guias.list.html  |
+ * |                  |                            | guias.side.html  |
+ * |                  |                            |                  |
+ * |guiasCreate       |/create                     | listView:        |
+ * |                  |                            | /guias.new.html  |
+ * |guiaUpdate        |/{guiaId:int}/update        | listView:        |
+ * |                  |                            | /guias.new.html  |
+ * |                  |                            |                  |
+ * |guiasDelete       | /{guiaId:int}/delete       |listView:         |
+ * |                  |                            |/guias.delete.html|
+ * |                  |                            |                  |
+ * |                  |                            |                  |
+ * |                  |                            |                  |
+ * |------------------|----------------------------|------------------|
  */
 (function (ng) {
     // Definición del módulo
