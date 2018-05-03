@@ -35,18 +35,33 @@ import co.edu.uniandes.csw.turismo.entities.TarjetaDeCreditoEntity;
  */
 public class TarjetaDeCreditoDTO 
 {
+    /**
+     * atributo que representa el nombre de la tarjeta de credito en DTO
+     */
     private String name;
+    /**
+     * atributo que representa el numero de la tarjeta de credito en DTO
+     */
     private Long  numero;
+    /**
+     * atributo que representa el CVD de la tarjeta de credito en DTO
+     */
     private Long CVD;
+    /**
+     * atributo que representa la cedula de la tarjeta de credito en DTO
+     */
     private Long cedula;
-     /*
-    Constructor por defecto
-    */
-
+    
+    /**
+     * Constructor por defecto
+     */
     public TarjetaDeCreditoDTO(){
         
     }
-
+    /**
+     * metodo que se encarga de covertir de entity a DTO
+     * @param entity 
+     */
     public TarjetaDeCreditoDTO(TarjetaDeCreditoEntity entity) {
         if (entity != null) 
         {    
@@ -60,7 +75,10 @@ public class TarjetaDeCreditoDTO
     }
 
  
-    
+    /**
+     * metodo que se encarga de convertir de DTO a entity
+     * @return la entidad 
+     */
      public TarjetaDeCreditoEntity toEntity() {
         TarjetaDeCreditoEntity entity = new TarjetaDeCreditoEntity();
         entity.setCDV(this.getCVD());
@@ -69,47 +87,55 @@ public class TarjetaDeCreditoDTO
         entity.setCedula(this.getCedula());
         return entity;
     }
-     
-        public Long getCedula() {
+    /**
+     * 
+     * @return Cedula 
+     */ 
+    public Long getCedula() {
         return cedula;
     }
-
+    /**
+     * Establece la cedula al DTO
+     * @param cedula 
+     */
     public void setCedula(Long cedula) {
         this.cedula = cedula;
     }
-/*  
-    retorna el nombre del dueño de la tarjeta
+    /**
+    * retorna el nombre del dueño de la tarjeta
     */
     public String getName() {
         return name;
     }
-/*
-    retorna el nombre del dueño de la tarjeta
+    /**
+    * retorna el nombre del dueño de la tarjeta
     */
     public void setName(String name) {
         this.name = name;
     }
-/*
-    retorna el numero de la tarjeta
+    /**
+    *  retorna el numero de la tarjeta
     */
     public long getNumero() {
         return numero;
     }
-/*
-    modifica el numero de la tarjeta
-    */
+    /**
+     * modifica el numero del DTO 
+     * @param numero 
+     */
     public void setNumero(long numero) {
         this.numero = numero;
     }
-/*
-    retorna el codigo CVD de la tarjeta
+    /**
+    * retorna el codigo CVD de la tarjeta
     */
     public Long getCVD() {
         return CVD;
     }
-/*
-    modeifica el CVD de la tarjeta
-    */
+    /**
+     * modifica el CVD del DTO
+     * @param CVD 
+     */
     public void setCVD(Long CVD)
     {
         this.CVD = CVD;

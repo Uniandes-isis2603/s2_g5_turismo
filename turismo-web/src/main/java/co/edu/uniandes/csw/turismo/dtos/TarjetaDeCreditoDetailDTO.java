@@ -52,15 +52,22 @@ import co.edu.uniandes.csw.turismo.entities.UsuarioEntity;
  */
 public class TarjetaDeCreditoDetailDTO extends TarjetaDeCreditoDTO
 {
-   
+   /**
+    * representa al usuario que tiene la tarjeta
+    */
     private UsuarioDTO usuario;
-
+    /**
+     * constructor vacio
+     */
     public TarjetaDeCreditoDetailDTO() 
     {
          
     }
 
-   
+   /**
+    * metodo que se encarga de pasar un entity a DTO
+    * @param entity 
+    */
     public TarjetaDeCreditoDetailDTO(TarjetaDeCreditoEntity entity) 
     {
       super(entity);
@@ -71,7 +78,11 @@ public class TarjetaDeCreditoDetailDTO extends TarjetaDeCreditoDTO
         }
 
     }
-    
+    /**
+     * metodo que se encargar de pasar de DTO a entity
+     * @param user
+     * @return 
+     */
    // @Override
     public TarjetaDeCreditoEntity toEntity( UsuarioEntity user)
     {
@@ -79,11 +90,17 @@ public class TarjetaDeCreditoDetailDTO extends TarjetaDeCreditoDTO
         entity.setUsuario(user);
         return entity;
     }
-
+    /**
+     * devuelve el usuario DTO
+     * @return usuario
+     */
     public UsuarioDTO getUsuario() {
         return usuario;
     }
-
+    /**
+     * establece el usuario DTO
+     * @param usuario 
+     */
     public void setUsuario(UsuarioDTO usuario) {
         this.usuario = usuario;
     }
