@@ -43,22 +43,29 @@ import co.edu.uniandes.csw.turismo.entities.FacturaEntity;
  */
 public class FacturaDetailDTO extends FacturaDTO 
 {
-//     private UsuarioDTO usuario;
+    /**
+     * relacion que representa la union con el paquete turistico
+     */
      private PaqueteTuristicoDTO paquetetur;
+     /**
+      * relacion que representa la union con la tarjeta
+      */
      private TarjetaDeCreditoDTO tarjetaCredito;
-    //TODO paquete Turistico private PaqueteTuristicoDTO PaqueteTuristico;
     
+    /**
+     * constructor por defecto
+     */
     public FacturaDetailDTO()    
     {
         
     }
+    /**
+     * constructor apartir de una facturaEntity
+     * @param entity 
+     */
     public FacturaDetailDTO(FacturaEntity entity)
     {   
         super(entity);
-//        if( entity.getUsuario() != null)
-//        {
-//            usuario =new UsuarioDTO(entity.getUsuario());
-//        }
         if( entity.getPaqueteturistico() != null)
         {
             paquetetur = new PaqueteTuristicoDTO(entity.getPaqueteturistico());
@@ -69,6 +76,10 @@ public class FacturaDetailDTO extends FacturaDTO
         }
         
     }
+    /**
+     * metodo que se encarga de pasar de DTO a entity
+     * @return facturaEntity
+     */
     public FacturaEntity toEntity()
     { 
        FacturaEntity entityFactura = super.toEntity();
@@ -85,30 +96,31 @@ public class FacturaDetailDTO extends FacturaDTO
          return entityFactura;
      
     }
-    
-    
-    //TODO: getter and Setters
-
-//    public UsuarioDTO getUsuario() {
-//        return usuario;
-//    }
-//
-//    public void setUsuario(UsuarioDTO usuario) {
-//        this.usuario = usuario;
-//    }
-//
+    /**
+     * 
+     * @return paqueteTuristicoDTO 
+     */
     public PaqueteTuristicoDTO getPaquetetur() {
         return paquetetur;
     }
-
+    /**
+     * Establece el paqueteTuristicoDTO a la factura
+     * @param paquetetur 
+     */
     public void setPaquetetur(PaqueteTuristicoDTO paquetetur) {
         this.paquetetur = paquetetur;
     }
-
+    /**
+     * 
+     * @return tarjetaDeCredito DTO 
+     */
     public TarjetaDeCreditoDTO getTarjetaCredito() {
         return tarjetaCredito;
     }
-
+    /**
+     * establece la tarjeta de Credito relacionada al DTO
+     * @param tarjetaCredito 
+     */
     public void setTarjetaCredito(TarjetaDeCreditoDTO tarjetaCredito) {
         this.tarjetaCredito = tarjetaCredito;
     }

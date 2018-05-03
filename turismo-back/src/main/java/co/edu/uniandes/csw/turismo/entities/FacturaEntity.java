@@ -19,9 +19,11 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class FacturaEntity extends  BaseEntity implements Serializable
 {
-    
-    private Long costo; // atributo del costo de la factura
+    /* atributo del costo de la factura
+    */
+    private Long costo; 
    
+    //Relaciones
     @PodamExclude
     @ManyToOne
     private TarjetaDeCreditoEntity tarjetadecredito;
@@ -29,30 +31,45 @@ public class FacturaEntity extends  BaseEntity implements Serializable
     @OneToOne( cascade=CascadeType.PERSIST)
     private PaqueteTuristicoEntity paqueteturistico;
     
-
+    /**
+     * @return la tarjeta de credito con que se pago la factura
+    */
     public TarjetaDeCreditoEntity getTarjetadecredito() {
         return tarjetadecredito;
     }
-
+    /**
+     * establece la tarjeta de credito con que se pago la factura
+     * @param tarjetadecredito 
+     */
     public void setTarjetadecredito(TarjetaDeCreditoEntity tarjetadecredito) {
         this.tarjetadecredito = tarjetadecredito;
     }
-
+    /**
+     *
+     * @return el paquete turistico que se esta pagando 
+     */
     public PaqueteTuristicoEntity getPaqueteturistico() {
         return paqueteturistico;
     }
-
+    /**
+     * Establece el paquete turitico que se va pagar en la factura
+     * @param paqueteturistico 
+     */
     public void setPaqueteturistico(PaqueteTuristicoEntity paqueteturistico) {
         this.paqueteturistico = paqueteturistico;
     }
 
-    
+    /**
+     * 
+     * @return El costo de la factura
+     */
     public Long getCosto() {
         return costo;
     }
      /**
-     * @Param costo
-     */
+      * Establece el costo de la factura
+      * @param costo 
+      */
     public void setCosto(Long costo) {
         this.costo = costo;
     }
