@@ -19,7 +19,7 @@
          * @param {Object} $state Dependencia injectada en la que se recibe el 
          * estado actual de la navegación definida en el módulo.
          */
-        function ($scope, $http, plansContext, $state, $rootScope) {
+        function ($scope, $http, plansContext, $state) {
             if (($state.params.planId !== undefined) && ($state.params.planId !== null)){
                 /**
                  * @ngdoc function

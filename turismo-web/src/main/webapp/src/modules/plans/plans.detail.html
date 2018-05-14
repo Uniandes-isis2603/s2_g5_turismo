@@ -24,7 +24,6 @@
 
             </div>
             <div class="col-md-3">
-                <input type="hidden" name="latitud" id="latitud" value="{{latitud}}"/>
                 <dl>     
                     <dt class="bold">{{currentPlan.name}}</dt>
                     <dt> Duración</dt>
@@ -37,16 +36,11 @@
                     <dd>{{currentPlan.precio}}'$'</dd>                    
                     <dt class="bold">Descripcion</dt>
                     <dd>{{currentPlan.descripcion}}</dd>
-                    
-
-
-
-
                 </dl>
                 <ul class="nav nav-tabs">
                     <li> <a ui-sref="planDetailGuides({planId: currentPlan.idPlan})">Guías</a></li>
                     <li> <a ui-sref="planDetailPreferencias({planId: currentPlan.idPlan})">Categorías</a></li>
-                    <li> <a ui-sref="planDetailUbicacion({planId: currentPlan.idPlan})">Ubicación</a></li>
+                    <li> <a ui-sref="planDetailUbicacion({planId: currentPlan.idPlan,lat: currentPlan.ubicacion.latitud,lon: currentPlan.ubicacion.longitud})">Ubicación</a></li>
                 </ul>
             </div>  
             

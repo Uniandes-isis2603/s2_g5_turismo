@@ -1,4 +1,3 @@
-var lat = 10;
 (function (ng) {
     var app = angular.module('mainApp', [
         // External dependencies
@@ -19,9 +18,6 @@ var lat = 10;
         'usuariosModule',
         'valoracionesModule',
         'uiGmapgoogle-maps'
-       
-        
-
     ]);
     app.run(function($rootScope) {
     $rootScope.lat = 10;

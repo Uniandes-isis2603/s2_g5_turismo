@@ -21,8 +21,9 @@
          * estado actual de la navegación definida en el módulo.
          */
         function ($scope, $http, plansContext, $state) {
+            //Valor para inicializar un mapa (no se porque no funciona si no se hace esto :C)
             $scope.map = {center: {latitude: 45, longitude: -73}, zoom: 8};
-            
+         
             
             if (($state.params.planId !== undefined) && ($state.params.planId !== null)){
                 /**
@@ -45,13 +46,14 @@
             
             $scope.init = function ()
             {
-                $scope.map.center.latitude = this.lat;
-                $scope.map.center.longitude = this.lon;
+                $scope.map.zoom = 8;
+                $scope.map.center.latitude = $state.params.lat;
+                $scope.map.center.longitude = $state.params.lon;
                  $scope.marker = {
                           id: 0,
                           coords: {
-                                  latitude: this.lat,
-                                  longitude: this.lon
+                                  latitude:  $state.params.lat,
+                                  longitude: $state.params.lon
                                   },
                        options: { draggable: false }
              };

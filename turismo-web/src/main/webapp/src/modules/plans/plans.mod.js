@@ -176,10 +176,12 @@
                     }
                 }
                 }).state('planDetailUbicacion',{
-                url: '/ubicacion',
+                url: '/ubicacion/{lat:string}/{lon:string}',
                 parent: 'planDetail',
                 param:{
-                    planId:null
+                    planId:null,
+                    lat:null,
+                    lon:null
                 },
                 views:{
                    'listView': {
