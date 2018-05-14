@@ -175,6 +175,32 @@
                         controllerAs: 'ctrl'
                     }
                 }
+                }).state('planDetailUbicacion',{
+                url: '/ubicacion',
+                parent: 'planDetail',
+                param:{
+                    planId:null
+                },
+                views:{
+                   'listView': {
+                        templateUrl: basePath + 'plans.list.html',
+                        controller: 'planDetailCtrl',
+                        controllerAs: 'ctrl'
+                    },
+                    'detailView': {
+                        templateUrl: basePath + 'plans.detail.html',
+                        controller: 'planDetailCtrl',
+                        controllerAs: 'ctrl'
+                    },
+                    'sideViewPlan': {
+                        templateUrl: basePath + 'plans.side.html'
+                    },
+                    'planGuidesView':{
+                        templateUrl: basePath + 'plans.detail.ubicacion.html',
+                        controller: 'mapPlanCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
             });
         }]);
 })(window.angular);

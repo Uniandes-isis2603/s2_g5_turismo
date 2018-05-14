@@ -1,3 +1,4 @@
+var lat = 10;
 (function (ng) {
     var app = angular.module('mainApp', [
         // External dependencies
@@ -16,11 +17,16 @@
         'paqueteModule',
         'comentariosModule',
         'usuariosModule',
-        'valoracionesModule'
+        'valoracionesModule',
+        'uiGmapgoogle-maps'
        
         
 
     ]);
+    app.run(function($rootScope) {
+    $rootScope.lat = 10;
+    $rootScope.lon = 10;
+});
     // Resuelve problemas de las promesas
     app.config(['$qProvider', function ($qProvider) {
             $qProvider.errorOnUnhandledRejections(false);

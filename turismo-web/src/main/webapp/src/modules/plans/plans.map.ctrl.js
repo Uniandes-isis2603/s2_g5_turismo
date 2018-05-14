@@ -1,7 +1,8 @@
+
 (function (ng) {
-    var mod = ng.module("planModule");
+    var mod = ng.module("uiGmapgoogle-maps");
     mod.constant("plansContext", "api/plans");
-    mod.controller('planDetailCtrl', ['$scope', '$http', 'plansContext', '$state',
+    mod.controller('mapPlanCtrl', ['$scope', '$http', 'plansContext', '$state',
         /**
          * @ngdoc controller
          * @name plans.controller:planDetailCtrl
@@ -19,7 +20,10 @@
          * @param {Object} $state Dependencia injectada en la que se recibe el 
          * estado actual de la navegación definida en el módulo.
          */
-        function ($scope, $http, plansContext, $state, $rootScope) {
+        function ($scope, $http, plansContext, $state) {
+            $scope.map = {center: {latitude: 45, longitude: -73}, zoom: 8};
+            
+            
             if (($state.params.planId !== undefined) && ($state.params.planId !== null)){
                 /**
                  * @ngdoc function
@@ -33,9 +37,26 @@
                  */
                 $http.get(plansContext + '/' + $state.params.planId).then(function (response) {
                     $scope.currentPlan = response.data;
+                    this.lat.setValue($scope.currentPlan.ubicacion.latitud); 
+                    this.lon = $scope.currentPlan.ubicacion.longitud;
                 });
             }
-        }
-    ]);
+            
+            
+            $scope.init = function ()
+            {
+                $scope.map.center.latitude = this.lat;
+                $scope.map.center.longitude = this.lon;
+                 $scope.marker = {
+                          id: 0,
+                          coords: {
+                                  latitude: this.lat,
+                                  longitude: this.lon
+                                  },
+                       options: { draggable: false }
+             };
+         };
+
+        }]);
 }
 )(window.angular);
