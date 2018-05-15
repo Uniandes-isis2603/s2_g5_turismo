@@ -237,15 +237,15 @@ public class UsuarioLogicTest
         Assert.assertEquals(nuevo.getId(), pojoEntity.getId());
     }
     
-    @Test
-    public void getPaqueteTest()
-    {
-        UsuarioEntity entity = listaUsuarios.get(0);
-        PaqueteTuristicoEntity response = usuarioLogic.getPaquete(paquete.getId());
-        
-        Assert.assertEquals(paquete.getId(), response.getId());
-        Assert.assertEquals(paquete.getPagos(), response.getPagos());
-    }
+//    @Test
+//    public void getPaqueteTest()
+//    {
+//        UsuarioEntity entity = listaUsuarios.get(0);
+//        PaqueteTuristicoEntity response = usuarioLogic.getPaquete(paquete.getId());
+//        
+//        Assert.assertEquals(paquete.getId(), response.getId());
+//        Assert.assertEquals(paquete.getPagos(), response.getPagos());
+//    }
     
 //    @Test
 //    public void createPaqueteTest()
