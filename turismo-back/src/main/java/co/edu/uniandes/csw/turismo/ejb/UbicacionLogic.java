@@ -21,14 +21,21 @@ import javax.inject.Inject;
 @Stateless
 public class UbicacionLogic 
 {
+    /**
+     * modela el logger
+     */
     private static final Logger LOGGER = Logger.getLogger(UbicacionLogic.class.getName());
-     
+     /**
+      * llama la capa de persistencia de ubicacion
+      */
     @Inject
     private UbicacionPersistence persistence;
-    
-    //@Inject
-    //private PlanPersistence persistence;
-    
+    /**
+     * le pide a la capa de persistencia guardar una ubicacion
+     * @param entity
+     * @return ubicacion guardada
+     * @throws BusinessLogicException 
+     */
     public UbicacionEntity createUbicacion(UbicacionEntity entity) throws BusinessLogicException 
     {
         LOGGER.info("Inicia proceso de creación de Ubicacion");
@@ -37,6 +44,10 @@ public class UbicacionLogic
         LOGGER.info("Termina proceso de creación de Ubicacion");
         return entity;
     }
+    /**
+     * le pide a la capa de ubicaciones que devuelva todas las ubicaciones guardadas
+     * @return lista de ubicaciones
+     */
     public List<UbicacionEntity> getUbicacions()
     {
         LOGGER.info("Inicia proceso de consultar todas las ubicaciones");
@@ -45,7 +56,12 @@ public class UbicacionLogic
         return tarjetas;
         
     }
-     public UbicacionEntity getUbicacion(Long id) 
+    /**
+     * le pide a la capa de persistencia que le devuelva una ubicacion
+     * @param id
+     * @return  ubicacion
+     */
+    public UbicacionEntity getUbicacion(Long id) 
      {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar ubicacion con id={0}", id);
         UbicacionEntity ubic= persistence.find(id);
@@ -55,9 +71,11 @@ public class UbicacionLogic
         LOGGER.log(Level.INFO, "Termina proceso de consultar la ubicacion con id={0}", id);
         return ubic;
     }
-     
-     
-     public void deleteUbicacion(Long id)
+    /**
+     * le pide a la capa de persistencia eliminar una ubicacion
+     * @param id 
+     */
+    public void deleteUbicacion(Long id)
      {
          UbicacionEntity ubic= persistence.find(id);
         if (ubic == null) {
@@ -69,8 +87,14 @@ public class UbicacionLogic
          LOGGER.log(Level.INFO, "Termina proceso de Eliminar ubicacion con id", id);
          
      };
-     
-     public UbicacionEntity updateUbicacion(Long id, UbicacionEntity entity) throws BusinessLogicException 
+    /**
+     * actualiza una ubicacion con el id y datos de la nueva ubicacion pasados por parametro
+     * @param id
+     * @param entity
+     * @return ubicacion modificada
+     * @throws BusinessLogicException 
+     */ 
+    public UbicacionEntity updateUbicacion(Long id, UbicacionEntity entity) throws BusinessLogicException 
      {
         entity.setId(id);
         UbicacionEntity newEntity = persistence.update(entity);

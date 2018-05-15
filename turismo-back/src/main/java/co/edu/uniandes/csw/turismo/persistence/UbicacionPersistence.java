@@ -21,8 +21,13 @@ import javax.persistence.TypedQuery;
 @Stateless
 public class UbicacionPersistence 
 {
+    /**
+     * modela el logger
+     */
     private static final Logger LOGGER = Logger.getLogger(UbicacionPersistence.class.getName());
-
+    /**
+     * establece el entityManager que se va encargar del manejo de la base de datos
+     */
     @PersistenceContext(unitName = "TurismoPU")
     protected EntityManager em;
 
@@ -55,11 +60,18 @@ public class UbicacionPersistence
     {
         return em.find(UbicacionEntity.class, id);
     }
-
+     /**
+      * Actualiza la informacion de una ubicacion por la que se pasa por parametro
+      * @param entity
+      * @return ubicacion actualizada
+      */
     public UbicacionEntity update(UbicacionEntity entity) {
          return em.merge(entity);
     }
-    
+    /**
+     * Elimina una ubicacion con el id pasado por parametro dela base de datos
+     * @param id 
+     */
    public void delete(Long id) {
         LOGGER.log(Level.INFO, "Borrando Ubicacion con id={0}", id);
         UbicacionEntity entity = em.find(UbicacionEntity.class, id);
