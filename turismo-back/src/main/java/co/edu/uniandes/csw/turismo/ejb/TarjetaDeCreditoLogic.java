@@ -21,15 +21,26 @@ import javax.inject.Inject;
  */
 @Stateless
 public class TarjetaDeCreditoLogic 
-{
+{   
+    /**
+     * modela el logger
+     */
     private static final Logger LOGGER = Logger.getLogger(TarjetaDeCreditoLogic.class.getName());
      
+    /**
+     * relaciones necesarias
+     */
     @Inject
     private TarjetaDeCreditoPersistence persistence;
     
     @Inject
     private FacturaLogic facturaLogica;
-    
+    /**
+     * Cuando se va crear una targeta verifica que se cumpla todas las reglas de negocio
+     * @param entity
+     * @return si la tarjeta cumple con todas las caracteristicas es retornada
+     * @throws BusinessLogicException 
+     */
     public TarjetaDeCreditoEntity createTarjetaDeCredito(TarjetaDeCreditoEntity entity) throws BusinessLogicException 
     {
         LOGGER.info("Inicia proceso de creación de TarjetaDeCredito");
@@ -48,6 +59,10 @@ public class TarjetaDeCreditoLogic
         LOGGER.info("Termina proceso de creación de TarjetaDeCredito");
         return entity;
     }
+    /**
+     * 
+     * @return todas las tarjetas de la base de datos 
+     */
     public List<TarjetaDeCreditoEntity> getTrajetasDeCredito()
     {
         LOGGER.info("Inicia proceso de consultar todos los libros");
@@ -56,7 +71,12 @@ public class TarjetaDeCreditoLogic
         return tarjetas;
         
     }
-     public TarjetaDeCreditoEntity getTrajetaDeCredito(Long id) 
+    /**
+     * metodo que le pide a la capa de persistencia que le retorne una tarjeta
+     * @param id
+     * @return tarjeta con el id pasado por parametro
+     */
+    public TarjetaDeCreditoEntity getTrajetaDeCredito(Long id) 
      {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar Tarjeta con id={0}", id);
         TarjetaDeCreditoEntity tarjeta= persistence.find(id);
@@ -66,7 +86,12 @@ public class TarjetaDeCreditoLogic
         LOGGER.log(Level.INFO, "Termina proceso de consultar tarjeta con id={0}", id);
         return tarjeta;
     }
-     
+     /**
+      * metodo que le pide a la capa de persistencia que retorne una tarjeta en especiico
+      * @param id
+      * @param numero
+      * @return Tarjeta con el id y numero pasados por parametro
+      */
      public TarjetaDeCreditoEntity getTrajetaDeCreditoNumero(Long id, Long numero) 
      {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar Tarjeta con numero}", numero);
@@ -77,7 +102,11 @@ public class TarjetaDeCreditoLogic
         LOGGER.log(Level.INFO, "Termina proceso de consultar tarjeta con numero}",numero);
         return tarjeta;
     }
-     
+     /**
+      * metodo que se encarga de pedirle a la capa de logica de eliminar una tarjeta segun el id y numero
+      * @param id
+      * @param numero 
+      */
      public void deleteTarjetaDeCredito(Long id,Long numero)
      {
         TarjetaDeCreditoEntity tarjeta= persistence.findByNumber(id,numero);
@@ -106,7 +135,14 @@ public class TarjetaDeCreditoLogic
         }   
         }
      };
-     
+     /**
+      * metodo que se encarga de pedirle a la capa de persistencia modificar una tarjeta teniendo encuenta que
+      * cumpla con las reglas de negocio establecidas
+      * @param id
+      * @param entity
+      * @return tarjeta modificada
+      * @throws BusinessLogicException 
+      */
      public TarjetaDeCreditoEntity updateTarjetaDeCredito(Long id, TarjetaDeCreditoEntity entity) throws BusinessLogicException 
      {
          if(Long.toString(entity.getCDV()).length() != 3)

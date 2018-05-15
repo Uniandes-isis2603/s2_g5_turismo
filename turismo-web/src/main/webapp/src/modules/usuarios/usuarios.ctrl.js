@@ -1,7 +1,7 @@
 (function (ng) {
     var mod = ng.module("usuariosModule");
     mod.constant("usuariosContext", "api/usuario");
-     
+    
     mod.controller('usuariosCtrl', ['$scope', '$http', 'usuariosContext', '$state',
        /**
          * @ngdoc controller

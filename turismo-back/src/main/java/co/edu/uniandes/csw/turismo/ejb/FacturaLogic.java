@@ -22,13 +22,23 @@ import javax.inject.Inject;
 @Stateless
 public class FacturaLogic 
 {
-     private static final Logger LOGGER = Logger.getLogger(FacturaLogic.class.getName());
-     
+    /**
+     * modela el logger
+     */
+    private static final Logger LOGGER = Logger.getLogger(FacturaLogic.class.getName());
+     /**
+      * llama la capa de persistencia de factura
+      */
     @Inject
     private FacturaPersistence persistence;
    
-  
-     public FacturaEntity createFactura(FacturaEntity entity) throws BusinessLogicException 
+    /**
+     * le pide a la capa de persistencia crear una factura despues de haber verificado las reglas de negocio
+     * @param entity
+     * @return factura creada
+     * @throws BusinessLogicException 
+     */
+    public FacturaEntity createFactura(FacturaEntity entity) throws BusinessLogicException 
     {
        
         LOGGER.info("Inicia proceso de creación de la Factura");
@@ -41,14 +51,15 @@ public class FacturaLogic
         {
             throw new BusinessLogicException("La factura no puede tener un costo negativo o un costo 0. Costo= " + entity.getCosto() );
             
-        }
-        
-//     
+        }     
         persistence.create(entity);
         LOGGER.info("Termina proceso de creación de Factura");
         return entity;
     }
-     
+    /**
+     * Le pide a la capa de persistencia que traiga todas las facturas de la base de datos
+     * @return list de facturas
+     */ 
     public List<FacturaEntity> getFacturas()
     {
         LOGGER.info("Inicia proceso de consultar todos los facturas");
@@ -57,6 +68,11 @@ public class FacturaLogic
         return facturas;
         
     }
+    /**
+     * le pide a la capa de persistencia que solo le traiga una factura
+     * @param id
+     * @return factura
+     */
     public FacturaEntity getFactura(Long id) 
     {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar Factura con id={0}", id);
@@ -67,7 +83,12 @@ public class FacturaLogic
         LOGGER.log(Level.INFO, "Termina proceso de consultar factura con id={0}", id);
         return factura;
     }
-    
+    /**
+     * le pide a la capa de persistencia que le traiga la factura que fue pagada con el numero de tarjeta dada
+     * por parametro
+     * @param numeroTarjeta
+     * @return factura
+     */
     public List<FacturaEntity> getFacturaTarjeta(Long numeroTarjeta) 
     {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar Factura con tarjeta ={0}", numeroTarjeta);
@@ -78,7 +99,10 @@ public class FacturaLogic
         LOGGER.log(Level.INFO, "Termina proceso de consultar factura con tarjeta={0}", numeroTarjeta);
         return factura;
     }
-    
+    /**
+     * Elimina una factura con el id pasado por parametro
+     * @param id 
+     */
      public void deleteFactura(Long id)
      {
          FacturaEntity factura = getFactura(id);
@@ -87,7 +111,14 @@ public class FacturaLogic
          persistence.delete(id);
          LOGGER.log(Level.INFO, "Termina proceso de Eliminar factura con id={0}", id);
      }
-     
+     /**
+      * actualiza una factura con id y datos de la factura nueva pasado por parametro
+      * ademas valida que cunmpla las reglas de negocio
+      * @param id
+      * @param entity
+      * @return factura modificada
+      * @throws BusinessLogicException 
+      */
      public FacturaEntity updateFactura(Long id, FacturaEntity entity) throws BusinessLogicException 
      {
     

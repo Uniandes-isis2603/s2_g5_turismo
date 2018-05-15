@@ -19,43 +19,69 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class TarjetaDeCreditoEntity extends BaseEntity implements Serializable
 {
-    
+    /*
+     * atributo que se encarga del numero de la tarjeta
+    */
     private Long numero;
+    /*
+     * atributo que se encarga del nombre dueño de la tarjeta
+    */
     private String name;
+    /*
+     * atributo que se encarga del numero de seguridad de la tarjeta o CDV
+    */
     private Long CDV;
+    /*
+     * atributo que se encarga de la cedula de la tarjeta
+    */
     private Long cedula;
     
-
+    /*
+     * asociación con el usuario que es dueño de la tarjeta
+    */
     @PodamExclude
     @ManyToOne
     private UsuarioEntity usuario;
 
+    /**
+     *@return cedula de la tarjeta
+    */
     public Long getCedula() {
         return cedula;
     }
-
+    /**
+     * Establece la cedula de la tarjeta
+     * @param cedula 
+     */
     public void setCedula(Long cedula) {
         this.cedula = cedula;
     }
 
-    
+     /**
+     *@return usuario de la tarjeta
+    */
     public UsuarioEntity getUsuario() {
         return usuario;
     }
-
+     /**
+      * Establece el usuario de la tarjeta
+      * @param usuario 
+      */
     public void setUsuario(UsuarioEntity usuario) {
         this.usuario = usuario;
     }
 
      /**
-     * @return del numero de la tarjete
-     */
+      * 
+      * @return el numero de la tarjeta 
+      */
     public Long getNumero() 
     {
         return numero;
     }
     /**
-     * @Param numero
+     * Establece el numero de la tarjeta
+     * @param numero 
      */
     public void setNumero(Long numero) {
         this.numero = numero;
@@ -67,7 +93,8 @@ public class TarjetaDeCreditoEntity extends BaseEntity implements Serializable
         return name;
     }
     /**
-     * @Param name
+     * Establece el nombre que contiene la tarjeta
+     * @param name 
      */
     public void setName(String name) {
         this.name = name;
@@ -79,7 +106,8 @@ public class TarjetaDeCreditoEntity extends BaseEntity implements Serializable
         return CDV;
     }
     /**
-     * @Param CDV
+     * Establece el numero de seguridad para realizar los pagos
+     * @param CDV 
      */
     public void setCDV(Long CDV) {
         this.CDV = CDV;

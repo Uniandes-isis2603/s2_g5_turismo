@@ -33,16 +33,24 @@ import co.edu.uniandes.csw.turismo.entities.FacturaEntity;
  */
 
 public class FacturaDTO  {
-    
+    /**
+     * representa el id de la factura
+     */
     private Long id;
+    /**
+     * representa el id del costo
+     */
     private Long Costo;
-/*
-    Constructor por defecto
+    /**
+    *Constructor por defecto
     */
     public FacturaDTO() {
         
     }
-    
+    /**
+     * constructor a partir de un entityFactura
+     * @param entity 
+     */
     public FacturaDTO(FacturaEntity entity) 
     {
         if(entity != null)
@@ -52,30 +60,40 @@ public class FacturaDTO  {
         }
         
     }
+    /**
+     * metodo que se encarga de pasar de DTO a entity
+     * @return facturaEntity
+     */
      public FacturaEntity toEntity() {
         FacturaEntity entity = new FacturaEntity();
         entity.setCosto(this.getCosto());
         entity.setId(this.getId());
         return entity;
     }
-
+     /**
+      * 
+      * @return el id del DTO 
+      */
     public Long getId() {
         return id;
     }
-
+    /**
+     * establece el id del facturaDTO
+     * @param id 
+     */
     public void setId(Long id) {
         this.id = id;
     }
-/*
-     Retorna el Costo de la factura
+    /**
+     *Retorna el Costo de la factura
      */
     public long getCosto() {
         return Costo;
     }
-    /*
-     modifica el costo de la factura
+    /**
+     * estbalece el costo de la facturaDTO
+     * @param Costo 
      */
-
     public void setCosto(long Costo) {
         this.Costo = Costo;
     }
