@@ -43,17 +43,32 @@ public class PaqueteTuristicoLogic {
         {
         List <PlanAgendadoEntity> planes = entity.getPlanes();
         List <PagoEntity> pagos = entity.getPagos();
+        planes.clear();
+        pagos.clear();
         for (int i=0;i< entity.getPlanes().size();i++)
         {
+            if(persistencePlan.find(entity.getPlanes().get(i).getId())!=null)
+            {
            PlanAgendadoEntity planA = persistencePlan.find(entity.getPlanes().get(i).getId());
-           planes.clear();
+           
            planes.add(planA);
+            }
+            else
+            {
+                planes.add(persistencePlan.create(entity.getPlanes().get(i)));
+              
+            }
         }
         for (int i=0;i< entity.getPagos().size();i++)
         {
+            if(persistencePago.find(entity.getPagos().get(i).getId())!=null)
+            {
            PagoEntity pagoA = persistencePago.find(entity.getPagos().get(i).getId());
-           pagos.clear();
-           pagos.add(pagoA);
+           
+           pagos.add(pagoA);}
+            else{
+                pagos.add(persistencePago.create(entity.getPagos().get(i)));
+            }
         }
         
        
