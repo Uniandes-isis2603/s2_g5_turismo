@@ -21,7 +21,7 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author dl.avendano
  */
 @Entity
-public class PaqueteTuristicoEntity  {
+public class PaqueteTuristicoEntity implements Serializable {
 
     public Long getId() {
         return id;
