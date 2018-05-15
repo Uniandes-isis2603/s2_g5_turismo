@@ -5,10 +5,10 @@
                 <a class="btn btn-info" ui-sref="plansCreate"><span class="glyphicon glyphicon-plus-sign"></span> Añadir un nuevo plan</a>
             </div>
         </div>
-        <div class="col-md-2" ng-repeat="plan in plansRecords">
+        <div class="col-md-3" ng-repeat="plan in plansRecords">
             <div class="thumbnail">
                 <a ui-sref="planDetail({planId: plan.idPlan})">                    
-                    <img class="img-responsive" ng-src='{{plan.archivo}}' alt="{{plan.name}}" />                  
+                    <img class="img-responsive img-rounded" ng-src='{{plan.archivo}}' alt="{{plan.name}}" />                  
                 </a>
                 <div class="caption text-center">
                     <p>{{plan.name}}</p>
