@@ -106,6 +106,18 @@
                        templateUrl: basePath + 'usuarios.side.html'
                    }
                 }
+            }).state('usuariosDelete', {
+                url: '/delete/{usuariosId:int}',
+                parent: 'usuario',
+                param: {
+                    usuariosId: null
+                },
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + 'usuarios.delete.html',
+                        controller: 'usuariosDeleteCtrl'
+                    }
+                }
             });
         }]);
 })(window.angular);

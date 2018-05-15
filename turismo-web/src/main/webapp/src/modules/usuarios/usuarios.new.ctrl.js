@@ -1,7 +1,7 @@
 (function(ng){
     
     var mod = ng.module("usuariosModule");
-    mod.constant('usuarioCreate',"api/usuario/10000/10002");
+    mod.constant('usuarioCreate',"api/usuario");
    mod.controller('usuarioNewCtrl', ['$scope', '$http', 'usuarioCreate', '$state', '$rootScope',
         /**
          * @ngdoc controller
@@ -34,14 +34,16 @@
              */
             $scope.createUsuario = function () {
                 $http.post(usuarioContext, { 
-                    id:$scope.usuarioId,
+                   id:$scope.usuarioId,
                    nombre:$scope.usuarioNombre,
                    apellido:$scope.usuarioApellido,
                    contrasenia:$scope.usuarioContrasenia,
                    correo:$scope.usuarioCorreo,
                    telefono:$scope.usuarioTelefono,
                    idioma:$scope.usuarioIdioma,
-                   esAdministrador:$scope.usuarioEsAdministrador
+                   esAdministrador:$scope.usuarioEsAdministrador,
+                   listaTarjetas:$scope.usuarioListaTarjetas,
+                   listaPreferencias:$scope.usuarioListaPreferencias
                }).then(function (response) {
                     $state.go('usuariosList', {usuarioId: response.data.id}, {reload: true});
                 });

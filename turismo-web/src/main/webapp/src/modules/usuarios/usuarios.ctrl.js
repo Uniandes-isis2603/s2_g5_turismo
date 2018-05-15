@@ -36,7 +36,6 @@
              * @param {String} URL Dirección donde se encuentra el recurso
              * de los usuarios o API donde se puede consultar.
              */  
-            alert("entro");
             $http.get(usuariosContext).then(function (response) {                
                 $scope.usuariosRecords = response.data;
             });
