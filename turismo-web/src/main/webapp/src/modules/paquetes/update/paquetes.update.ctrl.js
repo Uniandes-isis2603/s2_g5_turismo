@@ -8,8 +8,8 @@
            
             var listaPagos ;
             var listaPlanes;
+            
             $rootScope.edit = true;
-            console.log($state);
             id = $state.params.paqueteId;
             
            if ($state.params.paqueteId !== null && $state.params.paqueteId !== undefined) 
@@ -17,25 +17,34 @@
             $http.get(paqueteContext+"/"+id).then(function(response){
                 var paquete = response.data;
                 
-                $scope.completado = paquete.completado;
-                $scope.idPagos =paquete.pagos.id;
-                $scope.idPlanes =paquete.planes.id;
+                
                 listaPagos=paquete.pagos;
                 listaPlanes=paquete.planes;
-                console.log(listaPagos);
             });
+            
         }
     
     
             $scope.updatePaquete = function () {
-                var idP=parseInt($scope.idPagos);
-                var idPl=parseInt($scope.idPlanes);
-                var pagoAdd={id:idP};
-                var planAdd={id:idPl};
+                
+            var costoR;
+            var nombreR;
+                
+                console.log($scope.fecha);
+                var idNP=parseInt($scope.idPlan);
+                $http.get("api/plans/"+idNP).then(function(response){
+                var planR = response.data;
+                
+                costoR=parseInt(planR.precio);
+                nombreR =planR.name;
+                
+                var NPlan={idPlan:idNP};
+               var pagoAdd={id:999999,costo:costoR,nombrePlan:nombreR};
+                var planAdd={id:9999999,fecha:$scope.fecha,plan:NPlan};
+                console.log(NPlan);
+                console.log(pagoAdd);
                 listaPagos.push(pagoAdd);
                 listaPlanes.push(planAdd);
-                console.log($scope.idPagos);
-                console.log(listaPagos);
                 $http.put(paqueteContext+"/"+id, { 
                     completado: $scope.completado,
                     pagos:listaPagos,
@@ -44,6 +53,9 @@
                     ).then(function (response) {
                     $state.go('paquetesList', {paqueteId: response.data.id}, {reload: true});
                 });
+                console.log(costo);
+            });
+                
             };
         }
     

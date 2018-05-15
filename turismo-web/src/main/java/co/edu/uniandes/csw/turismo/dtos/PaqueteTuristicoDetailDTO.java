@@ -21,7 +21,7 @@ import java.util.List;
  */
 public class PaqueteTuristicoDetailDTO  extends PaqueteTuristicoDTO{
     private List<PagoDTO> pagos; 
-    private List<PlanAgendadoDTO> planes; 
+    private List<PlanAgendadoDetailDTO> planes; 
     
     public PaqueteTuristicoDetailDTO ()
     {
@@ -44,7 +44,7 @@ public class PaqueteTuristicoDetailDTO  extends PaqueteTuristicoDTO{
             planes = new ArrayList<>();
             
             for (PlanAgendadoEntity entityPlanes : entity.getPlanes()) {
-                planes.add(new PlanAgendadoDTO(entityPlanes));
+                planes.add(new PlanAgendadoDetailDTO(entityPlanes));
             }
         }
     }
@@ -55,7 +55,7 @@ public class PaqueteTuristicoDetailDTO  extends PaqueteTuristicoDTO{
         PaqueteTuristicoEntity entity = super.toEntity();
         if (planes != null) {
             List<PlanAgendadoEntity> planesEntity = new ArrayList<>();
-            for (PlanAgendadoDTO dtoPlan : planes) {
+            for (PlanAgendadoDetailDTO dtoPlan : planes) {
                 planesEntity.add(dtoPlan.toEntity());
             }
             entity.setPlanes(planesEntity);
@@ -79,11 +79,11 @@ public class PaqueteTuristicoDetailDTO  extends PaqueteTuristicoDTO{
         this.pagos = Pagos;
     }
 
-    public List<PlanAgendadoDTO> getPlanes() {
+    public List<PlanAgendadoDetailDTO> getPlanes() {
         return planes;
     }
 
-    public void setPlanes(List<PlanAgendadoDTO> Planes) {
+    public void setPlanes(List<PlanAgendadoDetailDTO> Planes) {
         this.planes = Planes;
     }
     
