@@ -38,9 +38,10 @@
             </div>  
             <div class="col-md-2">
                 <ul class="nav nav-pills nav-stacked">
+                    <li> <a ui-sref="planDetailUbicacion({planId: currentPlan.idPlan,lat: currentPlan.ubicacion.latitud,lon: currentPlan.ubicacion.longitud})">Ubicación</a></li>
                     <li><a ui-sref="planDetailGuides({planId: currentPlan.idPlan})">Guías</a></li>
                     <li><a ui-sref="planDetailPreferencias({planId: currentPlan.idPlan})">Categorías</a></li>
-                    <li> <a ui-sref="planDetailUbicacion({planId: currentPlan.idPlan,lat: currentPlan.ubicacion.latitud,lon: currentPlan.ubicacion.longitud})">Ubicación</a></li>
+                    <li><a ui-sref="planDetailValoraciones({planId: currentPlan.idPlan})">Valoraciones</a></li>
                 </ul>
 
             </div>
