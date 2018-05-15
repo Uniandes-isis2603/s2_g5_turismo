@@ -39,7 +39,7 @@
                 nombreR =planR.name;
                 
                 var NPlan={idPlan:idNP};
-               var pagoAdd={id:999999,costo:costoR,nombrePlan:nombreR};
+                var pagoAdd={id:999999,costo:costoR,nombrePlan:nombreR};
                 var planAdd={id:9999999,fecha:$scope.fecha,plan:NPlan};
                 console.log(NPlan);
                 console.log(pagoAdd);
