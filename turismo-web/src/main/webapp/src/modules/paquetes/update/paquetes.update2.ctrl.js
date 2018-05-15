@@ -1,6 +1,6 @@
 (function(ng){
     var mod = ng.module("paqueteModule");
-    mod.controller("paqueteUpdateCtrl",["$scope","$rootScope","$http","paqueteContext","$state","$filter",
+    mod.controller("paqueteUpdateCtrl2",["$scope","$rootScope","$http","paqueteContext","$state","$filter",
     
     
     
@@ -25,7 +25,7 @@
         }
     
     
-            $scope.updatePaquete = function () {
+            $scope.updatePaquete2 = function () {
                 
             var costoR;
             var nombreR;
@@ -51,7 +51,7 @@
                     planes:listaPlanes
                 }
                     ).then(function (response) {
-                    $state.go('paqueteUpdate', {paqueteId: response.data.id}, {reload: true});
+                    $state.go('paquetesList', {paqueteId: response.data.id}, {reload: true});
                 });
                 console.log(costo);
             });

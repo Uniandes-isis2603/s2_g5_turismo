@@ -16,10 +16,9 @@
                     <hr>
                     <dt> <br>Planes</br></dt>
                    <ul ng-repeat="pagos in currentPaquete.pagos" >
-                       <dd>  Plan {{pagos.id}}</dd>
-                       <dd> {{pagos.costo}}</dd>
-                        <dd> {{pagos.nombrePlan}}</dd>
-                        <dd >Fecha {{currentPaquete.planes[0].fecha}}</dd>
+                       <dd> Plan: {{pagos.nombrePlan}}</dd>
+                       <dd> Precio: {{pagos.costo}}</dd>
+                        <dd >Fecha: {{currentPaquete.planes[0].fecha}}</dd>
                         
                     </ul>
                    

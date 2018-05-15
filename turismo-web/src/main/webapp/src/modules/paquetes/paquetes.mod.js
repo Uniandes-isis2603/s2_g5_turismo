@@ -70,7 +70,8 @@
                 },
             views:{'listView':{
                        templateUrl: basePath + '/update/paquetes.update.html',
-                       controller: 'paqueteUpdateCtrl'
+                       controller: 'paqueteUpdateCtrl',
+                       controller:'paqueteUpdateCtrl2'
                    }
                    ,'sideView': {
                         templateUrl: basePath + 'paquete.side.html'
