@@ -2,7 +2,7 @@
     var mod = ng.module("planModule");
     mod.constant("preferenciasContext", "api/preferences");
     mod.constant("plansContext", "api/plans");
-    mod.controller('planCtrl', ['$rootScope', '$scope', '$http', 'plansContext', 'preferenciasContext','filterFilter',
+    mod.controller('planCtrl', ['$rootScope', '$scope', '$http', 'plansContext', 'preferenciasContext',
         /**
          * @ngdoc controller
          * @name plans.controller:planCtrl
@@ -21,7 +21,7 @@
          * @param {Object} $state Dependencia injectada en la que se recibe el 
          * estado actual de la navegación definida en el módulo.
          */
-        function ($rootScope, $scope, $http, plansContext, preferenciasContext,filterFilter) {
+        function ($rootScope, $scope, $http, plansContext, preferenciasContext) {
             /**
              * @ngdoc function
              * @name getPlans
