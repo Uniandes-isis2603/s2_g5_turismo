@@ -61,7 +61,7 @@ public class TarjetaDeCreditoDetailDTO extends TarjetaDeCreditoDTO
      */
     public TarjetaDeCreditoDetailDTO() 
     {
-         
+         // para mostrar si un DTO esta vacio
     }
 
    /**
@@ -101,8 +101,8 @@ public class TarjetaDeCreditoDetailDTO extends TarjetaDeCreditoDTO
      * establece el usuario DTO
      * @param usuario 
      */
-    public void setUsuario(UsuarioDTO usuario) {
-        this.usuario = usuario;
+    public void setUsuario(UsuarioDTO pUsuario) {
+        this.usuario = pUsuario;
     }
 
     

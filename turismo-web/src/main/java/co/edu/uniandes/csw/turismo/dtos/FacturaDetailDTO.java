@@ -57,7 +57,7 @@ public class FacturaDetailDTO extends FacturaDTO
      */
     public FacturaDetailDTO()    
     {
-        
+        //no hace nada 
     }
     /**
      * constructor apartir de una facturaEntity
@@ -80,6 +80,7 @@ public class FacturaDetailDTO extends FacturaDTO
      * metodo que se encarga de pasar de DTO a entity
      * @return facturaEntity
      */
+    @Override
     public FacturaEntity toEntity()
     { 
        FacturaEntity entityFactura = super.toEntity();
