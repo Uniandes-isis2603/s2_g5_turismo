@@ -8,7 +8,6 @@
            
             var listaPagos ;
             var listaPlanes;
-            
             $rootScope.edit = true;
             id = $state.params.paqueteId;
             

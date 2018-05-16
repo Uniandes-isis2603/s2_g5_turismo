@@ -8,6 +8,7 @@
            
             var listaPagos ;
             var listaPlanes;
+            var idNP;
             
             $rootScope.edit = true;
             id = $state.params.paqueteId;
@@ -20,18 +21,27 @@
                 $scope.completado=response.data.completado;
                 listaPagos=paquete.pagos;
                 listaPlanes=paquete.planes;
-            });
-            
+            }).then(
+            $http.get("api/plans").then(function (response) {
+                $scope.plansRecords = response.data;
+                console.log(response.data)
+            }));
         }
-    
+            
+            $scope.idPlan= function (param)
+            {
+                idNP=param.plan.idPlan;
+                console.log(idNP);
+            };
+        
     
             $scope.updatePaquete = function () {
                 
             var costoR;
             var nombreR;
                 
-                console.log($scope.fecha);
-                var idNP=parseInt($scope.idPlan);
+                 console.log($scope.Plan);
+               
                 $http.get("api/plans/"+idNP).then(function(response){
                 var planR = response.data;
                 
