@@ -16,7 +16,7 @@
                     
                     completado:false}
                     ).then(function (response) {
-                    $state.go('paquetesList', {paqueteId: response.data.id}, {reload: true});
+                    $state.go('paqueteUpdate', {paqueteId: response.data.id}, {reload: true});
                 });
             };
         }

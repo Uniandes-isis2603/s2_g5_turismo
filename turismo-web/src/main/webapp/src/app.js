@@ -2,6 +2,7 @@
     var app = angular.module('mainApp', [
         // External dependencies
         'ui.router',
+        'rzModule',
         'ui.bootstrap',
         // Internal modules dependencies  
         'miPlanModule',

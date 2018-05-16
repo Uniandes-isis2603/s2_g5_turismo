@@ -1,6 +1,6 @@
 (function(ng){
     var mod = ng.module("paqueteModule");
-    mod.controller("paqueteUpdateCtrl",["$scope","$rootScope","$http","paqueteContext","$state","$filter",
+    mod.controller("paqueteUpdateCtrl2",["$scope","$rootScope","$http","paqueteContext","$state","$filter",
     
     
     
@@ -8,8 +8,6 @@
            
             var listaPagos ;
             var listaPlanes;
-            var idNP;
-            
             $rootScope.edit = true;
             id = $state.params.paqueteId;
             
@@ -21,27 +19,18 @@
                 $scope.completado=response.data.completado;
                 listaPagos=paquete.pagos;
                 listaPlanes=paquete.planes;
-            }).then(
-            $http.get("api/plans").then(function (response) {
-                $scope.plansRecords = response.data;
-                console.log(response.data)
-            }));
-        }
+            });
             
-            $scope.idPlan= function (param)
-            {
-                idNP=param.plan.idPlan;
-                console.log(idNP);
-            };
-        
+        }
     
-            $scope.updatePaquete = function () {
+    
+            $scope.updatePaquete2 = function () {
                 
             var costoR;
             var nombreR;
                 
-                 console.log($scope.Plan);
-               
+                console.log($scope.fecha);
+                var idNP=parseInt($scope.idPlan);
                 $http.get("api/plans/"+idNP).then(function(response){
                 var planR = response.data;
                 
@@ -61,7 +50,7 @@
                     planes:listaPlanes
                 }
                     ).then(function (response) {
-                    $state.go('paqueteUpdate', {paqueteId: response.data.id}, {reload: true});
+                    $state.go('paquetesList', {paqueteId: response.data.id}, {reload: true});
                 });
                 console.log(costo);
             });

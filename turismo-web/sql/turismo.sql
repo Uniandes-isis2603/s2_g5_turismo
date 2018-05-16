@@ -2,6 +2,7 @@
 delete from PAQUETETURISTICOENTITY_PLANAGENDADOENTITY;
 delete from PLANAGENDADOENTITY;
 delete from PlanEntity_PreferenciasEntity;
+delete from PlanEntity_ValoracionesEntity;
 delete from PlanEntity_GuiaEntity;
 delete from PAQUETETURISTICOENTITY_PAGOENTITY;
 delete from PlanEntity;
@@ -19,10 +20,11 @@ delete from PAGOENTITY;
 delete from VALORACIONESENTITY;
 
 /*Parte Ubicacion*/
-insert into UBICACIONENTITY (id,pais,ciudad,latitud,longitud) values (10000,'Colombia','Bogota',10,-10);
-insert into UBICACIONENTITY (id,pais,ciudad,latitud,longitud) values (10001,'Francia','Paris',10,-10);
-insert into UBICACIONENTITY (id,pais,ciudad,latitud,longitud) values (10002,'España','Madrid',10,-10);
+insert into UBICACIONENTITY (id,pais,ciudad,latitud,longitud) values (10000,'Colombia','Bogota',4.6056725,-74.0730351);
+insert into UBICACIONENTITY (id,pais,ciudad,latitud,longitud) values (10001,'Francia','Paris',10,10);
+insert into UBICACIONENTITY (id,pais,ciudad,latitud,longitud) values (10002,'España','Madrid',41.4059676,2.1686392);
 insert into UBICACIONENTITY (id,pais,ciudad,latitud,longitud) values (10003,'Holanda','Amsterdam',10,-10);
+insert into UBICACIONENTITY (id,pais,ciudad,latitud,longitud) values (10004,'Alemania','Berlín',52.5350521,13.3880011);
 
 insert into BlogEntity (id, descripcion, likes, tema) values (10000,'primer blog',0,'este es mi primer blog');
 insert into BlogEntity (id, descripcion, likes, tema) values (20000,'segundo blog',20,'este es mi segundo blog');
@@ -40,15 +42,51 @@ insert into PreferenciasEntity (id, tipoPlan) values (10000,'Familiar');
 insert into PreferenciasEntity (id, tipoPlan) values (10001,'Compras');
 insert into PreferenciasEntity (id, tipoPlan) values (10002,'Museo');
 
-insert into PlanEntity (id, archivo, cantidadpersonas, descripcion, duracion, name, precio, restricciones, ubicacion_id) values (9999, 'http://static.alfabetajuega.com/abj_public_files/multimedia/imagenes/201601/133204.alfabetajuega-mordor-070116.jpg', 4,'Recorrer mordor. Este se puede borrar porque no tiene asociacion con plan agendado', 180, 'Mordor', 666,'restriccionxyz',10002);
+insert into PlanEntity (id, archivo, cantidadpersonas, descripcion, duracion, name, precio, restricciones, ubicacion_id) values (9999, 'http://static.alfabetajuega.com/abj_public_files/multimedia/imagenes/201601/133204.alfabetajuega-mordor-070116.jpg', 4,'Recorrer mordor. Este se puede borrar porque no tiene asociacion con plan agendado', 180, 'Mordor', 66666,'restriccionxyz',10001);
 insert into PlanEntity (id, archivo, cantidadpersonas, descripcion, duracion, name, precio, restricciones, ubicacion_id) values (10000, 'https://cdn2.gbot.me/photos/dt/Db/1515289189/-_Iglesia_de_Monserrate_in-20000000016204685-500x375.jpg', 1,'Subir a monserrate', 180, 'Monserrate', 20000,'restriccion shida',10000);
-insert into PlanEntity (id, archivo, cantidadpersonas, descripcion, duracion, name, precio, restricciones, ubicacion_id) values (10001, 'https://upload.wikimedia.org/wikipedia/commons/2/26/%CE%A3%CE%B1%CE%B3%CF%81%CE%AC%CE%B4%CE%B1_%CE%A6%CE%B1%CE%BC%CE%AF%CE%BB%CE%B9%CE%B1_2941.jpg', 2,'Recorrido por sagrada familia', 180, 'Sagrada familia', 60000,'restriccion shida',10000);
-insert into PlanEntity (id, archivo, cantidadpersonas, descripcion, duracion, name, precio, restricciones, ubicacion_id) values (10002, 'http://elmerey.com/wp-content/uploads/2017/08/14/Muro-de-Berlin.jpg', 4,'Recorrer muro de berlin', 180, 'Muro de berlin', 20000,'restriccion shida',10002);
+insert into PlanEntity (id, archivo, cantidadpersonas, descripcion, duracion, name, precio, restricciones, ubicacion_id) values (10001, 'https://4ey4y42r25eb3oaha12oumbs-wpengine.netdna-ssl.com/wp-content/uploads/Gaudi-and-Sagrada-Familia-Tour-1.jpg', 2,'Recorrido por sagrada familia', 180, 'Sagrada familia', 60000,'restriccion shida',10002);
+insert into PlanEntity (id, archivo, cantidadpersonas, descripcion, duracion, name, precio, restricciones, ubicacion_id) values (10002, 'http://elmerey.com/wp-content/uploads/2017/08/14/Muro-de-Berlin.jpg', 4,'Recorrer muro de berlin', 180, 'Muro de berlin', 20000,'restriccion shida',10004);
+
+insert into ValoracionesEntity (id, calificacion, comentario) values (10001, 5, 'Buena');
+insert into ValoracionesEntity (id, calificacion, comentario) values (10004, 4, 'Buenita');
+insert into ValoracionesEntity (id, calificacion, comentario) values (10006, 3, ':0');
+insert into ValoracionesEntity (id, calificacion, comentario) values (10007, 1, 'D:<');
+insert into ValoracionesEntity (id, calificacion, comentario) values (10002, 3, 'Regular');
+insert into ValoracionesEntity (id, calificacion, comentario) values (10003, 1, 'Mala');
+insert into ValoracionesEntity (id, calificacion, comentario) values (10005, 2, ':C');
 
 
-insert into GuiaEntity (id, idiomaguia, name) values (10000,'espaniol','w');
-insert into GuiaEntity (id, idiomaguia, name) values (10001,'espaniol','t');
-insert into GuiaEntity (id, idiomaguia, name) values (10002,'espaniol','f');
+insert into GuiaEntity (id, idiomaguia, name) values (10000,'Chino','David');
+insert into GuiaEntity (id, idiomaguia, name) values (10001,'Ruso','Francisco');
+insert into GuiaEntity (id, idiomaguia, name) values (10002,'Espaniol','Sebastian');
+insert into GuiaEntity (id, idiomaguia, name) values (10003,'Portugues','Luis');
+insert into GuiaEntity (id, idiomaguia, name) values (10004,'Arabe','Julian');
+
+insert into PLANENTITY_GUIAENTITY (PLANENTITY_ID, GUIAS_ID) values (10000, 10000);
+insert into PLANENTITY_GUIAENTITY (PLANENTITY_ID, GUIAS_ID) values (10000, 10001);
+insert into PLANENTITY_GUIAENTITY (PLANENTITY_ID, GUIAS_ID) values (9999, 10000);
+insert into PLANENTITY_GUIAENTITY (PLANENTITY_ID, GUIAS_ID) values (9999, 10001);
+insert into PLANENTITY_GUIAENTITY (PLANENTITY_ID, GUIAS_ID) values (10001, 10002);
+insert into PLANENTITY_GUIAENTITY (PLANENTITY_ID, GUIAS_ID) values (10001, 10003);
+insert into PLANENTITY_GUIAENTITY (PLANENTITY_ID, GUIAS_ID) values (10002, 10004);
+insert into PLANENTITY_GUIAENTITY (PLANENTITY_ID, GUIAS_ID) values (10002, 10002);
+
+insert into PLANENTITY_PREFERENCIASENTITY (PLANENTITY_ID, PREFERENCIASPLAN_ID) values (9999, 10000);
+insert into PLANENTITY_PREFERENCIASENTITY (PLANENTITY_ID, PREFERENCIASPLAN_ID) values (9999, 10001);
+insert into PLANENTITY_PREFERENCIASENTITY (PLANENTITY_ID, PREFERENCIASPLAN_ID) values (9999, 10002);
+insert into PLANENTITY_PREFERENCIASENTITY (PLANENTITY_ID, PREFERENCIASPLAN_ID) values (10000, 10000);
+insert into PLANENTITY_PREFERENCIASENTITY (PLANENTITY_ID, PREFERENCIASPLAN_ID) values (10001, 10000);
+insert into PLANENTITY_PREFERENCIASENTITY (PLANENTITY_ID, PREFERENCIASPLAN_ID) values (10001, 10001);
+insert into PLANENTITY_PREFERENCIASENTITY (PLANENTITY_ID, PREFERENCIASPLAN_ID) values (10002, 10001);
+insert into PLANENTITY_PREFERENCIASENTITY (PLANENTITY_ID, PREFERENCIASPLAN_ID) values (10002, 10002);
+
+insert into PLANENTITY_VALORACIONESENTITY (PLANENTITY_ID, VALORACIONESPLAN_ID) values (10000, 10001);
+insert into PLANENTITY_VALORACIONESENTITY (PLANENTITY_ID, VALORACIONESPLAN_ID) values (9999, 10002);
+insert into PLANENTITY_VALORACIONESENTITY (PLANENTITY_ID, VALORACIONESPLAN_ID) values (9999, 10003);
+insert into PLANENTITY_VALORACIONESENTITY (PLANENTITY_ID, VALORACIONESPLAN_ID) values (10001, 10004);
+insert into PLANENTITY_VALORACIONESENTITY (PLANENTITY_ID, VALORACIONESPLAN_ID) values (10002, 10005);
+insert into PLANENTITY_VALORACIONESENTITY (PLANENTITY_ID, VALORACIONESPLAN_ID) values (10001, 10006);
+insert into PLANENTITY_VALORACIONESENTITY (PLANENTITY_ID, VALORACIONESPLAN_ID) values (10002, 10007);
 
 
 /* Parte que se nececita para tajetas*/
@@ -56,10 +94,6 @@ insert into UsuarioEntity (id,apellido,contrasenia,correo,esAdministrador,idioma
 insert into UsuarioEntity (id,apellido,contrasenia,correo,esAdministrador,idioma,name,telefono) values (10002,'ramirez','5678','ramirez@gmail.com',0,'español','juan',1234567);
 insert into UsuarioEntity (id,apellido,contrasenia,correo,esAdministrador,idioma,name,telefono) values (10003,'gutierrez','9012','gutierrez@gmail.com',0,'español','francisco',8901223);
 
-
-insert into ValoracionesEntity (id, calificacion, comentario) values (10001, 5, 'Buena');
-insert into ValoracionesEntity (id, calificacion, comentario) values (10002, 3, 'Regular');
-insert into ValoracionesEntity (id, calificacion, comentario) values (10003, 1, 'Mala');
 
 insert into TarjetaDeCreditoEntity (id,cdv,cedula,name,numero,Usuario_id) values (10000,123,1016078997,'sebastian',1234123412341234,10001);
 insert into TarjetaDeCreditoEntity (id,cdv,cedula,name,numero,Usuario_id) values (10001,123,1016078997,'sebastian',1234123412341235,10001);
@@ -80,18 +114,13 @@ insert into PAGOENTITY (id,costo, name) values (10000,80.33,'monserrate');
 insert into PAGOENTITY (id,costo, name) values (10003,80.33,'monserrate');
 insert into PAGOENTITY (id,costo, name) values (10005,80.33,'monserrate');
 
-insert into PLANAGENDADOENTITY (id,fecha,name,plan_id) values (10000,'4/7/1998','fd',10000);
-insert into PLANAGENDADOENTITY (id,fecha,name,plan_id) values (10020,'4/7/2000','a',10001);
-insert into PLANAGENDADOENTITY (id,fecha,name,plan_id) values (10030,'4/7/2004','s',10002);
+insert into PLANAGENDADOENTITY (id,fecha,name,plan_id) values (10000,'2014-07-02 06:14:00','f',10000);
+insert into PLANAGENDADOENTITY (id,fecha,name,plan_id) values (10020,'2010-06-22 04:30:00','a',10001);
+insert into PLANAGENDADOENTITY (id,fecha,name,plan_id) values (10030,'2011-04-16 11:50:00','s',10002);
 
 insert into PAQUETETURISTICOENTITY_PAGOENTITY (paqueteturisticoentity_id, pagos_id) values (10000,10000);
 insert into PAQUETETURISTICOENTITY_PAGOENTITY (paqueteturisticoentity_id, pagos_id) values (10000,10003);
 insert into PAQUETETURISTICOENTITY_PLANAGENDADOENTITY (paqueteturisticoentity_id, planes_id) values (10000,10000);
 insert into PAQUETETURISTICOENTITY_PLANAGENDADOENTITY (paqueteturisticoentity_id, planes_id) values (10000,10020);
 
-insert into PLANENTITY_GUIAENTITY (PLANENTITY_ID, GUIAS_ID) values (10000, 10000);
-insert into PLANENTITY_GUIAENTITY (PLANENTITY_ID, GUIAS_ID) values (10000, 10001);
-insert into PLANENTITY_GUIAENTITY (PLANENTITY_ID, GUIAS_ID) values (9999, 10000);
-insert into PLANENTITY_GUIAENTITY (PLANENTITY_ID, GUIAS_ID) values (9999, 10001);
-insert into PLANENTITY_PREFERENCIASENTITY (PLANENTITY_ID, PREFERENCIASPLAN_ID) values (9999, 10000);
-insert into PLANENTITY_PREFERENCIASENTITY (PLANENTITY_ID, PREFERENCIASPLAN_ID) values (9999, 10001);
+
