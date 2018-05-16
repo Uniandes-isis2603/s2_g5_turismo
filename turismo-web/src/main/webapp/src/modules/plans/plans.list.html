@@ -23,27 +23,12 @@
         <input type="number" ng-model="minRangeSliderV.maxValue" />
     </div>
     <p>Valoración promedio:</p>
-    <rzslider rz-slider-model=minRangeSliderV.minValue
-              rz-slider-high=minRangeSliderV.maxValue
-              rz-slider-options=minRangeSliderV.options></rzslider>
-
-    <label ng-repeat="preferencia in AllPreferencias">
- 
-  
-    <input
-    type=checkbox
-    ng-model="preferencia.selected"
-  > {{preferencia.tipoPlan}}
-    </label>
-
-
- 
-
-
+    <rzslider rz-slider-model=minRangeSliderV.minValue rz-slider-high=minRangeSliderV.maxValue rz-slider-options=minRangeSliderV.options></rzslider>
+    
+    <p>Categorías:</p>
+    <label ng-repeat="preferencia in AllPreferencias"> <input type=checkbox ng-model="preferencia.selected"> {{preferencia.tipoPlan}}</label>
 </div>
-
 <div class="col-sm-9 col-lg-10">
-     <p>prefs: {{AllPreferencias}}</p>
     <div class="panel panel-default"> 
         <div class="panel-body">
             <div class="container-fluid">

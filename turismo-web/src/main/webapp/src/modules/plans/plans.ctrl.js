@@ -78,10 +78,10 @@
                 {
                     var vals = item[prop];
                     var promedio = 0;
-                    for (var i = 0; i < vals.length; i++)
+                    vals.forEach(function(arrayItem)
                     {
-                        promedio = promedio + vals[i].calificacion;
-                    }
+                        promedio = promedio + arrayItem.calificacion;
+                    });
                     promedio = promedio / vals.length;
                     return promedio >= aux && promedio <= aux2;
                 };
@@ -97,6 +97,7 @@
             {
                 return function (item)
                 {
+                    var cont = 0;
                     var ret = false;
                     var cats = item[prop];
                     cats.forEach(function (arrayItem)
@@ -105,13 +106,22 @@
                         aux.forEach(function (arrayItem2)
                         {
                             var temp = arrayItem2.tipoPlan;
+                            
                             var bol = arrayItem2.selected;
-                            alert(temp);
+                            if(!bol)
+                            {
+                                cont++;
+                            }
                             if(( x === temp) && (bol === true))
                             {
                                 ret = true;
                             }
                         });
+                        if(cont === aux.length)
+                        {
+                            ret = true;
+                        }
+                        cont = 0;
                     });
                     if(ret === true)
                     {
@@ -125,11 +135,11 @@
              * Slider para filtro de precio de plan
              */
             $rootScope.minRangeSlider = {
-                minValue: 10000,
-                maxValue: 1000000,
+                minValue: 0,
+                maxValue: 500000,
                 options: {
                     floor: 0,
-                    ceil: 1000000,
+                    ceil: 500000,
                     step: 10000,
                     translate: function (value) {
                         return '$' + value;
