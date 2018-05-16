@@ -4,7 +4,7 @@
                     <div class="form-group row">
                         <div class="form-group col-md-8">
                             <label for="fecha" class="col-sm-2">Fecha del plan:</label>
-                             <input type="date" id="fecha" required ng-model="fecha" class="col-sm-6"/>
+                             <input type="datetime-local" id="fecha" required ng-model="fecha" class="col-sm-6"/>
                         </div>
                     </div>
                      <div class="form-group row">
@@ -14,18 +14,29 @@
                              <label for="info" class="col-sm-2">(inserte el id del guia)</label>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <div class="form-group col-md-8">
-                            <label for="idPlan" class="col-sm-2">Plan:</label>
-                             <input type="long" id="idPlan" required ng-model="idPlan" class="col-sm-6"/>
-                             <label for="info" class="col-sm-2">(inserte el id del plan)</label>
-                        </div>
-                    </div>
+            <div class="col-md-2" ng-repeat="plan in plansRecords">
+            <div class="thumbnail">
+                <div class="radio">
+                <label>
+                 <input type="radio" name="optradio" id="Plan" value="plan.idPlan" ng-click="idPlan(this)"/>                
+                    <img class="img-responsive" ng-src='{{plan.archivo}}' alt="{{plan.name}}" />                  
+                
+                <div class="caption text-center">
+                    <p>{{plan.name}}</p>
+                </div>
+                </label>
+                </div>
+            </div>
+            </div>
+                   
                     
                     <div class="form-group row">
                         <div class="form-group col-sm-12">
                             <input type="submit" ng-click="updatePaquete()" value="Agregar" class="btn btn-success"/>
-                            <a class="btn btn-info" ui-sref="paquetesList">Cancel</a>
+                            <input type="submit" ng-click="updatePaquete2()" value="Terminar" class="btn btn-btn"/>
+                            <br>
+                            <br>
+                            <a class="btn btn-info" ui-sref="paquetesList">Cancelar</a>
                         </div>
                     </div>
 </form>

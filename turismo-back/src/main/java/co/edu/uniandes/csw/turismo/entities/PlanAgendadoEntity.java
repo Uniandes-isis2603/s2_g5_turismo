@@ -31,7 +31,7 @@ public class PlanAgendadoEntity extends BaseEntity implements Serializable
     @ManyToOne(cascade = CascadeType.PERSIST)
     private PlanEntity plan ;
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     Date fecha = new Date();
 
     public Date getFecha() {

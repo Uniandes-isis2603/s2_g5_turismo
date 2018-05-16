@@ -6,6 +6,7 @@
             $rootScope.edit = true;
             $scope.data = {};
             id = $state.params.miPlanId;
+            console.log("algo");
            if ($state.params.miPlanId !== null && $state.params.miPlanId !== undefined) 
            {  
             $http.get(miPlanContext+"/"+id).then(function(response){

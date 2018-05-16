@@ -55,16 +55,30 @@ insert into ValoracionesEntity (id, calificacion, comentario) values (10002, 3, 
 insert into ValoracionesEntity (id, calificacion, comentario) values (10003, 1, 'Mala');
 insert into ValoracionesEntity (id, calificacion, comentario) values (10005, 2, ':C');
 
-insert into GuiaEntity (id, idiomaguia, name) values (10000,'espaniol','w');
-insert into GuiaEntity (id, idiomaguia, name) values (10001,'espaniol','t');
-insert into GuiaEntity (id, idiomaguia, name) values (10002,'espaniol','f');
+
+insert into GuiaEntity (id, idiomaguia, name) values (10000,'Chino','David');
+insert into GuiaEntity (id, idiomaguia, name) values (10001,'Ruso','Francisco');
+insert into GuiaEntity (id, idiomaguia, name) values (10002,'Espaniol','Sebastian');
+insert into GuiaEntity (id, idiomaguia, name) values (10003,'Portugues','Luis');
+insert into GuiaEntity (id, idiomaguia, name) values (10004,'Arabe','Julian');
 
 insert into PLANENTITY_GUIAENTITY (PLANENTITY_ID, GUIAS_ID) values (10000, 10000);
 insert into PLANENTITY_GUIAENTITY (PLANENTITY_ID, GUIAS_ID) values (10000, 10001);
 insert into PLANENTITY_GUIAENTITY (PLANENTITY_ID, GUIAS_ID) values (9999, 10000);
 insert into PLANENTITY_GUIAENTITY (PLANENTITY_ID, GUIAS_ID) values (9999, 10001);
+insert into PLANENTITY_GUIAENTITY (PLANENTITY_ID, GUIAS_ID) values (10001, 10002);
+insert into PLANENTITY_GUIAENTITY (PLANENTITY_ID, GUIAS_ID) values (10001, 10003);
+insert into PLANENTITY_GUIAENTITY (PLANENTITY_ID, GUIAS_ID) values (10002, 10004);
+insert into PLANENTITY_GUIAENTITY (PLANENTITY_ID, GUIAS_ID) values (10002, 10002);
+
 insert into PLANENTITY_PREFERENCIASENTITY (PLANENTITY_ID, PREFERENCIASPLAN_ID) values (9999, 10000);
 insert into PLANENTITY_PREFERENCIASENTITY (PLANENTITY_ID, PREFERENCIASPLAN_ID) values (9999, 10001);
+insert into PLANENTITY_PREFERENCIASENTITY (PLANENTITY_ID, PREFERENCIASPLAN_ID) values (9999, 10002);
+insert into PLANENTITY_PREFERENCIASENTITY (PLANENTITY_ID, PREFERENCIASPLAN_ID) values (10000, 10000);
+insert into PLANENTITY_PREFERENCIASENTITY (PLANENTITY_ID, PREFERENCIASPLAN_ID) values (10001, 10000);
+insert into PLANENTITY_PREFERENCIASENTITY (PLANENTITY_ID, PREFERENCIASPLAN_ID) values (10001, 10001);
+insert into PLANENTITY_PREFERENCIASENTITY (PLANENTITY_ID, PREFERENCIASPLAN_ID) values (10002, 10001);
+insert into PLANENTITY_PREFERENCIASENTITY (PLANENTITY_ID, PREFERENCIASPLAN_ID) values (10002, 10002);
 
 insert into PLANENTITY_VALORACIONESENTITY (PLANENTITY_ID, VALORACIONESPLAN_ID) values (10000, 10001);
 insert into PLANENTITY_VALORACIONESENTITY (PLANENTITY_ID, VALORACIONESPLAN_ID) values (9999, 10002);
@@ -100,9 +114,9 @@ insert into PAGOENTITY (id,costo, name) values (10000,80.33,'monserrate');
 insert into PAGOENTITY (id,costo, name) values (10003,80.33,'monserrate');
 insert into PAGOENTITY (id,costo, name) values (10005,80.33,'monserrate');
 
-insert into PLANAGENDADOENTITY (id,fecha,name,plan_id) values (10000,'4/7/1998','fd',10000);
-insert into PLANAGENDADOENTITY (id,fecha,name,plan_id) values (10020,'4/7/2000','a',10001);
-insert into PLANAGENDADOENTITY (id,fecha,name,plan_id) values (10030,'4/7/2004','s',10002);
+insert into PLANAGENDADOENTITY (id,fecha,name,plan_id) values (10000,'2014-07-02 06:14:00','f',10000);
+insert into PLANAGENDADOENTITY (id,fecha,name,plan_id) values (10020,'2010-06-22 04:30:00','a',10001);
+insert into PLANAGENDADOENTITY (id,fecha,name,plan_id) values (10030,'2011-04-16 11:50:00','s',10002);
 
 insert into PAQUETETURISTICOENTITY_PAGOENTITY (paqueteturisticoentity_id, pagos_id) values (10000,10000);
 insert into PAQUETETURISTICOENTITY_PAGOENTITY (paqueteturisticoentity_id, pagos_id) values (10000,10003);
