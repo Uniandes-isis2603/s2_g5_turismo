@@ -1,7 +1,8 @@
 (function (ng) {
     var mod = ng.module("planModule");
+    mod.constant("preferenciasContext", "api/preferences");
     mod.constant("plansContext", "api/plans");
-    mod.controller('planCtrl', ['$rootScope', '$scope', '$http', 'plansContext',
+    mod.controller('planCtrl', ['$rootScope', '$scope', '$http', 'plansContext', 'preferenciasContext','filterFilter',
         /**
          * @ngdoc controller
          * @name plans.controller:planCtrl
@@ -20,7 +21,7 @@
          * @param {Object} $state Dependencia injectada en la que se recibe el 
          * estado actual de la navegación definida en el módulo.
          */
-        function ($rootScope, $scope, $http, plansContext) {
+        function ($rootScope, $scope, $http, plansContext, preferenciasContext,filterFilter) {
             /**
              * @ngdoc function
              * @name getPlans
@@ -37,7 +38,18 @@
             $http.get(plansContext).then(function (response) {
                 $scope.plansRecords = response.data;
             });
-            
+
+            /**
+             * Get las preferencias para poder filtrar con las que escoga el usuario
+             */
+            $http.get(preferenciasContext).then(function (response) {
+                $scope.AllPreferencias = response.data;
+                for(var i = 0; i < $scope.AllPreferencias.length; i++)
+                {
+                    $scope.AllPreferencias[i].selected = true;
+                }
+            });
+
             /**
              * Retorna el item si cumple con las condiciones de rango
              * @param {type} prop propiedad del item a analizar
@@ -52,7 +64,7 @@
                     return item[prop] >= aux && item[prop] <= aux2;
                 };
             };
-            
+
             /**
              * Retorna el item si su valoración promedio está entre el rango dado por parámetro
              * @param {type} prop es el path del json 'valoraciones'
@@ -66,15 +78,49 @@
                 {
                     var vals = item[prop];
                     var promedio = 0;
-                    for(var i = 0; i < vals.length; i++)
+                    for (var i = 0; i < vals.length; i++)
                     {
                         promedio = promedio + vals[i].calificacion;
                     }
-                    promedio = promedio/vals.length;
-                    return promedio >= aux && promedio <=aux2;
+                    promedio = promedio / vals.length;
+                    return promedio >= aux && promedio <= aux2;
                 };
             };
             
+            /**
+             * Retorna el item si tiene una categoria de las recibidas epor parámetro
+             * @param {type} prop es el path del json 'categoriasPlan'
+             * @param {type} aux es un arreglo de categorias
+             * @returns {Function}
+             */
+            $scope.prefInPlan = function (prop, aux)
+            {
+                return function (item)
+                {
+                    var ret = false;
+                    var cats = item[prop];
+                    cats.forEach(function (arrayItem)
+                    {
+                        var x  = arrayItem.tipoPlan;
+                        aux.forEach(function (arrayItem2)
+                        {
+                            var temp = arrayItem2.tipoPlan;
+                            var bol = arrayItem2.selected;
+                            alert(temp);
+                            if(( x === temp) && (bol === true))
+                            {
+                                ret = true;
+                            }
+                        });
+                    });
+                    if(ret === true)
+                    {
+                        return item;
+                    }
+                };
+            };
+         
+
             /**
              * Slider para filtro de precio de plan
              */
@@ -85,13 +131,13 @@
                     floor: 0,
                     ceil: 1000000,
                     step: 10000,
-                    translate: function (value){
+                    translate: function (value) {
                         return '$' + value;
                     }
-                    
+
                 }
             };
-            
+
             /**
              * Slider para filtro de precio de # de personas del plan
              */
@@ -104,7 +150,7 @@
                     step: 1
                 }
             };
-            
+
             /**
              * Slider para filtro de valoraciones
              */
@@ -118,7 +164,7 @@
                     showTicksValues: true
                 }
             };
-            
+
         }
     ]);
 }
