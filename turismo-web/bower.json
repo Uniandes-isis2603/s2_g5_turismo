@@ -8,7 +8,7 @@
     "angular-ui-router": "~0.2.14",
     "angular-bootstrap": "^0.13.4",
     "angular-google-maps":"^2.3.2",
-    "seiyria-bootstrap-slider":"^10.0.2"
+    "angularjs-slider":"^6.5.1"
   },
   "devDependencies": {}
 }

@@ -1,11 +1,32 @@
 <div class="col-sm-3 col-lg-2">
-    <p>Nombre</p>
+    <p>Nombre:</p>
     <p><input type="text" ng-model="name"></p>
-    <p>Ciudad</p>
+    <p>Ciudad:</p>
     <p><input type="text" ng-model="ciudad"></p>
-    <p>Pais</p>
+    <p>Pais:</p>
     <p><input type="text" ng-model="pais"></p>
+    <div  style = "display:none;">
+        <input type="number" ng-model="minRangeSlider.minValue" />
+        <input type="number" ng-model="minRangeSlider.maxValue" />
+    </div>
+    <p>Precio:</p>
+    <rzslider rz-slider-model=minRangeSlider.minValue rz-slider-high=minRangeSlider.maxValue rz-slider-options=minRangeSlider.options></rzslider>
+    <div  style = "display:none;">
+        <input type="number" ng-model="minRangeSliderP.minValue" />
+        <input type="number" ng-model="minRangeSliderP.maxValue" />
+    </div>
+    <p># de personas:</p>
+    <rzslider rz-slider-model=minRangeSliderP.minValue rz-slider-high=minRangeSliderP.maxValue rz-slider-options=minRangeSliderP.options></rzslider>
     
+    <div  style = "display:none;">
+        <input type="number" ng-model="minRangeSliderV.minValue" />
+        <input type="number" ng-model="minRangeSliderV.maxValue" />
+    </div>
+    <rzslider rz-slider-model=minRangeSliderV.minValue
+          rz-slider-high=minRangeSliderV.maxValue
+          rz-slider-options=minRangeSliderV></rzslider>
+   
+
 </div>
 <div class="col-sm-9 col-lg-10">
     <div class="panel panel-default"> 
@@ -17,10 +38,14 @@
                             <a class="btn btn-info" ui-sref="plansCreate"><span class="glyphicon glyphicon-plus-sign"></span> Añadir un nuevo plan</a>
                         </div>
                     </div>
-                    <div class="col-md-3" ng-repeat="plan in plansRecords| filter:{'name':name}|filter:{'ubicacion':{'ciudad':ciudad}} ">
+                    <div class="col-md-3" ng-repeat="plan in plansRecords| filter:{'name':name}
+                                |filter:{'ubicacion':{'ciudad':ciudad}}|
+                                filter:betweenValuesPrecio('precio', minRangeSlider.minValue, minRangeSlider.maxValue) 
+                                |filter:betweenValuesPrecio('cantidadPersonas', minRangeSliderP.minValue, minRangeSliderP.maxValue) 
+                                | filter: valoracionPromedio('valoraciones',minRangeSliderV.minValue, minRangeSliderV.maxValue)">
                         <div class="thumbnail">
                             <a ui-sref="planDetail({planId: plan.idPlan})">                    
-                                <img class="img-responsive img-rounded" ng-src='{{plan.archivo}}' alt="{{plan.name}}" />                  
+                                <img class="img-responsive img-rounded" ng-src='{{plan.archivo}}' alt="{{plan.name}}" />                                                  
                             </a>
                             <div class="caption text-center">
                                 <p>{{plan.name}}</p>

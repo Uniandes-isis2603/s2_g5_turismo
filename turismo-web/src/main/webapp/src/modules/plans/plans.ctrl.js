@@ -1,7 +1,7 @@
 (function (ng) {
     var mod = ng.module("planModule");
     mod.constant("plansContext", "api/plans");
-    mod.controller('planCtrl', ['$rootScope', '$scope', '$http', 'plansContext', '$state',
+    mod.controller('planCtrl', ['$rootScope', '$scope', '$http', 'plansContext', '$state', '$timeout',
         /**
          * @ngdoc controller
          * @name plans.controller:planCtrl
@@ -20,7 +20,7 @@
          * @param {Object} $state Dependencia injectada en la que se recibe el 
          * estado actual de la navegación definida en el módulo.
          */
-        function ($rootScope, $scope, $http, plansContext, $state) {
+        function ($rootScope, $scope, $http, plansContext, $state, $timeout) {
             /**
              * @ngdoc function
              * @name getPlans
@@ -36,21 +36,57 @@
              */
             $http.get(plansContext).then(function (response) {
                 $scope.plansRecords = response.data;
-                 var sliderTemp = new Slider('#ex2', {});
-                 $scope.slider = sliderTemp;
-                 $scope.valueTmp = $scope.slider.getValue();
-                $scope.betweenValuesPrecio = function (prop, aux) 
-                {
-                    return function (item)
-                    {   
-                        $scope.valueTmp = $scope.slider.getValue();
-                        alert(item[prop]);
-                        var temp = aux.toString().split(',');
-                        return item[prop] >= temp[0] && item[prop] <= temp[1];
-                    };
-                };
+
+
 
             });
+            $scope.betweenValuesPrecio = function (prop, aux, aux2)
+            {
+                return function (item)
+                {
+                    return item[prop] >= aux && item[prop] <= aux2;
+                };
+            };
+            $scope.betweenValuesValoracion = function (prop, aux, aux2)
+            {
+                return function (item)
+                {
+                    return item[prop] >= aux && item[prop] <= aux2;
+                };
+            };
+            $rootScope.minRangeSlider = {
+                minValue: 10000,
+                maxValue: 1000000,
+                options: {
+                    floor: 0,
+                    ceil: 1000000,
+                    step: 10000,
+                    translate: function (value){
+                        return '$' + value;
+                    }
+                    
+                }
+            };
+            $rootScope.minRangeSliderP = {
+                minValue: 1,
+                maxValue: 10,
+                options: {
+                    floor: 1,
+                    ceil: 10,
+                    step: 1
+                }
+            };
+            $rootScope.minRangeSliderV = {
+                minValue: 1,
+                maxValue: 5,
+                options: {
+                    floor: 1,
+                    ceil: 5,
+                    step: 1,
+                    showTicksValues: true
+                }
+            };
+            
         }
     ]);
 }
