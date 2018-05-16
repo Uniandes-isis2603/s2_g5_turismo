@@ -148,25 +148,27 @@
 
     <body style="padding-top: 20px;">
         <div class="container-fluid col-md-12">
-            <h3>Turismo</h3>
-            <!--<div ui-view="mainView"></div>-->
-        </div>
-        <div class="container-fluid"> 
-            <div class="row">
-                <div class="col-lg-12">
+            <nav class="navbar navbar-default navbar-fixed-top navbar-light" style="background-color: #064169;">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" ui-sref="plansList">
+                            <img alt="Pejelagartos" src="...">
+                        </a>
+                    </div>
                     <ul class="nav nav-tabs">
-                        <li><a ui-sref="plansList">Busca planes</a></li>
-                         <li><a ui-sref="tarjetasList">tarjetas</a></li>
-                          <li><a ui-sref="facturasList">facturas</a></li>
-                           <li><a ui-sref="ubicacionList">ubicacion</a></li>
-                        <li><a ui-sref="blogsList">Busca blogs</a></li>
-                        <li><a ui-sref="paquetesList">Paquetes</a></li>
-                        <li><a ui-sref="usuariosList">Usuarios</a></li>
-                        <li><a ui-sref="valoracionesList">Valoraciones</a></li>
+                        <li><a ui-sref="tarjetasList" style="color: #ED7A27; font-family: bebas;">tarjetas</a></li>
+                        <li><a ui-sref="facturasList" style="color: #ED7A27; font-family: bebas;">facturas</a></li>
+                        <li><a ui-sref="ubicacionList" style="color: #ED7A27; font-family: bebas;">ubicacion</a></li>
+                        <li><a ui-sref="blogsList" style="color: #ED7A27; font-family: bebas;">Busca blogs</a></li>
+                        <li><a ui-sref="paquetesList" style="color: #ED7A27; font-family: bebas;">Paquetes</a></li>
+                        <li><a ui-sref="usuariosList" style="color: #ED7A27; font-family: bebas;">Usuarios</a></li>
+                        <li><a ui-sref="valoracionesList" style="color: #ED7A27; font-family: bebas;">Valoraciones</a></li>
+                        <li> <a ui-sref="usuariosList"> <span class="glyphicon glyphicon-user" aria-hidden="true" style="color: #ED7A27;"></span> </a> </li>
 
-                    </ul>                   
+                    </ul>
                 </div>
-            </div>               
+                <hr>
+            </nav>
             <div ui-view="mainView">
             </div> 
         </div>
