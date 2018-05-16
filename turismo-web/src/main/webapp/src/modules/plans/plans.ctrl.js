@@ -36,10 +36,8 @@
              */
             $http.get(plansContext).then(function (response) {
                 $scope.plansRecords = response.data;
-
-
-
             });
+            
             /**
              * Retorna el item si cumple con las condiciones de rango
              * @param {type} prop propiedad del item a analizar
@@ -54,6 +52,14 @@
                     return item[prop] >= aux && item[prop] <= aux2;
                 };
             };
+            
+            /**
+             * Retorna el item si su valoración promedio está entre el rango dado por parámetro
+             * @param {type} prop es el path del json 'valoraciones'
+             * @param {type} aux Es el rango inferior de promedio de valoracion (1-5)
+             * @param {type} aux2 Es el rango superior de promedio de valoracion (1-5)
+             * @returns {Function}
+             */
             $scope.betweenValuesValoracion = function (prop, aux, aux2)
             {
                 return function (item)
@@ -68,6 +74,10 @@
                     return promedio >= aux && promedio <=aux2;
                 };
             };
+            
+            /**
+             * Slider para filtro de precio de plan
+             */
             $rootScope.minRangeSlider = {
                 minValue: 10000,
                 maxValue: 1000000,
@@ -81,6 +91,10 @@
                     
                 }
             };
+            
+            /**
+             * Slider para filtro de precio de # de personas del plan
+             */
             $rootScope.minRangeSliderP = {
                 minValue: 1,
                 maxValue: 10,
@@ -90,6 +104,10 @@
                     step: 1
                 }
             };
+            
+            /**
+             * Slider para filtro de valoraciones
+             */
             $rootScope.minRangeSliderV = {
                 minValue: 1,
                 maxValue: 5,
