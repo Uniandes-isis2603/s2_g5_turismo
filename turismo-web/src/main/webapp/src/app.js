@@ -44,7 +44,7 @@
                  * @returns {Boolean} Verdadero si está dentro de su cuenta.
                  */
                 $rootScope.isAuthenticated = function () {
-
+                    
                     if (sessionStorage.getItem("username") != null) {
                         $rootScope.currentUser = sessionStorage.getItem("name");
                         return true;

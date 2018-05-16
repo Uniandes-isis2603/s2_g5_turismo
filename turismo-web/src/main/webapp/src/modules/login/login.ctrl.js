@@ -24,7 +24,7 @@
             $scope.user = {};
             $scope.data = {};
             
-            $http.get('data/users.json').then(function (response) {
+            $http.get("api/usuario").then(function (response) {
                 $scope.users = response.data;
             });
 
@@ -38,27 +38,28 @@
              */
             $scope.autenticar = function () {
                 var flag = false;
-                $http.post('api/login',$scope.data).then(function(response){
-
                 for (var item in $scope.users) {
-                    if ($scope.users[item].user === response.data.username && $scope.users[item].password === response.data.password && $scope.users[item].rol === response.data.rol) {
+                    if ($scope.users[item].nombre === $scope.data.nombre && $scope.users[item].contrasenia === $scope.data.contrasenia /*Falta mirar como manejar el admin*/) {
+                        alert("authentico");
                         flag = true;
                         $scope.user = $scope.users[item];
-                        $state.go('booksList', {}, {reload: true});
+                        $state.go('plansList', {}, {reload: true});
                         break;
                     }
                 }
                 if (!flag) {
                     $rootScope.alerts.push({type: "danger", msg: "Incorrect username or password."});
                 } else {
+                    
                     sessionStorage.token = $scope.user.token;
                     sessionStorage.setItem("username", $scope.user.user);
                     sessionStorage.setItem("name", $scope.user.name);
                     sessionStorage.setItem("rol", $scope.user.rol);
-                    $rootScope.currentUser = $scope.user.name; 
+                    $rootScope.currentUser = $scope.user.nombre; 
+                   console.log($rootScope.currentUser);
                 }
-                });
-            };
+                };
+            
         }
     ]);
 }
