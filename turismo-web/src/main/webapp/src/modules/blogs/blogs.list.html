@@ -1,20 +1,49 @@
 <div class="container-fluid">
     
-    <h3>Blogs disponibles</h3> 
+    <div class="col-sm-3 col-lg-2">
+    <p>Nombre:</p>
+    <p><input type="text" ng-model="tema"></p>
+    
+    
+    
+</div>
+    
+<div class="col-sm-9 col-lg-10">
+    <div class="panel panel-default"> 
+        <div class="panel-body">
+            <div class="container-fluid">
+                <div class="row">
+                    <h3>Blogs disponibles</h3> 
     <div class="row">
-        <div class="col-md-2" ng-repeat="blog in blogsRecords">
-            <div class="thumbnail">
-                <h4>{{blog.tema}}</h4>
-                <a ui-sref="blogsDetail({blogId: blog.id})">                    
-                    <img class="img-responsive" ng-src='{{blog.archivo}}' alt="imagen" />                  
-                </a>
-                </div>
-            
-            
-         
-            </div>
-           <div class="btn-group mr-2" role="group" aria-label="First group">
+        
+                      <div class="btn-group mr-2" role="group" aria-label="First group">
         <a class="btn btn-info" ui-sref="blogCreate"><span class="glyphicon glyphicon-plus-sign"></span> nuevo blog</a>
-     </div>
+                        </div>
+        <div class="row"></div>
+                    </div>
+                    <br>
+                    
+                     <div class="col-md-3" ng-repeat="blog in blogsRecords| filter:{'tema':tema}">
+                        <div class="thumbnail">
+                            <a ui-sref="blogsDetail({blogId: blog.id})">                   
+                                <img class="img-responsive img-rounded" ng-src='{{blog.archivo}}' alt="{{blog.tema}}" />                                                  
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+</div>
+    
+    
+    
+        
+           
+           
+         
+            </div>
+         
+        </div>
+
