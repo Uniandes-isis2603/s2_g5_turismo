@@ -1,7 +1,7 @@
 (function (ng) {
     var mod = ng.module("planModule");
     mod.constant("plansContext", "api/plans");
-    mod.controller('planCtrl', ['$rootScope', '$scope', '$http', 'plansContext', '$state', '$timeout',
+    mod.controller('planCtrl', ['$rootScope', '$scope', '$http', 'plansContext',
         /**
          * @ngdoc controller
          * @name plans.controller:planCtrl
@@ -20,7 +20,7 @@
          * @param {Object} $state Dependencia injectada en la que se recibe el 
          * estado actual de la navegación definida en el módulo.
          */
-        function ($rootScope, $scope, $http, plansContext, $state, $timeout) {
+        function ($rootScope, $scope, $http, plansContext) {
             /**
              * @ngdoc function
              * @name getPlans
