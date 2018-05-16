@@ -4,11 +4,10 @@
   "main": "src/main/webapp/index.html",
   "dependencies": {
     "angular": "^1.5.8",
-    "bootstrap": "^3.3.7",
+    "bootstrap": "^4.0.0",
     "angular-ui-router": "~0.2.14",
     "angular-bootstrap": "^0.13.4",
-    "angular-google-maps":"^2.3.2",
-    "angularjs-slider":"^6.5.1"
+    "angular-google-maps":"^2.3.2"
   },
   "devDependencies": {}
 }
