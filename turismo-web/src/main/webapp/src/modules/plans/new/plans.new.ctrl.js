@@ -2,7 +2,8 @@
     var mod = ng.module("planModule");
     mod.constant("plansContext", "api/plans");
     mod.constant("preferenciasContext", "api/preferences");
-    mod.controller('planNewCtrl', ['$scope', '$http', 'plansContext', '$state', 'preferenciasContext', '$rootScope',
+    mod.constant("guidesContext", "api/guides");
+    mod.controller('planNewCtrl', ['$scope', '$http', 'plansContext', '$state', 'preferenciasContext', '$rootScope', 'guidesContext',
         /**
          * @ngdoc controller
          * @name plans.controller:planNewCtrl
@@ -22,14 +23,17 @@
          * @param {Object} $rootScope Referencia injectada al Scope definida para
          * toda la aplicación.
          */
-        function ($scope, $http, plansContext, $state, preferenciasContext, $rootScope) {
+        function ($scope, $http, plansContext, $state, preferenciasContext, $rootScope, guidesContext) {
             $rootScope.edit = false;
 
-            $scope.data = {};          
-                      
+            $scope.data = {};
+
             $http.get(preferenciasContext).then(function (response) {
-                    $scope.AllPreferencias = response.data;
-                });           
+                $scope.AllPreferencias = response.data;
+            });
+            $http.get(guidesContext).then(function (response) {
+                $scope.AllGuides = response.data;
+            });
             /**
              * @ngdoc function
              * @name createEditorial
@@ -38,11 +42,14 @@
              */
             $scope.createPlan = function () {
                 $scope.addCategorias($scope.data.categorias);
-               $scope.data.categoriasPlan = $scope.categoriasPlan;
+                $scope.addGuides($scope.data.guides);
+                $scope.data.categoriasPlan = $scope.categoriasPlan;
+                $scope.data.guiasPlan = $scope.guidesPlan;
                 $http.post(plansContext, $scope.data).then(function (response) {
                     $state.go('plansList', {planId: response.data.id}, {reload: true});
                 });
             };
+
             /**
              * @ngdoc function
              * @name addCategorias
@@ -51,14 +58,33 @@
              * Busca las nuevas categorias en el $scope.
              * @param {Object} Un string con el nombre de las preferencias a asociar
              */
-            $scope.addCategorias = function (splitear) 
+            $scope.addCategorias = function (splitear)
             {
                 $scope.categoriasPlan = [];
                 var splited = splitear.split("-"), i;
                 for (i = 0; i < splited.length; i++)
                 {
-                    var categoria = {"tipoPlan":splited[i]};
-                   $scope.categoriasPlan.push(categoria); 
+                    var categoria = {"tipoPlan": splited[i]};
+                    $scope.categoriasPlan.push(categoria);
+                }
+            };
+
+            /**
+             * @ngdoc function
+             * @name addGuides
+             * @methodOf authors.controller:authorUpdateCtrl
+             * @description
+             * Busca las nuevas categorias en el $scope.
+             * @param {Object} Un string con los id de guias a asociar a el plan
+             */
+            $scope.addGuides = function (splitear)
+            {
+                $scope.guidesPlan = [];
+                var splited = splitear.split("-"), i;
+                for (i = 0; i < splited.length; i++)
+                {
+                    var guide = {"idGuia": splited[i]};
+                    $scope.guidesPlan.push(guide);
                 }
             };
         }

@@ -94,6 +94,24 @@
                         </div>
                     </div>
                     
+                    <div ng-if="!edit" class="form-group row">
+                        <div class="form-group col-md-12">
+                            <label for="planGuides" class="col-sm-12">Guías (inserte los id's de los guias separados con "-"):</label>
+                            <input id="planGuides" required ng-model="data.guides" class="col-sm-6"/>
+                        </div>
+                    </div>
+                    
+                     <div ng-if="!edit" class="panel-group" id="theGuides">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">Id's de los guias posibles para añadir:</div>
+                            <div class="panel-body">
+                                    <div ng-show="!edit" ng-repeat="guide in AllGuides">
+                                        <p> {{guide.idGuia}}</p>                                 
+                                    </div>                               
+                            </div>
+                        </div>
+                    </div>
+                    
                     <div class="form-group row">
                         <div class="form-group col-sm-4" ng-if="!plan.$valid">
 
