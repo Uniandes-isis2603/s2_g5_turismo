@@ -1,7 +1,7 @@
 (function (ng) {
     var mod = ng.module("planModule");
     mod.constant("plansContext", "api/plans");
-    mod.controller('planCtrl', ['$scope', '$http', 'plansContext', '$state',
+    mod.controller('planCtrl', ['$rootScope', '$scope', '$http', 'plansContext', '$state',
         /**
          * @ngdoc controller
          * @name plans.controller:planCtrl
@@ -20,7 +20,7 @@
          * @param {Object} $state Dependencia injectada en la que se recibe el 
          * estado actual de la navegación definida en el módulo.
          */
-        function ($scope, $http, plansContext, $state) {
+        function ($rootScope, $scope, $http, plansContext, $state) {
             /**
              * @ngdoc function
              * @name getPlans
@@ -36,6 +36,20 @@
              */
             $http.get(plansContext).then(function (response) {
                 $scope.plansRecords = response.data;
+                 var sliderTemp = new Slider('#ex2', {});
+                 $scope.slider = sliderTemp;
+                 $scope.valueTmp = $scope.slider.getValue();
+                $scope.betweenValuesPrecio = function (prop, aux) 
+                {
+                    return function (item)
+                    {   
+                        $scope.valueTmp = $scope.slider.getValue();
+                        alert(item[prop]);
+                        var temp = aux.toString().split(',');
+                        return item[prop] >= temp[0] && item[prop] <= temp[1];
+                    };
+                };
+
             });
         }
     ]);
