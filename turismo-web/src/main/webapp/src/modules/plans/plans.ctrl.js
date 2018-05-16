@@ -1,7 +1,7 @@
 (function (ng) {
     var mod = ng.module("planModule");
     mod.constant("plansContext", "api/plans");
-    mod.controller('planCtrl', ['$scope', '$http', 'plansContext', '$state',
+    mod.controller('planCtrl', ['$rootScope', '$scope', '$http', 'plansContext',
         /**
          * @ngdoc controller
          * @name plans.controller:planCtrl
@@ -20,7 +20,7 @@
          * @param {Object} $state Dependencia injectada en la que se recibe el 
          * estado actual de la navegación definida en el módulo.
          */
-        function ($scope, $http, plansContext, $state) {
+        function ($rootScope, $scope, $http, plansContext) {
             /**
              * @ngdoc function
              * @name getPlans
@@ -37,6 +37,88 @@
             $http.get(plansContext).then(function (response) {
                 $scope.plansRecords = response.data;
             });
+            
+            /**
+             * Retorna el item si cumple con las condiciones de rango
+             * @param {type} prop propiedad del item a analizar
+             * @param {type} aux rango inferior
+             * @param {type} aux2 rango superor
+             * @returns {Function}
+             */
+            $scope.betweenValuesPrecio = function (prop, aux, aux2)
+            {
+                return function (item)
+                {
+                    return item[prop] >= aux && item[prop] <= aux2;
+                };
+            };
+            
+            /**
+             * Retorna el item si su valoración promedio está entre el rango dado por parámetro
+             * @param {type} prop es el path del json 'valoraciones'
+             * @param {type} aux Es el rango inferior de promedio de valoracion (1-5)
+             * @param {type} aux2 Es el rango superior de promedio de valoracion (1-5)
+             * @returns {Function}
+             */
+            $scope.betweenValuesValoracion = function (prop, aux, aux2)
+            {
+                return function (item)
+                {
+                    var vals = item[prop];
+                    var promedio = 0;
+                    for(var i = 0; i < vals.length; i++)
+                    {
+                        promedio = promedio + vals[i].calificacion;
+                    }
+                    promedio = promedio/vals.length;
+                    return promedio >= aux && promedio <=aux2;
+                };
+            };
+            
+            /**
+             * Slider para filtro de precio de plan
+             */
+            $rootScope.minRangeSlider = {
+                minValue: 10000,
+                maxValue: 1000000,
+                options: {
+                    floor: 0,
+                    ceil: 1000000,
+                    step: 10000,
+                    translate: function (value){
+                        return '$' + value;
+                    }
+                    
+                }
+            };
+            
+            /**
+             * Slider para filtro de precio de # de personas del plan
+             */
+            $rootScope.minRangeSliderP = {
+                minValue: 1,
+                maxValue: 10,
+                options: {
+                    floor: 1,
+                    ceil: 10,
+                    step: 1
+                }
+            };
+            
+            /**
+             * Slider para filtro de valoraciones
+             */
+            $rootScope.minRangeSliderV = {
+                minValue: 1,
+                maxValue: 5,
+                options: {
+                    floor: 1,
+                    ceil: 5,
+                    step: 1,
+                    showTicksValues: true
+                }
+            };
+            
         }
     ]);
 }

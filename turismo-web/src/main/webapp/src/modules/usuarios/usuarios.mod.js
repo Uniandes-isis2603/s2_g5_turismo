@@ -34,9 +34,8 @@
     var mod = ng.module("usuariosModule", ['ui.router']);
     mod.constant("usuariosContext", "api/usuario");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
-            var basePath = 'src/modules/usuario/';
-            $urlRouterProvider.otherwise("/usuariosList");
-
+            var basePath = 'src/modules/usuarios/';
+            $urlRouterProvider.otherwise("/usuario/list");
             $stateProvider.state('usuario', {
                 url: '/usuario',
                 abstract: true,
@@ -106,6 +105,18 @@
                    'sideView':{
                        templateUrl: basePath + 'usuarios.side.html'
                    }
+                }
+            }).state('usuariosDelete', {
+                url: '/delete/{usuariosId:int}',
+                parent: 'usuario',
+                param: {
+                    usuariosId: null
+                },
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + 'usuarios.delete.html',
+                        controller: 'usuariosDeleteCtrl'
+                    }
                 }
             });
         }]);

@@ -1,3 +1,28 @@
+/**
+ * @ngdoc overview
+ * @name valoraciones.module:valoracionesModule
+ * @description
+ * Definición del módulo de Angular de valoraciones. El módulo encapsula todos los 
+ * controladores y los templates HTML que estén relacionados con los valoraciones 
+ * directamente. En la configuración del módulo se injecta la dependencia de 
+ * ui.router que es la que se utiliza para la configuración de las URLs bajo las
+ * cuales se accede al módulo. Por ejemplo, para mostrar los usuarios en la 
+ * URL: 'localhost:8080/valoraciones/list' es necesario configurar el router por 
+ * medio del stateProvider que informa a AngularJS de la relación entre la URL, 
+ * un estado definido (estado de mostrar valoraciones), el controlador y la vista 
+ * correspondiente. Los estados definidos en este modulo son:
+ * ```
+ * | ESTADO          | URL                        | VISTAS                 |
+ * |-----------------|----------------------------|------------------------|
+ * | usuario         | /valoraciones              | mainView:              |
+ * |                 |                            | valoraciones.html      |
+ * |                 |                            |                        |
+ * | valoracionesList| /list                      | listView:              |
+ * |                 |                            | usuarios.list.html     |
+ * |                 |                            |                        |
+ * |-----------------|----------------------------|------------------------|
+ *```
+ */
 (function (ng) {
     // Definición del módulo
     var mod = ng.module("valoracionesModule", ['ui.router']);

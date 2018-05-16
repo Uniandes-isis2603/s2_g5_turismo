@@ -1,0 +1,14 @@
+<div class="container-fluid">  
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nombre</th>    
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="preferencia in currentPreferenceFromPlan">
+                <td id="{{$index}}-name">{{preferencia.tipoPlan}}</td> 
+            </tr>
+        </tbody>
+    </table>  
+</div>

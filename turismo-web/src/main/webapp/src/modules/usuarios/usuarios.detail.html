@@ -1,9 +1,9 @@
-<<div class="panel panel-default"> 
+<div class="panel panel-default"> 
     <div class="panel-body">
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-6">
                 <dl>  
-                    <dt class="bold">{{currentUsuario.name}}, {{currentUsuario.apellido}}</dt>
+                    <dt class="bold"><h2>{{currentUsuario.nombre}} {{currentUsuario.apellido}}</h2></dt>
                     <dt> Contrasenia</dt>
                     <dd>{{currentUsuario.contrasenia}}</dd>
                     <dt>Correo</dt>
@@ -13,9 +13,7 @@
                     <dt>Idioma</dt>
                     <dd>{{currentUsuario.idioma}}</dd>                    
                     <dt>Es Administrador</dt>
-                    <dd>{{currentUsuario.idioma}}</dd>
-                    <dt class="bold">Descripcion</dt>
-                    <dd>{{currentUsuario.descripcion}}</dd>
+                    <dd>{{currentUsuario.esAdministrador}}</dd>
                     <dt class="bold">Facturas</dt>
                     <ul ng-repeat="factura in currentUsuario.listaFacturas">
                         <dd> {{factura.id}}</dd>
