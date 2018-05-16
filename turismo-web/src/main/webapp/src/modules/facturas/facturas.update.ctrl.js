@@ -25,7 +25,7 @@
     
            
             $scope.createFactura = function () {
-                alert("Entro a consola2");
+                
                 $http.put(facturaContext+"/"+id, { 
                     id:$scope.facturaId,
                    costo:$scope.facturaCosto

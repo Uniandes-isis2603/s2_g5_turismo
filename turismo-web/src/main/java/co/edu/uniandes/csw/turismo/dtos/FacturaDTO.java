@@ -40,12 +40,13 @@ public class FacturaDTO  {
     /**
      * representa el id del costo
      */
-    private Long Costo;
+    private Long costo;
     /**
     *Constructor por defecto
     */
-    public FacturaDTO() {
-        
+    public FacturaDTO() 
+    {
+     // no hace nada   
     }
     /**
      * constructor a partir de un entityFactura
@@ -55,7 +56,7 @@ public class FacturaDTO  {
     {
         if(entity != null)
         {
-        this.Costo = entity.getCosto();
+        this.costo = entity.getCosto();
         this.id = entity.getId();
         }
         
@@ -88,14 +89,14 @@ public class FacturaDTO  {
      *Retorna el Costo de la factura
      */
     public long getCosto() {
-        return Costo;
+        return costo;
     }
     /**
      * estbalece el costo de la facturaDTO
      * @param Costo 
      */
-    public void setCosto(long Costo) {
-        this.Costo = Costo;
+    public void setCosto(long pCosto) {
+        this.costo = pCosto;
     }
      
    
