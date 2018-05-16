@@ -24,7 +24,7 @@
     </div>
     <rzslider rz-slider-model=minRangeSliderV.minValue
           rz-slider-high=minRangeSliderV.maxValue
-          rz-slider-options=minRangeSliderV></rzslider>
+          rz-slider-options=minRangeSliderV.options></rzslider>
    
 
 </div>
@@ -39,10 +39,10 @@
                         </div>
                     </div>
                     <div class="col-md-3" ng-repeat="plan in plansRecords| filter:{'name':name}
-                                |filter:{'ubicacion':{'ciudad':ciudad}}|
+                                |filter:{'ubicacion':{'ciudad':ciudad}}|filter:{'ubicacion':{'pais':pais}}|
                                 filter:betweenValuesPrecio('precio', minRangeSlider.minValue, minRangeSlider.maxValue) 
                                 |filter:betweenValuesPrecio('cantidadPersonas', minRangeSliderP.minValue, minRangeSliderP.maxValue) 
-                                | filter: valoracionPromedio('valoraciones',minRangeSliderV.minValue, minRangeSliderV.maxValue)">
+                                | filter: betweenValuesValoracion('valoraciones',minRangeSliderV.minValue, minRangeSliderV.maxValue)">
                         <div class="thumbnail">
                             <a ui-sref="planDetail({planId: plan.idPlan})">                    
                                 <img class="img-responsive img-rounded" ng-src='{{plan.archivo}}' alt="{{plan.name}}" />                                                  

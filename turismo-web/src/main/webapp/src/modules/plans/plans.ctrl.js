@@ -40,6 +40,13 @@
 
 
             });
+            /**
+             * Retorna el item si cumple con las condiciones de rango
+             * @param {type} prop propiedad del item a analizar
+             * @param {type} aux rango inferior
+             * @param {type} aux2 rango superor
+             * @returns {Function}
+             */
             $scope.betweenValuesPrecio = function (prop, aux, aux2)
             {
                 return function (item)
@@ -51,7 +58,14 @@
             {
                 return function (item)
                 {
-                    return item[prop] >= aux && item[prop] <= aux2;
+                    var vals = item[prop];
+                    var promedio = 0;
+                    for(var i = 0; i < vals.length; i++)
+                    {
+                        promedio = promedio + vals[i].calificacion;
+                    }
+                    promedio = promedio/vals.length;
+                    return promedio >= aux && promedio <=aux2;
                 };
             };
             $rootScope.minRangeSlider = {
