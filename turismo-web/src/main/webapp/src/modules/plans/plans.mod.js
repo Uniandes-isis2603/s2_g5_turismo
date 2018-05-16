@@ -144,7 +144,7 @@
                         templateUrl: basePath + 'plans.side.html'
                     },
                     'planGuidesView':{
-                        templateUrl: basePath + 'plans.detail.guides.html',
+                        templateUrl: basePath + '/guias/plans.detail.guides.html',
                         controller: 'planDetailGuidesCtrl',
                         controllerAs: 'ctrl'
                     }
@@ -170,8 +170,62 @@
                         templateUrl: basePath + 'plans.side.html'
                     },
                     'planGuidesView':{
-                        templateUrl: basePath + 'plans.detail.preferencias.html',
+                        templateUrl: basePath + '/categorias/plans.detail.preferencias.html',
                         controller: 'planDetailPreferenciasCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
+                }).state('planDetailUbicacion',{
+                url: '/ubicacion/{lat:string}/{lon:string}',
+                parent: 'planDetail',
+                param:{
+                    planId:null,
+                    lat:null,
+                    lon:null
+                },
+                views:{
+                   'listView': {
+                        templateUrl: basePath + 'plans.list.html',
+                        controller: 'planDetailCtrl',
+                        controllerAs: 'ctrl'
+                    },
+                    'detailView': {
+                        templateUrl: basePath + 'plans.detail.html',
+                        controller: 'planDetailCtrl',
+                        controllerAs: 'ctrl'
+                    },
+                    'sideViewPlan': {
+                        templateUrl: basePath + 'plans.side.html'
+                    },
+                    'planGuidesView':{
+                        templateUrl: basePath + '/ubicacion/plans.detail.ubicacion.html',
+                        controller: 'mapPlanCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
+                }).state('planDetailValoraciones',{
+                url: '/valoraciones',
+                parent: 'planDetail',
+                param:{
+                    planId:null
+                },
+                views:{
+                   'listView': {
+                        templateUrl: basePath + 'plans.list.html',
+                        controller: 'planDetailCtrl',
+                        controllerAs: 'ctrl'
+                    },
+                    'detailView': {
+                        templateUrl: basePath + 'plans.detail.html',
+                        controller: 'planDetailCtrl',
+                        controllerAs: 'ctrl'
+                    },
+                    'sideViewPlan': {
+                        templateUrl: basePath + 'plans.side.html'
+                    },
+                    'planGuidesView':{
+                        templateUrl: basePath + '/valoraciones/plans.detail.valoraciones.html',
+                        controller: 'planDetailValoracionesCtrl',
                         controllerAs: 'ctrl'
                     }
                 }

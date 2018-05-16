@@ -25,6 +25,12 @@ public class ValoracionesLogic
     @Inject
     private ValoracionesPersistence persistence;
     
+    /**
+     * Crea una nueva valoracion de acuerdo a las reglas de negocio establecidas
+     * @param entity Los datos de la nueva valoracion
+     * @return La valoracion ya creada
+     * @throws BusinessLogicException
+     */
     public ValoracionesEntity createValoracion(ValoracionesEntity entity) throws BusinessLogicException
     {
         LOGGER.info("Inicia proceso de creación del usuario");
@@ -39,6 +45,10 @@ public class ValoracionesLogic
         return entity;
     }
     
+    /**
+     * Crea la lista de valoraciones
+     * @return La lista de valoraciones
+     */
     public List<ValoracionesEntity> getValoraciones()
     {
         LOGGER.info("Inicia proceso de consultar todas las valoraciones");
@@ -47,11 +57,22 @@ public class ValoracionesLogic
         return lista;
     }
     
+    /**
+     * Busca la valoracion con el id dado por parametro
+     * @param id
+     * @return
+     */
     public ValoracionesEntity getValoracion(Long id)
     {
         return persistence.find(id);
     }
     
+    /**
+     * Actualiza los datos de una valoracion
+     * @param entity LA valoracion a actualizar
+     * @return La valoracion actualizada
+     * @throws BusinessLogicException
+     */
     public ValoracionesEntity updateValoracion(ValoracionesEntity entity) throws BusinessLogicException
     {
         LOGGER.info("Inicia proceso de creación del usuario");
@@ -66,6 +87,10 @@ public class ValoracionesLogic
         return entity;
     }
     
+    /**
+     * Borra una valoracion con el id dado por parametro
+     * @param id id de la valoracion a eliminar
+     */
     public void deleteValoracion(Long id)
     {
         LOGGER.info("Inicia proceso de borrar Plan con id={0}");    

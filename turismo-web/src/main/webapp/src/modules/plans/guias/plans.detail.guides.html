@@ -1,0 +1,16 @@
+<div class="container-fluid">  
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nombre</th>    
+                <th>Idioma</th> 
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="guia in currentGuideFromPlan">
+                <td id="{{$index}}-name">{{guia.nombreGuia}}</td>  
+                <td id="{{$index}}-name">{{guia.idiomaGuia}}</td> 
+            </tr>
+        </tbody>
+    </table>
+</div>

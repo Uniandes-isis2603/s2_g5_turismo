@@ -1,7 +1,7 @@
 (function (ng) {
     var mod = ng.module("planModule");
     mod.constant("plansContext", "api/plans");
-    mod.controller('planDetailCtrl', ['$scope', '$http', 'plansContext', '$state',
+    mod.controller('planDetailValoracionesCtrl', ['$scope', '$http', 'plansContext', '$state',
         /**
          * @ngdoc controller
          * @name plans.controller:planDetailCtrl
@@ -19,20 +19,20 @@
          * @param {Object} $state Dependencia injectada en la que se recibe el 
          * estado actual de la navegación definida en el módulo.
          */
-        function ($scope, $http, plansContext, $state) {
-            if (($state.params.planId !== undefined) && ($state.params.planId !== null)){
-                /**
-                 * @ngdoc function
-                 * @name getPlanID
-                 * @methodOf plans.controller:planDetailCtrl
-                 * @description
-                 * Esta función utiliza el protocolo HTTP para obtener el recurso 
-                 * donde se encuentra el plan por ID en formato JSON.
-                 * @param {String} URL Dirección donde se encuentra el recurso
-                 * del plan o API donde se puede consultar.
-                 */
-                $http.get(plansContext + '/' + $state.params.planId).then(function (response) {
-                    $scope.currentPlan = response.data;
+        function ($scope, $http, plansContext, $state) {           
+            if (($state.params.planId !== undefined)&& ($state.params.planId !== null)) {
+             /**
+             * @ngdoc function
+             * @name getPlanID
+             * @methodOf plans.controller:planDetailCtrl
+             * @description
+             * Esta función utiliza el protocolo HTTP para obtener el recurso 
+             * donde se encuentra el plan por ID en formato JSON.
+             * @param {String} URL Dirección donde se encuentra el recurso
+             * del plan o API donde se puede consultar.
+             */
+                $http.get(plansContext + '/' + $state.params.planId+ '/valoraciones').then(function (response) {
+                    $scope.currentValoracionFromPlan = response.data;
                 });
             }
         }

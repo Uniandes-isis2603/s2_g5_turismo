@@ -1,28 +1,27 @@
 <div class="panel panel-default"> 
     <div class="panel-body">
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <div class="thumb">
-                    <img class="img-responsive" ng-src="{{currentPlan.archivo}}"/>
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Acciones</th>  
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td id="{{$index}}-acciones">
-                                    <a class="btn btn-default btn-sm" ui-sref="planUpdate({planId: currentPlan.idPlan})"><span class="glyphicon glyphicon-edit"></span></a>
-                                    <a class="btn btn-danger btn-sm" ui-sref="planDelete({planId: currentPlan.idPlan})"><span class="glyphicon glyphicon-trash"></span></a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <img class="img-responsive img-rounded" ng-src="{{currentPlan.archivo}}"/>
                 </div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Acciones</th>  
+                            <th id="{{$index}}-acciones">
+                                <a class="btn btn-default btn-sm" ui-sref="planUpdate({planId: currentPlan.idPlan})"><span class="glyphicon glyphicon-edit"></span></a>
+                                <a class="btn btn-danger btn-sm" ui-sref="planDelete({planId: currentPlan.idPlan})"><span class="glyphicon glyphicon-trash"></span></a>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+
 
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <dl>     
                     <dt class="bold">{{currentPlan.name}}</dt>
                     <dt> Duración</dt>
@@ -36,15 +35,16 @@
                     <dt class="bold">Descripcion</dt>
                     <dd>{{currentPlan.descripcion}}</dd>
                 </dl>
-                <ul class="nav nav-tabs">
-                    <li> <a ui-sref="planDetailGuides({planId: currentPlan.idPlan})">Guías</a></li>
-                    <li> <a ui-sref="planDetailPreferencias({planId: currentPlan.idPlan})">Categorías</a></li>
+            </div>  
+            <div class="col-md-2">
+                <ul class="nav nav-pills nav-stacked">
+                    <li> <a ui-sref="planDetailUbicacion({planId: currentPlan.idPlan,lat: currentPlan.ubicacion.latitud,lon: currentPlan.ubicacion.longitud})">Ubicación</a></li>
+                    <li><a ui-sref="planDetailGuides({planId: currentPlan.idPlan})">Guías</a></li>
+                    <li><a ui-sref="planDetailPreferencias({planId: currentPlan.idPlan})">Categorías</a></li>
+                    <li><a ui-sref="planDetailValoraciones({planId: currentPlan.idPlan})">Valoraciones</a></li>
                 </ul>
             </div>
-        </div>
-         <div class="row">
-            <div class="col-md-3"></div>
-            <div class="col-md-9">
+            <div class="col-md-4">
                 <div ui-view="planGuidesView"></div>
             </div>
         </div>

@@ -2,6 +2,7 @@
     var app = angular.module('mainApp', [
         // External dependencies
         'ui.router',
+        'rzModule',
         'ui.bootstrap',
         // Internal modules dependencies  
         'miPlanModule',
@@ -16,11 +17,10 @@
         'paqueteModule',
         'comentariosModule',
         'usuariosModule',
-        'valoracionesModule'
-       
-        
-
+        'valoracionesModule',
+        'uiGmapgoogle-maps'
     ]);
+
     // Resuelve problemas de las promesas
     app.config(['$qProvider', function ($qProvider) {
             $qProvider.errorOnUnhandledRejections(false);

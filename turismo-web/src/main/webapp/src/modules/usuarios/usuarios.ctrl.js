@@ -1,7 +1,7 @@
 (function (ng) {
     var mod = ng.module("usuariosModule");
     mod.constant("usuariosContext", "api/usuario");
-   
+    
     mod.controller('usuariosCtrl', ['$scope', '$http', 'usuariosContext', '$state',
        /**
          * @ngdoc controller
@@ -35,7 +35,7 @@
              * navegador.
              * @param {String} URL Dirección donde se encuentra el recurso
              * de los usuarios o API donde se puede consultar.
-             */            
+             */  
             $http.get(usuariosContext).then(function (response) {                
                 $scope.usuariosRecords = response.data;
             });
