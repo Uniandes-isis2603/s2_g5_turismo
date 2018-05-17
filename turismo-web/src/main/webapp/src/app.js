@@ -45,10 +45,10 @@
               
 
             $transitions.onSuccess({to: '*'}, function (trans) {
-
+               
                 var $state = trans.router.stateService;
-                var requireLogin = $state.current.data.requireLogin
-                var roles = $state.current.data.roles
+                var requireLogin = $state.current.data.requireLogin;
+                var roles = $state.current.data.roles;
                
 
                 /**
@@ -60,12 +60,17 @@
                  * @returns {Boolean} Verdadero si está dentro de su cuenta.
                  */
                 $rootScope.isAuthenticated = function () {
+
                     if($rootScope.anonimo === true)
                     {
                         return true;
                     }
-                    else if (sessionStorage.getItem("username") != null) {
-                        $rootScope.currentUser = sessionStorage.getItem("name");
+
+                    
+                    if (sessionStorage.getItem("username") != null) {
+                        $rootScope.currentUser = sessionStorage.getItem("username");
+                        $rootScope.currentId = sessionStorage.getItem("id");
+
                         return true;
                     } else {
                         return false;

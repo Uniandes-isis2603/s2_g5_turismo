@@ -13,8 +13,23 @@ and open the template in the editor.
 a {
    color: #ED7A27; 
    font-family: 'Fjalla One', sans-serif;
+   font-size: 20px;
+}
+.form-signin-heading{
+       color:  #064169;
+       font-family: 'Fjalla One', sans-serif;
+}
+.form-control{
+    border-color:#ED7A27; 
 }
 .navbar-fixed-top{
     background-color: #064169;
     height:60px;
+}
+button{
+   font-family: 'Fjalla One', sans-serif;
+}
+.nav-stacked{
+    background-color: #064169;
+    
 }

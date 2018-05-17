@@ -151,22 +151,20 @@
 
     </head>
 
-    <body style="padding-top: 20px;">
+    <body style="padding-top: 20px;">      
+            <div ng-if="isAuthenticated()"  class="row">
+                <div ng-if="isAuthenticated()"  class="col-lg-12">
+                    <div class="container-fluid col-md-12">
+                        <div class="col-md-11">
+                        <ul class=" navbar-fixed-top nav nav-tabs" style=" border: 0;">
+                            <li class="navbar-brand" > <img alt="Pejelagartos" src="resources/images/logoBlanco.png"  style="width:30px;height:40px;"></li>
+                            <li><a ui-sref="plansList">Planes</a></li>
 
-        <div ng-if="isAuthenticated()"  class="row">
-            <div ng-if="isAuthenticated()"  class="col-lg-12">
-                <div class="container-fluid col-md-12">
-                    <div class="col-md-11">
-                        <ul class=" navbar-fixed-top nav nav-tabs">
-                            <li><a class="navbar-brand" ui-sref="plansList"> <img alt="Pejelagartos" src="resources/images/logoBlanco.png"  style="width:20px;height:40px;"></a></li>
-                            <li><a ui-sref="tarjetasList" >tarjetas</a></li>
-                            <li><a ui-sref="facturasList" >facturas</a></li>
-                            <li><a ui-sref="ubicacionList" >ubicacion</a></li>
                             <li><a ui-sref="blogsList" >Busca blogs</a></li>
                             <li><a ui-sref="paquetesList">Paquetes</a></li>
-                            <li><a ui-sref="usuariosList" >Usuarios</a></li>
+                            <li><a ui-sref="usuariosDetail({usuarioId: currentId})" >Mi perfil</a></li>
                             <li><a ui-sref="valoracionesList" >Valoraciones</a></li>
-                            <li> <a ui-sref="usuariosList" >Usuarios </a> </li>
+                           
                             <li class="navbar-right" ><a ui-sref="logout">Logout <span class="glyphicon glyphicon-user" aria-hidden="true" style="color: #ED7A27;"></span></a></li>
                         </ul>
 

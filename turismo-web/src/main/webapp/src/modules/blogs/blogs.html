@@ -1,9 +1,7 @@
 <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
-<div class="container-fluid general">
+<div class="container-fluid general" style="height:100%; padding: 0; margin-top: 39;"> 
     <div class="row">
-        <div class="col-sm-3 col-lg-2">
-            <div ui-view="sideView"></div>
-        </div>
+
         <div class="col-sm-9 col-lg-10">
             <div class="row">
                 <div ui-view="detailView"></div>

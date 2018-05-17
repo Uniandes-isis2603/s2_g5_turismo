@@ -45,6 +45,10 @@
                         controller: 'usuariosCtrl',
                         controllerAs: 'ctrl'
                     }
+                },
+                data: {
+                    requireLogin: true,
+                    roles: [true,false]
                 }
             }).state("usuariosList",{
                url:'/list',
@@ -64,9 +68,6 @@
                    usuarioId: null
                },
                views:{
-                  'listView':{
-                       templateUrl: basePath + 'usuarios.list.html'
-                   },
                    'sideView':{
                        templateUrl: basePath + 'usuarios.side.html'
                    },
