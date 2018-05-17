@@ -61,23 +61,19 @@
                  */
                 $rootScope.isAuthenticated = function () {
 
-                    if($rootScope.anonimo === true)
-                    {
-                        return true;
-                    }
-
-                    
+ 
                     if (sessionStorage.getItem("username") != null) {
                         $rootScope.currentUser = sessionStorage.getItem("username");
                         $rootScope.currentId = sessionStorage.getItem("id");
 
                         return true;
                     } else {
+                       
                         return false;
                     }
                 };
-                
-                /**
+           
+                /*
                  * @ngdoc function
                  * @name hasPermissions
                  * @methodOf mainApp.module:mainApp
