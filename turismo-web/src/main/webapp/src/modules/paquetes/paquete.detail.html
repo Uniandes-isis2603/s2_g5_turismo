@@ -25,6 +25,13 @@
                     <div ng-show="muestra">
  <td ><a class="btn btn-default btn-sm" ui-sref="paqueteUpdate({paqueteId: currentPaquete.id})" ><span class="glyphicon glyphicon-edit"></span>  Agregar plan</a></td>
                     </div>
+                    
+                    <dt> <br>Ruta</br></dt>
+                    <ul ng-repeat="u in listaUbicacion" >
+                         <dd> Latitud: {{u.latitud}}</dd>
+                         <dd> Longitud: {{u.longitud}}</dd>
+                    </ul>
+                    
                 </dl>
                 
             </div>

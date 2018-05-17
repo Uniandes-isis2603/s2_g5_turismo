@@ -33,6 +33,20 @@
              */
                 $http.get(paquetesContext + '/' + $state.params.paqueteId).then(function (response) {
                     $scope.currentPaquete = response.data;
+                    var i;
+                    var listaUbicaciones=[];
+                    
+                    for(i=0;i<$scope.currentPaquete.planes.length;i++){
+                       
+                        $http.get("api/plans/"+ $scope.currentPaquete.planes[i].plan.idPlan).then(function (response2) {
+                        $scope.plansRec=response2.data;
+                                               
+                             listaUbicaciones.push($scope.plansRec.ubicacion);
+                             
+                             $scope.listaUbicacion=listaUbicaciones;
+                             console.log($scope.listaUbicacion);
+                        });
+                    }
                     if($scope.currentPaquete.completado==false)
                     {
                         $scope.terminado="No";
@@ -43,7 +57,9 @@
                         $scope.terminado="Si";
                         $scope.muestra=false;
                     }
+                   
                 });
+                 
             }
         }
     ]);
