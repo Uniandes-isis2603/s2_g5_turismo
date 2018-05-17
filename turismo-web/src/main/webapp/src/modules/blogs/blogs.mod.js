@@ -94,7 +94,7 @@
                        }
                    }).state('blogsDetail', {
                 url: '/{blogId:int}/detail',
-                parent: 'blogs',
+                parent: 'blogsList',
                 param: {
                     blogId: null
                 },

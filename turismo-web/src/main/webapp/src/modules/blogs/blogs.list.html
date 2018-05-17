@@ -1,49 +1,37 @@
 <div class="container-fluid">
     
-    <div class="navbar-left col-sm-3 col-lg-2" style="height:100%; margin-left: 0; background-color: #064169">
-    <p style="color: #ED7A27;">Buscador:</p>
-    <p><input type="text" ng-model="tema"></p>
+        <div class="navbar-left col-sm-3 col-lg-2" style="height:100%; margin-left: 0; background-color: #064169">
+            <p style="color: #ED7A27; font-family: 'Fjalla One', sans-serif;">Buscador:</p>
+            <p><input type="text" ng-model="tema"></p>
+            
+            <div class="btn-group mr-2" role="group" aria-label="First group">
+                <a class="btn btn-info" ui-sref="blogCreate"><span class="glyphicon glyphicon-plus-sign"></span> Crear blog</a>
+            </div>
     
     
-    
-</div>
-    
-<div class="col-sm-9 col-lg-10">
+        </div>
+        <div class="col-sm-9 col-lg-10">
     
         
             <div class="container-fluid">
                 <div class="row">
-                    <h3 style="color: #ED7A27">Blogs disponibles</h3> 
-    <div class="row">
-        
-                      <div class="btn-group mr-2" role="group" aria-label="First group">
-        <a class="btn btn-info" ui-sref="blogCreate"><span class="glyphicon glyphicon-plus-sign"></span> nuevo blog</a>
-                        </div>
-        <div class="row"></div>
-                    </div>
+                    <div ui-view="detailView"></div>
+                </div>
+                <div class="row">
+                    <h2 class="caption text-center" style="color: #ED7A27; font-family: 'Fjalla One', sans-serif;">Blogs</h2> 
                     <br>
                     
-                     <div class="col-md-3" ng-repeat="blog in blogsRecords| filter:{'tema':tema}">
-                        <div class="thumbnail">
+                    <div class="col-md-3" ng-repeat="blog in blogsRecords| filter:{'tema':tema}">
+                       
                             <a ui-sref="blogsDetail({blogId: blog.id})">                   
-                                <img class="img-responsive img-rounded" ng-src='{{blog.archivo}}' alt="{{blog.tema}}" />                                                  
+                                <h3>{{blog.tema}}</h3>                                                  
                             </a>
                             
-                        </div>
                     </div>
                 </div>
             </div>
     
+        </div>
 </div>
-    
-    
-    
-        
-           <div class="row">
-                <div ui-view="detailView"></div>
-            </div>
-           
-         
-            </div>
          
         
