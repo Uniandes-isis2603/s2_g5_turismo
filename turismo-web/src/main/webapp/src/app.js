@@ -26,7 +26,7 @@
     app.config(['$qProvider', function ($qProvider) {
             $qProvider.errorOnUnhandledRejections(false);
         }]);
-      app.run(['$rootScope', '$transitions', function ($rootScope, $transitions) {
+      app.run(['$rootScope','$transitions', function ($rootScope, $transitions) {
 
             $transitions.onSuccess({to: '*'}, function (trans) {
 

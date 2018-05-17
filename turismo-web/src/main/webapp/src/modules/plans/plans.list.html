@@ -1,4 +1,10 @@
 <div class="col-sm-3 col-lg-2">
+    <div class="container-fluid ">
+        <ul class="nav nav-pills nav-stacked">
+            <li><a ui-sref="preferenciasList">Categorías</a></li>
+            <li><a ui-sref="guiasList">Guías</a></li>
+        </ul>
+    </div>
     <p>Nombre:</p>
     <p><input type="text" ng-model="name"></p>
     <p>Ciudad:</p>
@@ -29,8 +35,7 @@
     <label ng-repeat="preferencia in AllPreferencias"> <input type=checkbox ng-model="preferencia.selected"> {{preferencia.tipoPlan}}</label>
 </div>
 <div class="col-sm-9 col-lg-10">
-    <div class="panel panel-default"> 
-        <div class="panel-body">
+
             <div class="container-fluid"  >
                 <div class="row">
                     <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
@@ -54,8 +59,8 @@
                         </div>
                     </div>
                 </div>
+                
             </div>
-        </div>
-    </div>
+
 </div>
 
