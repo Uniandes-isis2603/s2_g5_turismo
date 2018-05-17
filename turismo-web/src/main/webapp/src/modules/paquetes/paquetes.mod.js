@@ -36,9 +36,9 @@
                     }
                }
            }).state("paqueteDetail",{
-               url:'/{paqueteId:int}/detail',
+               url:'/{usuarioId:int}/detail',
                parent:'paquete',
-               param:{ paqueteId :null},
+               param:{ usuarioId :null},
                views:{
                    'listView': {
                         templateUrl: basePath + 'paquetes.list.html',
