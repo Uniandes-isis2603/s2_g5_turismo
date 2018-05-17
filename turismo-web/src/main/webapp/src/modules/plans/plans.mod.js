@@ -76,7 +76,7 @@
                 }
             }).state('planDetail', {
                 url: '/{planId:int}/detail',
-                parent: 'plans',
+                parent: 'plansList',
                 param: {
                     planId: null
                 },
