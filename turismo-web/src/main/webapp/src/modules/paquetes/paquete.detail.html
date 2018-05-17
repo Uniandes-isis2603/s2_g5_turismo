@@ -6,7 +6,7 @@
                     <img class="img-responsive" src="https://www.paraloscuriosos.com/wp-content/uploads/2015/10/21/121.jpg"/>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <dl>   
                     <dt> Id Paquete</dt>
                     <dt>{{currentPaquete.id}}</dt>
@@ -15,19 +15,32 @@
                     <dd>{{terminado}}</dd>
                     <hr>
                     <dt> <br>Planes</br></dt>
-                   <ul ng-repeat="pagos in currentPaquete.pagos" >
-                       <dd> Plan: {{pagos.nombrePlan}}</dd>
-                       <dd> Precio: ${{pagos.costo}}</dd>
-                        <dd >Fecha: {{currentPaquete.planes[0].fecha}}</dd>
-                        
+                    
+                   <ul ng-repeat="planes in currentPaquete.planes" >
+                       <div class="thumbnail" >
+                       <dd>  <img class="img-responsive" ng-src='{{planes.plan.archivo}}' alt="{{planes.plan.name}}" /></dd>
+                       <dd> Plan: {{planes.plan.name}}</dd>
+                       <dd> Precio: ${{planes.plan.precio}}</dd>
+                        <dd >Fecha: {{planes.fecha}}</dd>
+                        </div>
                     </ul>
+                    
                    
                     <div ng-show="muestra">
  <td ><a class="btn btn-default btn-sm" ui-sref="paqueteUpdate({paqueteId: currentPaquete.id})" ><span class="glyphicon glyphicon-edit"></span>  Agregar plan</a></td>
                     </div>
+                    
+                    <dt> <br>Ruta</br></dt>
+                    <a ui-sref="paqueteDetailUbicacion({planId: currentPlan.idPlan,lat: currentPlan.ubicacion.latitud,lon: currentPlan.ubicacion.longitud})">Ubicación</a>
+                    <ul ng-repeat="u in listaUbicacion" >
+                         <dd> Latitud: {{u.latitud}}</dd>
+                         <dd> Longitud: {{u.longitud}}</dd>
+                    </ul>
+                    
                 </dl>
                 
             </div>
+            
             </div>
         </div>
     </div>
