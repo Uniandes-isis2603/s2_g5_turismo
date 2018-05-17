@@ -38,8 +38,7 @@
              */
             
             $scope.autenticar = function () {
-                var flag = false;
-debugger         
+                var flag = false;       
                     if($scope.data.esAdministrador === "False"){
                         $scope.data.esAdministrador=false
                         }

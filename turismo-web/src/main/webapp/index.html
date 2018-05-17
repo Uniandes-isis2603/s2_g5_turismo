@@ -11,6 +11,7 @@
         <link href="https://fonts.googleapis.com/css?family=Fjalla+One|Roboto" rel="stylesheet">
         <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" type="text/css" href="bower_components/angularjs-slider/dist/rzslider.css"/>
+        <link rel="stylesheet" href="resources/style.css">
         <script src="bower_components/angular/angular.min.js"></script>
         <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
         <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
@@ -157,17 +158,17 @@
                 <div ng-if="isAuthenticated()"  class="col-lg-12">
                     <div class="container-fluid col-md-12">
                         <div class="col-md-11">
-                        <ul class=" navbar-fixed-top nav nav-tabs" style="background-color: #064169">
+                        <ul class=" navbar-fixed-top nav nav-tabs">
                             <li><a class="navbar-brand" ui-sref="plansList"> <img alt="Pejelagartos" src="resources/images/logoBlanco.png"  style="width:20px;height:40px;"></a></li>
-                            <li><a ui-sref="tarjetasList" style="color: #ED7A27; font-family: 'Fjalla One', sans-serif;">tarjetas</a></li>
-                            <li><a ui-sref="facturasList" style="color: #ED7A27; font-family: 'Fjalla One', sans-serif;">facturas</a></li>
-                            <li><a ui-sref="ubicacionList" style="color: #ED7A27; font-family: 'Fjalla One', sans-serif;">ubicacion</a></li>
-                            <li><a ui-sref="blogsList" style="color: #ED7A27; font-family: 'Fjalla One', sans-serif;">Busca blogs</a></li>
-                            <li><a ui-sref="paquetesList" style="color: #ED7A27; font-family: 'Fjalla One', sans-serif;">Paquetes</a></li>
-                            <li><a ui-sref="usuariosList" style="color: #ED7A27; font-family: 'Fjalla One', sans-serif;">Usuarios</a></li>
-                            <li><a ui-sref="valoracionesList" style="color: #ED7A27; font-family: 'Fjalla One', sans-serif;">Valoraciones</a></li>
-                            <li> <a ui-sref="usuariosList" style="color: #ED7A27; font-family: 'Fjalla One', sans-serif;">Usuarios </a> </li>
-                            <li class="navbar-right" ><a ui-sref="logout" style="color: #ED7A27; font-family: 'Fjalla One', sans-serif;">Logout <span class="glyphicon glyphicon-user" aria-hidden="true" style="color: #ED7A27;"></span></a></li>
+                            <li><a ui-sref="tarjetasList" >tarjetas</a></li>
+                            <li><a ui-sref="facturasList" >facturas</a></li>
+                            <li><a ui-sref="ubicacionList" >ubicacion</a></li>
+                            <li><a ui-sref="blogsList" >Busca blogs</a></li>
+                            <li><a ui-sref="paquetesList">Paquetes</a></li>
+                            <li><a ui-sref="usuariosList" >Usuarios</a></li>
+                            <li><a ui-sref="valoracionesList" >Valoraciones</a></li>
+                            <li> <a ui-sref="usuariosList" >Usuarios </a> </li>
+                            <li class="navbar-right" ><a ui-sref="logout">Logout <span class="glyphicon glyphicon-user" aria-hidden="true" style="color: #ED7A27;"></span></a></li>
                         </ul>
                             
                     </div>
@@ -182,10 +183,11 @@
                     </ul>
                 </div>
             <div class="container-fluid col-md-12">
-                <div class="col-md-6">
+                <div class="col-md-3"></div>
+                <div class="col-md-3">
                     <img src="resources/images/logoazul.png" alt="logo2" style="width:400px;height:400px;"/>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-3">
                     <h1 id="TituloPagina" style="color: #ED7A27; font-family: 'Fjalla One', sans-serif;">PEJELAGARTOS TOURS</h1>
                     <h3 id="descripccion" style="color: #003366; font-family: 'Fjalla One', sans-serif;">Conoce los mejores planes turisticos de tu ciudad</h3>
                      <div id="custom-search-input">
@@ -199,6 +201,7 @@
                 </div>
             </div>
                 </div>
+                  <div class="col-md-3"></div>
             </div>
         </div>
       
