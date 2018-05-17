@@ -1,6 +1,6 @@
 (function(ng){
     var mod = ng.module("moduloTarjetas");
-    mod.controller("tarjetaCtrl",["$scope","$state","$stateParams","$http","tarjetaContext",
+    mod.controller("tarjetaCtrl",["$rootScope","$scope","$state","$stateParams","$http","tarjetaContext",
                /**
          * @ngdoc controller
          * @name ubicacion.controller:ubicacionCtrl
@@ -20,7 +20,7 @@
          * estado actual de la navegación definida en el módulo.
          */
 
-        function($scope,$state,$stateParams,$http,context)
+        function($rootScope,$scope,$state,$stateParams,$http,context)
         {
              /**
              * @ngdoc function
@@ -36,9 +36,12 @@
              * de los guias o API donde se puede consultar. 
              **/
             //lista vacia
-            $scope.records={};
+            $scope.records={};           
+            $scope.id=$rootScope.currentId;
+            debugger;
+            
             //carga las ubicacion de un usuario
-            $http.get(context).then(function(response){
+            $http.get("api/usuarios/"+$scope.id+"/tarjetas").then(function(response){
                 $scope.records = response.data;
                  
             });
