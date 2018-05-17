@@ -29,7 +29,7 @@
             $stateProvider.state('login', {
                 url: '/login',
                 data: {
-                    requireLogin: false
+                    requireLogin:false
                 },
                 views: {
                     'mainView': {

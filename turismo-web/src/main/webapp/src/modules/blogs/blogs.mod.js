@@ -48,6 +48,10 @@
                     }
                     
                     
+                },
+                data: {
+                    requireLogin: false,
+                    roles: [true,false]
                 }
                 
             }).state('blogUpdate', {

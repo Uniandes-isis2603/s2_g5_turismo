@@ -29,7 +29,7 @@
       app.run(['$rootScope', '$transitions', function ($rootScope, $transitions) {
 
             $transitions.onSuccess({to: '*'}, function (trans) {
-
+               
                 var $state = trans.router.stateService;
                 var requireLogin = $state.current.data.requireLogin;
                 var roles = $state.current.data.roles;
@@ -46,7 +46,8 @@
                 $rootScope.isAuthenticated = function () {
                     
                     if (sessionStorage.getItem("username") != null) {
-                        $rootScope.currentUser = sessionStorage.getItem("name");
+                        $rootScope.currentUser = sessionStorage.getItem("username");
+                        $rootScope.currentId = sessionStorage.getItem("id");
                         return true;
                     } else {
                         return false;
