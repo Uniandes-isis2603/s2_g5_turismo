@@ -45,6 +45,10 @@
                         controller: 'usuariosCtrl',
                         controllerAs: 'ctrl'
                     }
+                },
+                data: {
+                    requireLogin: true,
+                    roles: [true,false]
                 }
             }).state("usuariosList",{
                url:'/list',

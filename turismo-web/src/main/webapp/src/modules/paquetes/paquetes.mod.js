@@ -18,6 +18,10 @@
                     'sideView': {
                         templateUrl: basePath + 'paquete.side.html'
                     }
+                },
+                data: {
+                    requireLogin: false,
+                    roles: [true,false]
                 }
             }).state("paquetesList",{
                url:'/list',

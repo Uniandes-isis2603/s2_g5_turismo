@@ -57,7 +57,12 @@
                         controller: 'planCtrl',
                         controllerAs: 'ctrl'
                     }   
-                }           
+                }
+                 ,
+                data: {
+                    requireLogin: false,
+                    roles: [true,false]
+                }
             }).state('plansList', {
                 url: '/list',
                 parent: 'plans',
