@@ -9,6 +9,7 @@ import co.edu.uniandes.csw.turismo.entities.TarjetaDeCreditoEntity;
 import co.edu.uniandes.csw.turismo.entities.UsuarioEntity;
 import co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.turismo.persistence.UsuarioPersistence;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
@@ -87,16 +88,26 @@ public class UsuarioLogic
         {
             throw new BusinessLogicException("Solo esta permitido un usuario administrador");
         }
-        if(entity.getListaTarjetas().size() < 1)
+        
+        List<PreferenciasEntity> prefs = new ArrayList();
+        for(int i = 0; i < entity.getListaPreferencias().size(); i++ )
         {
-            throw new BusinessLogicException("Se debe registrar al menos una tarjeta de credito");
+            prefs.add(entity.getListaPreferencias().get(i));
         }
-        if(entity.getListaPreferencias().size() < 1)
-        {
-            throw new BusinessLogicException("Se debe tener al menos una preferencia");
-        }
+        entity.setListaPreferencias(new ArrayList());
+        
         persistence.create(entity);
         LOGGER.info("Termina proceso de creación de usuario");
+        
+        for(int i = 0; i < prefs.size(); i++ )
+        {
+            PreferenciasEntity pref = prefs.get(i);
+            PreferenciasEntity prefEm = preferenciasLogic.getByName(pref.getTipoPlan());
+            if(prefEm != null)
+            {
+                addPreferencia(prefEm.getId(), entity.getId());
+            }
+        }
         return entity;
     }
     
@@ -206,6 +217,22 @@ public class UsuarioLogic
         LOGGER.info("Inicia proceso de borrar Plan con id={0}");    
         persistence.delete(id);
         LOGGER.info("Termina proceso de borrar libro con id={0}");
+    }
+    
+    /**
+     * Agregar un Guia al Plan
+     *
+     * @param prefId El id de la pref a asociar
+     * @param userId El id de el Plan en la cual se va a asociar la pref
+     * guia
+     * @return El guia que fue agregado al Plan.
+     */
+    public PreferenciasEntity addPreferencia(Long prefId, Long userId)
+    {
+        UsuarioEntity userEntity = getUsuario(userId);
+        PreferenciasEntity prefEntity = preferenciasLogic.getPreferencias(prefId);
+        userEntity.getListaPreferencias().add(prefEntity);
+        return prefEntity;
     }
 } 
 //    public PaqueteTuristicoEntity getPaquete(Long id)

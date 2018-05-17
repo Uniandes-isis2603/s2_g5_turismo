@@ -55,6 +55,7 @@
                     </div>
                 </div>
                 <div class="row">
+
                     
                     <h2 class="caption text-center" style="color: #ED7A27 ; font-family: 'Fjalla One', sans-serif;" > Planes en tu destino </h2>
                     <br>
@@ -63,6 +64,7 @@
                     <br>
                    
                     <div class="col-md-3" ng-repeat="plan in plansRecords| filter:{'name':name}
+
                                 |filter:{'ubicacion':{'ciudad':ciudad}}|filter:{'ubicacion':{'pais':pais}}|
                                 filter:betweenValuesPrecio('precio', minRangeSlider.minValue, minRangeSlider.maxValue) 
                                 |filter:betweenValuesPrecio('cantidadPersonas', minRangeSliderP.minValue, minRangeSliderP.maxValue) 
@@ -72,8 +74,10 @@
                             <a ui-sref="planDetail({planId: plan.idPlan})">                    
                                 <img class="img-responsive img-rounded" ng-src='{{plan.archivo}}' alt="{{plan.name}} " style =" height: 80%;" />                                                  
                             </a>
+
                             <div class="caption text-center" style="color: black ; font-family: 'Fjalla One', sans-serif;">
                                 <h4>{{plan.name}}</h4>
+
                             </div>
                         </div>
                     </div>

@@ -48,7 +48,11 @@ public class PagoResource {
     
     @Inject
     private PagoLogic pagoLogic;
-    
+    /**
+     * Recibe una lista de pagos entities y la convierte a dtos
+     * @param entityList
+     * @return dtos lista
+     */
     private List<PagoDTO> listEntityToDTO(List<PagoEntity> entityList) {
         List<PagoDTO> list = new ArrayList<>();
         for(PagoEntity entity : entityList) {

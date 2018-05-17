@@ -34,8 +34,10 @@
              * @param {String} URL Dirección donde se encuentra el recurso
              * de los preferencias o API donde se puede consultar.
              */
+            
             $http.get(paqueteContext).then(function (response) {
                 $scope.paquetesRecords = response.data;
+                 
             });
         }
     ]);

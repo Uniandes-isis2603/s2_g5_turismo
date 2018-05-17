@@ -129,10 +129,6 @@ public class PlanLogic
         {
             throw new BusinessLogicException("El plan debe tener datos de ubicación (latitud, longitud, ciudad y pais)");
         }
-        if (persistence.findByName(entity.getName()) != null) 
-        {
-            throw new BusinessLogicException("Ya existe un Plan con el nombre \"" + entity.getName() + "\"");
-        }
         
         PlanEntity old = getPlan(entity.getId());
         

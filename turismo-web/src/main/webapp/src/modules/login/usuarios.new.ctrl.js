@@ -1,7 +1,7 @@
-(function(ng){
-    
+(function (ng) {
+
     var mod = ng.module("usuariosModule");
-    mod.constant('usuarioCreate',"api/usuario");
+    mod.constant('usuarioCreate', "api/usuario");
     mod.constant("preferenciasContext", "api/preferences");
     mod.controller('usuarioNewCtrl', ['$scope', '$http', 'usuarioCreate', '$state', 'preferenciasContext', '$rootScope',
         /**
@@ -21,16 +21,16 @@
          * @param {Object} $rootScope Referencia injectada al Scope definida para
          * toda la aplicación.
          */
-        function($scope, $http, usuarioContext, $state, preferenciasContext, $rootScope){
-        
+        function ($scope, $http, usuarioContext, $state, preferenciasContext, $rootScope) {
+
             $rootScope.edit = false;
 
-            $scope.data = {};          
-           
+            $scope.data = {};
+
             $http.get(preferenciasContext).then(function (response) {
-                    $scope.AllPreferencias = response.data;
-                });
-            
+                $scope.AllPreferencias = response.data;
+            });
+
             /**
              * @ngdoc function
              * @name createUsuario
@@ -40,19 +40,29 @@
             $scope.createUsuario = function () {
                 $scope.addCategorias($scope.data.categorias);
                 $scope.data.listaPreferencias = $scope.listaPreferencias;
-                $http.post(usuarioContext, { 
-                   id:$scope.usuarioId,
-                   nombre:$scope.usuarioNombre,
-                   apellido:$scope.usuarioApellido,
-                   contrasenia:$scope.usuarioContrasenia,
-                   correo:$scope.usuarioCorreo,
-                   telefono:$scope.usuarioTelefono,
-                   idioma:$scope.usuarioIdioma,
-                   esAdministrador:$scope.usuarioEsAdministrador,
-                   listaTarjetas:$scope.usuarioListaTarjetas,
-                   listaPreferencias:$scope.usuarioListaPreferencias
-               }).then(function (response) {
-                    $state.go('usuariosList', {usuarioId: response.data.id}, {reload: true});
+                $http.post(usuarioContext, {
+                    id: $scope.usuarioId,
+                    nombre: $scope.usuarioNombre,
+                    apellido: $scope.usuarioApellido,
+                    contrasenia: $scope.usuarioContrasenia,
+                    correo: $scope.usuarioCorreo,
+                    telefono: $scope.usuarioTelefono,
+                    idioma: $scope.usuarioIdioma,
+                    esAdministrador: $scope.usuarioEsAdministrador,
+                    listaTarjetas: $scope.usuarioListaTarjetas,
+                    listaPreferencias: $scope.listaPreferencias
+                }).then(function (response)
+                {
+                    $http.post(usuarioContext + 's/' + response.data.id + '/tarjetas',
+                            {
+                                name: $scope.tarjetaName,
+                                numero: $scope.tarjetaNumero,
+                                CVD: $scope.tarjetaCVD,
+                                cedula: $scope.tarjetaCedula
+                            }).then(function (response)
+                    {
+                        $state.go('plansList', {usuarioId: response.data.id}, {reload: true});
+                    });
                 });
             };
             /**
@@ -63,16 +73,16 @@
              * Busca las nuevas categorias en el $scope.
              * @param {Object} Un string con el nombre de las preferencias a asociar
              */
-            $scope.addCategorias = function (splitear) 
+            $scope.addCategorias = function (splitear)
             {
                 $scope.listaPreferencias = [];
                 var splited = splitear.split("-"), i;
                 for (i = 0; i < splited.length; i++)
                 {
-                    var categoria = {"tipoPlan":splited[i]};
-                   $scope.listaPreferencias.push(categoria); 
+                    var categoria = {"tipoPlan": splited[i]};
+                    $scope.listaPreferencias.push(categoria);
                 }
             };
         }
     ]);
-    })(window.angular);
+})(window.angular);

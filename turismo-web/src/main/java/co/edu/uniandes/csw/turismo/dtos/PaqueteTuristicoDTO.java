@@ -33,6 +33,9 @@ public class PaqueteTuristicoDTO {
      * Atriburo que modela el id del paquete turistico
      */
     private Long id;
+     /**
+     * Atriburo que modela si se completo el paquete
+     */
     private Boolean completado;
     
     /**
@@ -41,6 +44,10 @@ public class PaqueteTuristicoDTO {
     public PaqueteTuristicoDTO()
     { 
     }
+    /**
+     * Constructor a partir de la entidad
+     * @param entity  La entidad del pago
+     */
     public PaqueteTuristicoDTO(PaqueteTuristicoEntity entity) 
     {
         if(entity != null)
@@ -50,6 +57,10 @@ public class PaqueteTuristicoDTO {
         }
         
     }
+    /**
+     * Método para transformar el DTO a una entidad.
+     * @return La entidad del paquete asociado.
+     */
      public PaqueteTuristicoEntity toEntity() {
         PaqueteTuristicoEntity entity = new PaqueteTuristicoEntity();
         entity.setId(this.getId());
