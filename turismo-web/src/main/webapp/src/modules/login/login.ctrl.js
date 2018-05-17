@@ -36,11 +36,20 @@
              * Esta función procesa el inicio de sesión usando los datos del
              * $scope.
              */
+            
             $scope.autenticar = function () {
                 var flag = false;
+debugger         
+                    if($scope.data.esAdministrador === "False"){
+                        $scope.data.esAdministrador=false
+                        }
+                        else{
+                          $scope.data.esAdministrador=true  
+                        }
+    
                 for (var item in $scope.users) {
-                    if ($scope.users[item].nombre === $scope.data.nombre && $scope.users[item].contrasenia === $scope.data.contrasenia /*Falta mirar como manejar el admin*/) {
-                        alert("authentico");
+                    if ($scope.users[item].nombre === $scope.data.nombre && $scope.users[item].contrasenia === $scope.data.contrasenia && $scope.users[item].esAdministrador === $scope.data.esAdministrador) {
+                       
                         flag = true;
                         $scope.user = $scope.users[item];
                         $state.go('plansList', {}, {reload: true});

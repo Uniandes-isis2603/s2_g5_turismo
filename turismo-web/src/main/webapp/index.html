@@ -8,17 +8,17 @@
         <title>PejeTurismo</title>
 
         <!-- Dependencias Externas -->
+        <link href="https://fonts.googleapis.com/css?family=Fjalla+One|Roboto" rel="stylesheet">
         <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="bower_components/angularjs-slider/dist/rzslider.css"/>
         <script src="bower_components/angular/angular.min.js"></script>
         <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
         <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
         <script src="bower_components/lodash/lodash.js?"></script>       
         <script src="bower_components/angular-simple-logger/dist/angular-simple-logger.js?"></script>
-        <link rel="stylesheet" type="text/css" href="bower_components/angularjs-slider/dist/rzslider.css"/>
         <script src="bower_components/angularjs-slider/dist/rzslider.min.js"></script>
         <script src="bower_components/angular-google-maps/dist/angular-google-maps.js"></script> 
-        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPzLa_NSYajDZQQLzZ4W5wjQ1BFgqR5Qk"
-  type="text/javascript"></script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPzLa_NSYajDZQQLzZ4W5wjQ1BFgqR5Qk" type="text/javascript"></script>
   
         <!-- Plans -->
         <script src="src/modules/plans/plans.mod.js" type="text/javascript"></script>
@@ -49,7 +49,7 @@
         <script src="src/modules/facturas/facturas.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/facturas/facturas.detail.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/facturas/facturas.new.ctrl.js" type="text/javascript"></script>
-         <script src="src/modules/facturas/facturas.update.ctrl.js" type="text/javascript"></script>
+        <script src="src/modules/facturas/facturas.update.ctrl.js" type="text/javascript"></script>
         
         <!-- Preferencias -->
         <script src="src/modules/preferencias/preferencias.mod.js" type="text/javascript"></script>
@@ -159,26 +159,26 @@
                         <div class="col-md-11">
                         <ul class=" navbar-fixed-top nav nav-tabs" style="background-color: #064169">
                             <li><a class="navbar-brand" ui-sref="plansList"> <img alt="Pejelagartos" src="resources/images/logoBlanco.png"  style="width:20px;height:40px;"></a></li>
-                            <li><a ui-sref="tarjetasList" style="color: #ED7A27; font-family: bebas;">tarjetas</a></li>
-                            <li><a ui-sref="facturasList" style="color: #ED7A27; font-family: bebas;">facturas</a></li>
-                            <li><a ui-sref="ubicacionList" style="color: #ED7A27; font-family: bebas;">ubicacion</a></li>
-                            <li><a ui-sref="blogsList" style="color: #ED7A27; font-family: bebas;">Busca blogs</a></li>
-                            <li><a ui-sref="paquetesList" style="color: #ED7A27; font-family: bebas;">Paquetes</a></li>
-                            <li><a ui-sref="usuariosList" style="color: #ED7A27; font-family: bebas;">Usuarios</a></li>
-                            <li><a ui-sref="valoracionesList" style="color: #ED7A27; font-family: bebas;">Valoraciones</a></li>
-                            <li> <a ui-sref="usuariosList" style="color: #ED7A27; font-family: bebas;">Usuarios </a> </li>
-                            <li class="navbar-right" ><a ui-sref="logout" style="color: #ED7A27; font-family: bebas;">Logout <span class="glyphicon glyphicon-user" aria-hidden="true" style="color: #ED7A27;"></span></a></li>
+                            <li><a ui-sref="tarjetasList" style="color: #ED7A27; font-family: 'Fjalla One', sans-serif;">tarjetas</a></li>
+                            <li><a ui-sref="facturasList" style="color: #ED7A27; font-family: 'Fjalla One', sans-serif;">facturas</a></li>
+                            <li><a ui-sref="ubicacionList" style="color: #ED7A27; font-family: 'Fjalla One', sans-serif;">ubicacion</a></li>
+                            <li><a ui-sref="blogsList" style="color: #ED7A27; font-family: 'Fjalla One', sans-serif;">Busca blogs</a></li>
+                            <li><a ui-sref="paquetesList" style="color: #ED7A27; font-family: 'Fjalla One', sans-serif;">Paquetes</a></li>
+                            <li><a ui-sref="usuariosList" style="color: #ED7A27; font-family: 'Fjalla One', sans-serif;">Usuarios</a></li>
+                            <li><a ui-sref="valoracionesList" style="color: #ED7A27; font-family: 'Fjalla One', sans-serif;">Valoraciones</a></li>
+                            <li> <a ui-sref="usuariosList" style="color: #ED7A27; font-family: 'Fjalla One', sans-serif;">Usuarios </a> </li>
+                            <li class="navbar-right" ><a ui-sref="logout" style="color: #ED7A27; font-family: 'Fjalla One', sans-serif;">Logout <span class="glyphicon glyphicon-user" aria-hidden="true" style="color: #ED7A27;"></span></a></li>
                         </ul>
                             
                     </div>
                     </div> 
                 </div>
-                <div ui-view="mainView"></div>
-            </div> 
+               
+            </div>
         <div ng-if="!isAuthenticated()"  class="container-fluid"> 
              <div class="col-md-12">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a ui-sref="login"><span class="glyphicon glyphicon-user"></span> Login</a></li>
+                        <li><a ui-sref="login" style="color: #ED7A27; font-family: 'Fjalla One', sans-serif;">Iniciar Sesion <span class="glyphicon glyphicon-user"></span> </a></li>
                     </ul>
                 </div>
             <div class="container-fluid col-md-12">
@@ -186,8 +186,8 @@
                     <img src="resources/images/logoazul.png" alt="logo2" style="width:400px;height:400px;"/>
                 </div>
                 <div class="col-md-6">
-                    <h1 id="TituloPagina">PEJELAGARTOS TOURS</h1>
-                    <h3 id="descripccion">Conoce los mejores planes turisticos de tu ciudad</h3>
+                    <h1 id="TituloPagina" style="color: #ED7A27; font-family: 'Fjalla One', sans-serif;">PEJELAGARTOS TOURS</h1>
+                    <h3 id="descripccion" style="color: #003366; font-family: 'Fjalla One', sans-serif;">Conoce los mejores planes turisticos de tu ciudad</h3>
                      <div id="custom-search-input">
                 <div class="input-group col-md-12">
                     <input type="text" class="form-control input-lg" placeholder="Encuentra los mejores planes" />
@@ -201,6 +201,8 @@
                 </div>
             </div>
         </div>
+      
+          <div ui-view="mainView"> </div>
         
       
     </body>
