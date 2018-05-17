@@ -40,6 +40,10 @@
                 }
             }).state("comentarioCreate",{
                        url:"/create",
+                       data: {
+                        requireLogin: true,
+                        roles: []
+                       },
                        parent:"comentariosList",
                        views:{
                            'detailView':{
@@ -49,6 +53,10 @@
                        }
                    }).state('comentarioUpdate', {
                 url: '/update/{comentarioId:int}',
+                data: {
+                        requireLogin: true,
+                        roles: []
+                       },
                 parent: 'comentariosList',
                 param: {
                    
@@ -62,6 +70,10 @@
                 }
             }).state('ComentarioDelete', {
                 url: '/delete/{ComentarioId:int}',
+                data: {
+                        requireLogin: true,
+                        roles: []
+                       },
                 parent: 'comentariosList',
                 param: {
                     

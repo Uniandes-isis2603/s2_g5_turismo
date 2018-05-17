@@ -56,7 +56,11 @@
                 
             }).state('blogUpdate', {
                 url: '/update/{blogId:int}',
-                parent: 'blogs',
+                data: {
+                    requireLogin: true,
+                    roles: []
+                },
+                parent: 'blogsList',
                 param: {
                     blogId: null
                 },
@@ -82,7 +86,11 @@
                 }
             }).state("blogCreate",{
                        url:"/create",
-                       parent:"blogs",
+                       data: {
+                          requireLogin: true,
+                          roles: []
+                       },
+                       parent:"blogsList",
                        views:{
                            'detailView':{
                                templateUrl:basePath +"blog.create.html",
@@ -114,7 +122,11 @@
 
             }).state('deleteBlog', {
                 url: '/delete/{blogId:int}',
-                parent: 'blogs',
+                data: {
+                    requireLogin: true,
+                    roles: []
+                },
+                parent: 'blogsList',
                 param: {
                     blogId: null
                 },
