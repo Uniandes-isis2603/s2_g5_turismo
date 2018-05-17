@@ -10,6 +10,11 @@ and open the template in the editor.
 .general{
     margin-top:40px; 
 }
+.tituloPlan{
+    color: #ED7A27; 
+   font-family: 'Fjalla One', sans-serif;
+   font-size: medium;
+}
 a {
    color: #ED7A27; 
    font-family: 'Fjalla One', sans-serif;

@@ -78,14 +78,26 @@
             {
                 return function (item)
                 {
+                    var ret = false;
                     var vals = item[prop];
                     var promedio = 0;
+                    if(vals.length === 0)
+                    {
+                        ret = true;
+                    }
                     vals.forEach(function (arrayItem)
                     {
                         promedio = promedio + arrayItem.calificacion;
                     });
                     promedio = promedio / vals.length;
-                    return promedio >= aux && promedio <= aux2;
+                    if(promedio >= aux && promedio <= aux2)
+                    {
+                        ret = true;
+                    }
+                    if(ret === true)
+                    {
+                        return item;
+                    }
                 };
             };
 

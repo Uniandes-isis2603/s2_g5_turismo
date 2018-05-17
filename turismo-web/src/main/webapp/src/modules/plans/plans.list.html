@@ -38,7 +38,7 @@
                             <a class="btn btn-info" ui-sref="plansCreate"><span class="glyphicon glyphicon-plus-sign"></span> Añadir un nuevo plan</a>
                         </div>
                     </div>
-                    <div class="col-md-3" ng-repeat="plan in plansRecords| filter:{'name':name}
+                    <div class="col-md-4" ng-repeat="plan in plansRecords| filter:{'name':name}
                                 |filter:{'ubicacion':{'ciudad':ciudad}}|filter:{'ubicacion':{'pais':pais}}|
                                 filter:betweenValuesPrecio('precio', minRangeSlider.minValue, minRangeSlider.maxValue) 
                                 |filter:betweenValuesPrecio('cantidadPersonas', minRangeSliderP.minValue, minRangeSliderP.maxValue) 
@@ -48,7 +48,7 @@
                             <a ui-sref="planDetail({planId: plan.idPlan})">                    
                                 <img class="img-responsive img-rounded" ng-src='{{plan.archivo}}' alt="{{plan.name}}" />                                                  
                             </a>
-                            <div class="caption text-center">
+                            <div class="caption text-center tituloPlan">
                                 <p>{{plan.name}}</p>
                             </div>
                         </div>
