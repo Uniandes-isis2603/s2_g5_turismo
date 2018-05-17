@@ -17,17 +17,16 @@
     </div>
     <p># de personas:</p>
     <rzslider rz-slider-model=minRangeSliderP.minValue rz-slider-high=minRangeSliderP.maxValue rz-slider-options=minRangeSliderP.options></rzslider>
-    
+
     <div  style = "display:none;">
         <input type="number" ng-model="minRangeSliderV.minValue" />
         <input type="number" ng-model="minRangeSliderV.maxValue" />
     </div>
     <p>Valoración promedio:</p>
-    <rzslider rz-slider-model=minRangeSliderV.minValue
-          rz-slider-high=minRangeSliderV.maxValue
-          rz-slider-options=minRangeSliderV.options></rzslider>
-   
-
+    <rzslider rz-slider-model=minRangeSliderV.minValue rz-slider-high=minRangeSliderV.maxValue rz-slider-options=minRangeSliderV.options></rzslider>
+    
+    <p>Categorías:</p>
+    <label ng-repeat="preferencia in AllPreferencias"> <input type=checkbox ng-model="preferencia.selected"> {{preferencia.tipoPlan}}</label>
 </div>
 <div class="col-sm-9 col-lg-10">
     <div class="panel panel-default"> 
@@ -43,7 +42,8 @@
                                 |filter:{'ubicacion':{'ciudad':ciudad}}|filter:{'ubicacion':{'pais':pais}}|
                                 filter:betweenValuesPrecio('precio', minRangeSlider.minValue, minRangeSlider.maxValue) 
                                 |filter:betweenValuesPrecio('cantidadPersonas', minRangeSliderP.minValue, minRangeSliderP.maxValue) 
-                                | filter: betweenValuesValoracion('valoraciones',minRangeSliderV.minValue, minRangeSliderV.maxValue)">
+                                | filter: betweenValuesValoracion('valoraciones', minRangeSliderV.minValue, minRangeSliderV.maxValue)
+                                | filter: prefInPlan('categoriasPlan', AllPreferencias)">
                         <div class="thumbnail">
                             <a ui-sref="planDetail({planId: plan.idPlan})">                    
                                 <img class="img-responsive img-rounded" ng-src='{{plan.archivo}}' alt="{{plan.name}}" />                                                  

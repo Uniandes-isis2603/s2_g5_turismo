@@ -46,7 +46,7 @@ public class TarjetaDeCreditoDTO
     /**
      * atributo que representa el CVD de la tarjeta de credito en DTO
      */
-    private Long CVD;
+    private Long cvd;
     /**
      * atributo que representa la cedula de la tarjeta de credito en DTO
      */
@@ -55,8 +55,9 @@ public class TarjetaDeCreditoDTO
     /**
      * Constructor por defecto
      */
-    public TarjetaDeCreditoDTO(){
-        
+    public TarjetaDeCreditoDTO()
+    {
+     // para mostrar si un DTO esta vacio   
     }
     /**
      * metodo que se encarga de covertir de entity a DTO
@@ -66,7 +67,7 @@ public class TarjetaDeCreditoDTO
         if (entity != null) 
         {    
             this.name = entity.getName();
-            this.CVD = entity.getCDV();
+            this.cvd = entity.getCDV();
             this.numero = entity.getNumero();
             this.cedula= entity.getCedula();
             
@@ -96,22 +97,24 @@ public class TarjetaDeCreditoDTO
     }
     /**
      * Establece la cedula al DTO
-     * @param cedula 
+     * @param pCedula 
      */
-    public void setCedula(Long cedula) {
+    public void setCedula(Long pCedula) {
         this.cedula = cedula;
     }
     /**
     * retorna el nombre del dueño de la tarjeta
+     * @return el nombre de la tarjeta
     */
     public String getName() {
         return name;
     }
     /**
     * retorna el nombre del dueño de la tarjeta
+     * @param pName
     */
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String pName) {
+        this.name = pName;
     }
     /**
     *  retorna el numero de la tarjeta
@@ -121,24 +124,24 @@ public class TarjetaDeCreditoDTO
     }
     /**
      * modifica el numero del DTO 
-     * @param numero 
+     * @param pNumero 
      */
-    public void setNumero(long numero) {
-        this.numero = numero;
+    public void setNumero(long pNumero) {
+        this.numero = pNumero;
     }
     /**
     * retorna el codigo CVD de la tarjeta
     */
     public Long getCVD() {
-        return CVD;
+        return cvd;
     }
     /**
      * modifica el CVD del DTO
-     * @param CVD 
+     * @param pCvd 
      */
-    public void setCVD(Long CVD)
+    public void setCVD(Long pCvd)
     {
-        this.CVD = CVD;
+        this.cvd = pCvd;
     }
     
    

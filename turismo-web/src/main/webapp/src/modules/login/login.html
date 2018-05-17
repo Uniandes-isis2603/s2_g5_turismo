@@ -1,0 +1,17 @@
+<div ng-if="!isAuthenticated()" class="container">
+    <form class="form-signin">
+        <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
+        <h1 class="form-signin-heading text-muted">Sign In</h1>
+        <input type="text" class="form-control" placeholder="Username" required="" autofocus="" ng-model="data.nombre">
+        <input type="password" class="form-control" placeholder="Password" required="" ng-model="data.contrasenia">
+       <div class="checkbox checkbox-circle">
+        <input type="checkbox" class="checkbox-inline" id="Rol" value="True" ng-model="data.esAdministrador" required="true"> 
+        <label class="form-check-label">Administrador</label>
+       </div>
+        <br>
+        <button type="button" class="btn btn-lg btn-primary btn-block" ng-click="autenticar()">
+            Sign In
+        </button>
+        <a class="btn btn-lg btn-primary btn-block" ui-sref="booksList">Cancel</a>
+    </form>
+</div>
