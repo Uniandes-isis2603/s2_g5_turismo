@@ -33,6 +33,16 @@
              */
                 $http.get(paquetesContext + '/' + $state.params.paqueteId).then(function (response) {
                     $scope.currentPaquete = response.data;
+                    if($scope.currentPaquete.completado==false)
+                    {
+                        $scope.terminado="No";
+                        $scope.muestra=true;
+                    }
+                    else
+                    {
+                        $scope.terminado="Si";
+                        $scope.muestra=false;
+                    }
                 });
             }
         }
