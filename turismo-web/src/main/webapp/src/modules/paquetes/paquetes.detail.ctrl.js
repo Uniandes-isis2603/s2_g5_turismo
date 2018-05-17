@@ -36,6 +36,7 @@
                     var i;
                     var listaUbicaciones=[];
                     
+                    
                     for(i=0;i<$scope.currentPaquete.planes.length;i++){
                        
                         $http.get("api/plans/"+ $scope.currentPaquete.planes[i].plan.idPlan).then(function (response2) {
@@ -59,7 +60,8 @@
                     }
                    
                 });
-                 
+                
+                
             }
         }
     ]);
