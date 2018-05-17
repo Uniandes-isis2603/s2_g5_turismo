@@ -99,11 +99,7 @@
                     blogId: null
                 },
                 views: {
-                    'listView': {
-                        templateUrl: basePath + 'blogs.list.html',
-                        controller: 'blogsDetailCtrl',
-                        controllerAs: 'ctrl'
-                    },
+                  
                     'detailView': {
                         templateUrl: basePath + 'blogs.detail.html',
                         controller: 'blogsDetailCtrl',
