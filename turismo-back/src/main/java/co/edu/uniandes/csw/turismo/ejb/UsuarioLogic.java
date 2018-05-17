@@ -9,6 +9,7 @@ import co.edu.uniandes.csw.turismo.entities.TarjetaDeCreditoEntity;
 import co.edu.uniandes.csw.turismo.entities.UsuarioEntity;
 import co.edu.uniandes.csw.turismo.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.turismo.persistence.UsuarioPersistence;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
@@ -91,12 +92,31 @@ public class UsuarioLogic
         {
             throw new BusinessLogicException("Se debe registrar al menos una tarjeta de credito");
         }
+        
         if(entity.getListaPreferencias().size() < 1)
         {
             throw new BusinessLogicException("Se debe tener al menos una preferencia");
         }
+        
+        List<PreferenciasEntity> prefs = new ArrayList();
+        for(int i = 0; i < entity.getListaPreferencias().size(); i++ )
+        {
+            prefs.add(entity.getListaPreferencias().get(i));
+        }
+        entity.setListaPreferencias(new ArrayList());
+        
         persistence.create(entity);
         LOGGER.info("Termina proceso de creación de usuario");
+        
+        for(int i = 0; i < prefs.size(); i++ )
+        {
+            PreferenciasEntity pref = prefs.get(i);
+            PreferenciasEntity prefEm = preferenciasLogic.getByName(pref.getTipoPlan());
+            if(prefEm != null)
+            {
+                addPreferencia(prefEm.getId(), entity.getId());
+            }
+        }
         return entity;
     }
     

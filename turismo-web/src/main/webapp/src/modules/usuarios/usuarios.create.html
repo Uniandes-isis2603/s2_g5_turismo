@@ -62,13 +62,22 @@
                         </div>                        
                     </div>
     
-                    <div class="form-group row">
-                        <div class="form-group col-md-6">
-                            <label for="usuarioListaPreferencias" class="col-sm-2">Preferencias:</label>
-                            <td ><a class="btn btn-default btn-sm" ui-sref="preferenciasList"><span class="glyphicon glyphicon-edit"></span>  Agregar preferencia</a></td>
-                            
-                            <input id="usuarioListaTarjetas" required ng-model="usuarioListaTarjetas" class="col-sm-6"/>
-                        </div>                        
+                    <div ng-if="!edit" class="form-group row">
+                        <div class="form-group col-md-12">
+                            <label for="planCats" class="col-sm-12">Categorías (inserte los nombres de las categorías separados con "-"):</label>
+                            <input id="planCats" required ng-model="data.categorias" class="col-sm-6"/>
+                        </div>
+                    </div>
+                    
+                     <div ng-if="!edit" class="panel-group" id="thePreferencias">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">Nombres categorías posibles para añadir: (Si introduce otros que no estén en la lista se crea la categoría)</div>
+                            <div class="panel-body">
+                                    <div ng-show="!edit" ng-repeat="preferencia in AllPreferencias">
+                                        <p> {{preferencia.tipoPlan}}</p>                                 
+                                    </div>                               
+                            </div>
+                        </div>
                     </div>
     
                     <div class="form-group row">
