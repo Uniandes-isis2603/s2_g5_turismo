@@ -28,6 +28,9 @@
                         controller: 'facturaCtrl',
                         controllerAs: 'ctrl'
                     }
+                },data: {
+                    requireLogin: true,
+                    roles: [true,false]
                 }
             }).state("facturasList",{
                url:'/list',
