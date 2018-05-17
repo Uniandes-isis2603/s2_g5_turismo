@@ -23,10 +23,26 @@
     ]);
 
     // Resuelve problemas de las promesas
+    app.controller("planTemp",function($scope, $state, $rootScope)
+    {
+        $scope.buscar = function(miPl)
+        {
+            $rootScope.anonimo = true;
+            $state.current.data.requireLogin = -1; 
+            sessionStorage.setItem("userName","anonimo");
+            sessionStorage.setItem("name","anonimo");
+            sessionStorage.setItem("rol",-1);
+        $rootScope.miPl = miPl;
+        
+        $state.go('plansList', {reload: true});
+        
+       };
+    });
     app.config(['$qProvider', function ($qProvider) {
             $qProvider.errorOnUnhandledRejections(false);
         }]);
       app.run(['$rootScope', '$transitions', function ($rootScope, $transitions) {
+              
 
             $transitions.onSuccess({to: '*'}, function (trans) {
 
@@ -44,8 +60,11 @@
                  * @returns {Boolean} Verdadero si está dentro de su cuenta.
                  */
                 $rootScope.isAuthenticated = function () {
-                    
-                    if (sessionStorage.getItem("username") != null) {
+                    if($rootScope.anonimo === true)
+                    {
+                        return true;
+                    }
+                    else if (sessionStorage.getItem("username") != null) {
                         $rootScope.currentUser = sessionStorage.getItem("name");
                         return true;
                     } else {
