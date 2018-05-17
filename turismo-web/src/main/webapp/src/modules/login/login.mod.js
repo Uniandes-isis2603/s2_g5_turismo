@@ -29,13 +29,18 @@
             $stateProvider.state('login', {
                 url: '/login',
                 data: {
-                    requireLogin:false
+                    requireLogin:false,
+                    roles: []
                 },
                 views: {
                     'mainView': {
                         templateUrl: basePath + 'login.html',
                         controller: 'loginCtrl'
-                    }
+                    },
+                    'initialView': {
+                        templateUrl: basePath + 'inicial.html',
+                        controller: 'loginCtrl'
+                    } 
                 }
             }).state('logout', {
                 url: '/logout',
@@ -48,7 +53,11 @@
                     'mainView': {
                         templateUrl: basePath + 'logout.html',
                         controller: 'logoutCtrl'
-                    }
+                    },
+                    'initialView': {
+                        templateUrl: basePath + 'inicial.html',
+                        controller: 'loginCtrl'
+                    } 
                 }
             });
         }
