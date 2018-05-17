@@ -1,11 +1,6 @@
 <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
 <div class="container-fluid general" >
-    <div class="row">
-        <div class = "row form-group"></div>
-        <div class="col-sm-9 col-lg-10">
-            <div ui-view="detailView"></div>
-        </div>
-    </div>
+    
     <div class="row">
         <div ui-view="listView"></div>
     </div>
