@@ -36,3 +36,12 @@ button{
 .tarjetas{
     width: 200px
 }
+p {
+    color: #ED7A27;
+    font-family: 'Fjalla One', sans-serif;
+}
+
+.rzslider .rz-bubble, .rzslider .rz-tick-value {
+    color: #ED7A27;
+    font-family: 'Fjalla One', sans-serif;
+}
