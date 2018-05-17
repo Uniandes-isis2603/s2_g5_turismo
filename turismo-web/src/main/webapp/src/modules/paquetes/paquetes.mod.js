@@ -70,7 +70,6 @@
                 },
             views:{'listView':{
                        templateUrl: basePath + '/update/paquetes.update.html',
-                       controller:'paqueteUpdateCtrl2',
                         controller: 'paqueteUpdateCtrl'
                        
                    }

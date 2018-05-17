@@ -2,7 +2,8 @@
     
     var mod = ng.module("usuariosModule");
     mod.constant('usuarioCreate',"api/usuario");
-   mod.controller('usuarioNewCtrl', ['$scope', '$http', 'usuarioCreate', '$state', '$rootScope',
+    mod.constant("preferenciasContext", "api/preferences");
+    mod.controller('usuarioNewCtrl', ['$scope', '$http', 'usuarioCreate', '$state', 'preferenciasContext', '$rootScope',
         /**
          * @ngdoc controller
          * @name usuarios.controller:usuarioNewCtrl
@@ -20,11 +21,15 @@
          * @param {Object} $rootScope Referencia injectada al Scope definida para
          * toda la aplicación.
          */
-        function($scope, $http, usuarioContext, $state, $rootScope){
+        function($scope, $http, usuarioContext, $state, preferenciasContext, $rootScope){
         
             $rootScope.edit = false;
 
-            
+            $scope.data = {};          
+           
+            $http.get(preferenciasContext).then(function (response) {
+                    $scope.AllPreferencias = response.data;
+                });
             
             /**
              * @ngdoc function
@@ -33,6 +38,8 @@
              * @description
              */
             $scope.createUsuario = function () {
+                $scope.addCategorias($scope.data.categorias);
+                $scope.data.listaPreferencias = $scope.listaPreferencias;
                 $http.post(usuarioContext, { 
                    id:$scope.usuarioId,
                    nombre:$scope.usuarioNombre,
@@ -47,6 +54,24 @@
                }).then(function (response) {
                     $state.go('usuariosList', {usuarioId: response.data.id}, {reload: true});
                 });
+            };
+            /**
+             * @ngdoc function
+             * @name addCategorias
+             * @methodOf authors.controller:authorUpdateCtrl
+             * @description
+             * Busca las nuevas categorias en el $scope.
+             * @param {Object} Un string con el nombre de las preferencias a asociar
+             */
+            $scope.addCategorias = function (splitear) 
+            {
+                $scope.listaPreferencias = [];
+                var splited = splitear.split("-"), i;
+                for (i = 0; i < splited.length; i++)
+                {
+                    var categoria = {"tipoPlan":splited[i]};
+                   $scope.listaPreferencias.push(categoria); 
+                }
             };
         }
     ]);

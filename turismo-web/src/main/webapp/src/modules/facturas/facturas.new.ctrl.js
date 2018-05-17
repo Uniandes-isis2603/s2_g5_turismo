@@ -12,7 +12,7 @@
             
            
             $scope.createFactura = function () {
-                alert("Entro a consola2");
+                
                 $http.post(facturaContext, { 
                     id:$scope.facturaId,
                    costo:$scope.facturaCosto
