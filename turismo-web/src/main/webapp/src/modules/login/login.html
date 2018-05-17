@@ -1,15 +1,16 @@
 <div ng-if="!isAuthenticated()" class="container">
     <form class="form-signin">
         <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
-        <h1 class="form-signin-heading text-muted">Sign In</h1>
+        <h1 class="form-signin-heading text-muted">Iniciar sesion</h1>
         <input type="text" class="form-control" placeholder="Username" required="" autofocus="" ng-model="data.nombre">
+        <br>
         <input type="password" class="form-control" placeholder="Password" required="" ng-model="data.contrasenia">
         <div class="radio">
-        <input type="radio" class="checkbox-inline" text-align="center" value=True ng-model="data.esAdministrador" > 
+        <input type="radio" class="checkbox-inline"  value=True ng-model="data.esAdministrador" > 
         <label class="form-check-label">Administrador</label>
         </div>
         <div class="radio">
-        <input type="radio" class="checkbox-inline" text-align="center" value=False ng-model="data.esAdministrador" > 
+        <input type="radio" class="checkbox-inline"  value=False ng-model="data.esAdministrador" > 
         <label class="form-check-label">Usuario</label>
          </div>
       

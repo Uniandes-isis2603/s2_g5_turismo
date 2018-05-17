@@ -64,9 +64,6 @@
                    usuarioId: null
                },
                views:{
-                  'listView':{
-                       templateUrl: basePath + 'usuarios.list.html'
-                   },
                    'sideView':{
                        templateUrl: basePath + 'usuarios.side.html'
                    },
