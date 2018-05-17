@@ -152,56 +152,37 @@
     </head>
 
     <body style="padding-top: 20px;">      
-            <div ng-if="isAuthenticated()"  class="row">
-                <div ng-if="isAuthenticated()"  class="col-lg-12">
+            <div  class="row">
+                <div class="col-lg-12">
                     <div class="container-fluid col-md-12">
-                        <div class="col-md-11">
-                        <ul class=" navbar-fixed-top nav nav-tabs" style=" border: 0;">
+                      <div ng-if="isAuthenticated()"  class="col-md-11">
+                        <ul  class=" navbar-fixed-top nav nav-tabs" style=" border: 0;">
                             <li class="navbar-brand" > <img alt="Pejelagartos" src="resources/images/logoBlanco.png"  style="width:30px;height:40px;"></li>
                             <li><a ui-sref="plansList">Planes</a></li>
-
                             <li><a ui-sref="blogsList" >Busca blogs</a></li>
                             <li><a ui-sref="paquetesList">Paquetes</a></li>
                             <li><a ui-sref="usuariosDetail({usuarioId: currentId})" >Mi perfil</a></li>
                             <li><a ui-sref="valoracionesList" >Valoraciones</a></li>
-                           
                             <li class="navbar-right" ><a ui-sref="logout">Logout <span class="glyphicon glyphicon-user" aria-hidden="true" style="color: #ED7A27;"></span></a></li>
+                            
                         </ul>
-
+                    </div>
+                         <div ng-if="!isAuthenticated() "  class="col-md-11">
+                        <ul  class=" navbar-fixed-top nav nav-tabs" style=" border: 0;">
+                            <li class="navbar-brand" > <img alt="Pejelagartos" src="resources/images/logoBlanco.png"  style="width:30px;height:40px;"></li>
+                            <li><a ui-sref="plansList">Planes</a></li>
+                            <li><a ui-sref="blogsList" >Busca blogs</a></li>
+                            <li><a ui-sref="paquetesList">Paquetes</a></li>
+                            <li><a ui-sref="valoracionesList" >Valoraciones</a></li>
+                            <li class="navbar-right" ><a ui-sref="login">Login <span class="glyphicon glyphicon-user" aria-hidden="true" style="color: #ED7A27;"></span></a></li>
+                            
+                        </ul>
                     </div>
                 </div> 
             </div>
 
         </div>
-        <div ng-if="!isAuthenticated()"  class="container-fluid"> 
-            <div class="col-md-12">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a ui-sref="login" style="color: #ED7A27; font-family: 'Fjalla One', sans-serif;">Iniciar Sesion <span class="glyphicon glyphicon-user"></span> </a></li>
-                </ul>
-            </div>
-            <div class="container-fluid col-md-12">
-                <div class="col-md-3"></div>
-                <div class="col-md-3">
-                    <img src="resources/images/logoazul.png" alt="logo2" style="width:400px;height:400px;"/>
-                </div>
-                <div class="col-md-3">
-                    <h1 id="TituloPagina" style="color: #ED7A27; font-family: 'Fjalla One', sans-serif;">PEJELAGARTOS TOURS</h1>
-                    <h3 id="descripccion" style="color: #003366; font-family: 'Fjalla One', sans-serif;">Conoce los mejores planes turisticos de tu ciudad</h3>
-                    <div id="custom-search-input">
-                        <div class="input-group col-md-12">
-                            <input type="text" ng-model="miPlan" class="form-control input-lg" placeholder="Encuentra los mejores planes" />
-                            <span class="input-group-btn">
-                                <button class="btn btn-info btn-lg" type="button" ng-controller = "planTemp" ng-click="buscar(miPlan)">
-                                    <i class="glyphicon glyphicon-search"></i>
-                                </button>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3"></div>
-            </div>
-        </div>
-
+        <div ui-view="initialView"></div>
         <div ui-view="mainView"> </div>
 
 
