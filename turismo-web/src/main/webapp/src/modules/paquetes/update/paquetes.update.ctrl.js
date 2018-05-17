@@ -9,6 +9,8 @@
             var listaPagos ;
             var listaPlanes;
             var idNP;
+            var idGu=null;
+            
             
             $rootScope.edit = true;
             id = $state.params.paqueteId;
@@ -17,21 +19,47 @@
            {  
             $http.get(paqueteContext+"/"+id).then(function(response){
                 var paquete = response.data;
-                
                 $scope.completado=response.data.completado;
                 listaPagos=paquete.pagos;
                 listaPlanes=paquete.planes;
             }).then(
             $http.get("api/plans").then(function (response) {
+                
                 $scope.plansRecords = response.data;
-                console.log(response.data)
+                var i;
+                var j;
+                for ( i = 0; i< listaPlanes.length; i++){
+                    for (j=0;j<$scope.plansRecords.length;j++)
+                    {
+                        
+                       if(listaPlanes[i].plan.idPlan==$scope.plansRecords[j].idPlan)
+                       {
+                          
+                           $scope.plansRecords.splice(j, 1);
+                       }
+                    }
+                    
+                }
+               
             }));
         }
             
             $scope.idPlan= function (param)
             {
-                idNP=param.plan.idPlan;
-                console.log(idNP);
+                if(idNP!=param)
+                {
+                    idNP=param.plan.idPlan;
+                    $scope.guiasRecords = param.plan.guiasPlan;
+                    idGu=null;
+                }
+                
+                
+            };
+            
+            $scope.idGuia= function (param)
+            {
+                idGu=param.guia.idGuia;
+                console.log(param.guia.idGuia);
             };
         
     
@@ -49,8 +77,13 @@
                 nombreR =planR.name;
                 
                 var NPlan={idPlan:idNP};
+                var NGuia=null;
+                if(idGu!=null)
+                {
+                NGuia={idGuia:idGu};
+            }
                 var pagoAdd={id:999999,costo:costoR,nombrePlan:nombreR};
-                var planAdd={id:9999999,fecha:$scope.fecha,plan:NPlan};
+                var planAdd={id:9999999,fecha:$scope.fecha,plan:NPlan,guia:NGuia};
                 console.log(NPlan);
                 console.log(pagoAdd);
                 listaPagos.push(pagoAdd);
@@ -58,7 +91,8 @@
                 $http.put(paqueteContext+"/"+id, { 
                     completado:false,
                     pagos:listaPagos,
-                    planes:listaPlanes
+                    planes:listaPlanes,
+                   
                 }
                     ).then(function (response) {
                     $state.go('paqueteUpdate', {paqueteId: response.data.id}, {reload: true});
