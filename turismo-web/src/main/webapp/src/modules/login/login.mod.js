@@ -59,7 +59,21 @@
                         controller: 'loginCtrl'
                     } 
                 }
-            });
+            }).state('createUsuario', {
+                url: '/create',
+                data: {
+                    requireLogin: false,
+                    roles: []
+                }
+                ,
+                views: {
+                    'mainView': {
+                        templateUrl: basePath + 'usuarios.create.html',
+                        controller:  'usuarioNewCtrl'
+                    }
+                }
+            })
+            ;
         }
     ]);
 })(window.angular);
