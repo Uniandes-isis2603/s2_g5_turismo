@@ -93,7 +93,35 @@
                         controller: 'paqueteDeleteCtrl'
                     }
                 }
-            });
+            }).state('paqueteDetailUbicacion',{
+                url: '/ubicacion/{lat:string}/{lon:string}',
+                parent: 'planDetail',
+                param:{
+                    planId:null,
+                    lat:null,
+                    lon:null
+                },
+                views:{
+                   'listView': {
+                        templateUrl: basePath + 'paquetes.list.html',
+                        controller: 'paqueteDetailCtrl',
+                        controllerAs: 'ctrl'
+                    },
+                    'detailView': {
+                        templateUrl: basePath + 'paquete.detail.html',
+                        controller: 'paqueteDetailCtrl',
+                        controllerAs: 'ctrl'
+                    },
+                    'sideViewPlan': {
+                        templateUrl: basePath + 'paquete.side.html'
+                    },
+                    'planGuidesView':{
+                        templateUrl: basePath + '/ubicacion/paquete.plans.detail.ubicacion.html',
+                        controller: 'mapUbicacionCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
+                });
            
     }]);
 })(window.angular);

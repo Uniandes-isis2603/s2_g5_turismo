@@ -50,7 +50,10 @@ public class PagoDTO {
     {
         
     }
-    
+    /**
+     * Constructor a partir de la entidad
+     * @param entity  La entidad del pago
+     */
     public PagoDTO(PagoEntity entity) 
     {
         if(entity != null)
@@ -61,6 +64,10 @@ public class PagoDTO {
         }
         
     }
+    /**
+     * Método para transformar el DTO a una entidad.
+     * @return La entidad del pago asociado.
+     */
      public PagoEntity toEntity() {
         PagoEntity entity = new PagoEntity();
         entity.setCosto(this.getCosto());

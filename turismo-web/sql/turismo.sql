@@ -6,6 +6,7 @@ delete from PlanEntity_ValoracionesEntity;
 delete from PlanEntity_GuiaEntity;
 delete from PAQUETETURISTICOENTITY_PAGOENTITY;
 delete from PlanEntity;
+delete from usuarioentity_preferenciasentity;
 delete from PreferenciasEntity;
 delete from UBICACIONENTITY;
 delete from GuiaEntity;
@@ -110,9 +111,9 @@ insert into FACTURAENTITY (id,costo,name,TARJETADECREDITO_ID,PAQUETETURISTICO_ID
 insert into FACTURAENTITY (id,costo,name,TARJETADECREDITO_ID,PAQUETETURISTICO_ID) values (10001,900000,'b',10001,10000);
 insert into FACTURAENTITY (id,costo,name,TARJETADECREDITO_ID,PAQUETETURISTICO_ID) values (10002,1000000,'c',10001,10000);
 
-insert into PAGOENTITY (id,costo, name) values (10000,80.33,'monserrate');
-insert into PAGOENTITY (id,costo, name) values (10003,80.33,'monserrate');
-insert into PAGOENTITY (id,costo, name) values (10005,80.33,'monserrate');
+insert into PAGOENTITY (id,costo, name) values (10000,20000,'Monserrate');
+insert into PAGOENTITY (id,costo, name) values (10003,60000,'Sagrada familia');
+insert into PAGOENTITY (id,costo, name) values (10005,20000,'Monserrate');
 
 insert into PLANAGENDADOENTITY (id,fecha,name,plan_id) values (10000,'2014-07-02 06:14:00','f',10000);
 insert into PLANAGENDADOENTITY (id,fecha,name,plan_id) values (10020,'2010-06-22 04:30:00','a',10001);
