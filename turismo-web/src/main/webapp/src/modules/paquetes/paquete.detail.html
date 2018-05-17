@@ -31,6 +31,7 @@
                     </div>
                     
                     <dt> <br>Ruta</br></dt>
+                    <a ui-sref="paqueteDetailUbicacion({planId: currentPlan.idPlan,lat: currentPlan.ubicacion.latitud,lon: currentPlan.ubicacion.longitud})">Ubicación</a>
                     <ul ng-repeat="u in listaUbicacion" >
                          <dd> Latitud: {{u.latitud}}</dd>
                          <dd> Longitud: {{u.longitud}}</dd>

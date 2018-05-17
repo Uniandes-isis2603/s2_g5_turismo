@@ -33,6 +33,7 @@
             if (($state.params.usuarioId !== undefined)&& ($state.params.usuarioId !== null)) {
                 $http.get(usuariosContext + '/' + $state.params.usuarioId).then(function (response) {
                     $scope.currentUsuario = response.data;
+                    console.log($scope.currentUsuario);
                 });
             }
         }
