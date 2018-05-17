@@ -3,6 +3,7 @@
     mod.constant("preferenciasContext", "api/preferences");
     mod.constant("plansContext", "api/plans");
     mod.controller('planCtrl', ['$rootScope', '$scope', '$http', 'plansContext', 'preferenciasContext',
+
         /**
          * @ngdoc controller
          * @name plans.controller:planCtrl
@@ -22,6 +23,7 @@
          * estado actual de la navegación definida en el módulo.
          */
         function ($rootScope, $scope, $http, plansContext, preferenciasContext) {
+            $scope.pais = $rootScope.miPl;
             /**
              * @ngdoc function
              * @name getPlans
@@ -44,7 +46,7 @@
              */
             $http.get(preferenciasContext).then(function (response) {
                 $scope.AllPreferencias = response.data;
-                for(var i = 0; i < $scope.AllPreferencias.length; i++)
+                for (var i = 0; i < $scope.AllPreferencias.length; i++)
                 {
                     $scope.AllPreferencias[i].selected = true;
                 }
@@ -78,7 +80,7 @@
                 {
                     var vals = item[prop];
                     var promedio = 0;
-                    vals.forEach(function(arrayItem)
+                    vals.forEach(function (arrayItem)
                     {
                         promedio = promedio + arrayItem.calificacion;
                     });
@@ -86,7 +88,7 @@
                     return promedio >= aux && promedio <= aux2;
                 };
             };
-            
+
             /**
              * Retorna el item si tiene una categoria de las recibidas epor parámetro
              * @param {type} prop es el path del json 'categoriasPlan'
@@ -102,34 +104,34 @@
                     var cats = item[prop];
                     cats.forEach(function (arrayItem)
                     {
-                        var x  = arrayItem.tipoPlan;
+                        var x = arrayItem.tipoPlan;
                         aux.forEach(function (arrayItem2)
                         {
                             var temp = arrayItem2.tipoPlan;
-                            
+
                             var bol = arrayItem2.selected;
-                            if(!bol)
+                            if (!bol)
                             {
                                 cont++;
                             }
-                            if(( x === temp) && (bol === true))
+                            if ((x === temp) && (bol === true))
                             {
                                 ret = true;
                             }
                         });
-                        if(cont === aux.length)
+                        if (cont === aux.length)
                         {
                             ret = true;
                         }
                         cont = 0;
                     });
-                    if(ret === true)
+                    if (ret === true)
                     {
                         return item;
                     }
                 };
             };
-         
+
 
             /**
              * Slider para filtro de precio de plan
