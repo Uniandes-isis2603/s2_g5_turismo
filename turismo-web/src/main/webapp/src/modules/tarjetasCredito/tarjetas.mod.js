@@ -28,6 +28,10 @@
                         controller: 'tarjetaCtrl',
                         controllerAs: 'ctrl'
                     }
+                },
+                data: {
+                    requireLogin: true,
+                    roles: [true,false]
                 }
             }).state("tarjetasList",{
                url:'/list',
