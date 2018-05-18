@@ -36,9 +36,9 @@
                     }
                }
            }).state("paqueteDetail",{
-               url:'/{usuarioId:int}/detail',
+               url:'/{paqueteId:int}/detail',
                parent:'paquete',
-               param:{ usuarioId :null},
+               param:{ paqueteId :null},
                views:{
                    'listView': {
                         templateUrl: basePath + 'paquetes.list.html',
@@ -94,10 +94,10 @@
                     }
                 }
             }).state('paqueteDetailUbicacion',{
-                url: '/ubicacion/{lat:string}/{lon:string}',
-                parent: 'planDetail',
+                url: '/paquete/{lat:string}/{lon:string}',
+                parent: 'paqueteDetail',
                 param:{
-                    planId:null,
+                    paqueteId:null,
                     lat:null,
                     lon:null
                 },
