@@ -97,7 +97,7 @@
                 }
             }).state('plansCreate', {
                 url: '/create/plan',
-                parent: 'plans',
+                parent: 'plansList',
                 views: {
                     'detailView': {
                         templateUrl: basePath + '/new/plans.new.html',
@@ -106,7 +106,7 @@
                 }
             }).state('planUpdate', {
                 url: '/update/{planId:int}',
-                parent: 'plans',
+                parent: 'plansList',
                 param: {
                     planId: null
                 },
@@ -118,7 +118,7 @@
                 }
             }).state('planDelete', {
                 url: '/delete/{planId:int}',
-                parent: 'plans',
+                parent: 'plansList',
                 param: {
                     planId: null
                 },

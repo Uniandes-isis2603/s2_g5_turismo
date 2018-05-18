@@ -20,7 +20,7 @@
          * estado actual de la navegación definida en el módulo.
          */
         function ($scope, $http, plansContext, $state) {
-            if (($state.params.planId !== undefined) && ($state.params.planId !== null)){
+            if (($state.params.planId !== undefined) && ($state.params.planId !== null)) {
                 /**
                  * @ngdoc function
                  * @name getPlanID
@@ -33,6 +33,19 @@
                  */
                 $http.get(plansContext + '/' + $state.params.planId).then(function (response) {
                     $scope.currentPlan = response.data;
+                    var promedio = 0;
+                    for (var i = 0; i < $scope.currentPlan.valoraciones.length; i++)
+                    {
+                        promedio = promedio + $scope.currentPlan.valoraciones[i].calificacion;
+                    }
+                    promedio = promedio / $scope.currentPlan.valoraciones.length;
+                    Math.round(promedio);
+                    $scope.stars = [];
+                    for (var i = 0; i < promedio; i++)
+                    {
+                        var rat = {"value": 1};
+                        $scope.stars.push(rat);
+                    }
                 });
             }
         }
