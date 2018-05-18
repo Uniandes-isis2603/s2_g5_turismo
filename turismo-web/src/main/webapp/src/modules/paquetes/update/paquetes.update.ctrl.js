@@ -68,7 +68,6 @@
             var costoR;
             var nombreR;
                 
-                 console.log($scope.Plan);
                
                 $http.get("api/plans/"+idNP).then(function(response){
                 var planR = response.data;
@@ -82,6 +81,12 @@
                 {
                 NGuia={idGuia:idGu};
             }
+            if($scope.fecha===undefined)
+            {
+            console.log($scope.fecha);
+            $state.go('paquetesList', {paqueteId: response.data.id}, {reload: true});
+        }
+            else{
                 var pagoAdd={id:999999,costo:costoR,nombrePlan:nombreR};
                 var planAdd={id:9999999,fecha:$scope.fecha,plan:NPlan,guia:NGuia};
                 console.log(NPlan);
@@ -97,8 +102,8 @@
                     ).then(function (response) {
                     $state.go('paqueteUpdate', {paqueteId: response.data.id}, {reload: true});
                 });
-                console.log(costo);
-            });
+            
+                    }});
                 
             };
         }
