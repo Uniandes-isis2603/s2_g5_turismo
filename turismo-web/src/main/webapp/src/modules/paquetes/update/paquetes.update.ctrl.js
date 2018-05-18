@@ -83,8 +83,6 @@
             }
             if($scope.fecha===undefined)
             {
-            console.log($scope.fecha);
-            $state.go('paquetesList', {paqueteId: response.data.id}, {reload: true});
         }
             else{
                 var pagoAdd={id:999999,costo:costoR,nombrePlan:nombreR};
