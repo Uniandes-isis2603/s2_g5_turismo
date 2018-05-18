@@ -7,6 +7,22 @@ and open the template in the editor.
     Created on : 16/05/2018, 09:00:38 PM
     Author     : s.benitez10
 */
+.nav-tabsPlan > li {
+    float:none;
+    display:inline-block;
+    *display:inline;
+     zoom:1;
+}
+
+.tituloPlan{
+    text-align:center;
+    font-family: 'Fjalla One', sans-serif;
+   font-size: 25px;
+}
+.nav-tabs{
+    text-align:center;
+}
+
 .checked {
     color: orange;
     height: 50px;
@@ -19,6 +35,10 @@ a {
    color: #ED7A27; 
    font-family: 'Fjalla One', sans-serif;
    font-size: 20px;
+}
+a { 
+   font-family: 'Fjalla One', sans-serif;
+   font-size: 25px;
 }
 .form-signin-heading{
        color:  #064169;

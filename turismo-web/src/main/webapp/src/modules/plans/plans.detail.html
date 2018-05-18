@@ -1,8 +1,9 @@
 <div class="panel panel-default"> 
     <div class="panel-body">
         <div class="row">
-            <div class="col-sm-4">
+            <div class="col-sm-4" style=" padding-top: 9;">
                 <div class="thumb">
+                     <p class = "tituloPlan">{{currentPlan.name}}</p>
                     <img class="img-responsive img-rounded" ng-src="{{currentPlan.archivo}}"/>
                 </div>
                 <table class="table table-striped">
@@ -23,11 +24,12 @@
                 <span class="fa fa-star fa-3x checked" ng-repeat = "star in stars"></span>
                 </div>
             </div>
-            <div class="col-sm-2">
-                <dl>     
-                    <dt class="bold">{{currentPlan.name}}</dt>
-                    <dt> Duración</dt>
-                    <dd>{{currentPlan.duracion}}</dd>
+            <div class="col-sm-2"style=" padding-top: 55;">
+                     
+                   
+                   <p> Duración</p>
+                   <p>{{currentPlan.duracion}}</p>
+                    
                     <dt>Restricciones</dt>
                     <dd>{{currentPlan.restricciones}}</dd>
                     <dt>Cantidad de personas recomendada</dt>
@@ -38,17 +40,18 @@
                     <dd>{{currentPlan.descripcion}}</dd>
                 </dl>
             </div>  
-            <div class="col-md-2">
-                <ul class="nav nav-pills nav-stacked">
+            <div class="col-sm-6" >
+                <ul class="nav nav-tabs nav-tabsPlan">
                     <li> <a ui-sref="planDetailUbicacion({planId: currentPlan.idPlan,lat: currentPlan.ubicacion.latitud,lon: currentPlan.ubicacion.longitud})">Ubicación</a></li>
                     <li><a ui-sref="planDetailGuides({planId: currentPlan.idPlan})">Guías</a></li>
                     <li><a ui-sref="planDetailPreferencias({planId: currentPlan.idPlan})">Categorías</a></li>
                     <li><a ui-sref="planDetailValoraciones({planId: currentPlan.idPlan})">Valoraciones</a></li>
                 </ul>
-            </div>
-            <div class="col-sm-4">
                 <div ui-view="planGuidesView"></div>
             </div>
+            
+                
+            
         </div>
     </div>
 </div>
