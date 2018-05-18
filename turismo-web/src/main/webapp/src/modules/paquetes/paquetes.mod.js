@@ -20,7 +20,7 @@
                     }
                 },
                 data: {
-                    requireLogin: false,
+                    requireLogin: true,
                     roles: [true,false]
                 }
             }).state("paquetesList",{
@@ -94,10 +94,10 @@
                     }
                 }
             }).state('paqueteDetailUbicacion',{
-                url: '/ubicacion/{lat:string}/{lon:string}',
-                parent: 'planDetail',
+                url: '/paquete/{lat:string}/{lon:string}',
+                parent: 'paqueteDetail',
                 param:{
-                    planId:null,
+                    paqueteId:null,
                     lat:null,
                     lon:null
                 },
