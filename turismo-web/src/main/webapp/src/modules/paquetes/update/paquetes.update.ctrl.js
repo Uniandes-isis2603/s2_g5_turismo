@@ -77,7 +77,7 @@
                 
                 var NPlan={idPlan:idNP};
                 var NGuia=null;
-                if(idGu!=null)
+                if(idGu!==null)
                 {
                 NGuia={idGuia:idGu};
             }

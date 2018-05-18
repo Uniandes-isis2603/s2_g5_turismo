@@ -20,7 +20,7 @@
                     }
                 },
                 data: {
-                    requireLogin: false,
+                    requireLogin: true,
                     roles: [true,false]
                 }
             }).state("paquetesList",{
