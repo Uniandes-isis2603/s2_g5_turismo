@@ -1,14 +1,22 @@
 <div class="col-sm-3 col-lg-2">
-    <div class="container-fluid " style="height:100%; padding-left: 0; background-color: #064169">
+    <div class="container-fluid " style="height:150%; padding-left: 0; background-color: #064169">
         <ul class="nav nav-pills nav-stacked" style="height:100%; padding-left: 10; background-color: #064169" >
+
+            <br>
+            <hr>
+            <br>
             <li><a ui-sref="preferenciasList">Categorías</a></li>
             <li><a ui-sref="guiasList">Guías</a></li>
-            <p id='1'>Nombre:</p>
-            <p><input type="text" ng-model="name"></p>
+            <br>
+            <hr>
+            <h1 class = "filtroPlan"> Filtros:</h1>
+            <br>
             <p>Ciudad:</p>
             <p><input type="text" ng-model="ciudad"></p>
             <p>Pais:</p>
             <p><input type="text" ng-model="pais"></p>
+            <p id='1'>Nombre del plan:</p>
+            <p><input type="text" ng-model="name"></p>
             <div  style = "display:none;">
                 <input type="number" ng-model="minRangeSlider.minValue" />
                 <input type="number" ng-model="minRangeSlider.maxValue" />
@@ -47,9 +55,9 @@
     <div class="container-fluid"  >
         <div class="row">
             <div class = "row form-group"></div>
-            
-                <div ui-view="detailView"></div>
-          
+
+            <div ui-view="detailView"></div>
+
         </div>
         <div class="row">
 
@@ -60,16 +68,16 @@
 
             <br>
 
-            <div class="col-md-3" ng-repeat="plan in plansRecords| filter:{'name':name}
+            <div class="col-sm-4" ng-repeat="plan in plansRecords| filter:{'name':name}
 
                                 |filter:{'ubicacion':{'ciudad':ciudad}}|filter:{'ubicacion':{'pais':pais}}|
                                 filter:betweenValuesPrecio('precio', minRangeSlider.minValue, minRangeSlider.maxValue) 
                                 |filter:betweenValuesPrecio('cantidadPersonas', minRangeSliderP.minValue, minRangeSliderP.maxValue) 
                                 | filter: betweenValuesValoracion('valoraciones', minRangeSliderV.minValue, minRangeSliderV.maxValue)
                                 | filter: prefInPlan('categoriasPlan', AllPreferencias)">
-                <div class="thumbnail" style =" height: 20%; width: 80%" >
-                    <a ui-sref="planDetail({planId: plan.idPlan})">                    
-                        <img class="img-responsive img-rounded" ng-src='{{plan.archivo}}' alt="{{plan.name}} " style =" height: 80%;" />                                                  
+                <div class="thumbnail" style =" height: 40%; width: 80%" >
+                    <a ui-sref="planDetailUbicacion({planId: plan.idPlan,lat: plan.ubicacion.latitud,lon: plan.ubicacion.longitud})">                    
+                        <img class="img-responsive img-rounded" ng-src='{{plan.archivo}}' alt="{{plan.name}} " style =" height: 90%;" />                                                  
                     </a>
 
                     <div class="caption text-center" style="color: black ; font-family: 'Fjalla One', sans-serif;">
