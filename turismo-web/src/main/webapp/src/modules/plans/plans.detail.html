@@ -1,7 +1,7 @@
 <div class="panel panel-default"> 
     <div class="panel-body">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-sm-4">
                 <div class="thumb">
                     <img class="img-responsive img-rounded" ng-src="{{currentPlan.archivo}}"/>
                 </div>
@@ -18,10 +18,12 @@
                     <tbody>
                     </tbody>
                 </table>
-
-
+                
+                <div class = "col-sm-offset-2">
+                <span class="fa fa-star fa-3x checked" ng-repeat = "star in stars"></span>
+                </div>
             </div>
-            <div class="col-md-2">
+            <div class="col-sm-2">
                 <dl>     
                     <dt class="bold">{{currentPlan.name}}</dt>
                     <dt> Duración</dt>
@@ -44,7 +46,7 @@
                     <li><a ui-sref="planDetailValoraciones({planId: currentPlan.idPlan})">Valoraciones</a></li>
                 </ul>
             </div>
-            <div class="col-md-4">
+            <div class="col-sm-4">
                 <div ui-view="planGuidesView"></div>
             </div>
         </div>
