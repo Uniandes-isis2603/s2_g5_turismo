@@ -27,17 +27,35 @@ insert into UBICACIONENTITY (id,pais,ciudad,latitud,longitud) values (10002,'Esp
 insert into UBICACIONENTITY (id,pais,ciudad,latitud,longitud) values (10003,'Holanda','Amsterdam',10,-10);
 insert into UBICACIONENTITY (id,pais,ciudad,latitud,longitud) values (10004,'Alemania','Berlín',52.5350521,13.3880011);
 
-insert into BlogEntity (id, descripcion, likes, tema) values (10000,'primer blog',0,'este es mi primer blog');
-insert into BlogEntity (id, descripcion, likes, tema) values (20000,'segundo blog',20,'este es mi segundo blog');
-insert into BlogEntity (id, descripcion, likes, tema) values (30000,'tercer blog',30,'este es mi tercero blog');
+insert into BlogEntity (id, tema , likes, descripcion) values (10000,'mordor paraiso en primavera',990,'¿Dónde está Mordor?, te preguntas. La respuesta es sencilla: Mordor está en Madrid. El llamado Camino de Mordor es una ruta en bicicleta que corre en paralelo al río Aulencia desde Colmenarejo hasta Villanueva del Pardillo.');
+insert into BlogEntity (id, tema , likes, descripcion) values (20000,'international blog',20,'EARLIER this month Peking University played host to perhaps the grandest global gathering ever of the higher-education business. Senior figures from the world’s most famous universities—Harvard and Yale, Oxford and Cambridge');
+insert into BlogEntity (id, tema , likes, descripcion) values (30000,'comida en la india ',30,'France, in Western Europe, encompasses medieval cities, alpine villages and Mediterranean beaches. Paris, its capital, is famed for its fashion houses, classical art museums including the Louvre and monuments like the Eiffel Tower.');
+insert into BlogEntity (id, tema , likes, descripcion) values (40000,'franceses y parisinas ',0,'ice is the staple food (as is with all South Indian states) eaten with lentil preparations such as pappu (lentils) and pulusu (stew) and spicy vegetables or curries. In Andhra, leafy greens or vegetables such as bottle-gourd.');
+insert into BlogEntity (id, tema , likes, descripcion) values (50000,'cambio de vida en Soachi ',20,'este es mi segundo blog');
+insert into BlogEntity (id, tema , likes, descripcion) values (60000,'hola hola desde hawaii ',30,'este es mi tercero blog');
+insert into BlogEntity (id, tema , likes, descripcion)values (70000,'como comprar efectivamente ',0,'este es mi primer blog');
+insert into BlogEntity (id, tema , likes, descripcion) values (80000,'colecciones analogas el blog',20,'este es mi segundo blog');
+insert into BlogEntity (id, tema , likes, descripcion) values (90000,'este es mi decimoquinto blog',30,'este es mi tercero blog');
 
-insert into ComentarioEntity (id, comentario) values (10000,'me gusta comentar');
+insert into ComentarioEntity (id, comentario) values (10000,'gran blog');
 insert into ComentarioEntity (id, comentario) values (20000,'comentar o no comentar esa es la cuestion');
-insert into ComentarioEntity (id, comentario) values (30000,'taque taraque taque');
+insert into ComentarioEntity (id, comentario) values (30000,'mentiroso, yp fui y todo salio muy ben ');
+insert into ComentarioEntity (id, comentario) values (40000,'me gusta comentar, lol jeje');
+insert into ComentarioEntity (id, comentario) values (50000,'por casualidad sabrias donde puedo ir a comer cerca?');
+insert into ComentarioEntity (id, comentario) values (60000,'taque taraque taque');
+insert into ComentarioEntity (id, comentario) values (70000,'lorem ipsum');
+insert into ComentarioEntity (id, comentario) values (80000,'wendys es mas rico ');
+insert into ComentarioEntity (id, comentario) values (90000,' tu mama !!');
 
 insert into BLOGENTITY_COMENTARIOENTITY (BLOGENTITY_ID, COMENTARIOS_ID) values (10000,10000);
-insert into BLOGENTITY_COMENTARIOENTITY (BLOGENTITY_ID, COMENTARIOS_ID) values (20000,20000);
-insert into BLOGENTITY_COMENTARIOENTITY (BLOGENTITY_ID, COMENTARIOS_ID) values (30000,30000);
+insert into BLOGENTITY_COMENTARIOENTITY (BLOGENTITY_ID, COMENTARIOS_ID) values (10000,20000);
+insert into BLOGENTITY_COMENTARIOENTITY (BLOGENTITY_ID, COMENTARIOS_ID) values (10000,30000);
+insert into BLOGENTITY_COMENTARIOENTITY (BLOGENTITY_ID, COMENTARIOS_ID) values (10000,40000);
+insert into BLOGENTITY_COMENTARIOENTITY (BLOGENTITY_ID, COMENTARIOS_ID) values (50000,50000);
+insert into BLOGENTITY_COMENTARIOENTITY (BLOGENTITY_ID, COMENTARIOS_ID) values (60000,60000);
+insert into BLOGENTITY_COMENTARIOENTITY (BLOGENTITY_ID, COMENTARIOS_ID) values (70000,70000);
+insert into BLOGENTITY_COMENTARIOENTITY (BLOGENTITY_ID, COMENTARIOS_ID) values (80000,80000);
+insert into BLOGENTITY_COMENTARIOENTITY (BLOGENTITY_ID, COMENTARIOS_ID) values (90000,90000);
 
 insert into PreferenciasEntity (id, tipoPlan) values (10000,'Familiar');
 insert into PreferenciasEntity (id, tipoPlan) values (10001,'Compras');
@@ -94,6 +112,7 @@ insert into PLANENTITY_VALORACIONESENTITY (PLANENTITY_ID, VALORACIONESPLAN_ID) v
 insert into UsuarioEntity (id,apellido,contrasenia,correo,esAdministrador,idioma,name,telefono) values (10001,'benitez','1234','benitez@gmail.com',0,'español','sebastian',4276067);
 insert into UsuarioEntity (id,apellido,contrasenia,correo,esAdministrador,idioma,name,telefono) values (10002,'ramirez','5678','ramirez@gmail.com',0,'español','juan',1234567);
 insert into UsuarioEntity (id,apellido,contrasenia,correo,esAdministrador,idioma,name,telefono) values (10003,'gutierrez','9012','gutierrez@gmail.com',0,'español','francisco',8901223);
+
 
 
 insert into TarjetaDeCreditoEntity (id,cdv,cedula,name,numero,Usuario_id) values (10000,123,1016078997,'sebastian',1234123412341234,10001);
