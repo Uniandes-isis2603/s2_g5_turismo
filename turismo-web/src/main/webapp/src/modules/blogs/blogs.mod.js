@@ -122,11 +122,8 @@
 
             }).state('deleteBlog', {
                 url: '/delete/{blogId:int}',
-                data: {
-                    requireLogin: true,
-                    roles: []
-                },
-                parent: 'blogsList',
+                
+                parent: 'blogs',
                 param: {
                     blogId: null
                 },
