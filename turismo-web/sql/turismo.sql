@@ -24,8 +24,10 @@ delete from VALORACIONESENTITY;
 insert into UBICACIONENTITY (id,pais,ciudad,latitud,longitud) values (10000,'Colombia','Bogota',4.6056725,-74.0730351);
 insert into UBICACIONENTITY (id,pais,ciudad,latitud,longitud) values (10001,'Francia','Paris',10,10);
 insert into UBICACIONENTITY (id,pais,ciudad,latitud,longitud) values (10002,'España','Madrid',41.4059676,2.1686392);
-insert into UBICACIONENTITY (id,pais,ciudad,latitud,longitud) values (10003,'Holanda','Amsterdam',10,-10);
+insert into UBICACIONENTITY (id,pais,ciudad,latitud,longitud) values (10003,'Holanda','Amsterdam',4.5754466,-74.2487117);
 insert into UBICACIONENTITY (id,pais,ciudad,latitud,longitud) values (10004,'Alemania','Berlín',52.5350521,13.3880011);
+insert into UBICACIONENTITY (id,pais,ciudad,latitud,longitud) values (10005,'Francia','Paris',48.8583701,2.2922926);
+insert into UBICACIONENTITY (id,pais,ciudad,latitud,longitud) values (10006,'Italia','Roma',41.8902102,12.4900422);
 
 insert into BlogEntity (id, tema , likes, descripcion) values (10000,'mordor paraiso en primavera',990,'¿Dónde está Mordor?, te preguntas. La respuesta es sencilla: Mordor está en Madrid. El llamado Camino de Mordor es una ruta en bicicleta que corre en paralelo al río Aulencia desde Colmenarejo hasta Villanueva del Pardillo.');
 insert into BlogEntity (id, tema , likes, descripcion) values (20000,'international blog',20,'EARLIER this month Peking University played host to perhaps the grandest global gathering ever of the higher-education business. Senior figures from the world’s most famous universities—Harvard and Yale, Oxford and Cambridge');
@@ -65,6 +67,9 @@ insert into PlanEntity (id, archivo, cantidadpersonas, descripcion, duracion, na
 insert into PlanEntity (id, archivo, cantidadpersonas, descripcion, duracion, name, precio, restricciones, ubicacion_id) values (10000, 'https://cdn2.gbot.me/photos/dt/Db/1515289189/-_Iglesia_de_Monserrate_in-20000000016204685-500x375.jpg', 1,'Subir a monserrate', 180, 'Monserrate', 20000,'restriccion shida',10000);
 insert into PlanEntity (id, archivo, cantidadpersonas, descripcion, duracion, name, precio, restricciones, ubicacion_id) values (10001, 'https://4ey4y42r25eb3oaha12oumbs-wpengine.netdna-ssl.com/wp-content/uploads/Gaudi-and-Sagrada-Familia-Tour-1.jpg', 2,'Recorrido por sagrada familia', 180, 'Sagrada familia', 60000,'restriccion shida',10002);
 insert into PlanEntity (id, archivo, cantidadpersonas, descripcion, duracion, name, precio, restricciones, ubicacion_id) values (10002, 'http://elmerey.com/wp-content/uploads/2017/08/14/Muro-de-Berlin.jpg', 4,'Recorrer muro de berlin', 180, 'Muro de berlin', 20000,'restriccion shida',10004);
+insert into PlanEntity (id, archivo, cantidadpersonas, descripcion, duracion, name, precio, restricciones, ubicacion_id) values (10003, 'http://i.ngenespanol.com/dam/tbg/traveler/agenda/17/09/28/torre-eiffel-300-millones.jpg.imgw.1280.1280.jpeg', 9,'Subir la torre Eiffel', 180, 'Torre Eiffel', 80000,'restriccion shida',10005);
+insert into PlanEntity (id, archivo, cantidadpersonas, descripcion, duracion, name, precio, restricciones, ubicacion_id) values (10005, 'https://www.audioguiaroma.com/imagenes/coliseo-roma.jpg', 7,'Descibrir los secretos del coliseo Romano', 180, 'Coliseo de Roma', 100000,'restriccion shida',10006);
+
 
 insert into ValoracionesEntity (id, calificacion, comentario) values (10001, 5, 'Buena');
 insert into ValoracionesEntity (id, calificacion, comentario) values (10004, 4, 'Buenita');
@@ -89,6 +94,10 @@ insert into PLANENTITY_GUIAENTITY (PLANENTITY_ID, GUIAS_ID) values (10001, 10002
 insert into PLANENTITY_GUIAENTITY (PLANENTITY_ID, GUIAS_ID) values (10001, 10003);
 insert into PLANENTITY_GUIAENTITY (PLANENTITY_ID, GUIAS_ID) values (10002, 10004);
 insert into PLANENTITY_GUIAENTITY (PLANENTITY_ID, GUIAS_ID) values (10002, 10002);
+insert into PLANENTITY_GUIAENTITY (PLANENTITY_ID, GUIAS_ID) values (10003, 10004);
+insert into PLANENTITY_GUIAENTITY (PLANENTITY_ID, GUIAS_ID) values (10003, 10002);
+insert into PLANENTITY_GUIAENTITY (PLANENTITY_ID, GUIAS_ID) values (10005, 10002);
+insert into PLANENTITY_GUIAENTITY (PLANENTITY_ID, GUIAS_ID) values (10005, 10001);
 
 insert into PLANENTITY_PREFERENCIASENTITY (PLANENTITY_ID, PREFERENCIASPLAN_ID) values (9999, 10000);
 insert into PLANENTITY_PREFERENCIASENTITY (PLANENTITY_ID, PREFERENCIASPLAN_ID) values (9999, 10001);
@@ -98,6 +107,9 @@ insert into PLANENTITY_PREFERENCIASENTITY (PLANENTITY_ID, PREFERENCIASPLAN_ID) v
 insert into PLANENTITY_PREFERENCIASENTITY (PLANENTITY_ID, PREFERENCIASPLAN_ID) values (10001, 10001);
 insert into PLANENTITY_PREFERENCIASENTITY (PLANENTITY_ID, PREFERENCIASPLAN_ID) values (10002, 10001);
 insert into PLANENTITY_PREFERENCIASENTITY (PLANENTITY_ID, PREFERENCIASPLAN_ID) values (10002, 10002);
+insert into PLANENTITY_PREFERENCIASENTITY (PLANENTITY_ID, PREFERENCIASPLAN_ID) values (10003, 10002);
+insert into PLANENTITY_PREFERENCIASENTITY (PLANENTITY_ID, PREFERENCIASPLAN_ID) values (10005, 10000);
+insert into PLANENTITY_PREFERENCIASENTITY (PLANENTITY_ID, PREFERENCIASPLAN_ID) values (10005, 10001);
 
 insert into PLANENTITY_VALORACIONESENTITY (PLANENTITY_ID, VALORACIONESPLAN_ID) values (10000, 10001);
 insert into PLANENTITY_VALORACIONESENTITY (PLANENTITY_ID, VALORACIONESPLAN_ID) values (9999, 10002);
@@ -106,6 +118,9 @@ insert into PLANENTITY_VALORACIONESENTITY (PLANENTITY_ID, VALORACIONESPLAN_ID) v
 insert into PLANENTITY_VALORACIONESENTITY (PLANENTITY_ID, VALORACIONESPLAN_ID) values (10002, 10005);
 insert into PLANENTITY_VALORACIONESENTITY (PLANENTITY_ID, VALORACIONESPLAN_ID) values (10001, 10006);
 insert into PLANENTITY_VALORACIONESENTITY (PLANENTITY_ID, VALORACIONESPLAN_ID) values (10002, 10007);
+insert into PLANENTITY_VALORACIONESENTITY (PLANENTITY_ID, VALORACIONESPLAN_ID) values (10003, 10001);
+insert into PLANENTITY_VALORACIONESENTITY (PLANENTITY_ID, VALORACIONESPLAN_ID) values (10005, 10002);
+insert into PLANENTITY_VALORACIONESENTITY (PLANENTITY_ID, VALORACIONESPLAN_ID) values (10005, 10003);
 
 
 /* Parte que se nececita para tajetas*/
