@@ -19,7 +19,8 @@
         'usuariosModule',
         'valoracionesModule',
         'uiGmapgoogle-maps',
-        'loginModule'
+        'loginModule',
+        'ngtweet'
     ]);
 
     // Resuelve problemas de las promesas
