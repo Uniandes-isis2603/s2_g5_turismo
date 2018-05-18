@@ -18,16 +18,19 @@
                     <div ui-view="detailView"></div>
                 </div>
                 <div class="row">
-                    <h2 class="caption text-center" style="color: #ED7A27; font-family: 'Fjalla One', sans-serif;">Blogs</h2> 
+                    <h2 class="caption text-center" style="color: #ED7A27; font-family: 'Fjalla One', sans-serif;">Opiniones de otros </h2> 
                     <br>
                     
                     <div class="col-md-3" ng-repeat="blog in blogsRecords| filter:{'tema':tema}">
-                       
-                            <a ui-sref="blogsDetail({blogId: blog.id})">                   
-                                <h3>{{blog.tema}}</h3>                                                  
+                        <div class="thumbnail" style =" height: 20%; width: 80%" >
+                            <a ui-sref="blogsDetail({blogId: blog.id})">                    
+                                <img class="img-responsive img-rounded" ng-src='https://dspncdn.com/a1/media/692x/21/9f/b1/219fb102ebcdf8f62b7a5a14b8330cca.jpg' alt="{{blog.tema}} " style =" height: 80%;" />                                                  
                             </a>
-                            
-                    </div>
+
+                            <div class="caption text-center" style="color: black ; font-family: 'Fjalla One', sans-serif;">
+                                <h4>{{blog.tema}}</h4>
+
+                            </div>                    </div>
                 </div>
             </div>
     
