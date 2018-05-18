@@ -1,6 +1,6 @@
 (function(ng){
     var mod = ng.module("moduloFacturas");
-    mod.controller("facturaCtrl",["$scope","$state","$stateParams","$http","facturaContext",
+    mod.controller("facturaCtrl",["$rootScope","$scope","$state","$stateParams","$http","facturaContext",
         /**
          * @ngdoc controller
          * @name facturas.controller:facturasCtrl
@@ -22,7 +22,7 @@
 
         
         
-        function($scope,$state,$stateParams,$http,context)
+        function($rootScope,$scope,$state,$stateParams,$http,context)
         {
              /**
              * @ngdoc function
@@ -40,11 +40,19 @@
              
             //lista vacia
             $scope.records={};
-           
+            
+            id=$rootScope.currentId;
             //carga las facturas de un usuario
             $http.get(context).then(function(response){
                 $scope.records = response.data;
             });
+            
+            $http.get("api/usuario/"+id).then(function(responses){
+                $scope.User = responses.data;
+            });
+          
+           
+            
             
 }
     ]);
