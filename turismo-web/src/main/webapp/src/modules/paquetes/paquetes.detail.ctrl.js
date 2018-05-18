@@ -45,10 +45,9 @@
                              listaUbicaciones.push($scope.plansRec.ubicacion);
                              
                              $scope.listaUbicacion=listaUbicaciones;
-                             console.log($scope.listaUbicacion);
                         });
                     }
-                    if($scope.currentPaquete.completado==false)
+                    if($scope.currentPaquete.completado===false)
                     {
                         $scope.terminado="No";
                         $scope.muestra=true;

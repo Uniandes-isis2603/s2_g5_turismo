@@ -60,6 +60,7 @@
                 } else {
                     
                     sessionStorage.token = $scope.user.token;
+                    sessionStorage.setItem("facturas",$scope.user.listaFacturas);
                     sessionStorage.setItem("username", $scope.user.name);
                     sessionStorage.setItem("rol", $scope.user.esAdministrador);
                     sessionStorage.setItem("id", $scope.user.id);

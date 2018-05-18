@@ -22,6 +22,7 @@
         function ($scope, $http, plansContext, $state) {
             if (($state.params.planId !== undefined) && ($state.params.planId !== null)) {
                 /**
+                 * En esté método también se calcula el promedio de valoracions para el view con estrellitas
                  * @ngdoc function
                  * @name getPlanID
                  * @methodOf plans.controller:planDetailCtrl

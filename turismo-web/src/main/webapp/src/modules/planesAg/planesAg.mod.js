@@ -18,6 +18,10 @@
                     'sideView': {
                         templateUrl: basePath + 'planesAg.side.html'
                     }
+                },
+                data: {
+                    requireLogin: true,
+                    roles: [true,false]
                 }
             }).state("miPlanList",{
                url:'/list',
