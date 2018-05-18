@@ -64,6 +64,18 @@ button{
 p {
     color: #ED7A27;
     font-family: 'Fjalla One', sans-serif;
+    font-stretch: expanded;
+}
+.filtroPlan{
+    color: #ED7A27;
+    font-family: 'Fjalla One', sans-serif;
+    font-stretch: expanded;
+    text-align:center;
+}
+
+.planSub {
+    font-family: sans-serif;
+    width: 100%;
 }
 
 .rzslider .rz-bubble, .rzslider .rz-tick-value {
