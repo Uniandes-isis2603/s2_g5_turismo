@@ -27,6 +27,7 @@
                 <input   type="number" ng-model="minRangeSliderP.minValue" />
                 <input type="number" ng-model="minRangeSliderP.maxValue" />
             </div>
+           <p style="color: #064169">..... </p>
             <p># de personas:</p>
             <rzslider rz-slider-model=minRangeSliderP.minValue rz-slider-high=minRangeSliderP.maxValue rz-slider-options=minRangeSliderP.options  ></rzslider>
 
@@ -34,9 +35,11 @@
                 <input type="number" ng-model="minRangeSliderV.minValue"  />
                 <input type="number" ng-model="minRangeSliderV.maxValue" />
             </div>
+            <p style="color: #064169">..... </p>
             <p>Valoración promedio:</p>
             <rzslider rz-slider-model=minRangeSliderV.minValue rz-slider-high=minRangeSliderV.maxValue rz-slider-options=minRangeSliderV.options></rzslider>
 
+            <p style="color: #064169">..... </p>
             <p>Categorías:</p>
             <label ng-repeat="preferencia in AllPreferencias" style="color: #ED7A27;"> <input type=checkbox ng-model="preferencia.selected"> {{preferencia.tipoPlan}}</label>
 
